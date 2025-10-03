@@ -1,0 +1,96 @@
+This is BibTeX, Version 0.99d (TeX Live 2025)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: main.aux
+A level-1 auxiliary file: titel_page.aux
+A level-1 auxiliary file: introduction.aux
+A level-1 auxiliary file: theory_generative_models.aux
+A level-1 auxiliary file: theory_diffusion_models.aux
+A level-1 auxiliary file: theory_fundamental_NN.aux
+A level-1 auxiliary file: theory_distillation.aux
+A level-1 auxiliary file: experiments.aux
+A level-1 auxiliary file: results.aux
+A level-1 auxiliary file: conclusion.aux
+The style file: plainurl.bst
+Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
+Reallocated global_strs (elt_size=200001) to 20 items from 10.
+Reallocated glb_str_end (elt_size=4) to 20 items from 10.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: bibliography.bib
+Repeated entry---line 875 of file bibliography.bib
+ : @article{FlowMatching
+ :                      ,
+I'm skipping whatever remains of this entry
+Warning--I didn't find a database entry for ""
+Warning--empty journal in HiDream
+Warning--empty journal in Claude
+Warning--empty year in WGAN
+Warning--empty year in Pixart_s
+Warning--empty year in BERT
+Warning--empty year in SteinDiscrepancy
+Warning--empty year in ResidualConnection
+Warning--empty year in Ccnet
+Warning--empty year in Bksdm
+Warning--empty journal in Flux
+Warning--empty year in FastGAN
+Warning--empty year in Floater
+Warning--empty year in GuidedDistillation
+Warning--empty year in ImprovedDDPM
+Warning--empty year in ALiBi
+Warning--empty year in ImageTransformer
+Warning--empty journal in SelfAttentionFigure
+Warning--empty year in NormalizingFlow
+Warning--empty year in SD21
+Warning--empty year in Unet
+Warning--empty year in LADD
+Warning--empty year in StyleGAN_T
+Warning--empty year in ADD
+Warning--empty year in DMBeginning
+Warning--empty year in DiffusionModelIntroPaper
+Warning--empty journal in ConsistencyModel
+Warning--empty year in SlicedScoreMatching
+Warning--empty year in ModeCollapse1
+Warning--empty year in DistillationMatching
+Warning--empty year in LPIPS
+You've used 92 entries,
+            2943 wiz_defined-function locations,
+            1162 strings with 22571 characters,
+and the built_in function-call counts, 47330 in all, are:
+= -- 4579
+> -- 2547
+< -- 26
++ -- 944
+- -- 850
+* -- 2794
+:= -- 6948
+add.period$ -- 298
+call.type$ -- 92
+change.case$ -- 701
+chr.to.int$ -- 0
+cite$ -- 122
+duplicate$ -- 1292
+empty$ -- 3895
+format.name$ -- 850
+if$ -- 11887
+int.to.chr$ -- 0
+int.to.str$ -- 92
+missing$ -- 87
+newline$ -- 469
+num.names$ -- 184
+pop$ -- 1259
+preamble$ -- 1
+purify$ -- 609
+quote$ -- 0
+skip$ -- 2955
+stack$ -- 0
+substring$ -- 1726
+swap$ -- 368
+text.length$ -- 32
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 368
+warning$ -- 30
+while$ -- 255
+width$ -- 94
+write$ -- 976
+(There was 1 error message)

@@ -1,0 +1,581 @@
+\begin{thebibliography}{10}
+
+\bibitem{GPT4}
+Josh Achiam, Steven Adler, Sandhini Agarwal, Lama Ahmad, Ilge Akkaya,
+  Florencia~Leoni Aleman, Diogo Almeida, Janko Altenschmidt, Sam Altman, and
+  Shyamal Anadkat.
+\newblock Gpt-4 technical report.
+\newblock {\em arXiv preprint arXiv:2303.08774}, 2023.
+
+\bibitem{HiDream}
+Vivago AI.
+\newblock Hidream-l1.
+\newblock 2025.
+\newblock URL: \url{https://vivago.ai/home}.
+
+\bibitem{Anderson}
+Brian~DO Anderson.
+\newblock Reverse-time diffusion equation models.
+\newblock {\em Stochastic Processes and their Applications}, 12(3):313--326,
+  1982.
+
+\bibitem{Claude}
+Anthropic.
+\newblock Claude 3 haiku: our fastest model yet.
+\newblock 2024.
+\newblock URL: \url{https://www.anthropic.com/news/claude-3-haiku}.
+
+\bibitem{WGAN}
+Martin Arjovsky, Soumith Chintala, and Léon Bottou.
+\newblock Wasserstein generative adversarial networks.
+\newblock In {\em International conference on machine learning}, pages
+  214--223. PMLR.
+
+\bibitem{LayerNorm}
+Jimmy~Lei Ba, Jamie~Ryan Kiros, and Geoffrey~E Hinton.
+\newblock Layer normalization.
+\newblock {\em arXiv preprint arXiv:1607.06450}, 2016.
+
+\bibitem{OrgAttention}
+Dzmitry Bahdanau, Kyunghyun Cho, and Yoshua Bengio.
+\newblock Neural machine translation by jointly learning to align and
+  translate.
+\newblock {\em arXiv preprint arXiv:1409.0473}, 2014.
+
+\bibitem{ELBO}
+David~M Blei, Alp Kucukelbir, and Jon~D McAuliffe.
+\newblock Variational inference: A review for statisticians.
+\newblock {\em Journal of the American statistical Association},
+  112(518):859--877, 2017.
+
+\bibitem{DDPMSamplerImage}
+Anja Butter, Nathan Huetsch, Sofia Palacios~Schweitzer, Tilman Plehn, Peter
+  Sorrenson, and Jonas Spinner.
+\newblock Jet diffusion versus jetgpt–modern networks for the lhc.
+\newblock {\em SciPost Physics Core}, 8(1):026, 2025.
+
+\bibitem{Pixart_s}
+Junsong Chen, Chongjian Ge, Enze Xie, Yue Wu, Lewei Yao, Xiaozhe Ren, Zhongdao
+  Wang, Ping Luo, Huchuan Lu, and Zhenguo Li.
+\newblock Pixart-$\sigma$: Weak-to-strong training of diffusion transformer for
+  4k text-to-image generation.
+\newblock In {\em European Conference on Computer Vision}, pages 74--91.
+  Springer.
+
+\bibitem{SparseTransformer}
+Rewon Child, Scott Gray, Alec Radford, and Ilya Sutskever.
+\newblock Generating long sequences with sparse transformers.
+\newblock {\em arXiv preprint arXiv:1904.10509}, 2019.
+
+\bibitem{Performer}
+Krzysztof Choromanski, Valerii Likhosherstov, David Dohan, Xingyou Song,
+  Andreea Gane, Tamas Sarlos, Peter Hawkins, Jared Davis, Afroz Mohiuddin, and
+  Lukasz Kaiser.
+\newblock Rethinking attention with performers.
+\newblock {\em arXiv preprint arXiv:2009.14794}, 2020.
+
+\bibitem{SurveyDM}
+Florinel-Alin Croitoru, Vlad Hondru, Radu~Tudor Ionescu, and Mubarak Shah.
+\newblock Diffusion models in vision: A survey.
+\newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  45(9):10850--10869, 2023.
+
+\bibitem{FlashAttention}
+Tri Dao, Dan Fu, Stefano Ermon, Atri Rudra, and Christopher Ré.
+\newblock Flashattention: Fast and memory-efficient exact attention with
+  io-awareness.
+\newblock {\em Advances in neural information processing systems},
+  35:16344--16359, 2022.
+
+\bibitem{BERT}
+Jacob Devlin, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova.
+\newblock Bert: Pre-training of deep bidirectional transformers for language
+  understanding.
+\newblock In {\em Proceedings of the 2019 conference of the North American
+  chapter of the association for computational linguistics: human language
+  technologies, volume 1 (long and short papers)}, pages 4171--4186.
+
+\bibitem{AffineCouplingLayer}
+Laurent Dinh, David Krueger, and Yoshua Bengio.
+\newblock Nice: Non-linear independent components estimation.
+\newblock {\em arXiv preprint arXiv:1410.8516}, 2014.
+
+\bibitem{VisionTransformer}
+Alexey Dosovitskiy, Lucas Beyer, Alexander Kolesnikov, Dirk Weissenborn,
+  Xiaohua Zhai, Thomas Unterthiner, Mostafa Dehghani, Matthias Minderer, Georg
+  Heigold, and Sylvain Gelly.
+\newblock An image is worth 16x16 words: Transformers for image recognition at
+  scale.
+\newblock {\em arXiv preprint arXiv:2010.11929}, 2020.
+
+\bibitem{feller1949stochastic}
+William Feller.
+\newblock On the theory of stochastic processes, with particular reference to
+  applications.
+\newblock In {\em Proceedings of the First Berkeley Symposium on Mathematical
+  Statistics and Probability}, pages 403--432, Berkeley, CA, 1949. The Regents
+  of the University of California.
+
+\bibitem{GAN}
+Ian~J Goodfellow, Jean Pouget-Abadie, Mehdi Mirza, Bing Xu, David Warde-Farley,
+  Sherjil Ozair, Aaron Courville, and Yoshua Bengio.
+\newblock Generative adversarial nets.
+\newblock {\em Advances in neural information processing systems}, 27, 2014.
+
+\bibitem{SteinDiscrepancy}
+Jackson Gorham and Lester Mackey.
+\newblock Measuring sample quality with kernels.
+\newblock In {\em International Conference on Machine Learning}, pages
+  1292--1301. PMLR.
+
+\bibitem{ResidualConnection}
+Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun.
+\newblock Deep residual learning for image recognition.
+\newblock In {\em Proceedings of the IEEE conference on computer vision and
+  pattern recognition}, pages 770--778.
+
+\bibitem{KnowledgeDistillation}
+Geoffrey Hinton, Oriol Vinyals, and Jeff Dean.
+\newblock Distilling the knowledge in a neural network.
+\newblock {\em arXiv preprint arXiv:1503.02531}, 2015.
+
+\bibitem{AE}
+Geoffrey~E Hinton and Ruslan~R Salakhutdinov.
+\newblock Reducing the dimensionality of data with neural networks.
+\newblock {\em science}, 313(5786):504--507, 2006.
+
+\bibitem{DDPM}
+Jonathan Ho, Ajay Jain, and Pieter Abbeel.
+\newblock Denoising diffusion probabilistic models, June 01, 2020 2020.
+\newblock URL: \url{https://ui.adsabs.harvard.edu/abs/2020arXiv200611239H},
+  \href {https://doi.org/10.48550/arXiv.2006.11239}
+  {\path{doi:10.48550/arXiv.2006.11239}}.
+
+\bibitem{Ccnet}
+Zilong Huang, Xinggang Wang, Lichao Huang, Chang Huang, Yunchao Wei, and Wenyu
+  Liu.
+\newblock Ccnet: Criss-cross attention for semantic segmentation.
+\newblock In {\em Proceedings of the IEEE/CVF international conference on
+  computer vision}, pages 603--612.
+
+\bibitem{FastSDE}
+Alexia Jolicoeur-Martineau, Ke~Li, Rémi Piché-Taillefer, Tal Kachman, and
+  Ioannis Mitliagkas.
+\newblock Gotta go fast when generating data with score-based models.
+\newblock {\em arXiv preprint arXiv:2105.14080}, 2021.
+
+\bibitem{ODESolver1}
+Tero Karras, Miika Aittala, Timo Aila, and Samuli Laine.
+\newblock Elucidating the design space of diffusion-based generative models.
+\newblock {\em Advances in neural information processing systems},
+  35:26565--26577, 2022.
+
+\bibitem{StyleGAN_3}
+Tero Karras, Miika Aittala, Samuli Laine, Erik Härkönen, Janne Hellsten,
+  Jaakko Lehtinen, and Timo Aila.
+\newblock Alias-free generative adversarial networks.
+\newblock {\em Advances in neural information processing systems}, 34:852--863,
+  2021.
+
+\bibitem{Bksdm}
+Bo-Kyeong Kim, Hyoung-Kyu Song, Thibault Castells, and Shinkook Choi.
+\newblock Bk-sdm: A lightweight, fast, and cheap version of stable diffusion.
+\newblock In {\em European Conference on Computer Vision}, pages 381--399.
+  Springer.
+
+\bibitem{VDM}
+Diederik Kingma, Tim Salimans, Ben Poole, and Jonathan Ho.
+\newblock Variational diffusion models.
+\newblock {\em Advances in neural information processing systems},
+  34:21696--21707, 2021.
+
+\bibitem{VAE}
+Diederik~P Kingma and Max Welling.
+\newblock Auto-encoding variational bayes, 2013.
+
+\bibitem{Reformer}
+Nikita Kitaev, Łukasz Kaiser, and Anselm Levskaya.
+\newblock Reformer: The efficient transformer.
+\newblock {\em arXiv preprint arXiv:2001.04451}, 2020.
+
+\bibitem{Shape}
+Shun Kiyono, Sosuke Kobayashi, Jun Suzuki, and Kentaro Inui.
+\newblock Shape: Shifted absolute position embedding for transformers.
+\newblock {\em arXiv preprint arXiv:2109.05644}, 2021.
+
+\bibitem{KL-Div}
+Solomon Kullback and Richard~A Leibler.
+\newblock On information and sufficiency.
+\newblock {\em The annals of mathematical statistics}, 22(1):79--86, 1951.
+
+\bibitem{Flux}
+Black~Forest Labs.
+\newblock Flux model.
+\newblock 2024.
+\newblock URL: \url{https://bfl.ai}.
+
+\bibitem{Koala}
+Youngwan Lee, Kwanyong Park, Yoorhim Cho, Yong-Ju Lee, and Sung~Ju Hwang.
+\newblock Koala: Empirical lessons toward memory-efficient and fast diffusion
+  models for text-to-image synthesis.
+\newblock {\em Advances in Neural Information Processing Systems},
+  37:51597--51633, 2024.
+
+\bibitem{FIRE}
+Shanda Li, Chong You, Guru Guruganesh, Joshua Ainslie, Santiago Ontanon, Manzil
+  Zaheer, Sumit Sanghai, Yiming Yang, Sanjiv Kumar, and Srinadh Bhojanapalli.
+\newblock Functional interpolation for relative positions improves long context
+  transformers.
+\newblock {\em arXiv preprint arXiv:2310.04418}, 2023.
+
+\bibitem{Cape}
+Tatiana Likhomanenko, Qiantong Xu, Gabriel Synnaeve, Ronan Collobert, and Alex
+  Rogozhnikov.
+\newblock Cape: Encoding relative positions with continuous augmented
+  positional embeddings.
+\newblock {\em Advances in Neural Information Processing Systems},
+  34:16079--16092, 2021.
+
+\bibitem{SDXL_Lightning}
+Shanchuan Lin, Anran Wang, and Xiao Yang.
+\newblock Sdxl-lightning: Progressive adversarial diffusion distillation.
+\newblock {\em arXiv preprint arXiv:2402.13929}, 2024.
+
+\bibitem{PacGAN}
+Zinan Lin, Ashish Khetan, Giulia Fanti, and Sewoong Oh.
+\newblock Pacgan: The power of two samples in generative adversarial networks.
+\newblock {\em Advances in neural information processing systems}, 31, 2018.
+
+\bibitem{FlowMatching}
+Yaron Lipman, Ricky~TQ Chen, Heli Ben-Hamu, Maximilian Nickel, and Matt Le.
+\newblock Flow matching for generative modeling.
+\newblock {\em arXiv preprint arXiv:2210.02747}, 2022.
+
+\bibitem{FastGAN}
+Bingchen Liu, Yizhe Zhu, Kunpeng Song, and Ahmed Elgammal.
+\newblock Towards faster and stabilized gan training for high-fidelity few-shot
+  image synthesis.
+\newblock In {\em iclr}.
+
+\bibitem{RectifiedFlowMatching}
+Xingchao Liu, Chengyue Gong, and Qiang Liu.
+\newblock Flow straight and fast: Learning to generate and transfer data with
+  rectified flow.
+\newblock {\em arXiv preprint arXiv:2209.03003}, 2022.
+
+\bibitem{Floater}
+Xuanqing Liu, Hsiang-Fu Yu, Inderjit Dhillon, and Cho-Jui Hsieh.
+\newblock Learning to encode position for transformer with continuous dynamical
+  model.
+\newblock In {\em International conference on machine learning}, pages
+  6327--6335. PMLR.
+
+\bibitem{ODESolver2}
+Cheng Lu, Yuhao Zhou, Fan Bao, Jianfei Chen, Chongxuan Li, and Jun Zhu.
+\newblock Dpm-solver: A fast ode solver for diffusion probabilistic model
+  sampling in around 10 steps.
+\newblock {\em Advances in Neural Information Processing Systems},
+  35:5775--5787, 2022.
+
+\bibitem{LatentConsistencyModel}
+Simian Luo, Yiqin Tan, Longbo Huang, Jian Li, and Hang Zhao.
+\newblock Latent consistency models: Synthesizing high-resolution images with
+  few-step inference.
+\newblock {\em arXiv preprint arXiv:2310.04378}, 2023.
+
+\bibitem{GuidedDistillation}
+Chenlin Meng, Robin Rombach, Ruiqi Gao, Diederik Kingma, Stefano Ermon,
+  Jonathan Ho, and Tim Salimans.
+\newblock On distillation of guided diffusion models.
+\newblock In {\em Proceedings of the IEEE/CVF Conference on Computer Vision and
+  Pattern Recognition}, pages 14297--14306.
+
+\bibitem{ImprovedDDPM}
+Alexander~Quinn Nichol and Prafulla Dhariwal.
+\newblock Improved denoising diffusion probabilistic models.
+\newblock In {\em International conference on machine learning}, pages
+  8162--8171. PMLR.
+
+\bibitem{DinoV2}
+Maxime Oquab, Timothée Darcet, Théo Moutakanni, Huy Vo, Marc Szafraniec,
+  Vasil Khalidov, Pierre Fernandez, Daniel Haziza, Francisco Massa, and
+  Alaaeldin El-Nouby.
+\newblock Dinov2: Learning robust visual features without supervision.
+\newblock {\em arXiv preprint arXiv:2304.07193}, 2023.
+
+\bibitem{ALiBi}
+Joon~Sung Park, Joseph O'Brien, Carrie~Jun Cai, Meredith~Ringel Morris, Percy
+  Liang, and Michael~S Bernstein.
+\newblock Generative agents: Interactive simulacra of human behavior.
+\newblock In {\em Proceedings of the 36th annual acm symposium on user
+  interface software and technology}, pages 1--22.
+
+\bibitem{ImageTransformer}
+Niki Parmar, Ashish Vaswani, Jakob Uszkoreit, Lukasz Kaiser, Noam Shazeer,
+  Alexander Ku, and Dustin Tran.
+\newblock Image transformer.
+\newblock In {\em International conference on machine learning}, pages
+  4055--4064. PMLR.
+
+\bibitem{pawlowski2024physics}
+Jan Pawlowski and Tilman Plehn.
+\newblock Physics and machine learning.
+\newblock Lecture script, Institut für Theoretische Physik, Universität
+  Heidelberg, January 2024.
+\newblock Version from January 30, 2024.
+
+\bibitem{SDXL}
+Dustin Podell, Zion English, Kyle Lacey, Andreas Blattmann, Tim Dockhorn, Jonas
+  Müller, Joe Penna, and Robin Rombach.
+\newblock Sdxl: Improving latent diffusion models for high-resolution image
+  synthesis.
+\newblock {\em arXiv preprint arXiv:2307.01952}, 2023.
+
+\bibitem{ConvGAN}
+Alec Radford, Luke Metz, and Soumith Chintala.
+\newblock Unsupervised representation learning with deep convolutional
+  generative adversarial networks.
+\newblock {\em arXiv preprint arXiv:1511.06434}, 2015.
+
+\bibitem{StandAloneAttentionVisonModels}
+Prajit Ramachandran, Niki Parmar, Ashish Vaswani, Irwan Bello, Anselm Levskaya,
+  and Jon Shlens.
+\newblock Stand-alone self-attention in vision models.
+\newblock {\em Advances in neural information processing systems}, 32, 2019.
+
+\bibitem{CNN}
+Prajit Ramachandran, Niki Parmar, Ashish Vaswani, Irwan Bello, Anselm Levskaya,
+  and Jon Shlens.
+\newblock Stand-alone self-attention in vision models.
+\newblock {\em Advances in neural information processing systems}, 32, 2019.
+
+\bibitem{SelfAttentionFigure}
+Sebastian Raschka.
+\newblock Understanding and coding the self-attention mechanism of large
+  language models from scratch.
+\newblock 2023.
+\newblock URL:
+  \url{https://sebastianraschka.com/blog/2023/self-attention-from-scratch.html}.
+
+\bibitem{NormalizingFlow}
+Danilo Rezende and Shakir Mohamed.
+\newblock Variational inference with normalizing flows.
+\newblock In {\em International conference on machine learning}, pages
+  1530--1538. PMLR.
+
+\bibitem{SD21}
+Robin Rombach, Andreas Blattmann, Dominik Lorenz, Patrick Esser, and Björn
+  Ommer.
+\newblock High-resolution image synthesis with latent diffusion models.
+\newblock In {\em Proceedings of the IEEE/CVF conference on computer vision and
+  pattern recognition}, pages 10684--10695.
+
+\bibitem{LDM}
+Robin Rombach, Andreas Blattmann, Dominik Lorenz, Patrick Esser, and Björn
+  Ommer.
+\newblock High-resolution image synthesis with latent diffusion models,
+  December 01, 2021 2021.
+\newblock CVPR 2022.
+\newblock URL: \url{https://ui.adsabs.harvard.edu/abs/2021arXiv211210752R},
+  \href {https://doi.org/10.48550/arXiv.2112.10752}
+  {\path{doi:10.48550/arXiv.2112.10752}}.
+
+\bibitem{Unet}
+Olaf Ronneberger, Philipp Fischer, and Thomas Brox.
+\newblock U-net: Convolutional networks for biomedical image segmentation.
+\newblock In {\em Medical image computing and computer-assisted
+  intervention–MICCAI 2015: 18th international conference, Munich, Germany,
+  October 5-9, 2015, proceedings, part III 18}, pages 234--241. Springer.
+
+\bibitem{RNN}
+David~E Rumelhart, Geoffrey~E Hinton, and Ronald~J Williams.
+\newblock Learning representations by back-propagating errors.
+\newblock {\em nature}, 323(6088):533--536, 1986.
+
+\bibitem{ImprovedGANTraining}
+Tim Salimans, Ian Goodfellow, Wojciech Zaremba, Vicki Cheung, Alec Radford, and
+  Xi~Chen.
+\newblock Improved techniques for training gans.
+\newblock {\em Advances in neural information processing systems}, 29, 2016.
+
+\bibitem{ProgressiveDistillation}
+Tim Salimans and Jonathan Ho.
+\newblock Progressive distillation for fast sampling of diffusion models.
+\newblock {\em arXiv preprint arXiv:2202.00512}, 2022.
+
+\bibitem{LADD}
+Axel Sauer, Frederic Boesel, Tim Dockhorn, Andreas Blattmann, Patrick Esser,
+  and Robin Rombach.
+\newblock Fast high-resolution image synthesis with latent adversarial
+  diffusion distillation.
+\newblock In {\em SIGGRAPH Asia 2024 Conference Papers}, pages 1--11.
+
+\bibitem{StyleGAN_T}
+Axel Sauer, Tero Karras, Samuli Laine, Andreas Geiger, and Timo Aila.
+\newblock Stylegan-t: Unlocking the power of gans for fast large-scale
+  text-to-image synthesis.
+\newblock In {\em International conference on machine learning}, pages
+  30105--30118. PMLR.
+
+\bibitem{ADD}
+Axel Sauer, Dominik Lorenz, Andreas Blattmann, and Robin Rombach.
+\newblock Adversarial diffusion distillation.
+\newblock In {\em European Conference on Computer Vision}, pages 87--103.
+  Springer.
+
+\bibitem{DMBeginning}
+Jascha Sohl-Dickstein, Eric Weiss, Niru Maheswaranathan, and Surya Ganguli.
+\newblock Deep unsupervised learning using nonequilibrium thermodynamics.
+\newblock In {\em International conference on machine learning}, pages
+  2256--2265. pmlr.
+
+\bibitem{DiffusionModelIntroPaper}
+Jascha Sohl-Dickstein, Eric Weiss, Niru Maheswaranathan, and Surya Ganguli.
+\newblock Deep unsupervised learning using nonequilibrium thermodynamics.
+\newblock In {\em International conference on machine learning}, pages
+  2256--2265. pmlr.
+
+\bibitem{DDIM}
+Jiaming Song, Chenlin Meng, and Stefano Ermon.
+\newblock Denoising diffusion implicit models, October 01, 2020 2020.
+\newblock ICLR 2021; updated connections with ODEs at page 6, fixed some typos
+  in the proof.
+\newblock URL: \url{https://ui.adsabs.harvard.edu/abs/2020arXiv201002502S},
+  \href {https://doi.org/10.48550/arXiv.2010.02502}
+  {\path{doi:10.48550/arXiv.2010.02502}}.
+
+\bibitem{ConsistencyModel}
+Yang Song, Prafulla Dhariwal, Mark Chen, and Ilya Sutskever.
+\newblock Consistency models.
+\newblock 2023.
+
+\bibitem{SGM}
+Yang Song and Stefano Ermon.
+\newblock Generative modeling by estimating gradients of the data distribution.
+\newblock {\em Advances in neural information processing systems}, 32, 2019.
+
+\bibitem{IntroSGM}
+Yang Song and Stefano Ermon.
+\newblock Generative modeling by estimating gradients of the data distribution.
+\newblock {\em Advances in neural information processing systems}, 32, 2019.
+
+\bibitem{ImprovedSGMs}
+Yang Song and Stefano Ermon.
+\newblock Improved techniques for training score-based generative models.
+\newblock {\em Advances in neural information processing systems},
+  33:12438--12448, 2020.
+
+\bibitem{SlicedScoreMatching}
+Yang Song, Sahaj Garg, Jiaxin Shi, and Stefano Ermon.
+\newblock Sliced score matching: A scalable approach to density and score
+  estimation.
+\newblock In {\em Uncertainty in artificial intelligence}, pages 574--584.
+  PMLR.
+
+\bibitem{SDE}
+Yang Song, Jascha Sohl-Dickstein, Diederik~P Kingma, Abhishek Kumar, Stefano
+  Ermon, and Ben Poole.
+\newblock Score-based generative modeling through stochastic differential
+  equations.
+\newblock {\em arXiv preprint arXiv:2011.13456}, 2020.
+
+\bibitem{ScoreBasedODE}
+Yang Song, Jascha Sohl-Dickstein, Diederik~P Kingma, Abhishek Kumar, Stefano
+  Ermon, and Ben Poole.
+\newblock Score-based generative modeling through stochastic differential
+  equations.
+\newblock {\em arXiv preprint arXiv:2011.13456}, 2020.
+
+\bibitem{ScoreBasedDiffModel}
+Yang Song, Jascha Sohl-Dickstein, Diederik~P Kingma, Abhishek Kumar, Stefano
+  Ermon, and Ben Poole.
+\newblock Score-based generative modeling through stochastic differential
+  equations.
+\newblock {\em arXiv preprint arXiv:2011.13456}, 2020.
+
+\bibitem{LectureNotesDDPM}
+Inga Strümke and Helge Langseth.
+\newblock Lecture notes in probabilistic diffusion models.
+\newblock {\em arXiv preprint arXiv:2312.10393}, 2023.
+
+\bibitem{RoPE}
+Jianlin Su, Murtadha Ahmed, Yu~Lu, Shengfeng Pan, Wen Bo, and Yunfeng Liu.
+\newblock Roformer: Enhanced transformer with rotary position embedding.
+\newblock {\em Neurocomputing}, 568:127063, 2024.
+
+\bibitem{Gemini}
+Gemini Team, Rohan Anil, Sebastian Borgeaud, Jean-Baptiste Alayrac, Jiahui Yu,
+  Radu Soricut, Johan Schalkwyk, Andrew~M Dai, Anja Hauth, and Katie Millican.
+\newblock Gemini: a family of highly capable multimodal models.
+\newblock {\em arXiv preprint arXiv:2312.11805}, 2023.
+
+\bibitem{ModeCollapse1}
+Hoang Thanh-Tung and Truyen Tran.
+\newblock Catastrophic forgetting and mode collapse in gans.
+\newblock In {\em 2020 international joint conference on neural networks
+  (ijcnn)}, pages 1--10. IEEE.
+
+\bibitem{MCMC}
+Luke Tierney.
+\newblock Markov chains for exploring posterior distributions.
+\newblock {\em the Annals of Statistics}, pages 1701--1728, 1994.
+
+\bibitem{Lama}
+Hugo Touvron, Louis Martin, Kevin Stone, Peter Albert, Amjad Almahairi, Yasmine
+  Babaei, Nikolay Bashlykov, Soumya Batra, Prajjwal Bhargava, and Shruti
+  Bhosale.
+\newblock Llama 2: Open foundation and fine-tuned chat models.
+\newblock {\em arXiv preprint arXiv:2307.09288}, 2023.
+
+\bibitem{AttentionIsAllYouNeed}
+Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones,
+  Aidan~N Gomez, Łukasz Kaiser, and Illia Polosukhin.
+\newblock Attention is all you need.
+\newblock {\em Advances in neural information processing systems}, 30, 2017.
+
+\bibitem{Survey2}
+Ling Yang, Zhilong Zhang, Yang Song, Shenda Hong, Runsheng Xu, Yue Zhao, Wentao
+  Zhang, Bin Cui, and Ming-Hsuan Yang.
+\newblock Diffusion models: A comprehensive survey of methods and applications.
+\newblock {\em ACM Computing Surveys}, 56(4):1--39, 2023.
+
+\bibitem{ImprovedDistillationMatching}
+Tianwei Yin, Michaël Gharbi, Taesung Park, Richard Zhang, Eli Shechtman, Fredo
+  Durand, and Bill Freeman.
+\newblock Improved distribution matching distillation for fast image synthesis.
+\newblock {\em Advances in neural information processing systems},
+  37:47455--47487, 2024.
+
+\bibitem{DistillationMatching}
+Tianwei Yin, Michaël Gharbi, Richard Zhang, Eli Shechtman, Fredo Durand,
+  William~T Freeman, and Taesung Park.
+\newblock One-step diffusion with distribution matching distillation.
+\newblock In {\em Proceedings of the IEEE/CVF conference on computer vision and
+  pattern recognition}, pages 6613--6623.
+
+\bibitem{Laptop}
+Dingkun Zhang, Sijia Li, Chen Chen, Qingsong Xie, and Haonan Lu.
+\newblock Laptop-diff: Layer pruning and normalized distillation for
+  compressing diffusion models.
+\newblock {\em arXiv preprint arXiv:2404.11098}, 2024.
+
+\bibitem{ODESolver3}
+Qinsheng Zhang and Yongxin Chen.
+\newblock Fast sampling of diffusion models with exponential integrator.
+\newblock {\em arXiv preprint arXiv:2204.13902}, 2022.
+
+\bibitem{LPIPS}
+Richard Zhang, Phillip Isola, Alexei~A Efros, Eli Shechtman, and Oliver Wang.
+\newblock The unreasonable effectiveness of deep features as a perceptual
+  metric.
+\newblock In {\em Proceedings of the IEEE conference on computer vision and
+  pattern recognition}, pages 586--595.
+
+\bibitem{PositionalEmbeddingSurvey}
+Liang Zhao, Xiachong Feng, Xiaocheng Feng, Weihong Zhong, Dongliang Xu, Qing
+  Yang, Hongtao Liu, Bing Qin, and Ting Liu.
+\newblock Length extrapolation of transformers: A survey from the perspective
+  of positional encoding.
+\newblock {\em arXiv preprint arXiv:2312.17044}, 2023.
+
+\end{thebibliography}

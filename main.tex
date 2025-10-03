@@ -1,0 +1,39 @@
+\documentclass[oneside,a4paper,12pt]{book}
+\input{preamble}
+\input{glossary}
+\makeglossaries
+\begin{document}
+
+\include{titel_page}
+
+\renewcommand\contentsname{Table of Contents}
+\tableofcontents
+
+
+\glsaddall
+\printglossary[title=List of Abbreviations, toctitle=Abbreviations, nonumberlist]
+\addcontentsline{toc}{chapter}{List of Abbreviations}
+
+
+
+
+
+\cleardoublepage
+\listoffigures
+\cleardoublepage
+\listoftables
+
+\include{introduction}
+\include{theory_generative_models}
+\include{theory_diffusion_models}
+\include{theory_fundamental_NN}
+\include{theory_distillation}
+\include{experiments}
+\include{results}
+\include{conclusion}
+
+\bibliographystyle{plainurl}        % or apalike, unsrt, etc.
+\bibliography{bibliography} 
+
+
+\end{document}
