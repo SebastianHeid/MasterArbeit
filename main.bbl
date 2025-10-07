@@ -48,6 +48,12 @@ David~M Blei, Alp Kucukelbir, and Jon~D McAuliffe.
 \newblock {\em Journal of the American statistical Association},
   112(518):859--877, 2017.
 
+\bibitem{VariationalInference}
+David~M Blei, Alp Kucukelbir, and Jon~D McAuliffe.
+\newblock Variational inference: A review for statisticians.
+\newblock {\em Journal of the American statistical Association},
+  112(518):859--877, 2017.
+
 \bibitem{DDPMSamplerImage}
 Anja Butter, Nathan Huetsch, Sofia Palacios~Schweitzer, Tilman Plehn, Peter
   Sorrenson, and Jonas Spinner.

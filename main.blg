@@ -52,45 +52,45 @@ Warning--empty year in SlicedScoreMatching
 Warning--empty year in ModeCollapse1
 Warning--empty year in DistillationMatching
 Warning--empty year in LPIPS
-You've used 92 entries,
+You've used 93 entries,
             2943 wiz_defined-function locations,
-            1162 strings with 22571 characters,
-and the built_in function-call counts, 47330 in all, are:
-= -- 4579
-> -- 2547
+            1164 strings with 22611 characters,
+and the built_in function-call counts, 47798 in all, are:
+= -- 4626
+> -- 2567
 < -- 26
-+ -- 944
-- -- 850
-* -- 2794
-:= -- 6948
-add.period$ -- 298
-call.type$ -- 92
-change.case$ -- 701
++ -- 951
+- -- 856
+* -- 2824
+:= -- 7016
+add.period$ -- 301
+call.type$ -- 93
+change.case$ -- 707
 chr.to.int$ -- 0
-cite$ -- 122
-duplicate$ -- 1292
-empty$ -- 3895
-format.name$ -- 850
-if$ -- 11887
+cite$ -- 123
+duplicate$ -- 1303
+empty$ -- 3938
+format.name$ -- 856
+if$ -- 12007
 int.to.chr$ -- 0
-int.to.str$ -- 92
-missing$ -- 87
-newline$ -- 469
-num.names$ -- 184
-pop$ -- 1259
+int.to.str$ -- 93
+missing$ -- 88
+newline$ -- 474
+num.names$ -- 186
+pop$ -- 1268
 preamble$ -- 1
-purify$ -- 609
+purify$ -- 614
 quote$ -- 0
-skip$ -- 2955
+skip$ -- 2985
 stack$ -- 0
-substring$ -- 1726
-swap$ -- 368
+substring$ -- 1752
+swap$ -- 369
 text.length$ -- 32
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 368
+type$ -- 372
 warning$ -- 30
-while$ -- 255
-width$ -- 94
-write$ -- 976
+while$ -- 258
+width$ -- 95
+write$ -- 987
 (There was 1 error message)

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.9.24)  3 OCT 2025 09:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.9.24)  7 OCT 2025 14:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -912,7 +912,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 3--5
 
  []
 
-<images/Background/MarkovChainDiffProcess.png, id=341, 555.07375pt x 93.34875pt
+<images/Background/MarkovChainDiffProcess.png, id=343, 555.07375pt x 93.34875pt
 >
 File: images/Background/MarkovChainDiffProcess.png Graphic file (type png)
 <use images/Background/MarkovChainDiffProcess.png>
@@ -976,13 +976,13 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [10]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
 put line 208.
-<images/Background/DDPM_Training.png, id=438, 515.9275pt x 275.0275pt>
+<images/Background/DDPM_Training.png, id=440, 515.9275pt x 275.0275pt>
 File: images/Background/DDPM_Training.png Graphic file (type png)
 <use images/Background/DDPM_Training.png>
 Package pdftex.def Info: images/Background/DDPM_Training.png  used on input lin
 e 223.
 (pdftex.def)             Requested size: 386.95897pt x 206.2827pt.
-<images/Background/DDPM.png, id=445, 1579.9025pt x 765.86125pt>
+<images/Background/DDPM.png, id=447, 1579.9025pt x 765.86125pt>
 File: images/Background/DDPM.png Graphic file (type png)
 <use images/Background/DDPM.png>
 Package pdftex.def Info: images/Background/DDPM.png  used on input line 266.
@@ -1033,7 +1033,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [15]
-<images/Background/Overview_2.png, id=547, 1123.19624pt x 188.705pt>
+<images/Background/Overview_2.png, id=549, 1123.19624pt x 188.705pt>
 File: images/Background/Overview_2.png Graphic file (type png)
 <use images/Background/Overview_2.png>
 Package pdftex.def Info: images/Background/Overview_2.png  used on input line 3
@@ -1055,7 +1055,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 LaTeX Warning: Reference `' on page 17 undefined on input line 2.
 
-<images/Background/transformer.png, id=569, 1324.95pt x 1866.975pt>
+<images/Background/transformer.png, id=571, 1324.95pt x 1866.975pt>
 File: images/Background/transformer.png Graphic file (type png)
 <use images/Background/transformer.png>
 Package pdftex.def Info: images/Background/transformer.png  used on input line 
@@ -1084,7 +1084,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [18 <./images/Background/transformer.png>]
-<images/Background/SelfAttention.png, id=596, 927.465pt x 503.7pt>
+<images/Background/SelfAttention.png, id=598, 927.465pt x 503.7pt>
 File: images/Background/SelfAttention.png Graphic file (type png)
 <use images/Background/SelfAttention.png>
 Package pdftex.def Info: images/Background/SelfAttention.png  used on input lin
@@ -1100,7 +1100,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [19]
-<images/Background/CrossAttention.png, id=615, 935.349pt x 503.7pt>
+<images/Background/CrossAttention.png, id=617, 935.349pt x 503.7pt>
 File: images/Background/CrossAttention.png Graphic file (type png)
 <use images/Background/CrossAttention.png>
 Package pdftex.def Info: images/Background/CrossAttention.png  used on input li
@@ -1117,7 +1117,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [20 <./images/Background/SelfAttention.png> <./images/Background/CrossAttention
 .png>]
-<images/Background/multi-head-attention.png, id=625, 578.16pt x 748.7975pt>
+<images/Background/multi-head-attention.png, id=627, 578.16pt x 748.7975pt>
 File: images/Background/multi-head-attention.png Graphic file (type png)
 <use images/Background/multi-head-attention.png>
 Package pdftex.def Info: images/Background/multi-head-attention.png  used on in
@@ -1142,7 +1142,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [22]
-<images/Background/RoPE.png, id=671, 418.56375pt x 238.8925pt>
+<images/Background/RoPE.png, id=673, 418.56375pt x 238.8925pt>
 File: images/Background/RoPE.png Graphic file (type png)
 <use images/Background/RoPE.png>
 Package pdftex.def Info: images/Background/RoPE.png  used on input line 135.
@@ -1162,7 +1162,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [23 <./images/Background/RoPE.png>]
-<images/Background/VisionTransformer.png, id=690, 598.235pt x 304.13625pt>
+<images/Background/VisionTransformer.png, id=692, 598.235pt x 304.13625pt>
 File: images/Background/VisionTransformer.png Graphic file (type png)
 <use images/Background/VisionTransformer.png>
 Package pdftex.def Info: images/Background/VisionTransformer.png  used on input
@@ -1199,7 +1199,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 
 ]
-<images/Background/ADD.png, id=734, 689.57625pt x 425.59pt>
+<images/Background/ADD.png, id=736, 689.57625pt x 425.59pt>
 File: images/Background/ADD.png Graphic file (type png)
 <use images/Background/ADD.png>
 Package pdftex.def Info: images/Background/ADD.png  used on input line 26.
@@ -1214,7 +1214,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [26]
-<images/Background/ProgressiveDistillation.png, id=746, 705.63625pt x 348.30125
+<images/Background/ProgressiveDistillation.png, id=748, 705.63625pt x 348.30125
 pt>
 File: images/Background/ProgressiveDistillation.png Graphic file (type png)
 <use images/Background/ProgressiveDistillation.png>
@@ -1231,7 +1231,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [27 <./images/Background/ADD.png>]
-<images/Background/Self_Consistency.png, id=760, 430.60875pt x 200.75pt>
+<images/Background/Self_Consistency.png, id=762, 430.60875pt x 200.75pt>
 File: images/Background/Self_Consistency.png Graphic file (type png)
 <use images/Background/Self_Consistency.png>
 Package pdftex.def Info: images/Background/Self_Consistency.png  used on input 
@@ -1256,7 +1256,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [29 <./images/Background/Self_Consistency.png>]
-<images/Background/DistributionMatching.png, id=785, 906.38625pt x 319.1925pt>
+<images/Background/DistributionMatching.png, id=787, 906.38625pt x 319.1925pt>
 File: images/Background/DistributionMatching.png Graphic file (type png)
 <use images/Background/DistributionMatching.png>
 Package pdftex.def Info: images/Background/DistributionMatching.png  used on in
@@ -1329,7 +1329,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [35]
-Underfull \hbox (badness 1496) in paragraph at lines 300--305
+Underfull \hbox (badness 1496) in paragraph at lines 306--311
 []\T1/cmr/m/n/12 Maxime Oquab, Tim-o-thée Darcet, Théo Moutakanni, Huy Vo, Marc
  Szafraniec,
  []
@@ -1395,13 +1395,13 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: A28D32A45C350F0192C48E4464BCABC0;3677.
  ) 
 Here is how much of TeX's memory you used:
- 24087 strings out of 473190
- 428937 string characters out of 5715800
- 956408 words of memory out of 5000000
- 46629 multiletter control sequences out of 15000+600000
+ 24091 strings out of 473190
+ 429046 string characters out of 5715800
+ 956424 words of memory out of 5000000
+ 46632 multiletter control sequences out of 15000+600000
  577003 words of font info for 80 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,14n,96p,2382b,922s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,14n,96p,2382b,926s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 ></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb><
 /usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></
@@ -1428,10 +1428,10 @@ ist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/local/texlive/2025/texmf-dis
 t/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2025/texmf-dist/
 fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/2025/texmf-dist/fo
 nts/type1/public/cm-super/sftt1200.pfb>
-Output written on main.pdf (46 pages, 3603077 bytes).
+Output written on main.pdf (46 pages, 3602927 bytes).
 PDF statistics:
- 1042 PDF objects out of 1200 (max. 8388607)
- 889 compressed objects within 9 object streams
- 293 named destinations out of 1000 (max. 500000)
+ 1044 PDF objects out of 1200 (max. 8388607)
+ 891 compressed objects within 9 object streams
+ 294 named destinations out of 1000 (max. 500000)
  247 words of extra memory for PDF output out of 10000 (max. 10000000)
 
