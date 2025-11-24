@@ -1,12 +1,12 @@
 \section{Generative Models}
-Generative models are are a class of machine learning models that are trained to learn the true distribution from a training data set to generate new synthetic data elements. They are of relevance for text generators, also known as large language models (\gls{LLM}s) \cite{Claude, Gemini, GPT4, Lama} and image generators \cite{SD21, SDXL, Pixart_s, Flux, HiDream}. Both are being used more and more in the professional world and in daily life. Several different generator methods have been developed, such as variational autoencoders (\gls{VAE}s) \cite{VAE}, generative adversarial networks (\gls{GAN}s) \cite{GAN, ConvGAN}, normalizing flows (\gls{NF}s) \cite{NormalizingFlow}, and diffusion models (\gls{DM}s) \cite{DMBeginning}. \\
+Generative models are a class of machine learning models that are trained to learn the true data distribution to generate new synthetic data elements. They are of high relevance for text and image generation tasks. In particular, famous models for text generation, also known as large language models (\gls{LLM}s) include ChatGPT \cite{GPT4}, Claude \cite{Claude}, Gemini \cite{Gemini} or Lama \cite{Lama} whereas Stable Diffusion \cite{SD2 , SDXL}, Flux \cite{Flux} and Pixart \cite{Pixart_s} are widely used for  image generation tasks. Both are being used more and more in the professional world and in daily life. Several different generator methods have been developed, such as variational autoencoders (\gls{VAE}s) \cite{VAE}, generative adversarial networks (\gls{GAN}s) \cite{GAN, ConvGAN}, normalizing flows (\gls{NF}s) \cite{NormalizingFlow}, and diffusion models (\gls{DM}s) \cite{DMBeginning}. \\
 The principal idea of a generative model $f_\theta$ is to learn a mapping from a simple distribution, e.g., a normal distribution $p_{\text{latent}}(\textbf{z}) = \mathcal{N}(\textbf{z}; \boldsymbol{\mu}, \boldsymbol{\Sigma)}$, often called the latent distribution, to a highly complex data distribution $p_{\text{data}}(\textbf{x})$. A new data element $\textbf{x}$ is obtained  by sampling from the latent distribution $\textbf{z} \sim p(\textbf{z})$ and applying the model
 \begin{equation}
 \textbf{x} = f_\theta(\textbf{z}) \sim p_{\text{model}}(\textbf{x}) \approx p_{data}(\textbf{x})
 \end{equation}
 where the model's output distribution $p_{\text{model}}(\textbf{x})$ should approximate the true data distribution as closely as possible. 
 
-In the following, the main concepts of \gls{VAE}s, and \gls{NF}s and \gls{GAN}s are briefly presented followed by an extensive discussion of diffusion models in chapter \ref{sec:diffModel}.
+In the following, the main concepts of \gls{VAE}s, \gls{NF}s and \gls{GAN}s are briefly presented to provide a comprehensive overview followed by an extensive discussion of \gls{DM}s in chapter \ref{sec:diffModel}.
 
 
 \subsection{Variational Autoencoder}
