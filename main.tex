@@ -1,7 +1,12 @@
 \documentclass[oneside,a4paper,12pt]{book}
 \input{preamble}
-\input{glossary}
+
+
+\usepackage[acronym, nopostdot]{glossaries} 
 \makeglossaries
+\input{glossary}
+
+
 \begin{document}
 
 \include{titel_page}
@@ -16,12 +21,12 @@
 
 
 
-
-
 \cleardoublepage
 \listoffigures
 \cleardoublepage
 \listoftables
+
+
 
 \include{introduction}
 \include{theory_generative_models}
