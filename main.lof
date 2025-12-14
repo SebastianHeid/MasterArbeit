@@ -1,17 +1,17 @@
 \babel@toc {english}{}\relax 
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {1.1}{\ignorespaces The graphical model of DDPM from \cite {DDPM}.}}{8}{figure.1.1}%
-\contentsline {figure}{\numberline {1.2}{\ignorespaces DDPM training \cite {DDPMSamplerImage}.}}{12}{figure.1.2}%
-\contentsline {figure}{\numberline {1.3}{\ignorespaces DDPM sampling \cite {DDPMSamplerImage}.}}{13}{figure.1.3}%
-\contentsline {figure}{\numberline {1.4}{\ignorespaces Rectified Flow \cite {RectifiedFlowMatching}.}}{17}{figure.1.4}%
-\contentsline {figure}{\numberline {1.5}{\ignorespaces Transformer architecture from \cite {AttentionIsAllYouNeed}.}}{20}{figure.1.5}%
-\contentsline {figure}{\numberline {1.6}{\ignorespaces Self-attention mechanism inspired from \cite {SelfAttentionFigure}.}}{22}{figure.1.6}%
-\contentsline {figure}{\numberline {1.7}{\ignorespaces Cross-attention mechanism inspired from \cite {SelfAttentionFigure}.}}{22}{figure.1.7}%
-\contentsline {figure}{\numberline {1.8}{\ignorespaces Multi-head attention from \cite {AttentionIsAllYouNeed}.}}{23}{figure.1.8}%
-\contentsline {figure}{\numberline {1.9}{\ignorespaces Scheme of implementation of rotational position encoding from \cite {RoPE}.}}{25}{figure.1.9}%
-\contentsline {figure}{\numberline {1.10}{\ignorespaces Vision transformer from \cite {VisionTransformer}.}}{26}{figure.1.10}%
-\contentsline {figure}{\numberline {1.11}{\ignorespaces (Latent) adversarial diffusion distillation from \cite {LADD}.}}{29}{figure.1.11}%
-\contentsline {figure}{\numberline {1.12}{\ignorespaces Progressive distillation from \cite {ProgressiveDistillation}.}}{30}{figure.1.12}%
-\contentsline {figure}{\numberline {1.13}{\ignorespaces Self-consistency property taken from \cite {ConsistencyModel}.}}{31}{figure.1.13}%
-\contentsline {figure}{\numberline {1.14}{\ignorespaces First, the regression loss for training the distilled model is computed using noise-image image pairs being computed in advance. Second, the two diffusion models are used to approximate the score functions for the \textit {real} and \textit {fake} distribution. The diffuison model used to approximate the fake score is updated too during the training process. Figure taken from \cite {DistillationMatching}.}}{32}{figure.1.14}%
+\contentsline {figure}{\numberline {1.1}{\ignorespaces The graphical model of DDPM from \cite {DDPM}.}}{7}{figure.1.1}%
+\contentsline {figure}{\numberline {1.2}{\ignorespaces DDPM training \cite {DDPMSamplerImage}.}}{11}{figure.1.2}%
+\contentsline {figure}{\numberline {1.3}{\ignorespaces DDPM sampling \cite {DDPMSamplerImage}.}}{12}{figure.1.3}%
+\contentsline {figure}{\numberline {1.4}{\ignorespaces Rectified Flow \cite {RectifiedFlowMatching}.}}{16}{figure.1.4}%
+\contentsline {figure}{\numberline {1.5}{\ignorespaces Transformer architecture from \cite {AttentionIsAllYouNeed}.}}{19}{figure.1.5}%
+\contentsline {figure}{\numberline {1.6}{\ignorespaces Self-attention mechanism inspired from \cite {SelfAttentionFigure}.}}{21}{figure.1.6}%
+\contentsline {figure}{\numberline {1.7}{\ignorespaces Cross-attention mechanism inspired from \cite {SelfAttentionFigure}.}}{21}{figure.1.7}%
+\contentsline {figure}{\numberline {1.8}{\ignorespaces Multi-head attention from \cite {AttentionIsAllYouNeed}.}}{22}{figure.1.8}%
+\contentsline {figure}{\numberline {1.9}{\ignorespaces Scheme of implementation of rotational position encoding from \cite {RoPE}.}}{24}{figure.1.9}%
+\contentsline {figure}{\numberline {1.10}{\ignorespaces Vision transformer from \cite {VisionTransformer}.}}{25}{figure.1.10}%
+\contentsline {figure}{\numberline {1.11}{\ignorespaces (Latent) adversarial diffusion distillation from \cite {LADD}.}}{28}{figure.1.11}%
+\contentsline {figure}{\numberline {1.12}{\ignorespaces Progressive distillation from \cite {ProgressiveDistillation}.}}{29}{figure.1.12}%
+\contentsline {figure}{\numberline {1.13}{\ignorespaces Self-consistency property taken from \cite {ConsistencyModel}.}}{30}{figure.1.13}%
+\contentsline {figure}{\numberline {1.14}{\ignorespaces First, the regression loss for training the distilled model is computed using noise-image image pairs being computed in advance. Second, the two diffusion models are used to approximate the score functions for the \textit {real} and \textit {fake} distribution. The diffuison model used to approximate the fake score is updated too during the training process. Figure taken from \cite {DistillationMatching}.}}{31}{figure.1.14}%
 \addvspace {10\p@ }

@@ -6,25 +6,25 @@ The principal idea of a generative model $f_\theta$ is to learn a mapping from a
 \end{equation}
 where the model's output distribution $p_{\text{model}}(\textbf{x})$ should approximate the true data distribution as closely as possible. 
 
-In the following, the main concepts of \gls{VAE}s, \gls{NF}s and \gls{GAN}s are briefly presented to provide a comprehensive overview followed by an extensive discussion of \gls{DM}s in chapter \ref{sec:diffModel}.
+In the following, the main concepts of \gls{VAE}s, \gls{NF}s and \gls{GAN}s are briefly presented to provide a comprehensive overview followed by an extensive discussion of \gls{DM}s in chapter \ref{sec:diffModel} that are the most promising models today.
 
 
 \subsection{Variational Autoencoder}
 \label{VariationaAutoEncoder}
 \subsubsection{Autoencoder}
-An autoencoder \cite{AE} is a neural network commonly used for dimensionality reduction tasks. It aims to compress high-dimensional data to lower-dimensional space by preserving important information. The architecture consists of two main parts, namely the encoder and the decoder. The encoder maps high-dimensional input data to a latent space, effectively compressing the data, and the decoder learns to reconstruct the original data from its latent space representation. Typically, as learning objective, a simple reconstruction loss, e.g. mean-squared error, is used comparing the original input data and the output of the autoencoder. 
+An autoencoder \cite{AE} is a neural network commonly used for dimensionality reduction tasks. It aims to compress high-dimensional data to lower-dimensional space by preserving important information. The architecture consists of two main parts, namely the encoder and the decoder. The encoder maps high-dimensional input data to a latent space, effectively compressing the data, and the decoder learns to reconstruct the original data from its latent space representation. Typically, as learning objective, a simple reconstruction loss, e.g. mean-squared error, is applied comparing the original input data and the output of the autoencoder. 
 
 \subsubsection{Evidence Lower Bound Loss (\gls{ELBO})}
 The \gls{VAE} belongs to the class of probabilistic models. A common learning objective for probabilistic models is maximum likelihood estimation (\gls{MLE}). Given a set of observations $\lbrace \textbf{x}_i \rbrace_{i=1}^N$
- the likelihood is given under \gls{iid} (identical and independent distributed samples) assumption as
+ the likelihood is given under the assumption of identical and independent distributed samples \gls{iid} as
 \begin{equation}
-     \mathcal{L}_{\text{MLP}} = \prod_{i=1}^n p_{\text{model}}(\textbf{x}_i)
+     \mathcal{L}_{\text{MLP}} = \prod_{i=1}^n p_{\text{model}}(\textbf{x}_i) \quad.
 \end{equation}
 However, in practice, minimizing the negative log-likelihood is often preferred over maximizing the likelihood due to possible instabilities caused by the product of likelihoods
 \begin{equation}
-    \mathcal{L}_{\text{NLL}} = - \sum_{i=1}^n \log{p_{\text{model}}(\textbf{x}_i)}
+    \mathcal{L}_{\text{NLL}} = - \sum_{i=1}^n \log{p_{\text{model}}(\textbf{x}_i)} \quad.
 \end{equation}
-This approach works well for simple distributions. However, for models that include latent variables $\textbf{z}=z_{1:m}$, such as \gls{VAE}s, the likelihood becomes an intractable marginalization over the latent space
+This approach works well for simple distributions. However, for models that include latent variables $\textbf{z}=\textbf{z}_{1:m}$, such as \gls{VAE}s, the likelihood becomes an intractable marginalization over the latent space
 \begin{equation}
     p(\textbf{x}) = \int p(\textbf{x} |\textbf{z}) p(\textbf{z})d\textbf{z}
 \end{equation}
@@ -38,17 +38,17 @@ leading to the the so-called evidence lower bound (\gls{ELBO}) loss \cite{ELBO} 
      q^*(\textbf{z}) = \underset{q(\textbf{z}) \in \mathscr{Q}}{\arg\min} \text{ KL} \left[ q(\textbf{z}) \,\|\, p(\textbf{z}|\textbf{x})\right] 
      \label{VI-objective}
  \end{equation}
-where $\mathscr{Q}$ is a family of distributions and the goal is to find the proposal density $q(\textbf{z}) \in \mathscr{Q}$ that best approximate the true posterior distribution. To compare the proposal density and the posterior the Kullback-Leibler divergence (\gls{KL}) \cite{KL-Div} is used having the general form of 
+where $\mathscr{Q}$ is a family of distributions. The goal is to find the proposal density $q(\textbf{z}) \in \mathscr{Q}$ that best approximates the true posterior distribution. To compare the proposal density and the posterior the Kullback-Leibler divergence (\gls{KL}) \cite{KL-Div} is used having the general form of 
 \begin{equation}
-    \text{KL} [p_0 \,\|\,p_1]= \int p_0(\textbf{x}) \log \frac{p_0(\textbf{x})}{p_1(\textbf{x})} d\textbf{x}
+    \text{KL} [p_0(\textbf{x}) \,\|\,p_1(\textbf{x})]= \int p_0(\textbf{x}) \log \frac{p_0(\textbf{x})}{p_1(\textbf{x})} d\textbf{x}
 \end{equation}
 comparing two distributions $p_0$ and $p_1$.
-The key for a good choice of $\mathscr{Q}$ is to choose a family that is complex enough so that it contains a $q^*(\textbf{z}) $ close to the true posterior but simple enough to enable efficient optimization. From applying \gls{VI} to the problem of finding the true posterior it follows 
+The key for a good choice of $\mathscr{Q}$ is to choose a family that is complex enough so that it contains a $q^*(\textbf{z}) $ close to the true posterior but simple enough to enable efficient optimization. Applying \gls{VI} to the problem of finding the true posterior yields
 
 \begin{align}
     \text{ KL} \left[ q(\textbf{z}) \,\|\, p(\textbf{z}|\textbf{x})\right] &= \int q(\textbf{z}) \log \frac{q(\textbf{z})}{p(\textbf{z}|\textbf{x})}d\textbf{z} \\
     &= \int q(\textbf{z}) \log q(\textbf{z}) d\textbf{z} - \int q(\textbf{z}) \log p(\textbf{z}|\textbf{x}) d\textbf{z} \\
-    &= \int q(\textbf{z})  \log q(\textbf{z}) d\textbf{z} - \int q(\textbf{z})\frac{p(\textbf{z},\textbf{x})}{p(\textbf{x})} d\textbf{z} \\
+    &= \int q(\textbf{z})  \log q(\textbf{z}) d\textbf{z} - \int q(\textbf{z}) \log \frac{p(\textbf{z},\textbf{x})}{p(\textbf{x})} d\textbf{z} \\
     &= \mathbb{E}\left[ \log q(\textbf{z}) \right] - \mathbb{E}\left[ \log p(\textbf{z},\textbf{x}) \right] + \log p(\textbf{x})
 \end{align}
 
@@ -57,12 +57,12 @@ From here, the ELBO loss is obtained by
     \log p(\textbf{x}) &\geq \log p(\textbf{x}) - \text{ KL} \left[ q(\textbf{z}) \,\|\, p(\textbf{z}|\textbf{x})\right] \\ 
     &= \mathbb{E}\left[ \log p(\textbf{z},\textbf{x}) \right] -\mathbb{E}\left[ \log q(\textbf{z}) \right] \\
     &=\mathbb{E}\left[ \log p(\textbf{x}| \textbf{z}) \right] - \text{ KL} \left[ q(\textbf{z}) \,\|\, p(\textbf{z})\right] \\
-    &= \text{ELBO}
+    &= \text{ELBO} \quad.
 \end{align}
 
 
 Maximizing the \gls{ELBO} loss is equivalent to minimizing the \gls{KL} divergence from \ref{VI-objective} and most importantly, it is tractable. \\
-For training \gls{VAE}s the \gls{ELBO} objective is used. The difference from the usual \gls{MSE} loss used for training autoencoders is that it contains an additional term from the \gls{KL} divergence that enforces a specific structure on the latent space. Let $\theta$ be the decoder parameters and $\phi$ the encoder parameters then the objective of the \gls{VAE} is given by 
+For training \gls{VAE}s the \gls{ELBO} objective is used. The difference compared to the \gls{MSE} loss usually used for training autoencoders is that it contains an additional term from the \gls{KL} divergence that enforces a specific structure on the latent space. Let $\theta$ be the decoder parameters and $\phi$ the encoder parameters then the objective of the \gls{VAE} is given by 
 
  
  \begin{equation}
@@ -72,7 +72,7 @@ For training \gls{VAE}s the \gls{ELBO} objective is used. The difference from th
 + 
 \underbrace{
 \text{KL}\left[q_\phi(\textbf{z} \mid \textbf{x}) \,\|\, p(\textbf{z})\right]
-}_{\text{Regularization}}
+}_{\text{Regularization}} \quad.
  \end{equation}
 In practice, the latent distribution is often set to a standard normal distribution $p_{\text{latent}}(\textbf{z}) = \mathcal{N}(\textbf{z};\textbf{0},\textbf{1})$ and the reparameterization trick \cite{VAE} enabling gradient computation is applied.
 After training, a new data point can be generated by sampling from the latent distribution \mbox{$\textbf{z} \sim p_{\text{latent}}(\textbf{z})$} and applying the decoder of the trained model.
@@ -80,7 +80,7 @@ After training, a new data point can be generated by sampling from the latent di
 
 \subsection{Normalizing Flow}
 Normalizing flows (\gls{NF}s) \cite{NormalizingFlow} are another class of propablistic models, similar to \gls{VAE}s, which learn a mapping between a latent distribution to the data distribution. However, \gls{NF}s have some key differences compared to \gls{VAE}s. First, \gls{NF}s are fully invertible meaning the network $F_\theta$ consists of a sequence of (simpler) bijective operations so that an inverse transformation $\overline{F_\theta}$ mapping back from data to latent distribution exists. As a consequence, the latent space and the data space need to have the same dimension. \\
-A second decisive advantage is that the \gls{NF}s allow the exact and tractable computation of the likeihood using the change of variables formula
+A second decisive advantage is that \gls{NF}s allow the exact and tractable computation of the likeihood using the change of variables formula
 \begin{equation}
     p_{\text{latent}(\textbf{z})} = p_\text{model}(\textbf{x}) \left| \frac{\partial F_\theta(\textbf{z})}{\partial \textbf{z}}\right| =  p_\text{model}(F_\theta(\textbf{z})) \left| \frac{\partial F_\theta(\textbf{z})}{\partial \textbf{z}} \right|
 \end{equation}
@@ -88,14 +88,14 @@ for the latent distribution and
 \begin{equation}
     p_{\text{model}}(\textbf{x}) = p_{\text{latent}}(\textbf{z}) \left| \frac{\partial F_\theta(\textbf{z})}{\partial \textbf{z}} \right|^{-1} =
     p_{\text{latent}}(\overline{F}_\theta(\textbf{x})) \left| \frac{\partial \overline{F}_\theta(\textbf{x})}{\partial \textbf{x}} \right|
-    \label{NF-likelihood}
+    \label{NF-likelihood} \quad.
 \end{equation}
 It is worth noting that computing the likelihood \eqref{NF-likelihood} includes computing the determinant of a jacobian matrix. Therefore, \gls{NF}s rely on carefully designed invertible layers (e.g., affine coupling layers \cite{AffineCouplingLayer}) where the determinant of the jacobian can be easily computed. This enables training via exact maximum likelihood estimation and does not rely on the \gls{ELBO} loss like \gls{VAE}s.
 \subsection{Generative Adversarial Network}
-In contrast to \gls{VAE}s, \gls{NF}s or \gls{DM}s, generative adversarial networks \cite{GAN} belong to the class of non-probablistic generators which do not require an explicit likelihood function. The generator $G$ is trained in an adversarial training setup that contains, on the one hand, the generator that should generate new data points being as realistic as possible and, on the other hand, a discriminator that should be able to distinguish if a data point is generated by the generator ("fake") or from the original dataset ("real"). The generator and the discriminator are alternately trained, where the generator tries to fool the discriminator by generating more realistic data points, and the discriminator $D$ becomes better at distinguishing fake from real. This is formalized in a MinMax condition.
+In contrast to \gls{VAE}s, \gls{NF}s or \gls{DM}s, \gls{GAN}s \cite{GAN} belong to the class of non-probablistic generators which do not require an explicit likelihood function. The model, also called the generator $G$, is trained in an adversarial training setup that contains, on the one hand, the generator that should generate new data points being as realistic as possible and, on the other hand, a discriminator that should be able to distinguish if a data point is generated by the generator (``fake'') or from the original dataset (``real''). The generator and the discriminator are alternately trained, where the generator tries to fool the discriminator by generating more realistic data points, and the discriminator $D$ becomes better at distinguishing ``fake'' from ``real''. This is formalized in a MinMax condition
 
 \begin{equation}
 \min_G \max_D \; \mathbb{E}_{\textbf{x} \sim p_{\text{data}}(\textbf{x})}[\log D(\textbf{x})] + \mathbb{E}_{\textbf{z} \sim p(\textbf{z})}[\log(1 - D(G(\textbf{z})))]
 \end{equation}
-where $G(\textbf{z})$ is a sample generated by the generator and $D(\textbf{x})$ is the output of the discriminator. Being close to one if the discriminator identifies $x$ as "real" and close to zero if the discriminator identifies $\textbf{x}$ as "fake". \\
-\gls{GAN}s were the dominant class of network architectures for image generating \cite{StyleGAN_T, StyleGAN_3, FastGAN} but were overtaken by diffusion models in the last years. The \gls{GAN}s training process turned out to be often instable, and extensive hyperparameter tuning and engineering is required \cite{ImprovedGANTraining, PacGAN}. One challenge is to carefully balance the learning dynamics of the generator and the discriminator. If one overpowers the other, e.g., the discriminator always perfectly distinguishes "real" from "fake" samples, the generator stops learning. Another difficulty is known as mode collapse \cite{ModeCollapse1}, meaning that the generator just produces samples from a part of the original data distribution but fails to completely capture it. A third challenge is the problem of exploding and vanishing gradients \cite{WGAN} which prevents effective learning of the generator.
+where $G(\textbf{z})$ is a sample generated by the generator and $\textbf{x}$ is an element from the original dataset. The prediction of the discriminator is close to one if it identifies its input as ``real'' and close to zero if it is identified as ``fake''. \\
+\gls{GAN}s were the dominant class of network architectures for image generating \cite{StyleGAN_T, StyleGAN_3, FastGAN} but were overtaken by diffusion models in the last years. The \gls{GAN}s training process turned out to be often instable, and extensive hyperparameter tuning and engineering is required \cite{ImprovedGANTraining, PacGAN}. One challenge is to carefully balance the learning dynamics of the generator and the discriminator. If one overpowers the other, e.g., the discriminator always perfectly distinguishes ``real'' from ``fake'' samples, the generator stops learning. Another difficulty is known as mode collapse \cite{ModeCollapse1}, meaning that the generator just produces samples from a part of the original data distribution but fails to completely capture it. A third challenge is the problem of exploding and vanishing gradients \cite{WGAN} which prevents effective learning of the generator.

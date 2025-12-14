@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.9.24)  24 NOV 2025 19:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.9.24)  14 DEC 2025 11:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -872,7 +872,7 @@ l.31 \include{introduction}
 
  (./theory_generative_models.tex
 
-Package natbib Warning: Citation `SD2' on page 2 undefined on input line 2.
+Package natbib Warning: Citation `SD2 ' on page 2 undefined on input line 2.
 
 
 
@@ -921,15 +921,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [5]
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[6]
 \openout2 = `theory_diffusion_models.aux'.
 
  (./theory_diffusion_models.tex
@@ -937,7 +928,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 3--5
 
  []
 
-<images/Background/MarkovChainDiffProcess.png, id=435, 555.07375pt x 93.34875pt
+<images/Background/MarkovChainDiffProcess.png, id=432, 555.07375pt x 93.34875pt
 >
 File: images/Background/MarkovChainDiffProcess.png Graphic file (type png)
 <use images/Background/MarkovChainDiffProcess.png>
@@ -953,7 +944,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[7
+[6
 
 
 
@@ -966,7 +957,16 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[8 <./images/Background/MarkovChainDiffProcess.png>]
+[7 <./images/Background/MarkovChainDiffProcess.png>]
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[8]
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -976,15 +976,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [9]
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[10]
 Underfull \hbox (badness 10000) in paragraph at lines 203--204
 
  []
@@ -998,16 +989,16 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[11]
+[10]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
 put line 208.
-<images/Background/DDPM_Training.png, id=540, 515.9275pt x 275.0275pt>
+<images/Background/DDPM_Training.png, id=536, 515.9275pt x 275.0275pt>
 File: images/Background/DDPM_Training.png Graphic file (type png)
 <use images/Background/DDPM_Training.png>
 Package pdftex.def Info: images/Background/DDPM_Training.png  used on input lin
 e 223.
 (pdftex.def)             Requested size: 386.95897pt x 206.2827pt.
-<images/Background/DDPM.png, id=549, 1579.9025pt x 765.86125pt>
+<images/Background/DDPM.png, id=545, 1579.9025pt x 765.86125pt>
 File: images/Background/DDPM.png Graphic file (type png)
 <use images/Background/DDPM.png>
 Package pdftex.def Info: images/Background/DDPM.png  used on input line 266.
@@ -1021,7 +1012,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[12 <./images/Background/DDPM_Training.png>]
+[11 <./images/Background/DDPM_Training.png>]
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1030,7 +1021,16 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[13 <./images/Background/DDPM.png>]
+[12 <./images/Background/DDPM.png>]
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[13]
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1049,16 +1049,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [15]
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[16]
-<images/Background/Overview_2.png, id=680, 1123.19624pt x 188.705pt>
+<images/Background/Overview_2.png, id=677, 1123.19624pt x 188.705pt>
 File: images/Background/Overview_2.png Graphic file (type png)
 <use images/Background/Overview_2.png>
 Package pdftex.def Info: images/Background/Overview_2.png  used on input line 3
@@ -1073,7 +1064,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[17 <./images/Background/Overview_2.png>]
+[16 <./images/Background/Overview_2.png>]
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1082,14 +1073,14 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[18]
+[17]
 \openout2 = `theory_fundamental_NN.aux'.
 
  (./theory_fundamental_NN.tex
 
-LaTeX Warning: Reference `' on page 19 undefined on input line 2.
+LaTeX Warning: Reference `' on page 18 undefined on input line 2.
 
-<images/Background/transformer.png, id=710, 1324.95pt x 1866.975pt>
+<images/Background/transformer.png, id=707, 1324.95pt x 1866.975pt>
 File: images/Background/transformer.png Graphic file (type png)
 <use images/Background/transformer.png>
 Package pdftex.def Info: images/Background/transformer.png  used on input line 
@@ -1104,7 +1095,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[19
+[18
 
 
 
@@ -1117,8 +1108,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[20 <./images/Background/transformer.png>]
-<images/Background/SelfAttention.png, id=737, 927.465pt x 503.7pt>
+[19 <./images/Background/transformer.png>]
+<images/Background/SelfAttention.png, id=734, 927.465pt x 503.7pt>
 File: images/Background/SelfAttention.png Graphic file (type png)
 <use images/Background/SelfAttention.png>
 Package pdftex.def Info: images/Background/SelfAttention.png  used on input lin
@@ -1133,8 +1124,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[21]
-<images/Background/CrossAttention.png, id=755, 935.349pt x 503.7pt>
+[20]
+<images/Background/CrossAttention.png, id=752, 935.349pt x 503.7pt>
 File: images/Background/CrossAttention.png Graphic file (type png)
 <use images/Background/CrossAttention.png>
 Package pdftex.def Info: images/Background/CrossAttention.png  used on input li
@@ -1149,9 +1140,9 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[22 <./images/Background/SelfAttention.png> <./images/Background/CrossAttention
+[21 <./images/Background/SelfAttention.png> <./images/Background/CrossAttention
 .png>]
-<images/Background/multi-head-attention.png, id=765, 578.16pt x 748.7975pt>
+<images/Background/multi-head-attention.png, id=762, 578.16pt x 748.7975pt>
 File: images/Background/multi-head-attention.png Graphic file (type png)
 <use images/Background/multi-head-attention.png>
 Package pdftex.def Info: images/Background/multi-head-attention.png  used on in
@@ -1166,7 +1157,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[23 <./images/Background/multi-head-attention.png>]
+[22 <./images/Background/multi-head-attention.png>]
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1175,8 +1166,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[24]
-<images/Background/RoPE.png, id=814, 418.56375pt x 238.8925pt>
+[23]
+<images/Background/RoPE.png, id=811, 418.56375pt x 238.8925pt>
 File: images/Background/RoPE.png Graphic file (type png)
 <use images/Background/RoPE.png>
 Package pdftex.def Info: images/Background/RoPE.png  used on input line 135.
@@ -1195,8 +1186,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[25 <./images/Background/RoPE.png>]
-<images/Background/VisionTransformer.png, id=841, 598.235pt x 304.13625pt>
+[24 <./images/Background/RoPE.png>]
+<images/Background/VisionTransformer.png, id=838, 598.235pt x 304.13625pt>
 File: images/Background/VisionTransformer.png Graphic file (type png)
 <use images/Background/VisionTransformer.png>
 Package pdftex.def Info: images/Background/VisionTransformer.png  used on input
@@ -1211,7 +1202,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[26 <./images/Background/VisionTransformer.png>]
+[25 <./images/Background/VisionTransformer.png>]
 \openout2 = `theory_distillation.aux'.
 
  (./theory_distillation.tex
@@ -1228,12 +1219,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[27
+[26
 
 
 
 ]
-<images/Background/ADD.png, id=883, 689.57625pt x 425.59pt>
+<images/Background/ADD.png, id=880, 689.57625pt x 425.59pt>
 File: images/Background/ADD.png Graphic file (type png)
 <use images/Background/ADD.png>
 Package pdftex.def Info: images/Background/ADD.png  used on input line 26.
@@ -1247,8 +1238,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[28]
-<images/Background/ProgressiveDistillation.png, id=895, 705.63625pt x 348.30125
+[27]
+<images/Background/ProgressiveDistillation.png, id=892, 705.63625pt x 348.30125
 pt>
 File: images/Background/ProgressiveDistillation.png Graphic file (type png)
 <use images/Background/ProgressiveDistillation.png>
@@ -1264,8 +1255,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[29 <./images/Background/ADD.png>]
-<images/Background/Self_Consistency.png, id=910, 430.60875pt x 200.75pt>
+[28 <./images/Background/ADD.png>]
+<images/Background/Self_Consistency.png, id=906, 430.60875pt x 200.75pt>
 File: images/Background/Self_Consistency.png Graphic file (type png)
 <use images/Background/Self_Consistency.png>
 Package pdftex.def Info: images/Background/Self_Consistency.png  used on input 
@@ -1280,7 +1271,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[30 <./images/Background/ProgressiveDistillation.png>]
+[29 <./images/Background/ProgressiveDistillation.png>]
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1289,8 +1280,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[31 <./images/Background/Self_Consistency.png>]
-<images/Background/DistributionMatching.png, id=935, 906.38625pt x 319.1925pt>
+[30 <./images/Background/Self_Consistency.png>]
+<images/Background/DistributionMatching.png, id=932, 906.38625pt x 319.1925pt>
 File: images/Background/DistributionMatching.png Graphic file (type png)
 <use images/Background/DistributionMatching.png>
 Package pdftex.def Info: images/Background/DistributionMatching.png  used on in
@@ -1305,7 +1296,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[32 <./images/Background/DistributionMatching.png>])
+[31 <./images/Background/DistributionMatching.png>])
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1314,7 +1305,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[33]
+[32]
 \openout2 = `experiments.aux'.
 
  (./experiments.tex)
@@ -1324,7 +1315,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 Chapter 2.
 )
 
-[34
+[33
 
 
 
@@ -1337,7 +1328,7 @@ Chapter 2.
 
  (./conclusion.tex) (./main.bbl
 
-[35
+[34
 
 
 
@@ -1353,7 +1344,22 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
+[35]
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
 [36]
+Underfull \hbox (badness 1496) in paragraph at lines 306--311
+[]\T1/cmr/m/n/12 Maxime Oquab, Tim-o-thée Darcet, Théo Moutakanni, Huy Vo, Marc
+ Szafraniec,
+ []
+
+
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1363,12 +1369,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [37]
-Underfull \hbox (badness 1496) in paragraph at lines 306--311
-[]\T1/cmr/m/n/12 Maxime Oquab, Tim-o-thée Darcet, Théo Moutakanni, Huy Vo, Marc
- Szafraniec,
- []
-
-
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1395,16 +1395,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[40]
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[41])
+[40])
 
 Package natbib Warning: There were undefined citations.
 
@@ -1417,7 +1408,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[42] (./main.aux (./titel_page.aux) (./introduction.aux)
+[41] (./main.aux (./titel_page.aux) (./introduction.aux)
 (./theory_generative_models.aux) (./theory_diffusion_models.aux)
 (./theory_fundamental_NN.aux) (./theory_distillation.aux) (./experiments.aux)
 (./results.aux) (./conclusion.aux))
@@ -1433,8 +1424,8 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: FEC697C8F056A5827451FE70C24469C5;3677.
  ) 
 Here is how much of TeX's memory you used:
- 24617 strings out of 473190
- 436416 string characters out of 5715800
+ 24616 strings out of 473190
+ 436409 string characters out of 5715800
  959203 words of memory out of 5000000
  47118 multiletter control sequences out of 15000+600000
  577003 words of font info for 80 fonts, out of 8000000 for 9000
@@ -1466,10 +1457,10 @@ ist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/local/texlive/2025/texmf-dis
 t/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2025/texmf-dist/
 fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/2025/texmf-dist/fo
 nts/type1/public/cm-super/sftt1200.pfb>
-Output written on main.pdf (50 pages, 3611537 bytes).
+Output written on main.pdf (49 pages, 3611332 bytes).
 PDF statistics:
- 1201 PDF objects out of 1440 (max. 8388607)
- 1040 compressed objects within 11 object streams
- 331 named destinations out of 1000 (max. 500000)
+ 1197 PDF objects out of 1200 (max. 8388607)
+ 1037 compressed objects within 11 object streams
+ 330 named destinations out of 1000 (max. 500000)
  247 words of extra memory for PDF output out of 10000 (max. 10000000)
 
