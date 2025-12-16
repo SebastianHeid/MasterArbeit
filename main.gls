@@ -22,7 +22,7 @@
 		\setentrycounter[]{page}\glsnumberformat{IV}}}%
 \glossentry{DDPM}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{6}\delimN 
-		\setentrycounter[]{page}\glsnumberformat{10\delimR 14}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{11\delimR 14}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{IV}}}%
 \glossentry{DM}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{2}\delimN 
@@ -56,6 +56,9 @@
 \glossentry{LPIPS}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{IV}}}\glsgroupskip
 \glsgroupheading{M}\relax \glsresetentrylist %
+\glossentry{MC}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{6\delimN 7}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{IV}}}%
 \glossentry{MCMC}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{3}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{IV}}}%
@@ -92,7 +95,7 @@
 \glsgroupheading{S}\relax \glsresetentrylist %
 \glossentry{SDE}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{6}\delimN 
-		\setentrycounter[]{page}\glsnumberformat{14}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{14\delimN 15}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{IV}}}%
 \glossentry{SGM}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{6}\delimN 

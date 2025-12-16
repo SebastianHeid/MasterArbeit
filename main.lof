@@ -10,8 +10,4 @@
 \contentsline {figure}{\numberline {1.8}{\ignorespaces Multi-head attention from \cite {AttentionIsAllYouNeed}.}}{22}{figure.1.8}%
 \contentsline {figure}{\numberline {1.9}{\ignorespaces Scheme of implementation of rotational position encoding from \cite {RoPE}.}}{24}{figure.1.9}%
 \contentsline {figure}{\numberline {1.10}{\ignorespaces Vision transformer from \cite {VisionTransformer}.}}{25}{figure.1.10}%
-\contentsline {figure}{\numberline {1.11}{\ignorespaces (Latent) adversarial diffusion distillation from \cite {LADD}.}}{28}{figure.1.11}%
-\contentsline {figure}{\numberline {1.12}{\ignorespaces Progressive distillation from \cite {ProgressiveDistillation}.}}{29}{figure.1.12}%
-\contentsline {figure}{\numberline {1.13}{\ignorespaces Self-consistency property taken from \cite {ConsistencyModel}.}}{30}{figure.1.13}%
-\contentsline {figure}{\numberline {1.14}{\ignorespaces First, the regression loss for training the distilled model is computed using noise-image image pairs being computed in advance. Second, the two diffusion models are used to approximate the score functions for the \textit {real} and \textit {fake} distribution. The diffuison model used to approximate the fake score is updated too during the training process. Figure taken from \cite {DistillationMatching}.}}{31}{figure.1.14}%
 \addvspace {10\p@ }
