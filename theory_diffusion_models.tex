@@ -1,17 +1,17 @@
 \section{Diffusion Models and Flow Matching}
 \label{sec:diffModel}
 Diffusion models \cite{DiffusionModelIntroPaper, DDPM, DDIM, LDM, SGM, SDE} are probabilistic generative models  that have achieved remarkable success in image generation tasks \cite{Flux, HiDream}, demonstrating exceptional performance in terms of image quality and image diversity. While they require significant computational resources and have slower inference compared to some alternatives \cite{VAE, NormalizingFlow, GAN}, they have become the dominant generative modeling paradigm in the research community.
-The main principles of diffusion models are reflected in two processes motivated by non-equilibrium thermodynamics, namely the forward process and the reverse process. In the forward process, the original images are gradually perturbed by systematically adding Gaussian noise until only pure noise is left. The reverse process describes the iterative noise removal by the diffusion model until a clean image is obtained. During image generation with a diffusion model, one starts from randomly sampled noise and applies the diffusion model iteratively, progressively denoising at each step. This repeated application gradually produces a clean, high-quality image. \\
-Over time, several different formulations of diffusion models were proposed. However, there are three dominant formulations recognized in the literature \cite{SurveyDM}: Denoising diffusion probabilistic models (\gls{DDPM}s) \cite{DiffusionModelIntroPaper, DDPM}, score-based generative models (\gls{SGM}s) \cite{SGM} and stochastic differential equations (\gls{SDE}s) \cite{SDE}. \\
+The main principles of diffusion models are reflected in two processes motivated by non-equilibrium thermodynamics, namely the forward process and the reverse process. In the forward process, the original image is gradually perturbed by systematically adding Gaussian noise until only pure noise is left. The reverse process describes the iterative noise removal by the diffusion model until a clean image is obtained. During image generation with a diffusion model, the starting point is randomly sampled noise to which the diffusion model is applied iteratively. This repeated application gradually produces a clean, high-quality image. \\
+Over time, several different formulations of diffusion models were proposed. However, there are three dominant formulations recognized in the literature \cite{SurveyDM}: Denoising diffusion probabilistic models (\gls{DDPM}s) \cite{DiffusionModelIntroPaper, DDPM} and its further development denoising diffusion implicit models (\gls{DDIM}s, score-based generative models (\gls{SGM}s) \cite{SGM} and stochastic differential equations (\gls{SDE}s) \cite{SDE}. \\
 
- Recently, a generalization of DMs was proposed, known as flow matching or Flow-based models \cite{RectifiedFlowMatching, FlowMatching}. Unlike classical diffusion, flow  matching models directly learn a vector field that defines the path between the noise distribution and the data distribution. By enforcing a straight path trajectory, the sampling process becomes computationally more efficient. This formulation was successfully applied in several new models like Flux-dev \cite{Flux} or Sana \cite{Sana}.\\
- In the following, the different formulations of diffusion models, DDPM, DDIM, SGM and SDE, are presented folowed by an introduction to the concept of flow matching.
+ Recently, a generalization of DMs was proposed, known as flow matching or Flow-based models \cite{RectifiedFlowMatching, FlowMatching}. Unlike classical diffusion, flow  matching models directly learn a vector field that defines the path between the noise distribution and the data distribution. By enforcing a straight path trajectory, the sampling process becomes computationally more efficient. This formulation was successfully applied in several recent models like Flux-dev \cite{Flux} or Sana \cite{Sana}.\\
+ In the following, the different formulations of diffusion models, DDPM, DDIM, SGM and SDE, are presented followed by an introduction to the concept of flow matching.
 
 
 \subsection{Denoising Diffusion Probabilistic Models}
-Unless stated otherwise, the discussion and mathematical formulations of \gls{DDPM} presented in this chapter are based on the lecture notes by Inga Strümke and Helge Langseth \cite{LectureNotesDDPM}. \\
+Unless stated otherwise, the discussion and mathematical formulations of \gls{DDPM} and \gls{DDIM} presented in this chapter are based on the lecture notes by Inga Strümke and Helge Langseth \cite{LectureNotesDDPM}. \\
 In \gls{DDPM}s \cite{DDPM} the forward and reverse process are modeled as Markov Chain (\gls{MC}), meaning that each step only depends on the immediate previous step. 
-This key concept is illustrated in fig. \ref{GraphicalModelDDPM}. Let $\mathbf{x}_0,...\mathbf{x}_T$ be the states of the \gls{MC} with $\mathbf{x}_0$ representing the clean image and $\mathbf{x}_T$ representing pure noise, then one step of the reverse process is given by $p_\theta(\mathbf{x}_{t-1}|\mathbf{x}_t)$. This shows that the slightly denoised state $\mathbf{x}_{t-1}$ just depends on state $\mathbf{x}_t$ and $\theta$ denotes the parameters of the trained diffusion model being used to predict $\mathbf{x}_{t-1}$. The forward process, which progressively adds noise proceeds from right to left in  fig. \ref{GraphicalModelDDPM} and is given by $q(\mathbf{x}_t |\mathbf{x}_{t-1})$ where no learned parameters are required.
+This key concept is illustrated in fig. \ref{GraphicalModelDDPM}. Let $\mathbf{x}_0,...,\mathbf{x}_T$ be the states of the \gls{MC} with $\mathbf{x}_0$ representing the clean image and $\mathbf{x}_T$ representing pure noise, then one step of the reverse process is given by $p_\theta(\mathbf{x}_{t-1}|\mathbf{x}_t)$. This shows that the slightly denoised state $\mathbf{x}_{t-1}$ just depends on state $\mathbf{x}_t$ and $\theta$ denotes the parameters of the trained diffusion model being used to predict $\mathbf{x}_{t-1}$. The forward process, which progressively adds noise proceeds from right to left in  fig. \ref{GraphicalModelDDPM} and is given by $q(\mathbf{x}_t |\mathbf{x}_{t-1})$ where no learned parameters are required.
 
 \begin{figure}[H]
     \centering
@@ -21,10 +21,10 @@ This key concept is illustrated in fig. \ref{GraphicalModelDDPM}. Let $\mathbf{x
 \end{figure}
 
 \subsubsection{Forward Process}
-Formally, the forward process is defined as a \gls{MC} that progressively injects noise into the clean image $\mathbf{x}_0\sim p_{\text{data}}$ which is transformed such that for a large number of steps $T$ the final latent variable $\mathbf{x}_T$ approximately follows a new often simpler prior distribution $p_{\text{prior}}$. This boundary condition is necessary so that in the reverse process, which starts with a sample of $p_{\text{prior}}$, the model is able to transfer it back to the image domain $p_{\text{data}}$. The transformation is governed by a variance schedule $\{ \beta_t\}_{t=1}^T$, e.g., a linear \cite{DDPM}, a cosine \cite{ImprovedDDPM} or a learnable \cite{VDM} schedule, to ensure smooth interpolation between $p_{\text{prior}}$ and $p_{\text{data}}$. The schedule dictates the incremental increase of variance $\beta_t$.
+Formally, the forward process is defined as a \gls{MC} that progressively injects noise into the clean image $\mathbf{x}_0\sim p_{\text{data}}$ which is transformed such that for a sufficiently large number of steps $T$ the final latent variable $\mathbf{x}_T$ approximately follows a new often simpler prior distribution $p_{\text{prior}}$. This boundary condition is necessary so that in the reverse process, which starts with a sample of $p_{\text{prior}}$, the model is able to transfer it back to the image domain $p_{\text{data}}$. The transformation is governed by a variance schedule $\{ \beta_t\}_{t=1}^T$, e.g., a linear \cite{DDPM}, a cosine \cite{ImprovedDDPM} or a learnable \cite{VDM} schedule, to ensure smooth interpolation between $p_{\text{prior}}$ and $p_{\text{data}}$. The schedule dictates the incremental increase of variance $\beta_t$.
 
 
-Concretely, the next state $\mathbf{x}_t$ within the \gls{MC} is computed by 
+Concretely, the intermediate state $\mathbf{x}_t$ within the \gls{MC} follows the distribution
 \begin{equation}
     q(\mathbf{x}_t | \mathbf{x}_{t-1}) = K(\mathbf{x}_t; \mathbf{x}_{t-1}, \beta_t)
 \end{equation}
@@ -46,7 +46,7 @@ and the prior distribution $p_\text{prior}(\mathbf{x}) = \mathcal{N}(\mathbf{x};
 
 % A property of this formulation is that there is a closed-form solution for every $\mathbf{x}_t$ in the \gls{MC}. In general, sampling from a Gaussian distribution with mean $\boldsymbol{\mu}$ and covariance $\mathbf{\Sigma}$ can be achieved by $\mathbf{x} = \boldsymbol{\mu} + \mathbf{A}\mathbf{z}$ with $\mathbf{z} \sim \mathcal{N}(\mathbf{0},\mathbf{I})$ and $\mathbf{\Sigma = \mathbf{A}\mathbf{A}}^T$. Defining $\alpha_t = 1 - \beta_t$ and setting $\mathbf{A} = \sqrt{1-\alpha_t} \mathbf{I}$ any $\mathbf{x}_t$ of the \gls{MC} can be computed by 
 
-A key property of this Gaussian formulation is the existence of a closed-form expression for sampling any $\mathbf{x}_{t}$.  At every timestep $t$ the intermediate latent variable is computed by
+A key property of this Gaussian formulation is the existence of a closed-form expression for sampling any $\mathbf{x}_{t}$ directly.  At every timestep $t$ the intermediate latent variable is computed by
 \begin{align}
 \mathbf{x}_t &= \sqrt{\alpha_t} \, \mathbf{x}_{t-1} + \sqrt{1 - \alpha_t} \, \mathbf{z}_t \\
              &= \sqrt{\alpha_t \alpha_{t-1}} \, \mathbf{x}_{t-2} + \sqrt{\alpha_t (1 - \alpha_{t-1})} \, \mathbf{z}_{t-1} + \sqrt{1 - \alpha_t} \, \mathbf{z}_t \\
@@ -56,7 +56,7 @@ A key property of this Gaussian formulation is the existence of a closed-form ex
 \end{align}
 where $\bar{\alpha}_t = \prod_{s=1}^t \alpha_s$ which shows that $q(\mathbf{x}_t|\mathbf{x}_0)$ follows a normal distribution
 \begin{equation}
-     q(\mathbf{x}_t | \mathbf{x}_{0}) = \mathcal{N} \left( \mathbf{x_t};\sqrt{\bar{\alpha}_t} \mathbf{x_0}, (1- \bar{\alpha}_t)\mathbf{I}  \right)
+     q(\mathbf{x}_t | \mathbf{x}_{0}) = \mathcal{N} \left( \mathbf{x_t};\sqrt{\bar{\alpha}_t} \mathbf{x_0}, (1- \bar{\alpha}_t)\mathbf{I}  \right) \quad.
 \end{equation}
 This underlines that during the forward process the mean of $\mathbf{x}_t$ is gradually moved towards zero and the variance increases towards one. Therefore, the closed-form solution for $\mathbf{x}_t$ is 
 
@@ -68,21 +68,21 @@ with $\boldsymbol{\epsilon} \sim \mathcal{N}(\mathbf{0}, \mathbf{I})$. This poss
 
 
 \subsubsection{Reverse Process } 
-The reverse process recovers the clear image by iteratively removing noise. The authors of \cite{feller1949stochastic} showed that in the limit of infinitesimal small steps the reverse process has the same distributional form as the forward process, a Gaussian. Particularly, in the reverse process $q(\mathbf{x}_{t-1}| \mathbf{x}_t)$ is the quantity of interest. However, it is not tractable due to 
+While the forward process was all about adding noise to the clean image the reverse process aims recover the clear image by iteratively removing noise. Feller \cite{feller1949stochastic} showed that in the limit of infinitesimal steps the reverse process retains the same distributional form as the forward process, a Gaussian. Particularly, in the reverse process $q(\mathbf{x}_{t-1}| \mathbf{x}_t)$ is the quantity of interest and given by 
 \begin{equation}
-    q(\mathbf{x}_{t-1}| \mathbf{x}_t) = q(\mathbf{x}_{t}| \mathbf{x}_{t-1}) \frac{q(\mathbf{x}_{t-1})}{q(\mathbf{x}_t)}
+    q(\mathbf{x}_{t-1}| \mathbf{x}_t) = q(\mathbf{x}_{t}| \mathbf{x}_{t-1}) \frac{q(\mathbf{x}_{t-1})}{q(\mathbf{x}_t)} \quad.
 \end{equation}
-using Bayes law where $q(\mathbf{x}_{t-1})$ and $q(\mathbf{x}_t)$ are marginal distributions requiring the integration over the whole distribution $q(\mathbf{x}_0)$. Therefore, it is modeled by a neural network parameterized by $\theta$ that should learn the Gaussian distribution for each step. Although $q(\mathbf{x}_{t-1}| \mathbf{x}_t)$ is not tractable $q(\mathbf{x}_{t-1}| \mathbf{x}_t, \mathbf{x}_0)$ is which is leveraged during training.  The joint distribution learned by the model is given by 
+However, it is not tractable because computing the marginal distributions $q(\mathbf{x}_{t-1})$ and $q(\mathbf{x}_t)$ requires the integration over the whole distribution $q(\mathbf{x}_0)$. Therefore, it is approximated by a neural network parameterized by $\theta$ that should learn the Gaussian distribution for each step. Although $q(\mathbf{x}_{t-1}| \mathbf{x}_t)$ is not tractable $q(\mathbf{x}_{t-1}| \mathbf{x}_t, \mathbf{x}_0)$ is which is leveraged during training.  The joint distribution learned by the model is given by 
 \begin{equation}
-    p_\theta(\mathbf{x}_{1:T} |\mathbf{x}_0) = p(\mathbf{x}_T) \prod_{t=1}^T p_\theta(\mathbf{x}_{t-1} | \mathbf{x}_t)
+    p_\theta(\mathbf{x}_{0:T} ) = p(\mathbf{x}_T) \prod_{t=1}^T p_\theta(\mathbf{x}_{t-1} | \mathbf{x}_t)
 \end{equation}
-where $p(\mathbf{x}_T) = $ is pure noise and $p_\theta(\mathbf{x}_{t-1}|\mathbf{x}_t)$ is a Gaussian with learned mean and covariance 
+where $p(\mathbf{x}_T)$ is pure noise and $p_\theta(\mathbf{x}_{t-1}|\mathbf{x}_t)$ is a Gaussian with learned mean and covariance 
 \begin{equation}
-    p_\theta(\mathbf{x}_{t-1}|\mathbf{x}_t) = \mathcal{N}\left( \mathbf{x}_{t-1}; \boldsymbol{\mu}_\theta(\mathbf{x}_t,t), \boldsymbol{\Sigma}_\theta(\mathbf{x}_t,t)  \right)
+    p_\theta(\mathbf{x}_{t-1}|\mathbf{x}_t) = \mathcal{N}\left( \mathbf{x}_{t-1}; \boldsymbol{\mu}_\theta(\mathbf{x}_t,t), \boldsymbol{\Sigma}_\theta(\mathbf{x}_t,t)  \right) \quad.
 \end{equation}
-As seen in the forward process, the variance of the noise follows a predefined schedule which means that the neural network just has to learn the mean $\boldsymbol{\mu}_\theta(\mathbf{x}_t,t)$ and the variance is fixed by $\boldsymbol{\Sigma}_\theta(\mathbf{x}_t,t) = \sigma_t^2 \mathbf{I}$ \quad..
+As seen in the forward process, the variance of the noise follows a predefined schedule which means that the neural network just has to learn the mean $\boldsymbol{\mu}_\theta(\mathbf{x}_t,t)$ and the variance is fixed by $\boldsymbol{\Sigma}_\theta(\mathbf{x}_t,t) = \sigma_t^2 \mathbf{I}$ . Commonly the network does not directly predict the mean $\boldsymbol{\mu}_\theta$ but the noise $\boldsymbol{\epsilon}_\theta$ from which the mean can be computed.
 
-\subsubsection{Objective Function} Diffusion models belong to the class of probabilistic generative models. A natural choice for the objective of these models is the negative log-likelihood $- \log p_\theta(\mathbf{x}_0)$. As discussed in sec. \ref{VariationaAutoEncoder} the likelihood is not always tractable. Therefore, the \gls{ELBO} loss is used as learning objective. In the following the \gls{ELBO} loss is derived for diffusion models. This derivation is mainly based on \cite{pawlowski2024physics} and \cite{DDPM}. Starting with the expectation of the negative log-likelihood
+\subsubsection{Objective Function} Diffusion models belong to the class of probabilistic generative models. A natural choice for the objective of these models is the negative log-likelihood $- \log p_\theta(\mathbf{x}_0)$. As discussed in sec. \ref{VariationaAutoEncoder} the likelihood is not always tractable. Therefore, the \gls{ELBO} loss is used as learning objective. In the following the \gls{ELBO} loss is derived for diffusion models. This derivation is based on \cite{pawlowski2024physics} and \cite{DDPM}. Starting with the expectation of the negative log-likelihood under the data distribution $q(\mathbf{x}_0)$ typically equivalent to the empirical data distribution $p_{\text{prior}}$
 
 % \begin{align}
 % - \mathbb{E}_{q(x_0)} \left[ \log p_\theta(x_0) \right] 
@@ -125,7 +125,7 @@ using Jensen's inequality
     & =: \mathcal{L}_{\text{DDPM}}
 \end{align}
 
-one obtains the loss for training a diffusion model. This can be further transformed to
+the loss for training a diffusion model is obtained. This can be further transformed to
 
 % \begin{align}
 %     \mathcal{L} &= \mathbb{E}_{q(x_0,\dots,x_T)} \left[ -\log  p(x_T) - \sum_{t=2}^T  \log  \frac{p_\theta(x_{t-1} \mid x_t)}{q(x_t \mid x_{t-1})}  - \log   \frac{p_\theta(x_{0} \mid x_1)}{q(x_1 \mid x_{0})}  \right] \\
@@ -182,7 +182,7 @@ For training, only non-constant terms are relevant. That is why the loss further
 \end{align}
 
 
-assuming that the term $\mathbb{E}_{q(\mathbf{x}_0,\dots,\mathbf{x}_T)} \left[\log p_\theta(\mathbf{x}_0 \mid \mathbf{x}_1) \right]$ is negligible. Note that in eq. \ref{FinalDiffLoss} only Gaussians, $p_\theta(\mathbf{x}_{t-1} \mid \mathbf{x}_t) = \mathcal{N}\left( \mathbf{x}_{t-1}; \mu_\theta(\mathbf{x}_t,t),\Sigma_\theta(\mathbf{x}_t,t) \right)$  with $\Sigma_\theta(\mathbf{x}_t,t) = \sigma_t^2 \mathbf{I}$ and $q(\mathbf{x}_{t-1} \mid \mathbf{x}_t, \mathbf{x}_0) = \mathcal{N} \left( \mathbf{x}_{t-1}; \hat{\mu}(\mathbf{x}_t,\mathbf{x}_0), \hat{\beta}_t \mathbf{I}  \right)$ are compared in the \gls{KL}-divergence meaning there is a closed-form solution. The loss for the diffusion model boils down to 
+assuming that the term $\mathbb{E}_{q(\mathbf{x}_0,\dots,\mathbf{x}_T)} \left[\log p_\theta(\mathbf{x}_0 \mid \mathbf{x}_1) \right]$ is negligible. Note that in eq. \ref{FinalDiffLoss} only Gaussians, $p_\theta(\mathbf{x}_{t-1} \mid \mathbf{x}_t) = \mathcal{N}\left( \mathbf{x}_{t-1}; \mu_\theta(\mathbf{x}_t,t),\Sigma_\theta(\mathbf{x}_t,t) \right)$  with $\Sigma_\theta(\mathbf{x}_t,t) = \sigma_t^2 \mathbf{I}$ and $q(\mathbf{x}_{t-1} \mid \mathbf{x}_t, \mathbf{x}_0) = \mathcal{N} \left( \mathbf{x}_{t-1}; \hat{\mu}(\mathbf{x}_t,\mathbf{x}_0), tilde{\beta}_t \mathbf{I}  \right)$ are compared in the \gls{KL}-divergence meaning there is a closed-form solution. The loss for the diffusion model boils down to 
 \begin{equation}
     \mathcal{L}_{\text{DDPM}} = \sum_{t=2}^T \mathbb{E}_{q(\mathbf{x}_0,\mathbf{x}_t)} \left[ \frac{1}{2\sigma^2} || \hat{\mu}(\mathbf{x}_t, \mathbf{x}_0) - \mu_\theta(\mathbf{x}_t,t) ||^2  \right] \quad.
     \label{MeanLossDiffModel}
@@ -193,7 +193,7 @@ The mean and the variance of the forward process $\hat{\mu}$ is obtained by
 \end{equation}
 
 \begin{equation}
-    \hat{\beta}_t := \frac{1 - \bar{\alpha}_{t-1}}{1 - \bar{\alpha}_t} \beta_t \quad.
+    \tilde{\beta}_t := \frac{1 - \bar{\alpha}_{t-1}}{1 - \bar{\alpha}_t} \beta_t \quad.
 \end{equation}
 However, instead of predicting the mean, diffusion models are more often trained on predicting the noise $\boldsymbol{\epsilon}_\theta$  because \cite{DDPM} empirically found that this lead to more stable training 
 
@@ -203,14 +203,14 @@ However, instead of predicting the mean, diffusion models are more often trained
 \end{equation}
 which is achieved by reparameterization of eq. \ref{MeanLossDiffModel} via 
 \begin{equation}
-    \hat{\mu}(\mathbf{x}_t, \mathbf{x}_0) = \frac{1}{\sqrt{\alpha_t}} \left( \mathbf{x}_t - \frac{1-\alpha_t}{\sqrt{1-\hat{\alpha_t}}}\boldsymbol{\epsilon}_t  \right) \quad.
+    \hat{\mu}(\mathbf{x}_t, \mathbf{x}_0) = \frac{1}{\sqrt{\alpha_t}} \left( \mathbf{x}_t - \frac{1-\alpha_t}{\sqrt{1-\bar{\alpha_t}}}\boldsymbol{\epsilon}_t  \right) \quad.
 \end{equation}
 
 
 In addition, they found empirically that ignoring the weighting term of eq. \ref{NoiseLossPreFactor} worked better
 \begin{equation}
     \mathcal{L}_{\text{DDPM}}  = \sum_{t=2}^T \mathbb{E}_{q(\mathbf{x}_t|\mathbf{x}_0)} \left[ \|\boldsymbol{\epsilon}_\theta(\mathbf{x}_t, t) - \boldsymbol{\epsilon}_t\|_2^2 \right] 
-    \label{NoiseLoss}
+    \label{NoiseLoss} \quad.
 \end{equation}
 
 
@@ -248,6 +248,7 @@ until $t=2$. In the last step, the final clear images is obtained by
 \begin{equation}
     \mathbf{x}_{0} = \frac{1}{\sqrt{\alpha_1}} \left(  \mathbf{x}_1 - \frac{1-\alpha_1}{\sqrt{1-\bar{\alpha}_1}} \boldsymbol{\epsilon}_\theta(\mathbf{x}_1,1)  \right) + \sigma_1 \mathbf{z}
 \end{equation}
+with $\mathbf{z} \sim \mathcal{N}(\mathbf{0}, \mathbf{I})$.
 Here, it becomes clear that the model has to predict the noise $T$ times which makes inference of such a diffusion model slow.
 
 
@@ -282,7 +283,7 @@ Here, it becomes clear that the model has to predict the noise $T$ times which m
     \label{FigDDPMSampling}
 \end{figure}
 
-\subsection{Denoising Diffusion Implict Models}
+\subsection{Denoising Diffusion Implicit Models}
 The \gls{DDPM} sampling process can be accelerated by replacing the Markovian diffusion process with a non-Markovian alternative resulting in denoising diffusion implicit models (\gls{DDIM}s) \cite{DDIM}. Unlike \gls{DDPM}, \gls{DDIM} defines the joint distribution as 
 \begin{equation}
     q(\mathbf{x}_{1:T} \mid \mathbf{x}_0) = q(\mathbf{x}_T  \mid \mathbf{x}_0) \prod_{t=2}^T q(\mathbf{x}_{t-1} \mid \mathbf{x}_t, \mathbf{x}_0) \quad.
@@ -295,27 +296,27 @@ q(\mathbf{x}_{t-1} \mid \mathbf{x}_t, \mathbf{x}_0) =
 \mathcal{N} \left( 
 \mathbf{x}_{t-1}; 
 \sqrt{\bar{\alpha}_{t-1}} \cdot \mathbf{x}_0 + 
-\sqrt{1 - \bar{\alpha}_{t-1} - \tilde{\sigma}_t^2} \cdot 
+\sqrt{1 - \bar{\alpha}_{t-1} - \sigma_t^2} \cdot 
 \frac{\mathbf{x}_t - \sqrt{\bar{\alpha}_t} \mathbf{x}_0}{\sqrt{1 - \bar{\alpha}_t}}, 
-\tilde{\sigma}_t^2 \cdot \mathbf{I}
+\sigma_t^2 \cdot \mathbf{I}
 \right) \quad.
 \end{equation}
 The corresponding sampling equation becomes
 \begin{equation}
-\mathbf{x}_{t-1} = \underbrace{\frac{1}{\sqrt{\alpha_t}} \left(\mathbf{x}_t - \sqrt{1 - \bar{\alpha}_t} \cdot \boldsymbol{\epsilon}_\theta(\mathbf{x}_t, t)\right)}_{\text{Predicted } \mathbf{x}_0} + \underbrace{\sqrt{1 - \bar{\alpha}_{t-1} - \tilde{\sigma}_t^2} \cdot \boldsymbol{\epsilon}_\theta(\mathbf{x}_t, t)}_{\text{Direction of } \mathbf{x}_t} + \underbrace{\tilde{\sigma}_t \cdot \mathbf{z}}_{\text{Noise}}
+\mathbf{x}_{t-1} = \underbrace{\frac{1}{\sqrt{\alpha_t}} \left(\mathbf{x}_t - \sqrt{1 - \bar{\alpha}_t} \cdot \boldsymbol{\epsilon}_\theta(\mathbf{x}_t, t)\right)}_{\text{Predicted } \mathbf{x}_0} + \underbrace{\sqrt{1 - \bar{\alpha}_{t-1} - \sigma_t^2} \cdot \boldsymbol{\epsilon}_\theta(\mathbf{x}_t, t)}_{\text{Direction of } \mathbf{x}_t} + \underbrace{\sigma_t \cdot \mathbf{z}}_{\text{Noise}}
 \label{DDIM_Sampler}
 \end{equation}
-where $\tilde{\sigma}_t$ is a parameter to choose. $\mathbf{x}_{t-1}$ consists of three parts. The first part is a prediction of $\mathbf{x}_0$ based on $\boldsymbol{\epsilon}_\theta$. The second part is a directional term describing the transition between $\mathbf{x}_t$ and $\mathbf{x}_0$. And the last part adds Gaussian noise scaled by $\tilde{\sigma}_t$. 
-The key advantage of \gls{DDIM} is the flexibility in choosing $\tilde{\sigma}_t$, which does not need to follow a predefined variance schedule. Different values of $\tilde{\sigma}_t$ yield different diffusion processes while using the same trained model. In particular, for the choice 
+where $\sigma_t$ is a parameter to choose. $\mathbf{x}_{t-1}$ consists of three parts. The first part is a prediction of $\mathbf{x}_0$ based on $\boldsymbol{\epsilon}_\theta$. The second part is a directional term describing the transition between $\mathbf{x}_t$ and $\mathbf{x}_0$ and the last part adds Gaussian noise scaled by $\sigma_t$. 
+The key advantage of \gls{DDIM} is the flexibility in choosing $\sigma_t$, which does not need to follow a predefined variance schedule. Different values of $\sigma_t$ yield different diffusion processes while using the same trained model. In particular, for the choice 
 \begin{equation}
 \sigma_t = \sqrt{\frac{1 - \bar{\alpha}_{t-1}}{1 - \bar{\alpha}_t}} \sqrt{1 - \frac{\bar{\alpha}_t}{\bar{\alpha}_{t-1}}}
 \end{equation}
-the \gls{DDIM} approach becomes Markovian again and here, the deep connection between \gls{DDPM} and \gls{DDIM} can be seen. Another aspect to note is that if setting $\tilde{\sigma} = 0$ the whole process becomes deterministic.
+the \gls{DDIM} approach becomes Markovian again and here, the deep connection between \gls{DDPM} and \gls{DDIM} can be seen. Another aspect to note is that if setting $\sigma = 0$ the whole process becomes deterministic.
 
 
-\subsection{Scored-Based Generative Models}
-This disscussion is mainly based on \cite{Survey2, SurveyDM}.
-Score-Based Generative Models (\gls{SGM}s) \cite{IntroSGM, ImprovedSGMs} do not learn directly the data distribution $p_\text{data}(\mathbf{x})$ but the score of the probability function $\nabla_x \log p_\text{data}(\mathbf{x})$. The score represents a vector field that points to the steepest increase in log probability density, thereby, guiding the data generation process to regions of higher data density. There are several approaches on how the score function can be learned \cite{ScoreBasedODE, SteinDiscrepancy, SlicedScoreMatching}. Here, the one closest to the \gls{DDPM} approach is presented \cite{IntroSGM}. During training, the data is perturbed by Gaussian noise at different noise levels and a neural network is trained to estimate the score function based on the noise level $s_\theta(\mathbf{x}_t, t) \approx \nabla_{\mathbf{x}_t} \log q(x_t)$. These networks are called Noise-Conditional Score Networks (\gls{NCSN}s). The learning objective boils down to 
+\subsection{Score-Based Generative Models}
+This discussion is mainly based on \cite{Survey2, SurveyDM}.
+Score-Based Generative Models (\gls{SGM}s) \cite{IntroSGM, ImprovedSGMs} do not learn directly the data distribution $p_\text{data}(\mathbf{x})$ but the score of the probability function $\nabla_x \log p_\text{data}(\mathbf{x})$. The score represents a vector field that points to the steepest increase in log probability density, thereby, guiding the data generation process to regions of higher data density. There are several approaches on how the score function can be learned \cite{ScoreBasedODE, SteinDiscrepancy, SlicedScoreMatching}. Here, the one closest to the \gls{DDPM} approach is presented \cite{IntroSGM}. During training, the data is perturbed by Gaussian noise at different noise levels and a neural network is trained to estimate the score function based on the noise level $s_\theta(\mathbf{x}_t, t) \approx \nabla_{\mathbf{x}_t} \log q(x_t)$. Perturbing the data is necessary because the score estimation is inaccurate in low-density regions and to ensure the process does not get stuck. These networks are called Noise-Conditional Score Networks (\gls{NCSN}s). The learning objective boils down to 
 
 \begin{align}
    &\mathbb{E}_{T \sim \mathcal{U}[1,T], \mathbf{x}_0 \sim q(\mathbf{x}_0), \mathbf{x}_t \sim q(\mathbf{x}_t|\mathbf{x}_0)} \left[ \lambda(t) \sigma_t^2 \left\| \nabla_{\mathbf{x}_t} \log q(\mathbf{x}_t) - s_\theta(\mathbf{x}_t, t) \right\|^2 \right] 
@@ -323,9 +324,9 @@ Score-Based Generative Models (\gls{SGM}s) \cite{IntroSGM, ImprovedSGMs} do not 
  &= \mathbb{E}_{T \sim \mathcal{U}[1,T], \mathbf{x}_0 \sim q(\mathbf{x}_0), \mathbf{x}_t \sim q(\mathbf{x}_t|\mathbf{x}_0)} \left[ \lambda(t) \sigma_t^2 \left\| \nabla_{\mathbf{x}_t} \log q(\mathbf{x}_t | \mathbf{x}_0) - s_\theta(\mathbf{x}_t, t) \right\|^2 \right] + \text{const} \\
  &= \mathbb{E}_{T \sim \mathcal{U}[1,T], \mathbf{x}_0 \sim q(\mathbf{x}_0), \mathbf{x}_t \sim q(\mathbf{x}_t|\mathbf{x}_0)} \left[ \lambda(t) \left\| -\frac{\mathbf{x}_t - \mathbf{x}_0}{\sigma_t} - \sigma_t s_\theta(\mathbf{x}_t, t) \right\|^2 \right] + \text{const} \\
  &= \mathbb{E}_{T \sim \mathcal{U}[1,T], \mathbf{x}_0 \sim q(\mathbf{x}_0), \boldsymbol{\epsilon} \sim \mathcal{N}(\mathbf{0}, \mathbf{I})} \left[ \lambda(t) \left\| \boldsymbol{\epsilon} + \sigma_t s_\theta(\mathbf{x}_t, t) \right\|^2 \right] + \text{const}
- \label{SGMLoss}
+ \label{SGMLoss} \quad.
 \end{align}
-In the final line in eq. \ref{SGMLoss} the relation to \gls{DDPM} loss becomes visible by identifying $\boldsymbol{\epsilon}(\mathbf{x}_t,t) = - \sigma_t s_\theta(\mathbf{x}_t,t)$ \cite{Survey2}, showing that learning to predict noise is equivalent to learning the score function. \\
+In eq. \ref{SGMLoss} the relation to \gls{DDPM} loss becomes visible by identifying $\boldsymbol{\epsilon}(\mathbf{x}_t,t) = - \sigma_t s_\theta(\mathbf{x}_t,t)$ \cite{Survey2}, showing that learning to predict noise is equivalent to learning the score function. \\
 For sampling a new element from the data distribution \cite{IntroSGM} proposed Annealed Langevin Dynamics (\gls{ALD}) which produces samples by only using the score function being approximated by the learned neural network
 \begin{equation}
     \mathbf{x}_t = \mathbf{x}_{t-1} + \alpha \nabla_{\mathbf{x}} \log p(\mathbf{x}_{t-1}) + \sqrt{2\alpha} \mathbf{z}_t, \quad 1 \leq t \leq T
@@ -343,7 +344,7 @@ Stochastic Differential Equations (\gls{SDE}s) \cite{ScoreBasedODE} are a genera
 \end{equation}
 where $\mathbf{f}(\mathbf{x},t)$ is the drift coefficient, $g(t)$ the diffusion coefficient and $\mathbf{w}$ a standard Wiener process (aka Brownian Motion). \cite{Anderson} proved that the diffusion process in eq. \ref{SDE} can be reversed leading to the reversed-time \gls{SDE} given by 
 \begin{equation}
-    d\mathbf{x} = \left[ \mathbf{f}(\mathbf{x},t) - \frac{1}{2} g(t)^2 \nabla_x \log q(\mathbf{x}_t) \right] dt + g(t) d\mathbf{\tilde{w}}
+    d\mathbf{x} = \left[ \mathbf{f}(\mathbf{x},t) -  g(t)^2 \nabla_x \log q(\mathbf{x}_t) \right] dt + g(t) d\mathbf{\tilde{w}}
     \label{reverseSDE}
 \end{equation}
 with a standard Wiener process $\mathbf{\tilde{w}}$ where the time flies backward. Both, forward and reverse \gls{SDE}, share the same marginals. A score neural network $s_\theta$ is trained similarly to \gls{SGM}s by generalizing the objective function (see eq. \ref{SGMObjectiveFunction}) to continuous time 
@@ -392,8 +393,7 @@ where $v_\theta$ is the vector field approximated by a neural network driving th
 \begin{equation}
     \min_v \int_0^1 \mathbb{E} \left[ \left\| (x_1 - x_0) - v_\theta(x_t, t) \right\|^2 \right] dt
 \end{equation}
-where $x_t = tx_1 + (1-t)x_0$ is the linear interpolation between $x_0$ and $x_1$. After training, the \gls{ODE} in eq. \ref{ODERectifiedFlow} can be solved by sampling $x_0$, thus obtaining a sample from the data distribution $\pi_1$. One main property of the flow obtained through this learning procedure is that trajectories of the rectified flow do not cross. This is depicted in fig. \ref{RectifiedFlow}. (a) shows the linear interpolations from pairs of $(x_0, x_1) \sim \pi_0 \times \pi_1$. In this case, trajectories intersect. Next, in (b), the vector field is learned. The rectified flow induced by $(x_0, x_1)$ results in rewired trajectories such that they do not cross. This procedure, obtaining the linear interpolation between the elements from the previously learned rectified flow $x^{k-1}_0, x^{k-1}_1$ and learning the rectified flow $x_t^k$, can be iteratively applied and is called Reflow. The second iteration is depicted in (c) and (d). With every iteration the trajectory becomes more straightened (see algorithm \ref{RectifieFlowAlog}). An optional step to enable fast inference is to learn the $k$-rectified flow by a neural network $\hat{T}$ which directly maps $x_0^k$ to $x_1^k$. Note, the difference to rectified flow learning is that here, the network approximates the mapping between $(x^k_0,x^k_1)$ whereas rectification yields a different mapping with lower transport cost and straightened trajectory $(x_0^{k+1}, x_1^{k+1})$.
-
+where $x_t = tx_1 + (1-t)x_0$ is the linear interpolation between $x_0$ and $x_1$. After training, the \gls{ODE} in eq. \ref{ODERectifiedFlow} can be solved by sampling $x_0$, thus obtaining a sample from the data distribution $\pi_1$. One main property of the flow obtained through this learning procedure is that trajectories of the rectified flow do not cross. This is depicted in fig. \ref{RectifiedFlow}. (a) shows the linear interpolations from pairs of $(x_0, x_1) \sim \pi_0 \times \pi_1$. In this case, trajectories intersect. Next, in (b), the vector field is learned. The rectified flow induced by $(x_0, x_1)$ results in rewired trajectories such that they do not cross. This procedure, obtaining the linear interpolation between the elements from the previously learned rectified flow $x^{k-1}_0, x^{k-1}_1$ and learning the rectified flow $x_t^k$, can be iteratively applied and is called Reflow. The second iteration is depicted in (c) and (d). With every iteration the trajectory becomes more straightened (see algorithm \ref{RectifieFlowAlog}). An optional step to enable fast inference is to learn the $k$-rectified flow by a neural network $\hat{T}$ which directly maps $x_0^k$ to $x_1^k$. It is important to distinguish distillation from the rectification process itself. While rectification creates a new transport map $(x_0^{k+1}, x_1^{k+1})$ that is straighter and has lower transport costs, distillation merely trains a student network to mimic the existing coupling $(x^k_0,x^k_1)$ for faster execution.
 
 \begin{figure}[H]
     \centering
@@ -403,7 +403,7 @@ where $x_t = tx_1 + (1-t)x_0$ is the linear interpolation between $x_0$ and $x_1
 \end{figure}
 
 \begin{algorithm}[H]
-\caption{Rectified Flow: Main Algorithm}
+\caption{Rectified Flow: Main Algorithm \cite{RectifiedFlowMatching}}
 \begin{algorithmic}
 \State \textbf{Procedure}: $x' = \text{RectFlow}((x_0, x_1))$
 \State \textbf{Inputs:} Draws from a coupling $(x_0, x_1)$ of $\pi_0$ and $\pi_1$; velocity model $v_\theta : \mathbb{R}^d \to \mathbb{R}^d$ with parameter $\theta$.

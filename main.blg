@@ -4,10 +4,6 @@ The top-level auxiliary file: main.aux
 A level-1 auxiliary file: titel_page.aux
 A level-1 auxiliary file: introduction.aux
 A level-1 auxiliary file: theory_generative_models.aux
-White space in argument---line 7 of file theory_generative_models.aux
- : \citation{SD2
- :               ,SDXL}
-I'm skipping whatever remains of this command
 A level-1 auxiliary file: theory_diffusion_models.aux
 A level-1 auxiliary file: theory_fundamental_NN.aux
 A level-1 auxiliary file: experiments.aux
@@ -40,50 +36,51 @@ Warning--empty year in ALiBi
 Warning--empty year in ImageTransformer
 Warning--empty journal in SelfAttentionFigure
 Warning--empty year in NormalizingFlow
+Warning--empty year in SD21
 Warning--empty year in StyleGAN_T
 Warning--empty year in DMBeginning
 Warning--empty year in DiffusionModelIntroPaper
 Warning--empty year in SlicedScoreMatching
 Warning--empty year in ModeCollapse1
-You've used 75 entries,
+You've used 76 entries,
             2943 wiz_defined-function locations,
-            1073 strings with 19054 characters,
-and the built_in function-call counts, 37968 in all, are:
-= -- 3688
-> -- 2040
-< -- 18
-+ -- 754
-- -- 678
-* -- 2238
-:= -- 5604
-add.period$ -- 244
-call.type$ -- 75
-change.case$ -- 564
+            1078 strings with 19152 characters,
+and the built_in function-call counts, 38648 in all, are:
+= -- 3756
+> -- 2064
+< -- 19
++ -- 763
+- -- 686
+* -- 2276
+:= -- 5688
+add.period$ -- 247
+call.type$ -- 76
+change.case$ -- 571
 chr.to.int$ -- 0
-cite$ -- 96
-duplicate$ -- 1013
-empty$ -- 3132
-format.name$ -- 678
-if$ -- 9542
+cite$ -- 98
+duplicate$ -- 1040
+empty$ -- 3194
+format.name$ -- 686
+if$ -- 9719
 int.to.chr$ -- 0
-int.to.str$ -- 75
-missing$ -- 70
-newline$ -- 384
-num.names$ -- 150
-pop$ -- 1000
+int.to.str$ -- 76
+missing$ -- 71
+newline$ -- 389
+num.names$ -- 152
+pop$ -- 1017
 preamble$ -- 1
-purify$ -- 489
+purify$ -- 495
 quote$ -- 0
-skip$ -- 2389
+skip$ -- 2433
 stack$ -- 0
-substring$ -- 1349
-swap$ -- 268
-text.length$ -- 24
+substring$ -- 1398
+swap$ -- 283
+text.length$ -- 25
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 300
-warning$ -- 21
-while$ -- 204
-width$ -- 77
-write$ -- 803
-(There were 2 error messages)
+type$ -- 304
+warning$ -- 22
+while$ -- 208
+width$ -- 78
+write$ -- 813
+(There was 1 error message)

@@ -1,11 +1,11 @@
 \section{Fundamentals of Neural Network Architectures}
-In this section, the focus lies on the key fundamental building blocks of the neural networks which are used in the experiments in section \ref{}. 
+In this section, the focus lies on the key fundamental building blocks of the neural networks. 
 
 \subsection{Transformer}
-The introduction of transformer architecture \cite{AttentionIsAllYouNeed} was a decisive moment for the whole \gls{AI} community. It significantly pushed the development in natural language and image processing forward. Therefore, it is no surprise that the latest models are based on this architecture type \cite{Claude, Gemini, Flux, HiDream}. \\
+The introduction of the transformer architecture \cite{AttentionIsAllYouNeed} was a decisive moment for the whole \gls{AI} community. It significantly pushed the development in natural language and image processing forward. Therefore, it is no surprise that the latest models are based on this architecture type \cite{Claude, Gemini, Flux, HiDream}. \\
 The transformer was introduced as an alternative to recurrent neural networks  \cite{RNN} for processing sequential data like text. In the original paper, the transformer architecture leverages an encoder-decoder structure, however, there are many variants like decoder-only \cite{GPT4, Lama} or encoder-only transformer \cite{BERT}. \\
 Transformers, as introduced in the original paper (Fig. \ref{transformer_architecture}), take text as input, which must first be converted into numerical form through a process called tokenization. This produces a sequence of tokens that are a numerical representation of words or subwords of the text. To provide the model with information about the position of each token in the sequence, positional encodings are added. These preprocessing steps occur before the input is fed into the transformer architecture. 
-Each encoder block consists of two sub-layers: (1) a multi-head self-attention mechanism followed by a residual connection \cite{ResidualConnection} and layer normalization \cite{LayerNorm}. The decoder blocks contain three sub-layers: (1) a masked multi-head self-attention where the masking prevents that future tokens are seen during the training process, (2) a cross-attention mechanism with the output of the encoder being and (3) an additional feedforward network. All three sub-layers are followed by a residual connection and layer normalization. The final output is projected to vocabulary-sized logits representing a probability distribution over possible next tokens.
+Each encoder block consists of two sub-layers. First, a multi-head self-attention mechanism is followed by a residual connection \cite{ResidualConnection} and layer normalization \cite{LayerNorm}. Second, a feedforward network processes the output further. The decoder blocks contain three sub-layers. First, a masked multi-head self-attention prevents the model from attending to future tokens during the training process, second, a cross-attention mechanism introduces the output of the encoder in the decoder and third an additional feedforward network processes the output of the cross-attention layer. All three sub-layers are followed by a residual connection and layer normalization. The final output is projected to vocabulary-sized logits representing a probability distribution over possible next tokens.
 
 
 
@@ -22,7 +22,7 @@ In the attention mechanism, so-called queries, keys and values are computed. The
  A distinction is made between self-attention (fig. \ref{SelfAttentionFigure}) and cross-attention (fig. \ref{CrossAttentionFigure}). In self-attention, the interaction of the tokens within a sequence is calculated. In contrast, in cross-attention you have two input sequences with the goal that the model aligns and relates information between the two different sequences.
 
 \subsubsection{Self-Attention}
-Let $X \in \mathbb{R}^{n\times d}$ be the embedding vector of the tokens. Then the queries $Q$, keys $K$ and values $V$ are computed by linearly projection of  the embedding vector
+Let $X \in \mathbb{R}^{n\times d}$ be the embedding matrix of the tokens. Then the queries $Q$, keys $K$ and values $V$ are computed by linear projection of  the embedding matrix
 \begin{align}
     &Q = X \cdot W_q^T  \\
     &K = X \cdot W_k^T \\
@@ -36,7 +36,7 @@ The softmax function is defined as the following for a vector $\textbf{z} = \lef
 \begin{equation}
     \text{softmax}\left(z_i\right) = \frac{e^{z_i}}{\sum_j e^{z_j}}
 \end{equation}
-The scaling of the dot product $QK^T$ with the factor $\frac{1}{\sqrt{d_k}}$ is done in order to prevent vanishing gradients in the softmax function which occurs if the values become too small or too big.
+The scaling of the dot product $QK^T$ with the factor $\frac{1}{\sqrt{d_k}}$ is done in order to prevent vanishing gradients in the softmax function which occurs if the dot product results in very large values.
 Finally, the attention matrix is applied with the values. This can be summarized in the following formulation
 \begin{equation}
     Z=\text{Attention}\left( Q, K, V \right)= \text{softmax}\left( \frac{QK^T}{\sqrt{d_k}} \right) V
@@ -47,18 +47,18 @@ One main challenge of the discussed attention mechanism is that it has quadratic
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{images/Background/SelfAttention.png}  % adjust filename and width
-    \caption{Self-attention mechanism inspired from \cite{SelfAttentionFigure}.}
+    \caption{Self-attention mechanism based on \cite{SelfAttentionFigure}.}
     \label{SelfAttentionFigure}
 \end{figure}
  
 \subsubsection{Cross-Attention}
-The goal of cross-attention is to relate two different sequences of tokens \textbf{$\mathbf{x}_1$} and \textbf{$\mathbf{x}_2$}. Commonly, the queries come from the target sequence ,e.g., decoder of the transformer, while the keys and values come from the source sequence, e.g., encoder output of transformer. Besides that the computation is similar to the computation of self-attention.
+The goal of cross-attention is to relate two different sequences of tokens \textbf{$\mathbf{x}_1$} and \textbf{$\mathbf{x}_2$}. Commonly, the queries come from the target sequence ,e.g., the decoder of the transformer, while the keys and values come from the source sequence, e.g., encoder output of transformer. Apart from this difference, the computation is identical to self-attention.
 
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{images/Background/CrossAttention.png}  % adjust filename and width
-    \caption{Cross-attention mechanism inspired from \cite{SelfAttentionFigure}.}
+    \caption{Cross-attention mechanism based on \cite{SelfAttentionFigure}.}
     \label{CrossAttentionFigure}
 \end{figure}
 
@@ -78,70 +78,70 @@ This is advantageous because the individual heads can concentrate on different t
 \end{figure}
 
 \subsection{Positional Encoding}
-Before the embedded token sequence is fed as input to the transformer, a positional information is added to each token to provide the network with information about the order of the tokens. There are different methods, which can be divided into the categories relative \cite{RoPE, ALiBi, FIRE} vs absolute \cite{AttentionIsAllYouNeed, Floater, Cape, Shape} positional embedding and deterministic \cite{AttentionIsAllYouNeed, Shape, Cape, ALiBi, RoPE} versus learnable \cite{Floater, FIRE} positional embedding. 
+Before the embedded token sequence is fed as input to the transformer, a positional information is added to each token to provide the network with information about the order of the tokens. There are different methods, which can be divided into the categories relative \cite{RoPE, ALiBi, FIRE} versus absolute \cite{AttentionIsAllYouNeed, Floater, Cape, Shape} positional embedding or deterministic \cite{AttentionIsAllYouNeed, Shape, Cape, ALiBi, RoPE} versus learnable \cite{Floater, FIRE} positional embedding. 
 
 \subsubsection{Sinusoidal Positional Encoding}
-Sinusoidal positional encoding is used in the original transformer paper \cite{AttentionIsAllYouNeed} which leverages the sin and cosine function  to inject positional information into the model. It belongs to the category of absolute and deterministic positional encoding.
+Sinusoidal positional encoding is used in the original transformer paper \cite{AttentionIsAllYouNeed} which leverages the sinus and cosine function  to inject positional information into the model. It belongs to the category of absolute and deterministic positional encoding.
 \begin{align}
     &PE\left( pos, 2i  \right) = \sin \left(  \frac{pos}{10000^{\frac{2i}{d}}} \right) \\
     &PE \left( pos, 2i+1  \right) = \cos \left(  \frac{pos}{10000^{\frac{2i}{d}}} \right)
 \end{align}
-where $d$ is the embedding dimension, $pos$ is the position of the token in the sequence and  $i$ is the dimension index which is used to compute different frequencies for different parts of the embedding vector. The computed positional embedding has the same dimension like the token embedding vector and is be added to it.
+where $d$ is the embedding dimension, $pos$ is the position of the token in the sequence and  $i$ is the dimension index which is used to compute different frequencies for different parts of the embedding vector. The computed positional embedding has the same dimension like the token embedding vector and is added to it.
 
-\subsubsection{Rotary Position Embedding}
-In recent years, the focus shifted more and more from absolute positional embedding to relative positional embedding because one hypothesized that relative order of tokens matter and that these methods are better in extrapolating compared to absolute positional embedding methods \cite{PositionalEmbeddingSurvey}. Rotary Positiona Embeeding (\gls{RoPE}) \cite{RoPE} is a a relative positional embedding method used in FLUX-dev \cite{Flux}. The idea is to encode the position via rotation in the attention mechanism, to be more explicit in the dot product between the queries $Q$ and the keys $K$. Starting with the 2d case, they propose that queries $Q_m$ which are soley based on the mth embedding vector $x_m$ and its position $m$ via 
-\begin{align}
-    Q_m \left( x_m, m \right) &= 
-    \begin{bmatrix}
-\cos \left( m\theta  \right) & -\sin \left( m\theta  \right)\\
-\sin \left( m\theta  \right) & \cos \left( m\theta  \right)  \\
-\end{bmatrix}
-\begin{bmatrix}
- W^{11}_q   & W^{12}_q\\
-W^{21}_q   & W^{22}_q  \\
-\end{bmatrix}
-\begin{bmatrix}
- x^{1}_m\\
-x^{2}_m   \\
-\end{bmatrix} \\
-&= R^d_{\theta,m} W_q \mathbf{x_m}
-\end{align}
-with a preset non-zero constant $\theta$.
-\textbf{Hier wurde die andere Konvention zum Schreiben des Attention Mechanismus verwendet als oben -> vereinheitlichen???}
-The keys $K_m$ are computed in exactly the same way. A visualization can be found in fig. \ref{RoPE_fig}. In the multi-dimensional case the rotation matrix becomes
-
-\begin{equation}
-    R^d_{\theta,m} =
-\begin{bmatrix}
-\cos(m\theta_1) & -\sin(m\theta_1)  & \cdots & 0 & 0 \\
-\sin(m\theta_1) &  \cos(m\theta_1)  & \cdots & 0 & 0 \\
-0 & 0  & \cdots & 0 & 0 \\
-0 & 0 &  \cdots & 0 & 0 \\
-\vdots & \vdots  & \ddots & \vdots & \vdots \\
-0 & 0 &  \cdots & \cos(m\theta_{d/2}) & -\sin(m\theta_{d/2}) \\
-0 & 0 &  \cdots & \sin(m\theta_{d/2}) &  \cos(m\theta_{d/2})
-\end{bmatrix}
-\end{equation}
-
-By computing the dot product between the queries and the keys one obtain a single rotation matrix just depending on the relative positions 
-\begin{equation}
-    Q_m^TK_n = \left( R^d_{\theta,m} W_q \mathbf{x_m}  \right)^T R^d_{\theta,n} W_k \mathbf{x_n} = \mathbf{x_m^T} W_q^T R^d_{\theta,n-m}W_k \mathbf{x_n}
-\end{equation}
-
-because $R^d_{\theta,n-m} = (R^d_{\theta,m})^T R^d_{\theta,n}$. In contrast to sinusoidal positional encoding being additive, rotary positional encoding is multiplicative. Moreover, it has the property of long-term decay that means the further away two embeddings are the smaller the dot product of the keys and queries will be.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{images/Background/RoPE.png}  % adjust filename and width
-    \caption{Scheme of implementation of rotational position encoding from \cite{RoPE}.}
-    \label{RoPE_fig}
-\end{figure}
+%\subsubsection{Rotary Position Embedding}
+%In recent years, the focus shifted more and more from absolute positional embedding to relative positional embedding because one hypothesized that relative order of tokens matter and that these methods are better in extrapolating compared to absolute positional embedding methods \cite{PositionalEmbeddingSurvey}. Rotary Positiona Embeeding (\gls{RoPE}) \cite{RoPE} is a a relative positional embedding method used in FLUX-dev \cite{Flux}. The idea is to encode the position via rotation in the attention mechanism, to be more explicit in the dot product between the queries $Q$ and the keys $K$. Starting with the 2d case, they propose that queries $Q_m$ which are soley based on the mth embedding vector $x_m$ and its position $m$ via 
+%\begin{align}
+%    Q_m \left( x_m, m \right) &= 
+%    \begin{bmatrix}
+%\cos \left( m\theta  \right) & -\sin \left( m\theta  \right)\\
+%\sin \left( m\theta  \right) & \cos \left( m\theta  \right)  \\
+%\end{bmatrix}
+%\begin{bmatrix}
+% W^{11}_q   & W^{12}_q\\
+%W^{21}_q   & W^{22}_q  \\
+%\end{bmatrix}
+%\begin{bmatrix}
+% x^{1}_m\\
+%x^{2}_m   \\
+%\end{bmatrix} \\
+%&= R^d_{\theta,m} W_q \mathbf{x_m}
+%\end{align}
+%with a preset non-zero constant $\theta$.
+%\textbf{Hier wurde die andere Konvention zum Schreiben des Attention Mechanismus verwendet als oben -> vereinheitlichen???}
+%The keys $K_m$ are computed in exactly the same way. A visualization can be found in fig. \ref{RoPE_fig}. In the multi-dimensional case the rotation matrix becomes
+%
+%\begin{equation}
+%    R^d_{\theta,m} =
+%\begin{bmatrix}
+%\cos(m\theta_1) & -\sin(m\theta_1)  & \cdots & 0 & 0 \\
+%\sin(m\theta_1) &  \cos(m\theta_1)  & \cdots & 0 & 0 \\
+%0 & 0  & \cdots & 0 & 0 \\
+%0 & 0 &  \cdots & 0 & 0 \\
+%\vdots & \vdots  & \ddots & \vdots & \vdots \\
+%0 & 0 &  \cdots & \cos(m\theta_{d/2}) & -\sin(m\theta_{d/2}) \\
+%0 & 0 &  \cdots & \sin(m\theta_{d/2}) &  \cos(m\theta_{d/2})
+%\end{bmatrix}
+%\end{equation}
+%
+%By computing the dot product between the queries and the keys one obtain a single rotation matrix just depending on the relative positions 
+%\begin{equation}
+%    Q_m^TK_n = \left( R^d_{\theta,m} W_q \mathbf{x_m}  \right)^T R^d_{\theta,n} W_k \mathbf{x_n} = \mathbf{x_m^T} W_q^T R^d_{\theta,n-m}W_k \mathbf{x_n}
+%\end{equation}
+%
+%because $R^d_{\theta,n-m} = (R^d_{\theta,m})^T R^d_{\theta,n}$. In contrast to sinusoidal positional encoding being additive, rotary positional encoding is multiplicative. Moreover, it has the property of long-term decay that means the further away two embeddings are the smaller the dot product of the keys and queries will be.
+%
+%\begin{figure}[H]
+%    \centering
+%    \includegraphics[width=0.8\textwidth]{images/Background/RoPE.png}  % adjust filename and width
+%    \caption{Scheme of implementation of rotational position encoding from \cite{RoPE}.}
+%    \label{RoPE_fig}
+%\end{figure}
 
 \subsection{Vision Transformer}
-Original transformers were introduced for language processing tasks. There were some attempts to transfer the methodology of the transformer architecture to computer vision problems \cite{StandAloneAttentionVisonModels, Ccnet, ImageTransformer}, but for a long time, convolutional neural networks (\gls{CNN}s) \cite{CNN} remained the first choice. \gls{CNN}s have an inherent advantage over transformers because they possess an image-related inductive bias. On the one hand, \gls{CNN}s are translationally equivariant by construction and, on the other hand, the concept of locality is embedded in the way they are built. In contrast, these two concepts must be learned from scratch by a transformer, as they are not predefined by the architecture, which makes a sufficiently large dataset essential to achieve competitive performance. \\
+Original transformers were introduced for language processing tasks. There were some attempts to transfer the methodology of the transformer architecture to computer vision problems \cite{StandAloneAttentionVisonModels, Ccnet, ImageTransformer}, but for a long time, convolutional neural networks (\gls{CNN}s) \cite{CNN} remained the dominant architecture. \gls{CNN}s have an inherent advantage over transformers because they possess an image-related inductive bias. On the one hand, \gls{CNN}s are translationally equivariant by construction and, on the other hand, the concept of locality is embedded in the way they are built. In contrast, these two concepts must be learned by a transformer, as they are not predefined by its architecture, which makes a sufficiently large dataset essential to achieve competitive performance. \\
 
 
-The introduction of vision transformer (\gls{ViT}) \cite{VisionTransformer} showed that given a sufficiently large dataset transformers can match or even surpass \gls{CNN}s for vision tasks. The first key aspect in \gls{ViT} is that not every single pixel is related to all other pixels because this would be computationally infeasible due to the quadratic complexity of the attention mechanism. Instead, the image is split $\mathbf{x} \in \mathbb{}{R}^{N \times W \times C}$ into a sequence of smaller patches $\mathbf{x_p} \in \mathbb{}{R}^{N \times (P^2 \cdot C)}$ where $C$ is the number of channels, $H$ the height of the image, $W$ the width of the image, $(P,P)$ the resolution of a patch and $N=\frac{HW}{P^2}$ the number of patches. At the beginning of the token sequence an additional classification (\gls{CLS}) token is prepended. The patches are flattened and linearly projected to the encoder dimension. After that a learned positional encoding is added before they are fed into the encoder-only transformer architecture. On top of the transformer encoder a \gls{MLP} head processes the embedded version of the classification token and provides probability for the different classes from the classification problem. 
+The introduction of vision transformer (\gls{ViT}) \cite{VisionTransformer} for a classification task showed that given a sufficiently large dataset transformers can match or even surpass \gls{CNN}s for vision tasks. The first key aspect in \gls{ViT} is that not every single pixel is related to all other pixels because this would be computationally infeasible due to the quadratic complexity of the attention mechanism. Instead, the image is split $\mathbf{x} \in \mathbb{}{R}^{H \times W \times C}$ into a sequence of smaller patches $\mathbf{x_p} \in \mathbb{}{R}^{N \times (P^2 \cdot C)}$ where $C$ is the number of channels, $H$ the height of the image, $W$ the width of the image, $(P,P)$ the resolution of a patch and $N=\frac{HW}{P^2}$ the number of patches. At the beginning of the token sequence an additional classification (\gls{CLS}) token is prepended. The patches are flattened and linearly projected to the encoder dimension. After that a learned positional encoding is added before they are fed into the encoder-only transformer architecture. On top of the transformer encoder a \gls{MLP} head processes the embedded version of the classification token and provides probability for the different classes from the classification problem. 
 
 
 \begin{figure}[H]

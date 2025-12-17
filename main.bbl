@@ -287,6 +287,13 @@ Jan Pawlowski and Tilman Plehn.
   Heidelberg, January 2024.
 \newblock Version from January 30, 2024.
 
+\bibitem{SDXL}
+Dustin Podell, Zion English, Kyle Lacey, Andreas Blattmann, Tim Dockhorn, Jonas
+  Müller, Joe Penna, and Robin Rombach.
+\newblock Sdxl: Improving latent diffusion models for high-resolution image
+  synthesis.
+\newblock {\em arXiv preprint arXiv:2307.01952}, 2023.
+
 \bibitem{ConvGAN}
 Alec Radford, Luke Metz, and Soumith Chintala.
 \newblock Unsupervised representation learning with deep convolutional
@@ -318,6 +325,13 @@ Danilo Rezende and Shakir Mohamed.
 \newblock Variational inference with normalizing flows.
 \newblock In {\em International conference on machine learning}, pages
   1530--1538. PMLR.
+
+\bibitem{SD21}
+Robin Rombach, Andreas Blattmann, Dominik Lorenz, Patrick Esser, and Björn
+  Ommer.
+\newblock High-resolution image synthesis with latent diffusion models.
+\newblock In {\em Proceedings of the IEEE/CVF conference on computer vision and
+  pattern recognition}, pages 10684--10695.
 
 \bibitem{LDM}
 Robin Rombach, Andreas Blattmann, Dominik Lorenz, Patrick Esser, and Björn
@@ -462,12 +476,5 @@ Ling Yang, Zhilong Zhang, Yang Song, Shenda Hong, Runsheng Xu, Yue Zhao, Wentao
 Qinsheng Zhang and Yongxin Chen.
 \newblock Fast sampling of diffusion models with exponential integrator.
 \newblock {\em arXiv preprint arXiv:2204.13902}, 2022.
-
-\bibitem{PositionalEmbeddingSurvey}
-Liang Zhao, Xiachong Feng, Xiaocheng Feng, Weihong Zhong, Dongliang Xu, Qing
-  Yang, Hongtao Liu, Bing Qin, and Ting Liu.
-\newblock Length extrapolation of transformers: A survey from the perspective
-  of positional encoding.
-\newblock {\em arXiv preprint arXiv:2312.17044}, 2023.
 
 \end{thebibliography}
