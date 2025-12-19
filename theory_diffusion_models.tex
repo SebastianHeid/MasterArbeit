@@ -1,7 +1,7 @@
-\section{Diffusion Models and Flow Matching}
+\section{Diffusion and Flow Matching Models}
 \label{sec:diffModel}
 Diffusion models \cite{DiffusionModelIntroPaper, DDPM, DDIM, LDM, SGM, SDE} are probabilistic generative models  that have achieved remarkable success in image generation tasks \cite{Flux, HiDream}, demonstrating exceptional performance in terms of image quality and image diversity. While they require significant computational resources and have slower inference compared to some alternatives \cite{VAE, NormalizingFlow, GAN}, they have become the dominant generative modeling paradigm in the research community.
-The main principles of diffusion models are reflected in two processes motivated by non-equilibrium thermodynamics, namely the forward process and the reverse process. In the forward process, the original image is gradually perturbed by systematically adding Gaussian noise until only pure noise is left. The reverse process describes the iterative noise removal by the diffusion model until a clean image is obtained. During image generation with a diffusion model, the starting point is randomly sampled noise to which the diffusion model is applied iteratively. This repeated application gradually produces a clean, high-quality image. \\
+The main principles of diffusion models are reflected in two processes motivated by non-equilibrium thermodynamics, namely the forward process and the reverse process. In the forward process, the original image is gradually perturbed by systematically adding Gaussian noise until only pure noise is left. The reverse process describes the iterative noise removal by the diffusion model until a clean image is obtained. During image generation with a diffusion model, the starting point is randomly sampled noise to which the diffusion model is applied iteratively. This repeated application gradually produces a clean, high-quality image. To reduce the computational load, instead of executing the diffusion process in image space, \cite{LDM} proposed to first convert the image/noise into a compressed latent space using an autoencoder, where the diffusion process then took place. This class of diffusion models is therefore called latent diffusion models and are widely applied used. \\
 Over time, several different formulations of diffusion models were proposed. However, there are three dominant formulations recognized in the literature \cite{SurveyDM}: Denoising diffusion probabilistic models (\gls{DDPM}s) \cite{DiffusionModelIntroPaper, DDPM} and its further development denoising diffusion implicit models (\gls{DDIM}s, score-based generative models (\gls{SGM}s) \cite{SGM} and stochastic differential equations (\gls{SDE}s) \cite{SDE}. \\
 
  Recently, a generalization of DMs was proposed, known as flow matching or Flow-based models \cite{RectifiedFlowMatching, FlowMatching}. Unlike classical diffusion, flow  matching models directly learn a vector field that defines the path between the noise distribution and the data distribution. By enforcing a straight path trajectory, the sampling process becomes computationally more efficient. This formulation was successfully applied in several recent models like Flux-dev \cite{Flux} or Sana \cite{Sana}.\\
@@ -353,7 +353,7 @@ with a standard Wiener process $\mathbf{\tilde{w}}$ where the time flies backwar
 \end{equation}
 such as $s_\theta(\mathbf{x},t) \approx \nabla_{\mathbf{x}_t} \log q_{t}(\mathbf{x}_t) $. For converting noise to data, a solution of eq. \ref{reverseSDE} has to be computed using the score neural network and a \gls{SDE} solver. Another finding of \cite{ScoreBasedODE} is that for eq. \ref{reverseSDE} an \gls{ODE} exists having the same marginal as the \gls{SDE} being known as probability flow \gls{ODE} in the literature. It's given by by the deterministic version of eq. \ref{reverseSDE}
 \begin{equation}
-    d\mathbf{x} = \left[ \mathbf{f}(\mathbf{x},t) - \frac{1}{2} g(t)^2 \nabla_x \log q(x_t) \right] dt
+    d\mathbf{x} = \left[ \mathbf{f}(\mathbf{x},t) - \frac{1}{2} g(t)^2 \nabla_\mathbf{x} \log q(\mathbf{x}_t) \right] dt
 \end{equation}
 Both reversed-\gls{SDE} or probability flow \gls{ODE} can be used to generate new samples using \gls{SDE} solvers \cite{ScoreBasedODE, FastSDE} or respectively \gls{ODE} solvers \cite{ScoreBasedODE, ODESolver1, ODESolver2, ODESolver3}.
 
@@ -417,3 +417,19 @@ where $x_t = tx_1 + (1-t)x_0$ is the linear interpolation between $x_0$ and $x_1
 \label{RectifieFlowAlog}
 \end{algorithmic}
 \end{algorithm}
+
+
+\subsection{Latent Diffusion Models}
+Diffusion models operating in pixel space produce images of high quality and diversity. However, a major problem is the high computational effort required during training and inference. This becomes particularly relevant for the generation of high-resolution images. For this reason, latent diffusion models (\gls{LDM}s) were introduced by \cite{LDM} and are widely used nowadays \cite{SDXL, SD21, Flux,Pixart_s}. With \gls{LDM}s, the diffusion process is no longer performed in pixel space but in a compressed latent space (see fig. \ref{LDM}), which significantly reduces the computational effort. To perform the compression, an autoencoder is used, whereby additional regularizations are often applied such as KL-regularization \cite{VAE} or VQ-regularization \cite{VQVAE}. The training process of \gls{LDM}s is divided into two steps. First, the autoencoder ($\mathcal{E}$, $\mathcal{D}$) is trained to reconstruct images learning to preserve local details and pixel-level information. In a second step, the diffusion model is trained on the compressed latent representations to learn structure and semantics. This procedure has the advantage that the perceptual task handled by the autoencoder and the generative task handled by the DM are learned separately, in contrast to \gls{DM}s in pixel space where both tasks must be learned simultaneously. The training loss for a \gls{LDM} is similar to the loss for \gls{DM}s in pixel space. Following the DDPM formulation the loss for \gls{LDM}s has the same form like for \gls{DM}s (see eq. \ref{NoiseLoss})
+
+\begin{equation}
+\mathcal{L}_{\text{LDM}} = \sum_{t=2}^T \mathbb{E}_{q(\mathbf{z}_t|\mathbf{z}_0)} \left[ \left\| \boldsymbol{\epsilon}_\theta(\mathbf{z}_t, t) - \boldsymbol{\epsilon}_t \right\|_2^2 \right]
+\end{equation}
+with $\mathbf{z}$ denoting the latents, specifically,  $\mathbf{z}_0$ being the latent representation of the clean image obtained by $\mathbf{z}_0 = \mathcal{E}(\mathbf{x}_0)$, where $\mathcal{E}$ is the encoder of the autoencoder. During inference, random noise is sampled in the latent space and serves as input to the \gls{LDM} during the iterative denosiding process. The  completely denoised latent is then fed to the decoder $ \mathcal{D}$, which transforms it back to pixel space. Fig. \ref{LDM} also shows the conditioning mechanism of the \gls{LDM} via text, semantic maps, etc.. This important aspect based on cross-attention will be discussed in the following section \ref{label}. 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{images/Background/LDM.png}  % adjust filename and width
+	\caption{Structure of a Latent Diffusion Model  \cite{LDM}.}
+	\label{LDM}
+\end{figure}
+\subsection{Conditioning and Classifier-Free Guidance}

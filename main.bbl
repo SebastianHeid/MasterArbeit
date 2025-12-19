@@ -453,6 +453,11 @@ Hugo Touvron, Louis Martin, Kevin Stone, Peter Albert, Amjad Almahairi, Yasmine
 \newblock Llama 2: Open foundation and fine-tuned chat models.
 \newblock {\em arXiv preprint arXiv:2307.09288}, 2023.
 
+\bibitem{VQVAE}
+Aaron Van Den~Oord and Oriol Vinyals.
+\newblock Neural discrete representation learning.
+\newblock {\em Advances in neural information processing systems}, 30, 2017.
+
 \bibitem{AttentionIsAllYouNeed}
 Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones,
   Aidan~N Gomez, Łukasz Kaiser, and Illia Polosukhin.
