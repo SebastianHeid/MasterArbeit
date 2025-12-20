@@ -101,6 +101,12 @@ Jacob Devlin, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova.
   chapter of the association for computational linguistics: human language
   technologies, volume 1 (long and short papers)}, pages 4171--4186.
 
+\bibitem{CG}
+Prafulla Dhariwal and Alexander Nichol.
+\newblock Diffusion models beat gans on image synthesis.
+\newblock {\em Advances in neural information processing systems},
+  34:8780--8794, 2021.
+
 \bibitem{AffineCouplingLayer}
 Laurent Dinh, David Krueger, and Yoshua Bengio.
 \newblock Nice: Non-linear independent components estimation.
@@ -151,6 +157,11 @@ Jonathan Ho, Ajay Jain, and Pieter Abbeel.
 \newblock URL: \url{https://ui.adsabs.harvard.edu/abs/2020arXiv200611239H},
   \href {https://doi.org/10.48550/arXiv.2006.11239}
   {\path{doi:10.48550/arXiv.2006.11239}}.
+
+\bibitem{CFG}
+Jonathan Ho and Tim Salimans.
+\newblock Classifier-free diffusion guidance.
+\newblock {\em arXiv preprint arXiv:2207.12598}, 2022.
 
 \bibitem{Ccnet}
 Zilong Huang, Xinggang Wang, Lichao Huang, Chang Huang, Yunchao Wei, and Wenyu
@@ -429,6 +440,13 @@ Jianlin Su, Murtadha Ahmed, Yu~Lu, Shengfeng Pan, Wen Bo, and Yunfeng Liu.
 \newblock Roformer: Enhanced transformer with rotary position embedding.
 \newblock {\em Neurocomputing}, 568:127063, 2024.
 
+\bibitem{tan2025ominicontrol}
+Zhenxiong Tan, Songhua Liu, Xingyi Yang, Qiaochu Xue, and Xinchao Wang.
+\newblock Ominicontrol: Minimal and universal control for diffusion
+  transformer.
+\newblock In {\em Proceedings of the IEEE/CVF International Conference on
+  Computer Vision}, pages 14940--14950, 2025.
+
 \bibitem{Gemini}
 Gemini Team, Rohan Anil, Sebastian Borgeaud, Jean-Baptiste Alayrac, Jiahui Yu,
   Radu Soricut, Johan Schalkwyk, Andrew~M Dai, Anja Hauth, and Katie Millican.
@@ -476,6 +494,12 @@ Ling Yang, Zhilong Zhang, Yang Song, Shenda Hong, Runsheng Xu, Yue Zhao, Wentao
   Zhang, Bin Cui, and Ming-Hsuan Yang.
 \newblock Diffusion models: A comprehensive survey of methods and applications.
 \newblock {\em ACM Computing Surveys}, 56(4):1--39, 2023.
+
+\bibitem{ControlNet}
+Lvmin Zhang, Anyi Rao, and Maneesh Agrawala.
+\newblock Adding conditional control to text-to-image diffusion models.
+\newblock In {\em Proceedings of the IEEE/CVF international conference on
+  computer vision}, pages 3836--3847, 2023.
 
 \bibitem{ODESolver3}
 Qinsheng Zhang and Yongxin Chen.

@@ -18,7 +18,7 @@ Reallocated glb_str_end (elt_size=4) to 20 items from 10.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: bibliography.bib
-Repeated entry---line 894 of file bibliography.bib
+Repeated entry---line 920 of file bibliography.bib
  : @article{FlowMatching
  :                      ,
 I'm skipping whatever remains of this entry
@@ -44,45 +44,45 @@ Warning--empty year in DMBeginning
 Warning--empty year in DiffusionModelIntroPaper
 Warning--empty year in SlicedScoreMatching
 Warning--empty year in ModeCollapse1
-You've used 77 entries,
+You've used 81 entries,
             2943 wiz_defined-function locations,
-            1084 strings with 19267 characters,
-and the built_in function-call counts, 39006 in all, are:
-= -- 3793
-> -- 2079
-< -- 19
-+ -- 768
-- -- 690
-* -- 2289
-:= -- 5742
-add.period$ -- 250
-call.type$ -- 77
-change.case$ -- 576
+            1104 strings with 19859 characters,
+and the built_in function-call counts, 41169 in all, are:
+= -- 4020
+> -- 2157
+< -- 21
++ -- 796
+- -- 714
+* -- 2398
+:= -- 6030
+add.period$ -- 262
+call.type$ -- 81
+change.case$ -- 600
 chr.to.int$ -- 0
-cite$ -- 99
-duplicate$ -- 1050
-empty$ -- 3227
-format.name$ -- 690
-if$ -- 9815
+cite$ -- 103
+duplicate$ -- 1123
+empty$ -- 3426
+format.name$ -- 714
+if$ -- 10377
 int.to.chr$ -- 0
-int.to.str$ -- 77
-missing$ -- 72
-newline$ -- 394
-num.names$ -- 154
-pop$ -- 1025
+int.to.str$ -- 81
+missing$ -- 76
+newline$ -- 414
+num.names$ -- 162
+pop$ -- 1073
 preamble$ -- 1
-purify$ -- 499
+purify$ -- 519
 quote$ -- 0
-skip$ -- 2465
+skip$ -- 2616
 stack$ -- 0
-substring$ -- 1403
-swap$ -- 284
-text.length$ -- 25
+substring$ -- 1542
+swap$ -- 314
+text.length$ -- 27
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 308
+type$ -- 324
 warning$ -- 22
-while$ -- 210
-width$ -- 79
-write$ -- 824
+while$ -- 226
+width$ -- 83
+write$ -- 867
 (There was 1 error message)
