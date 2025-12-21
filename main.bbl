@@ -120,6 +120,11 @@ Alexey Dosovitskiy, Lucas Beyer, Alexander Kolesnikov, Dirk Weissenborn,
   scale.
 \newblock {\em arXiv preprint arXiv:2010.11929}, 2020.
 
+\bibitem{dowson1982frechet}
+DC~Dowson and BV666017 Landau.
+\newblock The fr{\'e}chet distance between multivariate normal distributions.
+\newblock {\em Journal of multivariate analysis}, 12(3):450--455, 1982.
+
 \bibitem{feller1949stochastic}
 William Feller.
 \newblock On the theory of stochastic processes, with particular reference to
@@ -140,11 +145,30 @@ Jackson Gorham and Lester Mackey.
 \newblock In {\em International Conference on Machine Learning}, pages
   1292--1301. PMLR.
 
+\bibitem{MMD1}
+Arthur Gretton, Karsten Borgwardt, Malte Rasch, Bernhard Sch{\"o}lkopf, and
+  Alex Smola.
+\newblock A kernel method for the two-sample-problem.
+\newblock {\em Advances in neural information processing systems}, 19, 2006.
+
+\bibitem{MMD2}
+Arthur Gretton, Karsten~M Borgwardt, Malte~J Rasch, Bernhard Sch{\"o}lkopf, and
+  Alexander Smola.
+\newblock A kernel two-sample test.
+\newblock {\em The journal of machine learning research}, 13(1):723--773, 2012.
+
 \bibitem{ResidualConnection}
 Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun.
 \newblock Deep residual learning for image recognition.
 \newblock In {\em Proceedings of the IEEE conference on computer vision and
   pattern recognition}, pages 770--778.
+
+\bibitem{FID}
+Martin Heusel, Hubert Ramsauer, Thomas Unterthiner, Bernhard Nessler, and Sepp
+  Hochreiter.
+\newblock Gans trained by a two time-scale update rule converge to a local nash
+  equilibrium.
+\newblock {\em Advances in neural information processing systems}, 30, 2017.
 
 \bibitem{AE}
 Geoffrey~E Hinton and Ruslan~R Salakhutdinov.
@@ -169,6 +193,14 @@ Zilong Huang, Xinggang Wang, Lichao Huang, Chang Huang, Yunchao Wei, and Wenyu
 \newblock Ccnet: Criss-cross attention for semantic segmentation.
 \newblock In {\em Proceedings of the IEEE/CVF international conference on
   computer vision}, pages 603--612.
+
+\bibitem{cmmd}
+Sadeep Jayasumana, Srikumar Ramalingam, Andreas Veit, Daniel Glasner, Ayan
+  Chakrabarti, and Sanjiv Kumar.
+\newblock Rethinking fid: Towards a better evaluation metric for image
+  generation.
+\newblock In {\em Proceedings of the IEEE/CVF Conference on Computer Vision and
+  Pattern Recognition}, pages 9307--9315, 2024.
 
 \bibitem{FastSDE}
 Alexia Jolicoeur-Martineau, Ke~Li, Rémi Piché-Taillefer, Tal Kachman, and
@@ -305,6 +337,15 @@ Dustin Podell, Zion English, Kyle Lacey, Andreas Blattmann, Tim Dockhorn, Jonas
   synthesis.
 \newblock {\em arXiv preprint arXiv:2307.01952}, 2023.
 
+\bibitem{CLIP}
+Alec Radford, Jong~Wook Kim, Chris Hallacy, Aditya Ramesh, Gabriel Goh,
+  Sandhini Agarwal, Girish Sastry, Amanda Askell, Pamela Mishkin, Jack Clark,
+  et~al.
+\newblock Learning transferable visual models from natural language
+  supervision.
+\newblock In {\em International conference on machine learning}, pages
+  8748--8763. PmLR, 2021.
+
 \bibitem{ConvGAN}
 Alec Radford, Luke Metz, and Soumith Chintala.
 \newblock Unsupervised representation learning with deep convolutional
@@ -439,6 +480,13 @@ Inga Strümke and Helge Langseth.
 Jianlin Su, Murtadha Ahmed, Yu~Lu, Shengfeng Pan, Wen Bo, and Yunfeng Liu.
 \newblock Roformer: Enhanced transformer with rotary position embedding.
 \newblock {\em Neurocomputing}, 568:127063, 2024.
+
+\bibitem{szegedy2016rethinking}
+Christian Szegedy, Vincent Vanhoucke, Sergey Ioffe, Jon Shlens, and Zbigniew
+  Wojna.
+\newblock Rethinking the inception architecture for computer vision.
+\newblock In {\em Proceedings of the IEEE conference on computer vision and
+  pattern recognition}, pages 2818--2826, 2016.
 
 \bibitem{tan2025ominicontrol}
 Zhenxiong Tan, Songhua Liu, Xingyi Yang, Qiaochu Xue, and Xinchao Wang.

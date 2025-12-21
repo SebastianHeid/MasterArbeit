@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.9.24)  20 DEC 2025 21:40
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.9.24)  21 DEC 2025 13:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -956,7 +956,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 
 ]
-<images/Background/MarkovChainDiffProcess.png, id=479, 555.07375pt x 93.34875pt
+<images/Background/MarkovChainDiffProcess.png, id=493, 555.07375pt x 93.34875pt
 >
 File: images/Background/MarkovChainDiffProcess.png Graphic file (type png)
 <use images/Background/MarkovChainDiffProcess.png>
@@ -1006,7 +1006,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 217--218
 
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
 put line 222.
-<images/Background/DDPM_Training.png, id=562, 626.92049pt x 370.05724pt>
+<images/Background/DDPM_Training.png, id=577, 626.92049pt x 370.05724pt>
 File: images/Background/DDPM_Training.png Graphic file (type png)
 <use images/Background/DDPM_Training.png>
 Package pdftex.def Info: images/Background/DDPM_Training.png  used on input lin
@@ -1022,7 +1022,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [12]
-<images/Background/DDPM.png, id=582, 1579.9025pt x 765.86125pt>
+<images/Background/DDPM.png, id=596, 1579.9025pt x 765.86125pt>
 File: images/Background/DDPM.png Graphic file (type png)
 <use images/Background/DDPM.png>
 Package pdftex.def Info: images/Background/DDPM.png  used on input line 281.
@@ -1079,7 +1079,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [17]
-<images/Background/Overview_2.png, id=710, 1123.19624pt x 188.705pt>
+<images/Background/Overview_2.png, id=724, 1123.19624pt x 188.705pt>
 File: images/Background/Overview_2.png Graphic file (type png)
 <use images/Background/Overview_2.png>
 Package pdftex.def Info: images/Background/Overview_2.png  used on input line 4
@@ -1098,14 +1098,11 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 LaTeX Warning: Reference `label' on page 19 undefined on input line 428.
 
-<images/Background/LDM.png, id=741, 457.71pt x 226.8475pt>
+<images/Background/LDM.png, id=755, 457.71pt x 226.8475pt>
 File: images/Background/LDM.png Graphic file (type png)
 <use images/Background/LDM.png>
 Package pdftex.def Info: images/Background/LDM.png  used on input line 431.
 (pdftex.def)             Requested size: 290.22107pt x 143.84233pt.
-
-LaTeX Warning: Reference `label' on page 19 undefined on input line 436.
-
 
 
 
@@ -1128,7 +1125,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 \openout2 = `theory_fundamental_NN.aux'.
 
  (./theory_fundamental_NN.tex
-<images/Background/transformer.png, id=787, 1324.95pt x 1866.975pt>
+<images/Background/transformer.png, id=802, 1324.95pt x 1866.975pt>
 File: images/Background/transformer.png Graphic file (type png)
 <use images/Background/transformer.png>
 Package pdftex.def Info: images/Background/transformer.png  used on input line 
@@ -1157,7 +1154,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [22 <./images/Background/transformer.png>]
-<images/Background/SelfAttention.png, id=816, 927.465pt x 503.7pt>
+<images/Background/SelfAttention.png, id=831, 927.465pt x 503.7pt>
 File: images/Background/SelfAttention.png Graphic file (type png)
 <use images/Background/SelfAttention.png>
 Package pdftex.def Info: images/Background/SelfAttention.png  used on input lin
@@ -1173,7 +1170,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [23]
-<images/Background/CrossAttention.png, id=834, 935.349pt x 503.7pt>
+<images/Background/CrossAttention.png, id=849, 935.349pt x 503.7pt>
 File: images/Background/CrossAttention.png Graphic file (type png)
 <use images/Background/CrossAttention.png>
 Package pdftex.def Info: images/Background/CrossAttention.png  used on input li
@@ -1190,7 +1187,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [24 <./images/Background/SelfAttention.png> <./images/Background/CrossAttention
 .png>]
-<images/Background/multi-head-attention.png, id=844, 578.16pt x 748.7975pt>
+<images/Background/multi-head-attention.png, id=859, 578.16pt x 748.7975pt>
 File: images/Background/multi-head-attention.png Graphic file (type png)
 <use images/Background/multi-head-attention.png>
 Package pdftex.def Info: images/Background/multi-head-attention.png  used on in
@@ -1206,15 +1203,15 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [25 <./images/Background/multi-head-attention.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 142--143
+Underfull \hbox (badness 10000) in paragraph at lines 143--144
 
  []
 
-<images/Background/VisionTransformer.png, id=889, 598.235pt x 304.13625pt>
+<images/Background/VisionTransformer.png, id=904, 598.235pt x 304.13625pt>
 File: images/Background/VisionTransformer.png Graphic file (type png)
 <use images/Background/VisionTransformer.png>
 Package pdftex.def Info: images/Background/VisionTransformer.png  used on input
- line 150.
+ line 151.
 (pdftex.def)             Requested size: 386.95897pt x 196.73022pt.
 )
 
@@ -1237,7 +1234,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [27 <./images/Background/VisionTransformer.png>]
 \openout2 = `theory_metrics.aux'.
 
- (./theory_metrics.tex)
+ (./theory_metrics.tex
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1250,7 +1247,16 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 
 
-]
+])
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[29]
 \openout2 = `Models.aux'.
 
  (./Models.tex
@@ -1269,7 +1275,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 )
 
-[29
+[30
 
 
 
@@ -1284,7 +1290,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Chapter 3.
 )
 
-[30
+[31
 
 
 
@@ -1297,7 +1303,7 @@ Chapter 3.
 
  (./conclusion.tex) (./main.bbl
 
-[31
+[32
 
 
 
@@ -1313,16 +1319,13 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[32]
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
 [33]
+Underfull \hbox (badness 1460) in paragraph at lines 198--204
+[]\T1/cmr/m/n/12 Sadeep Jaya-sumana, Sriku-mar Ra-ma-lingam, An-dreas Veit, Dan
+iel Glas-ner, Ayan
+ []
+
+
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1349,7 +1352,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[36])
+[36]
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1358,7 +1361,25 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[37] (./main.aux (./titel_page.aux) (./introduction.aux)
+[37]
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[38])
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[39] (./main.aux (./titel_page.aux) (./introduction.aux)
 (./theory_generative_models.aux) (./theory_diffusion_models.aux)
 (./theory_fundamental_NN.aux) (./theory_metrics.aux) (./Models.aux)
 (./experiments.aux) (./results.aux) (./conclusion.aux))
@@ -1371,16 +1392,16 @@ L3 programming layer <2025-01-18>
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: A4053D3F45EF08CCA16092737D452BC7;4912.
+(rerunfilecheck)             Checksum: 42139D7270679320BC405F81769752EF;5326.
  ) 
 Here is how much of TeX's memory you used:
- 24652 strings out of 473190
- 435631 string characters out of 5715800
- 955532 words of memory out of 5000000
- 47176 multiletter control sequences out of 15000+600000
+ 24815 strings out of 473190
+ 438047 string characters out of 5715800
+ 956510 words of memory out of 5000000
+ 47322 multiletter control sequences out of 15000+600000
  579902 words of font info for 92 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,14n,96p,2365b,878s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,18n,96p,2365b,922s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 ></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb><
 /usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></
@@ -1407,10 +1428,10 @@ ist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/local/texlive/2025/texmf-dis
 t/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2025/texmf-dist/
 fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/2025/texmf-dist/fo
 nts/type1/public/cm-super/sftt1200.pfb>
-Output written on main.pdf (46 pages, 1752613 bytes).
+Output written on main.pdf (48 pages, 1762061 bytes).
 PDF statistics:
- 1146 PDF objects out of 1200 (max. 8388607)
- 1001 compressed objects within 11 object streams
- 299 named destinations out of 1000 (max. 500000)
- 283 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1207 PDF objects out of 1440 (max. 8388607)
+ 1060 compressed objects within 11 object streams
+ 316 named destinations out of 1000 (max. 500000)
+ 299 words of extra memory for PDF output out of 10000 (max. 10000000)
 
