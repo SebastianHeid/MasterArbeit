@@ -1,5 +1,27 @@
 \chapter{State-of-the-Art Image Generation Models}
 In the following, the models, namely Pixart-$\Sigma$ \cite{Pixart_s} and Flux-dev \cite{Flux}, which were used for the experiments are described in detail.
 \section{Pixart-$\Sigma$}
+PixArt-$\Sigma$ \cite{Pixart_s}, the latest addition to the PixArt family \cite{Pixart_a, Pixart_d}, was developed to demonstrate that high-fidelity image generation can be achieved with significantly reduced training costs and model parameters. Pixart-$\Sigma$ is a further development of  Pixart-$\alpha$. Therefore, the shared architecture of Pixart-$\alpha$ and Pixart-$\Sigma$ is introduced first. Next, the key points for efficient training of Pixart-$\alpha$ are described, followed by the specific enhancements implemented in PixArt-$\Sigma$.
+
+\subsection{Architecture }
+The architecture of Pixart-$\Sigma$ is based on the class-conditional diffusion transformer \gls{DiT}-XL/2 \cite{DiT}. Fig. \ref{Pixart_Übersicht} shows the overall architecture. The transformer blocks have primarily three inputs. The timestep $t$ is projected into a time embedding vector using a 256-frequency embedding, from which a \gls{MLP} extracts the global scale and shift parameters used as input for the customized adaptive layer normalization called adaLN-single layer, which modulates the hidden states based on the time embedding. The second input is the text prompt that describes the content of the image. It is tokenized and encoded by the T5-XXL text encoder \cite{T5XXL}, which has a maximum of 120 tokens and is incorporated via cross-attention layers into the model. The third input is the latent image which is encoded via a pre-trained autoencoder transforming the shape from  (3,H,W) to (4, H/8, W/8). From which patches of size 2×2 are extracted and flattened into a sequence of visual tokens. Finally, positional encoding is applied before feeding them as input to the transformer blocks.
+
+First, the timestep $t$ is  which consists of an \gls{VAE} image encoder \cite{LDM}, the T5-XXL text encoder \cite{T5XXL} and 28 transformer blocks (see fig. \ref{TransformerBlock}).
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.0\textwidth]{images/Background/Pixart/Architektur_Uebersicht.pdf}  % adjust filename and width
+	\caption{Overview architecture of Pixart-$\Sigma$.}
+	\label{Pixart_Übersicht}
+\end{figure}
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{images/Background/Pixart/Architekture_Detail.pdf}  % adjust filename and width
+	\caption{Diffusion block architecture taken from  \cite{Pixart_a}.}
+	\label{TransformerBlock}
+\end{figure}
+\subsection{Training Strategy}
+The training process of Pixart-
 
 \section{Flux-dev}

@@ -14,7 +14,7 @@
 		\setentrycounter[]{page}\glsnumberformat{20}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{V}}}%
 \glossentry{CLIP}{\glossaryentrynumbers{\relax 
-		\setentrycounter[]{page}\glsnumberformat{28}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{28\delimN 29}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{V}}}%
 \glossentry{CLS}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{26}\delimN 
@@ -33,6 +33,9 @@
 \glossentry{DDPM}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{7}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{12\delimR 16}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{V}}}%
+\glossentry{DiT}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{31}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{V}}}%
 \glossentry{DM}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{2}\delimN 
@@ -53,6 +56,10 @@
 \glossentry{GAN}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{2}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{5}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{V}}}\glsgroupskip
+\glsgroupheading{H}\relax \glsresetentrylist %
+\glossentry{HPSv2}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{28\delimN 29}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{V}}}\glsgroupskip
 \glsgroupheading{I}\relax \glsresetentrylist %
 \glossentry{iid}{\glossaryentrynumbers{\relax 
@@ -86,6 +93,7 @@
 		\setentrycounter[]{page}\glsnumberformat{V}}}%
 \glossentry{MLP}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{26}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{31}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{V}}}%
 \glossentry{MMD}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{28}\delimN 
@@ -127,6 +135,7 @@
 \glsgroupheading{V}\relax \glsresetentrylist %
 \glossentry{VAE}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{2\delimR 5}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{32}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{V}}}%
 \glossentry{VI}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{3\delimN 4}\delimN 

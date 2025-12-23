@@ -10,5 +10,8 @@
 \contentsline {figure}{\numberline {1.8}{\ignorespaces Cross-attention mechanism based on \cite {SelfAttentionFigure}.}}{24}{figure.1.8}%
 \contentsline {figure}{\numberline {1.9}{\ignorespaces Multi-head attention from \cite {AttentionIsAllYouNeed}.}}{25}{figure.1.9}%
 \contentsline {figure}{\numberline {1.10}{\ignorespaces Vision transformer from \cite {VisionTransformer}.}}{27}{figure.1.10}%
+\contentsline {figure}{\numberline {1.11}{\ignorespaces Example of how image is investigated for GenEval benchmark \cite {ghosh2023geneval}.}}{30}{figure.1.11}%
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Overview architecture of Pixart-$\Sigma $.}}{32}{figure.2.1}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Diffusion block architecture taken from \cite {Pixart_a}.}}{32}{figure.2.2}%
 \addvspace {10\p@ }

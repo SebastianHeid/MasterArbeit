@@ -18,10 +18,18 @@ Reallocated glb_str_end (elt_size=4) to 20 items from 10.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: bibliography.bib
-Repeated entry---line 976 of file bibliography.bib
+I was expecting a `,' or a `}'---line 40 of file bibliography.bib
+ :  title={Pixart-$\delta$}
+ :                         $: Fast and controllable image generation with latent consistency models},
+I'm skipping whatever remains of this entry
+Repeated entry---line 1031 of file bibliography.bib
  : @article{FlowMatching
  :                      ,
 I'm skipping whatever remains of this entry
+Warning--to sort, need author or key in Pixart_d
+Warning--empty author in Pixart_d
+Warning--empty journal in Pixart_d
+Warning--empty year in Pixart_d
 Warning--empty journal in HiDream
 Warning--empty journal in Claude
 Warning--empty year in WGAN
@@ -44,45 +52,45 @@ Warning--empty year in DMBeginning
 Warning--empty year in DiffusionModelIntroPaper
 Warning--empty year in SlicedScoreMatching
 Warning--empty year in ModeCollapse1
-You've used 88 entries,
+You've used 96 entries,
             2943 wiz_defined-function locations,
-            1143 strings with 21319 characters,
-and the built_in function-call counts, 45374 in all, are:
-= -- 4442
-> -- 2384
-< -- 24
-+ -- 884
-- -- 792
-* -- 2660
-:= -- 6634
-add.period$ -- 284
-call.type$ -- 88
-change.case$ -- 659
+            1185 strings with 23031 characters,
+and the built_in function-call counts, 49660 in all, are:
+= -- 4846
+> -- 2645
+< -- 26
++ -- 982
+- -- 882
+* -- 2939
+:= -- 7267
+add.period$ -- 306
+call.type$ -- 96
+change.case$ -- 727
 chr.to.int$ -- 0
-cite$ -- 110
-duplicate$ -- 1240
-empty$ -- 3759
-format.name$ -- 792
-if$ -- 11415
+cite$ -- 122
+duplicate$ -- 1350
+empty$ -- 4088
+format.name$ -- 882
+if$ -- 12457
 int.to.chr$ -- 0
-int.to.str$ -- 88
-missing$ -- 83
-newline$ -- 449
-num.names$ -- 176
-pop$ -- 1168
+int.to.str$ -- 96
+missing$ -- 91
+newline$ -- 487
+num.names$ -- 190
+pop$ -- 1283
 preamble$ -- 1
-purify$ -- 571
+purify$ -- 631
 quote$ -- 0
-skip$ -- 2872
+skip$ -- 3124
 stack$ -- 0
-substring$ -- 1750
-swap$ -- 357
-text.length$ -- 30
+substring$ -- 1915
+swap$ -- 386
+text.length$ -- 32
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 352
-warning$ -- 22
-while$ -- 253
-width$ -- 90
-write$ -- 945
-(There was 1 error message)
+type$ -- 384
+warning$ -- 26
+while$ -- 277
+width$ -- 98
+write$ -- 1024
+(There were 2 error messages)

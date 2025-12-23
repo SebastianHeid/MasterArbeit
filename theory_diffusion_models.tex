@@ -409,7 +409,7 @@ where $x_t = tx_1 + (1-t)x_0$ is the linear interpolation between $x_0$ and $x_1
 \State \textbf{Inputs:} Draws from a coupling $(x_0, x_1)$ of $\pi_0$ and $\pi_1$; velocity model $v_\theta : \mathbb{R}^d \to \mathbb{R}^d$ with parameter $\theta$.
 \State \textbf{Training:} $\hat{\theta} = \arg \min_\theta \mathbb{E} \left[ \left\| x_1 - x_0 - v(tx_1 + (1-t)x_0, t) \right\|^2 \right]$, with $t \sim \text{Uniform}([0,1])$.
 \State \textbf{Sampling:} Draw $(x_0', x_1')$ following $dx_t = v_{\hat{\theta}}(x_t, t)dt$ starting from $x'_0 \sim \pi_0$ (or backwardly $x'_1 \sim \pi_1$).
-\State \textbf{Return:} $Z = \{Z_t : t \in [0,1]\}$.
+\State \textbf{Return:} $x = \{x_t : t \in [0,1]\}$.
 
 \State
 \State \textbf{Reflow (optional):} $x^{k+1} = \text{RectFlow}((x_0^k, x_1^k))$, starting from $(x_0^0, x_1^0) = (x_0, x_1)$. 

@@ -1,5 +1,8 @@
 \begin{thebibliography}{10}
 
+\bibitem{Pixart_d}
+Pixart-$\delta$.
+
 \bibitem{GPT4}
 Josh Achiam, Steven Adler, Sandhini Agarwal, Lama Ahmad, Ilge Akkaya,
   Florencia~Leoni Aleman, Diogo Almeida, Janko Altenschmidt, Sam Altman, and
@@ -68,6 +71,19 @@ Junsong Chen, Chongjian Ge, Enze Xie, Yue Wu, Lewei Yao, Xiaozhe Ren, Zhongdao
 \newblock In {\em European Conference on Computer Vision}, pages 74--91.
   Springer.
 
+\bibitem{Pixart_a}
+Junsong Chen, Jincheng Yu, Chongjian Ge, Lewei Yao, Enze Xie, Yue Wu, Zhongdao
+  Wang, James Kwok, Ping Luo, Huchuan Lu, et~al.
+\newblock Pixart-$\alpha$: Fast training of diffusion transformer for
+  photorealistic text-to-image synthesis.
+\newblock {\em arXiv preprint arXiv:2310.00426}, 2023.
+
+\bibitem{COCO}
+Xinlei Chen, Hao Fang, Tsung-Yi Lin, Ramakrishna Vedantam, Saurabh Gupta, Piotr
+  Doll{\'a}r, and C~Lawrence Zitnick.
+\newblock Microsoft coco captions: Data collection and evaluation server.
+\newblock {\em arXiv preprint arXiv:1504.00325}, 2015.
+
 \bibitem{SparseTransformer}
 Rewon Child, Scott Gray, Alec Radford, and Ilya Sutskever.
 \newblock Generating long sequences with sparse transformers.
@@ -132,6 +148,13 @@ William Feller.
 \newblock In {\em Proceedings of the First Berkeley Symposium on Mathematical
   Statistics and Probability}, pages 403--432, Berkeley, CA, 1949. The Regents
   of the University of California.
+
+\bibitem{ghosh2023geneval}
+Dhruba Ghosh, Hannaneh Hajishirzi, and Ludwig Schmidt.
+\newblock Geneval: An object-focused framework for evaluating text-to-image
+  alignment.
+\newblock {\em Advances in Neural Information Processing Systems},
+  36:52132--52152, 2023.
 
 \bibitem{GAN}
 Ian~J Goodfellow, Jean Pouget-Abadie, Mehdi Mirza, Bing Xu, David Warde-Farley,
@@ -330,6 +353,12 @@ Jan Pawlowski and Tilman Plehn.
   Heidelberg, January 2024.
 \newblock Version from January 30, 2024.
 
+\bibitem{DiT}
+William Peebles and Saining Xie.
+\newblock Scalable diffusion models with transformers.
+\newblock In {\em Proceedings of the IEEE/CVF international conference on
+  computer vision}, pages 4195--4205, 2023.
+
 \bibitem{SDXL}
 Dustin Podell, Zion English, Kyle Lacey, Andreas Blattmann, Tim Dockhorn, Jonas
   Müller, Joe Penna, and Robin Rombach.
@@ -351,6 +380,13 @@ Alec Radford, Luke Metz, and Soumith Chintala.
 \newblock Unsupervised representation learning with deep convolutional
   generative adversarial networks.
 \newblock {\em arXiv preprint arXiv:1511.06434}, 2015.
+
+\bibitem{T5XXL}
+Colin Raffel, Noam Shazeer, Adam Roberts, Katherine Lee, Sharan Narang, Michael
+  Matena, Yanqi Zhou, Wei Li, and Peter~J Liu.
+\newblock Exploring the limits of transfer learning with a unified text-to-text
+  transformer.
+\newblock {\em Journal of machine learning research}, 21(140):1--67, 2020.
 
 \bibitem{StandAloneAttentionVisonModels}
 Prajit Ramachandran, Niki Parmar, Ashish Vaswani, Irwan Bello, Anselm Levskaya,
@@ -529,6 +565,21 @@ Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones,
   Aidan~N Gomez, Łukasz Kaiser, and Illia Polosukhin.
 \newblock Attention is all you need.
 \newblock {\em Advances in neural information processing systems}, 30, 2017.
+
+\bibitem{DiffusionDB}
+Zijie~J Wang, Evan Montoya, David Munechika, Haoyang Yang, Benjamin Hoover, and
+  Duen~Horng Chau.
+\newblock Diffusiondb: A large-scale prompt gallery dataset for text-to-image
+  generative models.
+\newblock In {\em Proceedings of the 61st Annual Meeting of the Association for
+  Computational Linguistics (Volume 1: Long Papers)}, pages 893--911, 2023.
+
+\bibitem{HPSv2}
+Xiaoshi Wu, Yiming Hao, Keqiang Sun, Yixiong Chen, Feng Zhu, Rui Zhao, and
+  Hongsheng Li.
+\newblock Human preference score v2: A solid benchmark for evaluating human
+  preferences of text-to-image synthesis.
+\newblock {\em arXiv preprint arXiv:2306.09341}, 2023.
 
 \bibitem{Sana}
 Enze Xie, Junsong Chen, Junyu Chen, Han Cai, Haotian Tang, Yujun Lin, Zhekai

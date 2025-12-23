@@ -2,6 +2,8 @@
 \glossaryentry{LLM?\glossentry{LLM}|setentrycounter[]{page}"\glsnumberformat}{V}
 \glossaryentry{LDM?\glossentry{LDM}|setentrycounter[]{page}"\glsnumberformat}{V}
 \glossaryentry{FID?\glossentry{FID}|setentrycounter[]{page}"\glsnumberformat}{V}
+\glossaryentry{HPSv2?\glossentry{HPSv2}|setentrycounter[]{page}"\glsnumberformat}{V}
+\glossaryentry{DiT?\glossentry{DiT}|setentrycounter[]{page}"\glsnumberformat}{V}
 \glossaryentry{CMMD?\glossentry{CMMD}|setentrycounter[]{page}"\glsnumberformat}{V}
 \glossaryentry{CLIP?\glossentry{CLIP}|setentrycounter[]{page}"\glsnumberformat}{V}
 \glossaryentry{MMD?\glossentry{MMD}|setentrycounter[]{page}"\glsnumberformat}{V}
@@ -154,6 +156,7 @@
 \glossaryentry{DM?\glossentry{DM}|setentrycounter[]{page}"\glsnumberformat}{28}
 \glossaryentry{FID?\glossentry{FID}|setentrycounter[]{page}"\glsnumberformat}{28}
 \glossaryentry{CMMD?\glossentry{CMMD}|setentrycounter[]{page}"\glsnumberformat}{28}
+\glossaryentry{HPSv2?\glossentry{HPSv2}|setentrycounter[]{page}"\glsnumberformat}{28}
 \glossaryentry{FID?\glossentry{FID}|setentrycounter[]{page}"\glsnumberformat}{28}
 \glossaryentry{FID?\glossentry{FID}|setentrycounter[]{page}"\glsnumberformat}{28}
 \glossaryentry{FID?\glossentry{FID}|setentrycounter[]{page}"\glsnumberformat}{28}
@@ -166,3 +169,14 @@
 \glossaryentry{FID?\glossentry{FID}|setentrycounter[]{page}"\glsnumberformat}{29}
 \glossaryentry{CMMD?\glossentry{CMMD}|setentrycounter[]{page}"\glsnumberformat}{29}
 \glossaryentry{FID?\glossentry{FID}|setentrycounter[]{page}"\glsnumberformat}{29}
+\glossaryentry{HPSv2?\glossentry{HPSv2}|setentrycounter[]{page}"\glsnumberformat}{29}
+\glossaryentry{CLIP?\glossentry{CLIP}|setentrycounter[]{page}"\glsnumberformat}{29}
+\glossaryentry{CLIP?\glossentry{CLIP}|setentrycounter[]{page}"\glsnumberformat}{29}
+\glossaryentry{CLIP?\glossentry{CLIP}|setentrycounter[]{page}"\glsnumberformat}{29}
+\glossaryentry{HPSv2?\glossentry{HPSv2}|setentrycounter[]{page}"\glsnumberformat}{29}
+\glossaryentry{CLIP?\glossentry{CLIP}|setentrycounter[]{page}"\glsnumberformat}{29}
+\glossaryentry{FID?\glossentry{FID}|setentrycounter[]{page}"\glsnumberformat}{29}
+\glossaryentry{CLIP?\glossentry{CLIP}|setentrycounter[]{page}"\glsnumberformat}{29}
+\glossaryentry{DiT?\glossentry{DiT}|setentrycounter[]{page}"\glsnumberformat}{31}
+\glossaryentry{MLP?\glossentry{MLP}|setentrycounter[]{page}"\glsnumberformat}{31}
+\glossaryentry{VAE?\glossentry{VAE}|setentrycounter[]{page}"\glsnumberformat}{32}
