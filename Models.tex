@@ -4,16 +4,24 @@ In the following, the models, namely Pixart-$\Sigma$ \cite{Pixart_s} and Flux-de
 PixArt-$\Sigma$ \cite{Pixart_s}, the latest addition to the PixArt family \cite{Pixart_a, Pixart_d}, was developed to demonstrate that high-fidelity image generation can be achieved with significantly reduced training costs and model parameters. Pixart-$\Sigma$ is a further development of  Pixart-$\alpha$. Therefore, the shared architecture of Pixart-$\alpha$ and Pixart-$\Sigma$ is introduced first. Next, the key points for efficient training of Pixart-$\alpha$ are described, followed by the specific enhancements implemented in PixArt-$\Sigma$.
 
 \subsection{Architecture }
-The architecture of Pixart-$\Sigma$ is based on the class-conditional diffusion transformer \gls{DiT}-XL/2 \cite{DiT}. Fig. \ref{Pixart_Übersicht} shows the overall architecture. The transformer blocks have primarily three inputs. The timestep $t$ is projected into a time embedding vector using a 256-frequency embedding, from which a \gls{MLP} extracts the global scale and shift parameters used as input for the customized adaptive layer normalization called adaLN-single layer, which modulates the hidden states based on the time embedding. The second input is the text prompt that describes the content of the image. It is tokenized and encoded by the T5-XXL text encoder \cite{T5XXL}, which has a maximum of 120 tokens and is incorporated via cross-attention layers into the model. The third input is the latent image which is encoded via a pre-trained autoencoder transforming the shape from  (3,H,W) to (4, H/8, W/8). From which patches of size 2×2 are extracted and flattened into a sequence of visual tokens. Finally, positional encoding is applied before feeding them as input to the transformer blocks.
+The architecture of Pixart-$\Sigma$ is based on the class-conditional diffusion transformer \gls{DiT}-XL/2 \cite{DiT} which contains 28 transformer blocks. The transformer blocks have primarily three inputs (see fig. \ref{Pixart_Übersicht}). \\
+The \textbf{timestep} $t$ is projected into a time embedding vector using a 256-frequency embedding, from which a \gls{MLP} extracts the global scale and shift parameters used as input for the customized adaptive layer normalization called adaLN-single layer, which modulates the hidden states based on the time embedding. \\
+ The second input is the \textbf{text prompt} that describes the content of the image. It is tokenized into 300 tokens and encoded by the T5-XXL text encoder \cite{T5XXL}. A linear projection layer is applied to reduce the dimension from the T5-XXL encoder after which it is incorporated via cross-attention layers into the model. \\
+  The third input is the \textbf{latent image} which is encoded via a pre-trained autoencoder transforming the shape from  $(3,H,W)$ to $(4, H/8, W/8)$. From which patches of size $2\times2$ are extracted and flattened into a sequence of visual tokens. Finally, positional encoding is applied before feeding them as input to the transformer blocks.
 
-First, the timestep $t$ is  which consists of an \gls{VAE} image encoder \cite{LDM}, the T5-XXL text encoder \cite{T5XXL} and 28 transformer blocks (see fig. \ref{TransformerBlock}).
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1.0\textwidth]{images/Background/Pixart/Architektur_Uebersicht.pdf}  % adjust filename and width
-	\caption{Overview architecture of Pixart-$\Sigma$.}
+	\caption{Overview architecture of Pixart-$\Sigma$. $H$ and $W$ are the height and width of the image. $h=\frac{H}{8}$ and $w=\frac{W}{8}$ represent the dimensions in latent space and $N = \frac{H}{8 \cdot p} \frac{W}{8 \cdot p}$ with $p$ being the patch size.}
 	\label{Pixart_Übersicht}
 \end{figure}
 
+
+The main components of the diffusion model are the transformer blocks. They consist of four main parts, namely the self-attention layer, the cross-attention layer, the \gls{MLP} and the adaLN-single mechanism (see fig. \ref{TransformerBlock}). \\
+The \textbf{multi-head self-attention} layer allows the tokens to attend to each other and capture spatial relationships. It is embedded between time-dependent modulation layers. \\
+The \textbf{multi-head cross-attention} layer incorporates text conditioning into the model to align the generated image with the text prompt and is placed between the self-attention and the \gls{MLP} layer. \\
+The \textbf{\gls{MLP}} processes each token individually to refine the features. Similar to the self-attention layer, it is positioned between modulation layers. \\
+\textbf{adaLN-single} is a modification of the adaptive layer normalization (\gls{adaLN}) method \cite{adaLN} replacing the static parameters of the normalization layer with dynamic values that are predicted directly from conditioning signals such as the timestep. This enables the model to efficiently modulate the feature distribution in each block, thereby controlling the generation process globally. In \cite{DiT} both class and time conditioning were handled via adaLN. In contrast, Pixart-$\Sigma$ only uses it for incorporating the time embedding. To reduce the number of parameters global scale and shift parameters $\bar{S}$ are extracted from the shared \gls{MLP} and each block has additional learnable parameters $E_i$ which are added to the global parameters via a summation function $g$ $S_i = g(\bar{S}, E_i)$.
 
 \begin{figure}[H]
 	\centering

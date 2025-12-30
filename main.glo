@@ -9,6 +9,7 @@
 \glossaryentry{MMD?\glossentry{MMD}|setentrycounter[]{page}"\glsnumberformat}{V}
 \glossaryentry{CFG?\glossentry{CFG}|setentrycounter[]{page}"\glsnumberformat}{V}
 \glossaryentry{MSE?\glossentry{MSE}|setentrycounter[]{page}"\glsnumberformat}{V}
+\glossaryentry{adaLN?\glossentry{adaLN}|setentrycounter[]{page}"\glsnumberformat}{V}
 \glossaryentry{DDPM?\glossentry{DDPM}|setentrycounter[]{page}"\glsnumberformat}{V}
 \glossaryentry{DDIM?\glossentry{DDIM}|setentrycounter[]{page}"\glsnumberformat}{V}
 \glossaryentry{AI?\glossentry{AI}|setentrycounter[]{page}"\glsnumberformat}{V}
@@ -179,4 +180,8 @@
 \glossaryentry{CLIP?\glossentry{CLIP}|setentrycounter[]{page}"\glsnumberformat}{29}
 \glossaryentry{DiT?\glossentry{DiT}|setentrycounter[]{page}"\glsnumberformat}{31}
 \glossaryentry{MLP?\glossentry{MLP}|setentrycounter[]{page}"\glsnumberformat}{31}
-\glossaryentry{VAE?\glossentry{VAE}|setentrycounter[]{page}"\glsnumberformat}{32}
+\glossaryentry{MLP?\glossentry{MLP}|setentrycounter[]{page}"\glsnumberformat}{32}
+\glossaryentry{MLP?\glossentry{MLP}|setentrycounter[]{page}"\glsnumberformat}{32}
+\glossaryentry{MLP?\glossentry{MLP}|setentrycounter[]{page}"\glsnumberformat}{32}
+\glossaryentry{adaLN?\glossentry{adaLN}|setentrycounter[]{page}"\glsnumberformat}{32}
+\glossaryentry{MLP?\glossentry{MLP}|setentrycounter[]{page}"\glsnumberformat}{33}

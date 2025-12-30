@@ -22,7 +22,7 @@ I was expecting a `,' or a `}'---line 40 of file bibliography.bib
  :  title={Pixart-$\delta$}
  :                         $: Fast and controllable image generation with latent consistency models},
 I'm skipping whatever remains of this entry
-Repeated entry---line 1031 of file bibliography.bib
+Repeated entry---line 1039 of file bibliography.bib
  : @article{FlowMatching
  :                      ,
 I'm skipping whatever remains of this entry
@@ -44,6 +44,7 @@ Warning--empty year in Floater
 Warning--empty year in ImprovedDDPM
 Warning--empty year in ALiBi
 Warning--empty year in ImageTransformer
+Warning--can't use both volume and number fields in adaLN
 Warning--empty journal in SelfAttentionFigure
 Warning--empty year in NormalizingFlow
 Warning--empty year in SD21
@@ -52,45 +53,45 @@ Warning--empty year in DMBeginning
 Warning--empty year in DiffusionModelIntroPaper
 Warning--empty year in SlicedScoreMatching
 Warning--empty year in ModeCollapse1
-You've used 96 entries,
+You've used 97 entries,
             2943 wiz_defined-function locations,
-            1185 strings with 23031 characters,
-and the built_in function-call counts, 49660 in all, are:
-= -- 4846
-> -- 2645
-< -- 26
-+ -- 982
-- -- 882
-* -- 2939
-:= -- 7267
-add.period$ -- 306
-call.type$ -- 96
-change.case$ -- 727
+            1190 strings with 23251 characters,
+and the built_in function-call counts, 50150 in all, are:
+= -- 4889
+> -- 2674
+< -- 27
++ -- 993
+- -- 892
+* -- 2971
+:= -- 7339
+add.period$ -- 309
+call.type$ -- 97
+change.case$ -- 735
 chr.to.int$ -- 0
-cite$ -- 122
-duplicate$ -- 1350
-empty$ -- 4088
-format.name$ -- 882
-if$ -- 12457
+cite$ -- 124
+duplicate$ -- 1364
+empty$ -- 4132
+format.name$ -- 892
+if$ -- 12578
 int.to.chr$ -- 0
-int.to.str$ -- 96
-missing$ -- 91
-newline$ -- 487
-num.names$ -- 190
-pop$ -- 1283
+int.to.str$ -- 97
+missing$ -- 92
+newline$ -- 492
+num.names$ -- 192
+pop$ -- 1298
 preamble$ -- 1
-purify$ -- 631
+purify$ -- 638
 quote$ -- 0
-skip$ -- 3124
+skip$ -- 3153
 stack$ -- 0
-substring$ -- 1915
-swap$ -- 386
-text.length$ -- 32
+substring$ -- 1920
+swap$ -- 390
+text.length$ -- 33
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 384
-warning$ -- 26
-while$ -- 277
-width$ -- 98
-write$ -- 1024
+type$ -- 388
+warning$ -- 27
+while$ -- 279
+width$ -- 99
+write$ -- 1035
 (There were 2 error messages)

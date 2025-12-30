@@ -1,6 +1,9 @@
 \glossarysection[\glossarytoctitle]{\glossarytitle}\glossarypreamble
 \begin{theglossary}\glossaryheader
 \glsgroupheading{A}\relax \glsresetentrylist %
+\glossentry{adaLN}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{32}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{V}}}%
 \glossentry{ADD}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{V}}}%
 \glossentry{AI}{\glossaryentrynumbers{\relax 
@@ -93,7 +96,7 @@
 		\setentrycounter[]{page}\glsnumberformat{V}}}%
 \glossentry{MLP}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{26}\delimN 
-		\setentrycounter[]{page}\glsnumberformat{31}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{31\delimR 33}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{V}}}%
 \glossentry{MMD}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{28}\delimN 
@@ -135,7 +138,6 @@
 \glsgroupheading{V}\relax \glsresetentrylist %
 \glossentry{VAE}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{2\delimR 5}\delimN 
-		\setentrycounter[]{page}\glsnumberformat{32}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{V}}}%
 \glossentry{VI}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{3\delimN 4}\delimN 

@@ -359,6 +359,13 @@ William Peebles and Saining Xie.
 \newblock In {\em Proceedings of the IEEE/CVF international conference on
   computer vision}, pages 4195--4205, 2023.
 
+\bibitem{adaLN}
+Ethan Perez, Florian Strub, Harm De~Vries, Vincent Dumoulin, and Aaron
+  Courville.
+\newblock Film: Visual reasoning with a general conditioning layer.
+\newblock In {\em Proceedings of the AAAI conference on artificial
+  intelligence}, volume~32, 2018.
+
 \bibitem{SDXL}
 Dustin Podell, Zion English, Kyle Lacey, Andreas Blattmann, Tim Dockhorn, Jonas
   Müller, Joe Penna, and Robin Rombach.

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.9.24)  23 DEC 2025 17:40
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.9.24)  30 DEC 2025 11:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -956,7 +956,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 
 ]
-<images/Background/MarkovChainDiffProcess.png, id=525, 555.07375pt x 93.34875pt
+<images/Background/MarkovChainDiffProcess.png, id=528, 555.07375pt x 93.34875pt
 >
 File: images/Background/MarkovChainDiffProcess.png Graphic file (type png)
 <use images/Background/MarkovChainDiffProcess.png>
@@ -1006,7 +1006,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 217--218
 
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
 put line 222.
-<images/Background/DDPM_Training.png, id=609, 626.92049pt x 370.05724pt>
+<images/Background/DDPM_Training.png, id=612, 626.92049pt x 370.05724pt>
 File: images/Background/DDPM_Training.png Graphic file (type png)
 <use images/Background/DDPM_Training.png>
 Package pdftex.def Info: images/Background/DDPM_Training.png  used on input lin
@@ -1022,7 +1022,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [12]
-<images/Background/DDPM.png, id=628, 1579.9025pt x 765.86125pt>
+<images/Background/DDPM.png, id=631, 1579.9025pt x 765.86125pt>
 File: images/Background/DDPM.png Graphic file (type png)
 <use images/Background/DDPM.png>
 Package pdftex.def Info: images/Background/DDPM.png  used on input line 281.
@@ -1079,7 +1079,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [17]
-<images/Background/Overview_2.png, id=756, 1123.19624pt x 188.705pt>
+<images/Background/Overview_2.png, id=759, 1123.19624pt x 188.705pt>
 File: images/Background/Overview_2.png Graphic file (type png)
 <use images/Background/Overview_2.png>
 Package pdftex.def Info: images/Background/Overview_2.png  used on input line 4
@@ -1098,7 +1098,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 LaTeX Warning: Reference `label' on page 19 undefined on input line 428.
 
-<images/Background/LDM.png, id=787, 457.71pt x 226.8475pt>
+<images/Background/LDM.png, id=790, 457.71pt x 226.8475pt>
 File: images/Background/LDM.png Graphic file (type png)
 <use images/Background/LDM.png>
 Package pdftex.def Info: images/Background/LDM.png  used on input line 431.
@@ -1125,7 +1125,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 \openout2 = `theory_fundamental_NN.aux'.
 
  (./theory_fundamental_NN.tex
-<images/Background/transformer.png, id=835, 1324.95pt x 1866.975pt>
+<images/Background/transformer.png, id=838, 1324.95pt x 1866.975pt>
 File: images/Background/transformer.png Graphic file (type png)
 <use images/Background/transformer.png>
 Package pdftex.def Info: images/Background/transformer.png  used on input line 
@@ -1154,7 +1154,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [22 <./images/Background/transformer.png>]
-<images/Background/SelfAttention.png, id=863, 927.465pt x 503.7pt>
+<images/Background/SelfAttention.png, id=866, 927.465pt x 503.7pt>
 File: images/Background/SelfAttention.png Graphic file (type png)
 <use images/Background/SelfAttention.png>
 Package pdftex.def Info: images/Background/SelfAttention.png  used on input lin
@@ -1170,7 +1170,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [23]
-<images/Background/CrossAttention.png, id=881, 935.349pt x 503.7pt>
+<images/Background/CrossAttention.png, id=884, 935.349pt x 503.7pt>
 File: images/Background/CrossAttention.png Graphic file (type png)
 <use images/Background/CrossAttention.png>
 Package pdftex.def Info: images/Background/CrossAttention.png  used on input li
@@ -1187,7 +1187,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [24 <./images/Background/SelfAttention.png> <./images/Background/CrossAttention
 .png>]
-<images/Background/multi-head-attention.png, id=891, 578.16pt x 748.7975pt>
+<images/Background/multi-head-attention.png, id=894, 578.16pt x 748.7975pt>
 File: images/Background/multi-head-attention.png Graphic file (type png)
 <use images/Background/multi-head-attention.png>
 Package pdftex.def Info: images/Background/multi-head-attention.png  used on in
@@ -1207,7 +1207,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 143--144
 
  []
 
-<images/Background/VisionTransformer.png, id=936, 598.235pt x 304.13625pt>
+<images/Background/VisionTransformer.png, id=939, 598.235pt x 304.13625pt>
 File: images/Background/VisionTransformer.png Graphic file (type png)
 <use images/Background/VisionTransformer.png>
 Package pdftex.def Info: images/Background/VisionTransformer.png  used on input
@@ -1257,7 +1257,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [29]
-<images/Background/GenEval.png, id=1023, 892.33376pt x 361.35pt>
+<images/Background/GenEval.png, id=1026, 892.33376pt x 361.35pt>
 File: images/Background/GenEval.png Graphic file (type png)
 <use images/Background/GenEval.png>
 Package pdftex.def Info: images/Background/GenEval.png  used on input line 52.
@@ -1288,14 +1288,6 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 3.
 
-<images/Background/Pixart/Architektur_Uebersicht.pdf, id=1051, 1138.2525pt x 71
-1.4078pt>
-File: images/Background/Pixart/Architektur_Uebersicht.pdf Graphic file (type pd
-f)
-<use images/Background/Pixart/Architektur_Uebersicht.pdf>
-Package pdftex.def Info: images/Background/Pixart/Architektur_Uebersicht.pdf  u
-sed on input line 12.
-(pdftex.def)             Requested size: 483.69687pt x 302.31717pt.
 
 
 [31
@@ -1303,30 +1295,33 @@ sed on input line 12.
 
 
 
-{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
-<images/Background/Pixart/Architekture_Detail.pdf, id=1061, 853.68938pt x 995.9
+]
+<images/Background/Pixart/Architektur_Uebersicht.pdf, id=1059, 1138.2525pt x 71
+1.4078pt>
+File: images/Background/Pixart/Architektur_Uebersicht.pdf Graphic file (type pd
+f)
+<use images/Background/Pixart/Architektur_Uebersicht.pdf>
+Package pdftex.def Info: images/Background/Pixart/Architektur_Uebersicht.pdf  u
+sed on input line 14.
+(pdftex.def)             Requested size: 483.69687pt x 302.31717pt.
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[32 <./images/Background/Pixart/Architektur_Uebersicht.pdf>]
+<images/Background/Pixart/Architekture_Detail.pdf, id=1090, 853.68938pt x 995.9
 7093pt>
 File: images/Background/Pixart/Architekture_Detail.pdf Graphic file (type pdf)
 <use images/Background/Pixart/Architekture_Detail.pdf>
 Package pdftex.def Info: images/Background/Pixart/Architekture_Detail.pdf  used
- on input line 20.
+ on input line 28.
 (pdftex.def)             Requested size: 241.84843pt x 282.15257pt.
-
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[32 <./images/Background/Pixart/Architektur_Uebersicht.pdf> <./images/Backgroun
-d/Pixart/Architekture_Detail.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./images/Background/Pixart/A
-rchitekture_Detail.pdf): PDF inclusion: multiple pdfs with page group included 
-in a single page
->])
+)
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1335,13 +1330,14 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[33]
+[33 <./images/Background/Pixart/Architekture_Detail.pdf>]
 \openout2 = `experiments.aux'.
 
  (./experiments.tex)
 \openout2 = `results.aux'.
 
- (./results.tex
+
+(./results.tex
 Chapter 3.
 )
 
@@ -1459,11 +1455,11 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 35F19766295270B8790D0153DCF733CF;6005.
  ) 
 Here is how much of TeX's memory you used:
- 24962 strings out of 473190
- 440953 string characters out of 5715800
- 957343 words of memory out of 5000000
- 47439 multiletter control sequences out of 15000+600000
- 580239 words of font info for 93 fonts, out of 8000000 for 9000
+ 24993 strings out of 473190
+ 441449 string characters out of 5715800
+ 957760 words of memory out of 5000000
+ 47470 multiletter control sequences out of 15000+600000
+ 579902 words of font info for 92 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,18n,96p,2365b,966s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
@@ -1492,10 +1488,10 @@ ist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/local/texlive/2025/texmf-dis
 t/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2025/texmf-dist/
 fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/2025/texmf-dist/fo
 nts/type1/public/cm-super/sftt1200.pfb>
-Output written on main.pdf (52 pages, 2657888 bytes).
+Output written on main.pdf (52 pages, 2663867 bytes).
 PDF statistics:
- 1376 PDF objects out of 1440 (max. 8388607)
- 1196 compressed objects within 12 object streams
- 344 named destinations out of 1000 (max. 500000)
+ 1382 PDF objects out of 1440 (max. 8388607)
+ 1202 compressed objects within 13 object streams
+ 346 named destinations out of 1000 (max. 500000)
  346 words of extra memory for PDF output out of 10000 (max. 10000000)
 
