@@ -1,4 +1,4 @@
-\begin{thebibliography}{10}
+\begin{thebibliography}{100}
 
 \bibitem{Pixart_d}
 Pixart-$\delta$.
@@ -77,6 +77,13 @@ Junsong Chen, Jincheng Yu, Chongjian Ge, Lewei Yao, Enze Xie, Yue Wu, Zhongdao
 \newblock Pixart-$\alpha$: Fast training of diffusion transformer for
   photorealistic text-to-image synthesis.
 \newblock {\em arXiv preprint arXiv:2310.00426}, 2023.
+
+\bibitem{chen2024sharegpt4v}
+Lin Chen, Jinsong Li, Xiaoyi Dong, Pan Zhang, Conghui He, Jiaqi Wang, Feng
+  Zhao, and Dahua Lin.
+\newblock Sharegpt4v: Improving large multi-modal models with better captions.
+\newblock In {\em European Conference on Computer Vision}, pages 370--387.
+  Springer, 2024.
 
 \bibitem{COCO}
 Xinlei Chen, Hao Fang, Tsung-Yi Lin, Ramakrishna Vedantam, Saurabh Gupta, Piotr
@@ -254,6 +261,13 @@ Diederik Kingma, Tim Salimans, Ben Poole, and Jonathan Ho.
 Diederik~P Kingma and Max Welling.
 \newblock Auto-encoding variational bayes, 2013.
 
+\bibitem{SAM}
+Alexander Kirillov, Eric Mintun, Nikhila Ravi, Hanzi Mao, Chloe Rolland, Laura
+  Gustafson, Tete Xiao, Spencer Whitehead, Alexander~C Berg, Wan-Yen Lo, et~al.
+\newblock Segment anything.
+\newblock In {\em Proceedings of the IEEE/CVF international conference on
+  computer vision}, pages 4015--4026, 2023.
+
 \bibitem{Reformer}
 Nikita Kitaev, Łukasz Kaiser, and Anselm Levskaya.
 \newblock Reformer: The efficient transformer.
@@ -305,6 +319,12 @@ Bingchen Liu, Yizhe Zhu, Kunpeng Song, and Ahmed Elgammal.
 \newblock Towards faster and stabilized gan training for high-fidelity few-shot
   image synthesis.
 \newblock In {\em iclr}.
+
+\bibitem{LLaVA}
+Haotian Liu, Chunyuan Li, Qingyang Wu, and Yong~Jae Lee.
+\newblock Visual instruction tuning.
+\newblock {\em Advances in neural information processing systems},
+  36:34892--34916, 2023.
 
 \bibitem{RectifiedFlowMatching}
 Xingchao Liu, Chengyue Gong, and Qiang Liu.

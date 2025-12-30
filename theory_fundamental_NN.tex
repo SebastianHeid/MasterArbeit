@@ -41,6 +41,7 @@ The scaling of the dot product $QK^T$ with the factor $\frac{1}{\sqrt{d_k}}$ is 
 Finally, the attention matrix is applied with the values. This can be summarized in the following formulation
 \begin{equation}
     Z=\text{Attention}\left( Q, K, V \right)= \text{softmax}\left( \frac{QK^T}{\sqrt{d_k}} \right) V
+    \label{AttentionEq}
 \end{equation}
 
 

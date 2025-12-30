@@ -22,7 +22,7 @@ I was expecting a `,' or a `}'---line 40 of file bibliography.bib
  :  title={Pixart-$\delta$}
  :                         $: Fast and controllable image generation with latent consistency models},
 I'm skipping whatever remains of this entry
-Repeated entry---line 1039 of file bibliography.bib
+Repeated entry---line 1065 of file bibliography.bib
  : @article{FlowMatching
  :                      ,
 I'm skipping whatever remains of this entry
@@ -53,45 +53,45 @@ Warning--empty year in DMBeginning
 Warning--empty year in DiffusionModelIntroPaper
 Warning--empty year in SlicedScoreMatching
 Warning--empty year in ModeCollapse1
-You've used 97 entries,
+You've used 100 entries,
             2943 wiz_defined-function locations,
-            1190 strings with 23251 characters,
-and the built_in function-call counts, 50150 in all, are:
-= -- 4889
-> -- 2674
-< -- 27
-+ -- 993
-- -- 892
-* -- 2971
-:= -- 7339
-add.period$ -- 309
-call.type$ -- 97
-change.case$ -- 735
+            1204 strings with 23802 characters,
+and the built_in function-call counts, 52335 in all, are:
+= -- 5107
+> -- 2802
+< -- 29
++ -- 1042
+- -- 938
+* -- 3119
+:= -- 7655
+add.period$ -- 319
+call.type$ -- 100
+change.case$ -- 766
 chr.to.int$ -- 0
-cite$ -- 124
-duplicate$ -- 1364
-empty$ -- 4132
-format.name$ -- 892
-if$ -- 12578
+cite$ -- 127
+duplicate$ -- 1423
+empty$ -- 4296
+format.name$ -- 938
+if$ -- 13105
 int.to.chr$ -- 0
-int.to.str$ -- 97
-missing$ -- 92
-newline$ -- 492
-num.names$ -- 192
-pop$ -- 1298
+int.to.str$ -- 100
+missing$ -- 95
+newline$ -- 507
+num.names$ -- 198
+pop$ -- 1348
 preamble$ -- 1
-purify$ -- 638
+purify$ -- 666
 quote$ -- 0
-skip$ -- 3153
+skip$ -- 3268
 stack$ -- 0
-substring$ -- 1920
-swap$ -- 390
-text.length$ -- 33
+substring$ -- 2044
+swap$ -- 415
+text.length$ -- 35
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 388
+type$ -- 400
 warning$ -- 27
-while$ -- 279
-width$ -- 99
-write$ -- 1035
+while$ -- 293
+width$ -- 103
+write$ -- 1069
 (There were 2 error messages)
