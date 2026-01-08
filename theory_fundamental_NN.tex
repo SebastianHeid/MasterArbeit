@@ -153,3 +153,11 @@ The introduction of vision transformer (\gls{ViT}) \cite{VisionTransformer} for 
     \caption{Vision transformer from \cite{VisionTransformer}.}
     \label{VisionTransformer}
 \end{figure}
+
+\subsection{Adaptive Layer Normalization}
+\label{AdaptiveLayerNormalization}
+Layer normalization \cite{LayerNorm} was introduced as an alternative to batch normalization \cite{BatchNorm} as a normalization method to reduce the internal covariate shift in deep neural networks independently of the batch size. The covariate shift describes the phenomenon whereby the range of the input to a layer which is the ouptut of the previous layer changes permanently, which hinders effective learning because the layer needs to constantly adapt to a new input distribution. To stabilize and accelerate the training process normalizations are applied in the neural network. In layer normalization, the activations of each layer $\mathbf{z}_{l}$ are normalized to a zero mean and unit variance. In addition, a scale $\gamma$ and a shift $\eta$ parameter are learned to maintain the flexibility and expressiveness of the network and to ease the constrained range due to the normalization. The normalized layer output is given by 
+\begin{equation}
+	\hat{\mathbf{z}}_l = \gamma_l \frac{\mathbf{z}_l - \mu_l(\mathbf{z}_l)}{\sigma_l(\mathbf{z}_l)} + \eta_l \quad.
+\end{equation}
+A further development of layer normalization occured when \cite{adaLN} showed that the scale and shift parameters could be used to incorporate additional information into the model by parameterizing them as functions of an additional input $c$ such that $\gamma \to \gamma(c)$ and shift $\eta \to \eta(c)$. This method is known as adaptive layer normalization (\gls{adaLN}) and can be leveraged in diffusion models to incorporate the timestep or class conditioning \cite{DiT}.

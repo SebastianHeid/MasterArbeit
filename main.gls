@@ -2,6 +2,7 @@
 \begin{theglossary}\glossaryheader
 \glsgroupheading{A}\relax \glsresetentrylist %
 \glossentry{adaLN}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{27}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{32}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{V}}}%
 \glossentry{ADD}{\glossaryentrynumbers{\relax 
@@ -100,6 +101,9 @@
 		\setentrycounter[]{page}\glsnumberformat{V}}}%
 \glossentry{MMD}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{28}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{V}}}%
+\glossentry{MMDiT}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{35}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{V}}}%
 \glossentry{MSE}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{4}\delimN 

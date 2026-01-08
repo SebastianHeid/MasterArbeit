@@ -22,7 +22,11 @@ I was expecting a `,' or a `}'---line 40 of file bibliography.bib
  :  title={Pixart-$\delta$}
  :                         $: Fast and controllable image generation with latent consistency models},
 I'm skipping whatever remains of this entry
-Repeated entry---line 1065 of file bibliography.bib
+Repeated entry---line 729 of file bibliography.bib
+ : @article{LayerNorm
+ :                   ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1099 of file bibliography.bib
  : @article{FlowMatching
  :                      ,
 I'm skipping whatever remains of this entry
@@ -53,45 +57,45 @@ Warning--empty year in DMBeginning
 Warning--empty year in DiffusionModelIntroPaper
 Warning--empty year in SlicedScoreMatching
 Warning--empty year in ModeCollapse1
-You've used 100 entries,
+You've used 104 entries,
             2943 wiz_defined-function locations,
-            1204 strings with 23802 characters,
-and the built_in function-call counts, 52335 in all, are:
-= -- 5107
-> -- 2802
-< -- 29
-+ -- 1042
-- -- 938
-* -- 3119
-:= -- 7655
-add.period$ -- 319
-call.type$ -- 100
-change.case$ -- 766
+            1227 strings with 24722 characters,
+and the built_in function-call counts, 54468 in all, are:
+= -- 5307
+> -- 2939
+< -- 30
++ -- 1094
+- -- 986
+* -- 3247
+:= -- 7980
+add.period$ -- 332
+call.type$ -- 104
+change.case$ -- 801
 chr.to.int$ -- 0
-cite$ -- 127
-duplicate$ -- 1423
-empty$ -- 4296
-format.name$ -- 938
-if$ -- 13105
+cite$ -- 131
+duplicate$ -- 1480
+empty$ -- 4461
+format.name$ -- 986
+if$ -- 13627
 int.to.chr$ -- 0
-int.to.str$ -- 100
-missing$ -- 95
-newline$ -- 507
-num.names$ -- 198
-pop$ -- 1348
+int.to.str$ -- 104
+missing$ -- 99
+newline$ -- 527
+num.names$ -- 206
+pop$ -- 1410
 preamble$ -- 1
-purify$ -- 666
+purify$ -- 697
 quote$ -- 0
-skip$ -- 3268
+skip$ -- 3392
 stack$ -- 0
-substring$ -- 2044
-swap$ -- 415
-text.length$ -- 35
+substring$ -- 2096
+swap$ -- 430
+text.length$ -- 36
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 400
+type$ -- 416
 warning$ -- 27
-while$ -- 293
-width$ -- 103
-write$ -- 1069
-(There were 2 error messages)
+while$ -- 304
+width$ -- 107
+write$ -- 1111
+(There were 3 error messages)

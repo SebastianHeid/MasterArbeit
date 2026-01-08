@@ -10,6 +10,7 @@
 \glossaryentry{CFG?\glossentry{CFG}|setentrycounter[]{page}"\glsnumberformat}{V}
 \glossaryentry{MSE?\glossentry{MSE}|setentrycounter[]{page}"\glsnumberformat}{V}
 \glossaryentry{adaLN?\glossentry{adaLN}|setentrycounter[]{page}"\glsnumberformat}{V}
+\glossaryentry{MMDiT?\glossentry{MMDiT}|setentrycounter[]{page}"\glsnumberformat}{V}
 \glossaryentry{DDPM?\glossentry{DDPM}|setentrycounter[]{page}"\glsnumberformat}{V}
 \glossaryentry{DDIM?\glossentry{DDIM}|setentrycounter[]{page}"\glsnumberformat}{V}
 \glossaryentry{AI?\glossentry{AI}|setentrycounter[]{page}"\glsnumberformat}{V}
@@ -154,6 +155,7 @@
 \glossaryentry{ViT?\glossentry{ViT}|setentrycounter[]{page}"\glsnumberformat}{26}
 \glossaryentry{CLS?\glossentry{CLS}|setentrycounter[]{page}"\glsnumberformat}{26}
 \glossaryentry{MLP?\glossentry{MLP}|setentrycounter[]{page}"\glsnumberformat}{26}
+\glossaryentry{adaLN?\glossentry{adaLN}|setentrycounter[]{page}"\glsnumberformat}{27}
 \glossaryentry{DM?\glossentry{DM}|setentrycounter[]{page}"\glsnumberformat}{28}
 \glossaryentry{FID?\glossentry{FID}|setentrycounter[]{page}"\glsnumberformat}{28}
 \glossaryentry{CMMD?\glossentry{CMMD}|setentrycounter[]{page}"\glsnumberformat}{28}
@@ -185,3 +187,4 @@
 \glossaryentry{MLP?\glossentry{MLP}|setentrycounter[]{page}"\glsnumberformat}{32}
 \glossaryentry{adaLN?\glossentry{adaLN}|setentrycounter[]{page}"\glsnumberformat}{32}
 \glossaryentry{MLP?\glossentry{MLP}|setentrycounter[]{page}"\glsnumberformat}{33}
+\glossaryentry{MMDiT?\glossentry{MMDiT}|setentrycounter[]{page}"\glsnumberformat}{35}

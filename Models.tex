@@ -6,8 +6,8 @@ PixArt-$\Sigma$ \cite{Pixart_s}, the latest addition to the PixArt family \cite{
 \subsection{Architecture }
 The architecture of Pixart-$\Sigma$ is based on the class-conditional diffusion transformer \gls{DiT}-XL/2 \cite{DiT} which contains 28 transformer blocks. The transformer blocks have primarily three inputs (see fig. \ref{Pixart_Übersicht}) which are described in the following. \\
 The first input is the \textbf{timestep} $t$ which is projected into a time embedding vector using a 256-frequency embedding, from which a \gls{MLP} extracts the global scale and shift parameters. They are used as input for the customized adaptive layer normalization called adaLN-single layer, which modulates the hidden states based on the time embedding. \\
- The second input is the \textbf{text prompt} that describes the content of the image. It is tokenized into 120 tokens in Pixart-$\alpha$, repsectively 300 tokens in Pixart-$\Sigma$, and encoded by the T5-XXL text encoder \cite{T5XXL}. A linear projection layer is then applied to reduce the dimension high dimensional output from the T5-XXL encoder after which it is incorporated via cross-attention layers into the model. \\
-  The third input is the \textbf{latent image} which is encoded via a pre-trained autoencoder, e.g. SDXL-VAE \cite{SDXL}, transforming the image $(3,H,W)$ into latent space $(4, H/8, W/8)$. Patches of size $2\times2$ are extracted from the latent representation of the image and flattened into a sequence of visual tokens. Finally, positional encoding is applied before feeding them as input to the transformer blocks.
+ The second input is the \textbf{text prompt} that describes the content of the image. It is tokenized into 120 tokens in Pixart-$\alpha$, repsectively 300 tokens in Pixart-$\Sigma$, and encoded by the T5-XXL text encoder \cite{T5XXL}. A linear projection layer is then applied to reduce the high dimensional output from the T5-XXL encoder after which it is incorporated via cross-attention layers into the model. \\
+  The third input is the \textbf{latent image} which is encoded via a pre-trained autoencoder, e.g. SDXL-VAE \cite{SDXL} in Pixart-$\Sigma$, transforming the image $(3,H,W)$ into latent space $(4, H/8, W/8)$. Patches of size $2\times2$ are extracted from the latent representation of the image and flattened into a sequence of visual tokens. Finally, 2D sine-cosine positional encoding is applied before feeding them as input to the transformer blocks.
 
 \begin{figure}[H]
 	\centering
@@ -21,7 +21,7 @@ The main components of the diffusion model are the transformer blocks. They cons
 The \textbf{multi-head self-attention} layer allows the tokens to attend to each other and capture spatial relationships. It is embedded between time-dependent modulation layers at the beginning of the transformer block. \\
 The \textbf{multi-head cross-attention} layer incorporates text conditioning into the model to align the generated image with the text prompt and is placed between the self-attention and the \gls{MLP} layer. \\
 The \textbf{\gls{MLP}} processes each token individually to refine the features. Similar to the self-attention layer, it is positioned between modulation layers at the end of the transformer block. \\
-\textbf{adaLN-single} is a modification of the adaptive layer normalization (\gls{adaLN}) method \cite{adaLN} replacing the static parameters of the normalization layer with dynamic values that are predicted directly from conditioning signals such as the timestep. This enables the model to efficiently modulate the feature distribution in each block, thereby controlling the generation process globally. In \cite{DiT} both class and time conditioning were handled via adaLN. In contrast, Pixart-$\Sigma$ only uses it for incorporating the time embedding. To reduce the number of parameters global scale and shift parameters $\bar{S}$ are extracted from one shared \gls{MLP} and each block has additional learnable parameters $E_i$ which are added to the global parameters via a summation function $g$ $S_i = g(\bar{S}, E_i)$.
+\textbf{adaLN-single} is a modification of \gls{adaLN} (see chapter \ref{AdaptiveLayerNormalization}) method \cite{adaLN} replacing the static parameters of the normalization layer with dynamic values that are predicted directly from conditioning signals such as the timestep. This enables the model to efficiently modulate the feature distribution in each block, thereby controlling the generation process globally. In \cite{DiT} both class and time conditioning were handled via adaLN. In contrast, Pixart-$\Sigma$ only uses it for incorporating the time embedding. To reduce the number of parameters global scale and shift parameters $\bar{S}$ are extracted from one shared \gls{MLP} and each block has additional learnable parameters $E_i$ which are added to the global parameters via a summation function $g$ $S_i = g(\bar{S}, E_i)$ to provide flexibility for every transformer block.
 
 \begin{figure}[H]
 	\centering
@@ -47,13 +47,13 @@ The output of the final transformer block is modulated and processed by a linear
 		\midrule
 		\textbf{Total (Single Block)} & 21.3 \\
 		\midrule
-		\textbf{Total Model (PixArt-$\Sigma$)} & 610 \\
+		\textbf{Total Model (PixArt-$\Sigma$)} & 610.9 \\
 		\bottomrule
 	\end{tabular}
 \end{table}
 
 \subsection{Training Strategy}
-Pixart training proceeds in three distinct stages, explicitly decoupling the learning of pixel dependencies from text-concept alignment to improve training efficiency. First, the focus is on learning pixel dependencies to generate semantically meaningful images. To achieve this, the model is initialized with weights pre-trained on ImageNet using class-conditional generation. This pre-training provides a strong initialization for the visual distribution at a low computational cost. In a second step, the focus is on text alignment so that the model generates images that accurately reflects the text prompt. For this purpose, the SAM \cite{SAM} dataset was utilized with corresponding high-density prompts generated by the vision-language model LLaVA \cite{LLaVA}. Finally, the model undergoes finetuning on high-resolution and high-aesthetic qualtity images to refine visual details which was done on a data set that is not publicly accessible.
+Pixart training proceeds in three distinct stages, explicitly decoupling the learning of pixel dependencies from text-concept alignment to improve training efficiency. First, the focus is on learning pixel dependencies to generate semantically meaningful images. To achieve this, the model is initialized with weights pre-trained on ImageNet \cite{ImageNet} using class-conditional generation. This pre-training provides a strong initialization for the visual distribution at a low computational cost. In a second step, the focus is on text alignment so that the model generates images that accurately reflects the text prompt. For this purpose, the SAM \cite{SAM} dataset was utilized with corresponding high-density prompts generated by the vision-language model LLaVA \cite{LLaVA}. Finally, the model undergoes finetuning on high-resolution and high-aesthetic qualtity images to refine visual details which was done on a data set that is not publicly accessible.
 
 \subsection{PixArt-$\Sigma$ Enhancements }
 Pixart-$\Sigma$ is a further development of Pixart-$\alpha$ which is able to generate images at higher resolution, up to 4k, and of higher quality. In this process, the weights from Pixart-$\alpha$ are used as initialization for Pixart-$\Sigma$ introducing three main changes, namely a more powerful VAE, an improved dataset and a more efficient self-attention mechanism leveraging KV-compression.\\
@@ -66,3 +66,34 @@ Third, a compression technique for the KV tokens in the self-attention layers is
 with $f_c$ representing the compression operation. \\
 To conclude, Pixart-$\Sigma$ shows that leveraging a weaker model as a base for introduce improvements helps to accelerate the training process enormously. 
 \section{Flux-dev}
+Flux-dev \cite{Flux} is a publicly available, guidance-distilled rectified flow model based on the commercial model Flux.1. Due to the absence of a publication/paper describing the exact training process, the data set used and the specific design choices, the following section focuses on presenting the models's architecture.
+
+\subsection{Architecture}
+Flux-dev is based on a multi-modal diffusion transformer (\gls{MMDiT}) \cite{SD3} architecture containing 19 double-stream blocks followed by 38 single-stream blocks. In contrast to the Pixart architecture it leverages two distinct text encoders, namely CLIP ViT-L/14 \cite{CLIP} and T5-XXL \cite{T5XXL}. Each double-stream block has mainly four different inputs the guidance vector, the positional encoding for the text and the image, the text features and the image features. \\
+The \textbf{guidance vector} is a combination of the timestep, the guidance and the pooled vector of the clip embedding. The guidance parameter is specific for guidance-distilled models. In guidance distillation, the model is trained to simulate classifier free guidance internally.This speeds up the inference process because in contrast to classifier free guidance where the model is applied twice per inference step only one inference pass per step is needed. The guidance is a scalar which corresponds to the guidance scale in standard classifier free guidance. First, the guidance parameter and the timestep are embedded via \gls{MLP}s  into high dimensional tensors which are summed together. Then the pooled clip vector for the text prompt is embedded via another MLP and added to. The resulting vector, called guidance vector, is used as input in every double-stream and every single-stream block. \\
+Another input to every block is the concatenated positional encoding for the text prompt and the image. First, based on the latent representation of the image, 3D coordinates for the position of the patch in the image is created. The 3D vector for the image represents the 2D position $(x,y)$ of the patch in the image and a time dimension $t$ for the possibility to adapt flux for videos. However, for image generation the time dimension is always set to zero. The positional encoding 
+
+
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.0\textwidth]{images/Background/Flux/Flux_Uebersicht.pdf}  % adjust filename and width
+	\caption{Overview Flux-dev architecture.}
+\label{FluxOverview}
+\end{figure}
+
+
+\subsubsection{Single Stream Blocks}
+\subsubsection{Double Stream Blocks}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.0\textwidth]{images/Background/Flux/SingleDoubleBlocks.pdf}  % adjust filename and width
+	\caption{Single stream block (left) and double stream block (right) of Flux-dev. Graphics are adapted from \cite{FastFlux}}
+	\label{SingleDoubleStreamBlock}
+\end{figure}
+
+
+
+

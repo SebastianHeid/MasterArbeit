@@ -63,6 +63,12 @@ Anja Butter, Nathan Huetsch, Sofia Palacios~Schweitzer, Tilman Plehn, Peter
 \newblock Jet diffusion versus jetgpt–modern networks for the lhc.
 \newblock {\em SciPost Physics Core}, 8(1):026, 2025.
 
+\bibitem{FastFlux}
+Fuhan Cai, Yong Guo, Jie Li, Wenbo Li, Xiangzhong Fang, and Jian Chen.
+\newblock Fastflux: Pruning flux with block-wise replacement and sandwich
+  training.
+\newblock {\em arXiv preprint arXiv:2506.10035}, 2025.
+
 \bibitem{Pixart_s}
 Junsong Chen, Chongjian Ge, Enze Xie, Yue Wu, Lewei Yao, Xiaozhe Ren, Zhongdao
   Wang, Ping Luo, Huchuan Lu, and Zhenguo Li.
@@ -116,6 +122,12 @@ Tri Dao, Dan Fu, Stefano Ermon, Atri Rudra, and Christopher Ré.
 \newblock {\em Advances in neural information processing systems},
   35:16344--16359, 2022.
 
+\bibitem{ImageNet}
+Jia Deng, Wei Dong, Richard Socher, Li-Jia Li, Kai Li, and Li~Fei-Fei.
+\newblock Imagenet: A large-scale hierarchical image database.
+\newblock In {\em 2009 IEEE conference on computer vision and pattern
+  recognition}, pages 248--255. Ieee, 2009.
+
 \bibitem{BERT}
 Jacob Devlin, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova.
 \newblock Bert: Pre-training of deep bidirectional transformers for language
@@ -147,6 +159,15 @@ Alexey Dosovitskiy, Lucas Beyer, Alexander Kolesnikov, Dirk Weissenborn,
 DC~Dowson and BV666017 Landau.
 \newblock The fr{\'e}chet distance between multivariate normal distributions.
 \newblock {\em Journal of multivariate analysis}, 12(3):450--455, 1982.
+
+\bibitem{SD3}
+Patrick Esser, Sumith Kulal, Andreas Blattmann, Rahim Entezari, Jonas
+  M{\"u}ller, Harry Saini, Yam Levi, Dominik Lorenz, Axel Sauer, Frederic
+  Boesel, et~al.
+\newblock Scaling rectified flow transformers for high-resolution image
+  synthesis.
+\newblock In {\em Forty-first international conference on machine learning},
+  2024.
 
 \bibitem{feller1949stochastic}
 William Feller.
@@ -223,6 +244,12 @@ Zilong Huang, Xinggang Wang, Lichao Huang, Chang Huang, Yunchao Wei, and Wenyu
 \newblock Ccnet: Criss-cross attention for semantic segmentation.
 \newblock In {\em Proceedings of the IEEE/CVF international conference on
   computer vision}, pages 603--612.
+
+\bibitem{BatchNorm}
+Sergey Ioffe.
+\newblock Batch normalization: Accelerating deep network training by reducing
+  internal covariate shift.
+\newblock {\em arXiv preprint arXiv:1502.03167}, 2015.
 
 \bibitem{cmmd}
 Sadeep Jayasumana, Srikumar Ramalingam, Andreas Veit, Daniel Glasner, Ayan

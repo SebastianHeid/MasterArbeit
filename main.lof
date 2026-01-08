@@ -14,4 +14,6 @@
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {2.1}{\ignorespaces Overview architecture of Pixart-$\Sigma $. $H$ and $W$ are the height and width of the image. $h=\frac {H}{8}$ and $w=\frac {W}{8}$ represent the dimensions in latent space and $N = \frac {H}{8 \cdot p} \frac {W}{8 \cdot p}$ with $p$ being the patch size.}}{32}{figure.2.1}%
 \contentsline {figure}{\numberline {2.2}{\ignorespaces Diffusion block architecture taken from \cite {Pixart_a}.}}{33}{figure.2.2}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Overview Flux-dev architecture.}}{36}{figure.2.3}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Single stream block (left) and double stream block (right) of Flux-dev. Graphics are adapted from \cite {FastFlux}}}{37}{figure.2.4}%
 \addvspace {10\p@ }
