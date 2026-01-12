@@ -648,6 +648,11 @@ Ling Yang, Zhilong Zhang, Yang Song, Shenda Hong, Runsheng Xu, Yue Zhao, Wentao
 \newblock Diffusion models: A comprehensive survey of methods and applications.
 \newblock {\em ACM Computing Surveys}, 56(4):1--39, 2023.
 
+\bibitem{RMSNorm}
+Biao Zhang and Rico Sennrich.
+\newblock Root mean square layer normalization.
+\newblock {\em Advances in neural information processing systems}, 32, 2019.
+
 \bibitem{ControlNet}
 Lvmin Zhang, Anyi Rao, and Maneesh Agrawala.
 \newblock Adding conditional control to text-to-image diffusion models.
