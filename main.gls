@@ -22,10 +22,13 @@
 		\setentrycounter[]{page}\glsnumberformat{23\delimN 24}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{V}}}%
 \glossentry{CLS}{\glossaryentrynumbers{\relax 
-		\setentrycounter[]{page}\glsnumberformat{22}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{21}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{V}}}%
 \glossentry{CMMD}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{23}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{V}}}%
+\glossentry{CNF}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{13}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{V}}}%
 \glossentry{CNN}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{21}\delimN 
@@ -97,7 +100,7 @@
 		\setentrycounter[]{page}\glsnumberformat{2}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{V}}}%
 \glossentry{MLP}{\glossaryentrynumbers{\relax 
-		\setentrycounter[]{page}\glsnumberformat{22}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{21}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{26\delimN 27}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{30\delimR 33}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{V}}}%

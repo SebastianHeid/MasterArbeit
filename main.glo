@@ -8,6 +8,7 @@
 \glossaryentry{CLIP?\glossentry{CLIP}|setentrycounter[]{page}"\glsnumberformat}{V}
 \glossaryentry{MMD?\glossentry{MMD}|setentrycounter[]{page}"\glsnumberformat}{V}
 \glossaryentry{CFG?\glossentry{CFG}|setentrycounter[]{page}"\glsnumberformat}{V}
+\glossaryentry{CNF?\glossentry{CNF}|setentrycounter[]{page}"\glsnumberformat}{V}
 \glossaryentry{MSE?\glossentry{MSE}|setentrycounter[]{page}"\glsnumberformat}{V}
 \glossaryentry{adaLN?\glossentry{adaLN}|setentrycounter[]{page}"\glsnumberformat}{V}
 \glossaryentry{MMDiT?\glossentry{MMDiT}|setentrycounter[]{page}"\glsnumberformat}{V}
@@ -128,6 +129,9 @@
 \glossaryentry{ODE?\glossentry{ODE}|setentrycounter[]{page}"\glsnumberformat}{13}
 \glossaryentry{SDE?\glossentry{SDE}|setentrycounter[]{page}"\glsnumberformat}{13}
 \glossaryentry{ODE?\glossentry{ODE}|setentrycounter[]{page}"\glsnumberformat}{13}
+\glossaryentry{CNF?\glossentry{CNF}|setentrycounter[]{page}"\glsnumberformat}{13}
+\glossaryentry{CNF?\glossentry{CNF}|setentrycounter[]{page}"\glsnumberformat}{13}
+\glossaryentry{ODE?\glossentry{ODE}|setentrycounter[]{page}"\glsnumberformat}{13}
 \glossaryentry{ODE?\glossentry{ODE}|setentrycounter[]{page}"\glsnumberformat}{14}
 \glossaryentry{ODE?\glossentry{ODE}|setentrycounter[]{page}"\glsnumberformat}{14}
 \glossaryentry{ODE?\glossentry{ODE}|setentrycounter[]{page}"\glsnumberformat}{14}
@@ -154,8 +158,8 @@
 \glossaryentry{ViT?\glossentry{ViT}|setentrycounter[]{page}"\glsnumberformat}{21}
 \glossaryentry{CNN?\glossentry{CNN}|setentrycounter[]{page}"\glsnumberformat}{21}
 \glossaryentry{ViT?\glossentry{ViT}|setentrycounter[]{page}"\glsnumberformat}{21}
-\glossaryentry{CLS?\glossentry{CLS}|setentrycounter[]{page}"\glsnumberformat}{22}
-\glossaryentry{MLP?\glossentry{MLP}|setentrycounter[]{page}"\glsnumberformat}{22}
+\glossaryentry{CLS?\glossentry{CLS}|setentrycounter[]{page}"\glsnumberformat}{21}
+\glossaryentry{MLP?\glossentry{MLP}|setentrycounter[]{page}"\glsnumberformat}{21}
 \glossaryentry{adaLN?\glossentry{adaLN}|setentrycounter[]{page}"\glsnumberformat}{22}
 \glossaryentry{DM?\glossentry{DM}|setentrycounter[]{page}"\glsnumberformat}{23}
 \glossaryentry{FID?\glossentry{FID}|setentrycounter[]{page}"\glsnumberformat}{23}

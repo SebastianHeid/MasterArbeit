@@ -91,6 +91,11 @@ Lin Chen, Jinsong Li, Xiaoyi Dong, Pan Zhang, Conghui He, Jiaqi Wang, Feng
 \newblock In {\em European Conference on Computer Vision}, pages 370--387.
   Springer, 2024.
 
+\bibitem{CNF}
+Ricky~TQ Chen, Yulia Rubanova, Jesse Bettencourt, and David~K Duvenaud.
+\newblock Neural ordinary differential equations.
+\newblock {\em Advances in neural information processing systems}, 31, 2018.
+
 \bibitem{COCO}
 Xinlei Chen, Hao Fang, Tsung-Yi Lin, Ramakrishna Vedantam, Saurabh Gupta, Piotr
   Doll{\'a}r, and C~Lawrence Zitnick.

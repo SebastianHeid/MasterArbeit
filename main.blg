@@ -26,7 +26,7 @@ Repeated entry---line 729 of file bibliography.bib
  : @article{LayerNorm
  :                   ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 1106 of file bibliography.bib
+Repeated entry---line 1114 of file bibliography.bib
  : @article{FlowMatching
  :                      ,
 I'm skipping whatever remains of this entry
@@ -57,45 +57,45 @@ Warning--empty year in DMBeginning
 Warning--empty year in DiffusionModelIntroPaper
 Warning--empty year in SlicedScoreMatching
 Warning--empty year in ModeCollapse1
-You've used 105 entries,
+You've used 106 entries,
             2943 wiz_defined-function locations,
-            1231 strings with 24802 characters,
-and the built_in function-call counts, 54826 in all, are:
-= -- 5344
-> -- 2954
+            1235 strings with 24925 characters,
+and the built_in function-call counts, 55246 in all, are:
+= -- 5385
+> -- 2979
 < -- 30
-+ -- 1099
-- -- 990
-* -- 3260
-:= -- 8034
-add.period$ -- 335
-call.type$ -- 105
-change.case$ -- 806
++ -- 1108
+- -- 998
+* -- 3282
+:= -- 8100
+add.period$ -- 338
+call.type$ -- 106
+change.case$ -- 813
 chr.to.int$ -- 0
-cite$ -- 132
-duplicate$ -- 1490
-empty$ -- 4494
-format.name$ -- 990
-if$ -- 13723
+cite$ -- 133
+duplicate$ -- 1500
+empty$ -- 4527
+format.name$ -- 998
+if$ -- 13829
 int.to.chr$ -- 0
-int.to.str$ -- 105
-missing$ -- 100
-newline$ -- 532
-num.names$ -- 208
-pop$ -- 1418
+int.to.str$ -- 106
+missing$ -- 101
+newline$ -- 537
+num.names$ -- 210
+pop$ -- 1428
 preamble$ -- 1
-purify$ -- 701
+purify$ -- 707
 quote$ -- 0
-skip$ -- 3424
+skip$ -- 3455
 stack$ -- 0
-substring$ -- 2101
-swap$ -- 431
+substring$ -- 2106
+swap$ -- 432
 text.length$ -- 36
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 420
+type$ -- 424
 warning$ -- 27
-while$ -- 306
-width$ -- 108
-write$ -- 1122
+while$ -- 308
+width$ -- 109
+write$ -- 1133
 (There were 3 error messages)
