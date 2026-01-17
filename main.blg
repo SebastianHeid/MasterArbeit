@@ -6,6 +6,7 @@ A level-1 auxiliary file: introduction.aux
 A level-1 auxiliary file: theory_generative_models.aux
 A level-1 auxiliary file: theory_diffusion_models.aux
 A level-1 auxiliary file: theory_fundamental_NN.aux
+A level-1 auxiliary file: Distillation.aux
 A level-1 auxiliary file: theory_metrics.aux
 A level-1 auxiliary file: Models.aux
 A level-1 auxiliary file: experiments.aux
@@ -18,22 +19,7 @@ Reallocated glb_str_end (elt_size=4) to 20 items from 10.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: bibliography.bib
-I was expecting a `,' or a `}'---line 40 of file bibliography.bib
- :  title={Pixart-$\delta$}
- :                         $: Fast and controllable image generation with latent consistency models},
-I'm skipping whatever remains of this entry
-Repeated entry---line 729 of file bibliography.bib
- : @article{LayerNorm
- :                   ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 1114 of file bibliography.bib
- : @article{FlowMatching
- :                      ,
-I'm skipping whatever remains of this entry
-Warning--to sort, need author or key in Pixart_d
-Warning--empty author in Pixart_d
-Warning--empty journal in Pixart_d
-Warning--empty year in Pixart_d
+Warning--I didn't find a database entry for ""
 Warning--empty journal in HiDream
 Warning--empty journal in Claude
 Warning--empty year in WGAN
@@ -52,50 +38,51 @@ Warning--can't use both volume and number fields in adaLN
 Warning--empty journal in SelfAttentionFigure
 Warning--empty year in NormalizingFlow
 Warning--empty year in SD21
+Warning--empty year in Unet
 Warning--empty year in StyleGAN_T
 Warning--empty year in DMBeginning
 Warning--empty year in DiffusionModelIntroPaper
 Warning--empty year in SlicedScoreMatching
 Warning--empty year in ModeCollapse1
-You've used 106 entries,
+You've used 114 entries,
             2943 wiz_defined-function locations,
-            1235 strings with 24925 characters,
-and the built_in function-call counts, 55246 in all, are:
-= -- 5385
-> -- 2979
-< -- 30
-+ -- 1108
-- -- 998
-* -- 3282
-:= -- 8100
-add.period$ -- 338
-call.type$ -- 106
-change.case$ -- 813
+            1279 strings with 27123 characters,
+and the built_in function-call counts, 60240 in all, are:
+= -- 5849
+> -- 3349
+< -- 32
++ -- 1248
+- -- 1130
+* -- 3625
+:= -- 8891
+add.period$ -- 365
+call.type$ -- 114
+change.case$ -- 901
 chr.to.int$ -- 0
-cite$ -- 133
-duplicate$ -- 1500
-empty$ -- 4527
-format.name$ -- 998
-if$ -- 13829
+cite$ -- 138
+duplicate$ -- 1610
+empty$ -- 4858
+format.name$ -- 1130
+if$ -- 15004
 int.to.chr$ -- 0
-int.to.str$ -- 106
-missing$ -- 101
-newline$ -- 537
-num.names$ -- 210
-pop$ -- 1428
+int.to.str$ -- 114
+missing$ -- 109
+newline$ -- 579
+num.names$ -- 228
+pop$ -- 1552
 preamble$ -- 1
-purify$ -- 707
+purify$ -- 787
 quote$ -- 0
-skip$ -- 3455
+skip$ -- 3722
 stack$ -- 0
-substring$ -- 2106
-swap$ -- 432
-text.length$ -- 36
+substring$ -- 2250
+swap$ -- 463
+text.length$ -- 38
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 424
-warning$ -- 27
-while$ -- 308
-width$ -- 109
-write$ -- 1133
-(There were 3 error messages)
+type$ -- 456
+warning$ -- 24
+while$ -- 333
+width$ -- 117
+write$ -- 1223
+(There were 25 warnings)

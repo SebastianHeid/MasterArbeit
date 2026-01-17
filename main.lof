@@ -10,10 +10,10 @@
 \contentsline {figure}{\numberline {1.8}{\ignorespaces Cross-attention mechanism based on \cite {SelfAttentionFigure}.}}{19}{figure.1.8}%
 \contentsline {figure}{\numberline {1.9}{\ignorespaces Multi-head attention from \cite {AttentionIsAllYouNeed}.}}{20}{figure.1.9}%
 \contentsline {figure}{\numberline {1.10}{\ignorespaces Vision transformer from \cite {VisionTransformer}.}}{21}{figure.1.10}%
-\contentsline {figure}{\numberline {1.11}{\ignorespaces Example of how image is investigated for GenEval benchmark \cite {ghosh2023geneval}.}}{25}{figure.1.11}%
+\contentsline {figure}{\numberline {1.11}{\ignorespaces Example of how image is investigated for GenEval benchmark \cite {ghosh2023geneval}.}}{26}{figure.1.11}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Overview architecture of Pixart-$\Sigma $. $H$ and $W$ are the height and width of the image. $h=\frac {H}{8}$ and $w=\frac {W}{8}$ represent the dimensions in latent space and $N = \frac {H}{8 \cdot p} \frac {W}{8 \cdot p}$ with $p$ being the patch size.}}{27}{figure.2.1}%
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Diffusion block architecture taken from \cite {Pixart_a}.}}{28}{figure.2.2}%
-\contentsline {figure}{\numberline {2.3}{\ignorespaces Overview Flux-dev architecture.}}{31}{figure.2.3}%
-\contentsline {figure}{\numberline {2.4}{\ignorespaces Single-stream block (left) and double-stream block (right) of Flux-dev. Graphics are adapted from \cite {FastFlux}.}}{32}{figure.2.4}%
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Overview architecture of Pixart-$\Sigma $. $H$ and $W$ are the height and width of the image. $h=\frac {H}{8}$ and $w=\frac {W}{8}$ represent the dimensions in latent space and $N = \frac {H}{8 \cdot p} \frac {W}{8 \cdot p}$ with $p$ being the patch size.}}{28}{figure.2.1}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Diffusion block architecture taken from \cite {Pixart_a}.}}{29}{figure.2.2}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Overview Flux-dev architecture.}}{32}{figure.2.3}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Single-stream block (left) and double-stream block (right) of Flux-dev. Graphics are adapted from \cite {FastFlux}.}}{33}{figure.2.4}%
 \addvspace {10\p@ }
