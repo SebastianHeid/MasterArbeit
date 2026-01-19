@@ -19,18 +19,24 @@ Reallocated glb_str_end (elt_size=4) to 20 items from 10.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: bibliography.bib
-Warning--I didn't find a database entry for ""
+Repeated entry---line 835 of file bibliography.bib
+ : @article{KnowledgeDistillation
+ :                               ,
+I'm skipping whatever remains of this entry
 Warning--empty journal in HiDream
 Warning--empty journal in Claude
 Warning--empty year in WGAN
 Warning--empty year in Pixart_s
+Warning--empty journal in flux1-lite
 Warning--empty year in BERT
 Warning--empty year in SteinDiscrepancy
 Warning--empty year in ResidualConnection
 Warning--empty year in Ccnet
+Warning--empty year in Bksdm
 Warning--empty journal in Flux
 Warning--empty year in FastGAN
 Warning--empty year in Floater
+Warning--empty year in GuidedDistillation
 Warning--empty year in ImprovedDDPM
 Warning--empty year in ALiBi
 Warning--empty year in ImageTransformer
@@ -38,51 +44,54 @@ Warning--can't use both volume and number fields in adaLN
 Warning--empty journal in SelfAttentionFigure
 Warning--empty year in NormalizingFlow
 Warning--empty year in SD21
-Warning--empty year in Unet
+Warning--empty year in LADD
 Warning--empty year in StyleGAN_T
+Warning--empty year in ADD
 Warning--empty year in DMBeginning
 Warning--empty year in DiffusionModelIntroPaper
+Warning--empty journal in ConsistencyModel
 Warning--empty year in SlicedScoreMatching
 Warning--empty year in ModeCollapse1
-You've used 114 entries,
+Warning--empty year in DistillationMatching
+You've used 130 entries,
             2943 wiz_defined-function locations,
-            1279 strings with 27123 characters,
-and the built_in function-call counts, 60240 in all, are:
-= -- 5849
-> -- 3349
-< -- 32
-+ -- 1248
-- -- 1130
-* -- 3625
-:= -- 8891
-add.period$ -- 365
-call.type$ -- 114
-change.case$ -- 901
+            1361 strings with 29935 characters,
+and the built_in function-call counts, 68579 in all, are:
+= -- 6657
+> -- 3770
+< -- 38
++ -- 1404
+- -- 1270
+* -- 4097
+:= -- 10081
+add.period$ -- 415
+call.type$ -- 130
+change.case$ -- 1019
 chr.to.int$ -- 0
-cite$ -- 138
-duplicate$ -- 1610
-empty$ -- 4858
-format.name$ -- 1130
-if$ -- 15004
+cite$ -- 160
+duplicate$ -- 1855
+empty$ -- 5562
+format.name$ -- 1270
+if$ -- 17109
 int.to.chr$ -- 0
-int.to.str$ -- 114
-missing$ -- 109
-newline$ -- 579
-num.names$ -- 228
-pop$ -- 1552
+int.to.str$ -- 130
+missing$ -- 124
+newline$ -- 660
+num.names$ -- 260
+pop$ -- 1779
 preamble$ -- 1
-purify$ -- 787
+purify$ -- 889
 quote$ -- 0
-skip$ -- 3722
+skip$ -- 4249
 stack$ -- 0
-substring$ -- 2250
-swap$ -- 463
-text.length$ -- 38
+substring$ -- 2608
+swap$ -- 545
+text.length$ -- 44
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 456
-warning$ -- 24
-while$ -- 333
-width$ -- 117
-write$ -- 1223
-(There were 25 warnings)
+type$ -- 520
+warning$ -- 30
+while$ -- 382
+width$ -- 133
+write$ -- 1388
+(There was 1 error message)

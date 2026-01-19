@@ -1,0 +1,14 @@
+\chapter{Pixart-$\Sigma$ Distillation}
+This master thesis investigate structural model distillation techniques, specifically focusing on the reduction and removal of transformer blocks within the Pixart-$\Sigma$ and Flux-dev architectures. Pixart-$Sigma$ is employed as an experimental baseline to evaluate various design choices in the distillation frameworks due to its relatively low parameter count enabling rapid iteration and extensive ablation studies. Subsequently, the most effective strategies are applied to Flux-dev to assess their efficacy in high-parameter regimes. 
+
+
+\section{Block Importance}
+In structural pruning, the selection of components to be removed/compressed is essential to ensure that the compressed model retains the highest possible image generation quality (see fig. \ref{fig:PixartBlockImportance}). 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{images/Experimente/Pixart_Block_Analysis/BlockImportance.pdf}  % adjust filename and width
+	\caption[Qualitative analyse of the block sensitivitäy of PixArt-$\Sigma$]{The figure shows the influence of selectively removing individual transformer blocks (1–28) on the final generation result. While the removal of middle blocks causes only minor visual deviations, interventions in early, structure-forming layers (blocks 1–4) and in the final layers (blocks 27–28) lead to a significant loss of image coherence and massive compression artifacts, respectively.
+		
+	\label{fig:PixartBlockImportance}
+\end{figure}

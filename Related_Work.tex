@@ -1,0 +1,41 @@
+\chapter{Related Work}
+
+\textbf{Methods to reduce model size}
+\begin{itemize}
+	\item  pruning (strucured, unstructured, transformer pruning?)
+	\item qunatization (SVDQuant)
+	\item distillation
+	\item weight sharing
+	\item token pruning
+	\item architecture search (NAS)
+\end{itemize}
+
+
+\textbf{Competitor Methods Flux}
+\begin{itemize}
+	\item Plug and Play
+	\item Flux Mini
+	\item Flux Light
+	\item Fast Flux
+	\item Dense2MoE
+\end{itemize}
+
+
+\textbf{Knowledge Distillation Method}
+\begin{itemize}
+	\item Koala
+	\item Laptop
+	\item BK-SDM
+	\item Progressive Knowledge Distillation -> iteratively remove layers
+	\item Tiny Fusion -> learn which block to remove (on DiT)
+\end{itemize}
+
+\textbf{Using SVD}
+\begin{itemize}
+	\item GRASP (for LLMs)
+	\item "ASVD: Activation Aware Singular value Decompostion For Compressing Large Language Models" (LLMs)
+	\item SVD-LLM V2
+	\item (SVD-Delta, SVDQuant) -> machen etwas anderes
+	\item "Efficient Low-Rank Diffuison Model Training for Text-to-Image Generation" (Uses exactly like us SVD for Unet diffusion model; was ist OpenReview? Keine Autoren genannt; kein richitges paper)
+	\item "Accelerating Diffusion Transformer via Increment-Calibrated Caching with Channel-Aware Singular Value Decomposition" 
+\end{itemize}
