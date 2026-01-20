@@ -8,7 +8,7 @@
 \contentsline {section}{\numberline {2.1}Generative Models}{2}{section.2.1}%
 \contentsline {subsection}{\numberline {2.1.1}Variational Autoencoder}{2}{subsection.2.1.1}%
 \contentsline {subsubsection}{Autoencoder}{2}{section*.6}%
-\contentsline {subsubsection}{Evidence Lower Bound Loss (\gls {ELBO})}{2}{section*.7}%
+\contentsline {subsubsection}{Evidence Lower Bound Loss (\gls {ELBO})}{3}{section*.7}%
 \contentsline {subsection}{\numberline {2.1.2}Normalizing Flow}{4}{subsection.2.1.2}%
 \contentsline {subsection}{\numberline {2.1.3}Generative Adversarial Network}{5}{subsection.2.1.3}%
 \contentsline {section}{\numberline {2.2}Diffusion and Flow Matching Models}{6}{section.2.2}%
@@ -53,7 +53,24 @@
 \contentsline {subsubsection}{Double-Stream Blocks}{33}{section*.18}%
 \contentsline {subsubsection}{Single-Stream Blocks}{34}{section*.19}%
 \contentsline {chapter}{\numberline {4}Related Work}{36}{chapter.4}%
-\contentsline {chapter}{\numberline {5}Pixart-$\Sigma $ Distillation}{38}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Block Importance}{38}{section.5.1}%
-\contentsline {chapter}{\numberline {6}Flux-dev Distillation}{40}{chapter.6}%
-\contentsline {chapter}{Bibliography}{41}{chapter*.20}%
+\contentsline {chapter}{\numberline {5}PixArt-$\Sigma $ Distillation}{38}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Block Importance Analysis}{38}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}Sensitivity Analysis of Transformer Blocks}{39}{subsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.1.2}Black-Box Optimization with Optuna}{42}{subsection.5.1.2}%
+\contentsline {subsection}{\numberline {5.1.3}TinyFusion}{42}{subsection.5.1.3}%
+\contentsline {section}{\numberline {5.2}Training Data and Image Synthesis}{43}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}The LAION Dataset Baseline}{43}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Synthetic Data Generation with PixArt}{43}{subsection.5.2.2}%
+\contentsline {section}{\numberline {5.3}Structural Compression Strategies}{43}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Direct vs Iterative Layer Removal}{43}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}Global Layer Removal vs. Local Dimensional Compressio}{43}{subsection.5.3.2}%
+\contentsline {subsection}{\numberline {5.3.3}Component-Specific Scaling}{43}{subsection.5.3.3}%
+\contentsline {section}{\numberline {5.4}Knowledge Distillation Loss Functions}{43}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}Objective Functions for Performance Recovery}{43}{subsection.5.4.1}%
+\contentsline {subsection}{\numberline {5.4.2}Feature Alignment Strategies}{43}{subsection.5.4.2}%
+\contentsline {section}{\numberline {5.5}Main Contribution: Linear Iterative Compression}{43}{section.5.5}%
+\contentsline {chapter}{\numberline {6}Flux-dev Distillation}{44}{chapter.6}%
+\contentsline {chapter}{\numberline {7}Appendix}{45}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Appendix A}{45}{section.7.1}%
+\contentsline {subsection}{\numberline {7.1.1}Block Analysis}{45}{subsection.7.1.1}%
+\contentsline {chapter}{Bibliography}{46}{chapter*.20}%

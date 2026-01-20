@@ -1,14 +1,96 @@
-\chapter{Pixart-$\Sigma$ Distillation}
-This master thesis investigate structural model distillation techniques, specifically focusing on the reduction and removal of transformer blocks within the Pixart-$\Sigma$ and Flux-dev architectures. Pixart-$Sigma$ is employed as an experimental baseline to evaluate various design choices in the distillation frameworks due to its relatively low parameter count enabling rapid iteration and extensive ablation studies. Subsequently, the most effective strategies are applied to Flux-dev to assess their efficacy in high-parameter regimes. 
+\chapter{PixArt-$\Sigma$ Distillation}
+This master thesis investigate structural model distillation techniques, specifically focusing on the removal and compression of transformer blocks within the PixArt-$\Sigma$ and Flux-dev architectures. PixArt-$\Sigma$ is employed as an experimental baseline to evaluate various design choices in the distillation frameworks due to its relatively low parameter count enabling rapid iteration and extensive ablation studies. Subsequently, the most effective strategies are applied to Flux-dev to assess their efficacy in high-parameter regimes. 
 
 
-\section{Block Importance}
-In structural pruning, the selection of components to be removed/compressed is essential to ensure that the compressed model retains the highest possible image generation quality (see fig. \ref{fig:PixartBlockImportance}). 
+\section{Block Importance Analysis}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{images/Experimente/PixArt_Block_Analysis/BlockImportance.pdf}  % adjust filename and width
+	\caption[Qualitative analyse of the block sensitivitäy of PixArt-$\Sigma$]{The figure shows the influence of selectively removing individual transformer blocks (1–28) on the final generation result. While the removal of middle blocks causes only minor visual deviations, interventions in early, structure-forming layers (blocks 1–4) and in the final layers (blocks 27–28) lead to a significant loss of image coherence and massive compression artifacts, respectively.}
+	
+	\label{fig:PixArtBlockImportanceQualitatively}
+\end{figure}
+In structural pruning, the selection of components to be removed or compressed is essential to ensure that the compressed model retains the highest possible image generation quality. Qualitatively, fig. \ref{fig:PixArtBlockImportanceQualitatively} shows the effect of removing every transformer block from PixArt-$\Sigma$ individually on its image generation capabilities without subsequent retraining. It is clearly visible that removing the first and last transformer blocks (blocks 1-4 and blocks 27-28) exerts the most significant influence on the image quality. This confirms the observation from previous work \cite{men2024shortgpt,} that redundancies are primarily find in the middle part of the transformer based model. To identify which blocks are best to remove meaning which blocks have a minimal contribution on the generation process of the final image, several different metrics can be employed. In the following section, different approaches are investigated to determine the importance of the individual transformer blocks. First, the traditional magnitude-based \cite{han2015learning} pruning and represential dissimilarity by computing the central kernal alignment score (\gls{CKA}) \cite{kornblith2019similarity} between the input and output of each transformer block are evaluated. Moreover, they are compared to standard performance metrics such as the \gls{CLIP}-score and \gls{CMMD}. Next, more advanced algorithms are tested including learnable block-removal masks and the treatment of block selection as a hyperparameter search problem.
+
+
+\subsection{Sensitivity Analysis of Transformer Blocks}
+In magnitude pruning \cite{han2015learning,filters2016pruning,lee2020layer}, the magnitudes of the weights of the individual components of a model are computed to serve as a proxy for theri importance. The underlying assumption is that small weight magnitudes correspond to a low overall impact on the model performance, implying that model parts with lower weight magnitude sould be removed first. Interestingly, in Pixart-$\Sigma$ the weight magnitudes of the initial layers, which have a substantial influence on the final image synthesis (see fig. \ref{fig:PixArtBlockImportanceQualitatively}), have the lowest weight magnitudes across teh architecture (see fig. \ref{fig:PixArtBlockMagnitudeCLIP} and \ref{fig:PixArtBlockMagnitudeCMMD} which both show the weight magnitudes for every block compared to the \gls{CLIP}-score or \gls{CMMD}). This observation contradicts with the assumption of low impact by low weights magnitudes. Furthermore, the weight magnitudes of the final layers are only marginally higher than those of the middle layers, while the middle layers' weight magnitudes exhibit a high degree of similarity. This would make a precise selection of blocks for removal based solely on this heuristic difficult. Consequently, using the weight magnitude to identify redundant blocks within PixArt-$\Sigma$ is not a suitable criterion for strucural pruning in this context.
+
+
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\textwidth]{images/Experimente/Pixart_Block_Analysis/BlockImportance.pdf}  % adjust filename and width
-	\caption[Qualitative analyse of the block sensitivitäy of PixArt-$\Sigma$]{The figure shows the influence of selectively removing individual transformer blocks (1–28) on the final generation result. While the removal of middle blocks causes only minor visual deviations, interventions in early, structure-forming layers (blocks 1–4) and in the final layers (blocks 27–28) lead to a significant loss of image coherence and massive compression artifacts, respectively.
-		
-	\label{fig:PixartBlockImportance}
+	\includegraphics[width=0.85\textwidth]{images/Experimente/Pixart_Block_Analysis/magnitude_vs_clip.png}
+	\caption[Magnitude-base pruning vs \gls{CLIP}-score]{The histogram shows the magnitudes of the weights of the individual transformer blocks (1-28). The blocks which have shown qualitatively (see fig. \ref{fig:PixArtBlockImportanceQualitatively}) to be very important for the image generation capabilities of PixArt-$\Sigma$ are marked with red. In addition, the \gls{CLIP}-scores for each block is displayed. The \gls{CLIP}-scores follow the qualitative observations in contrast to the magnitude-based analysis. }
+	\label{fig:magnitude_clip}
+	
+	\label{fig:PixArtBlockMagnitudeCLIP}
 \end{figure}
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.85\textwidth]{images/Experimente/Pixart_Block_Analysis/magnitude_vs_cmmd.png}
+	\caption[Magnitude-base pruning vs \gls{CMMD}]{The histogram shows the magnitudes of the weights of the individual transformer blocks (1-28). The blocks which have shown qualitatively (see fig. \ref{fig:PixArtBlockImportanceQualitatively}) to be very important for the image generation capabilities of PixArt-$\Sigma$ are marked with red. In addition, the \gls{CMMD} for each block is displayed. The \gls{CMMD} follow the qualitative observations in contrast to the magnitude-based analysis. }
+	
+	\label{fig:PixArtBlockMagnitudeCMMD}
+\end{figure}
+
+Another approach to identify redundant model parts is to compare their inputs with their corresponding outputs \cite{men2024shortgpt}. If the difference between the input and output is marginal, indicating that the specific model part performs approximately an identity mapping, the model part is considered a candidate for removal. To compute the similarity between the input and output features of each block in PixArt-$\Sigma$ the \gls{CKA} metric \cite{kornblith2019similarity, pons2024effective} is leveraged. The \gls{CKA} score is computed for every block and every sampling step across 100 example prompts taken from the LAION dataset. Subsequently, these scores are averaged across all samples and time steps resulting in a mean similarity score $\mu_{CKA,i}$ for each individual Pixart-$\Sigma$ block. Averaging over the time steps should provide an estimate of the general importance of the block. However, the importance of a block at different time steps can vary drastically (see Appendix A). A low value indicates that the input and output of a specific block differs significantly, suggesting higher importance of the block. Both fig. \ref{fig:PixArtBlockImportanceCLIP} and \ref{fig:PixArtBlockImportanceCMMD} show the transformation intensity $1-\mu_{CKA,i}$ for every block compared with \gls{CMMD} or \gls{CLIP} score, a greate value signifies a more substantial feature transformaton. While blocks 17 and 22 stand out with their high values, the implied importance of these blocks cannot be confirmed by qualitative analysis (see fig. \ref{fig:PixArtBlockImportanceQualitatively}). Furthermore, blocks 1, 24, 27, and 28 are not uniquely identified as critical blocks for the performance of the model, as the values for blocks 19, 20, and 21 are higher, which would mark them as more relevant. As this ranking also fails to align with the qualitative review of block influence on the final image, the use of representational similarity for block selection in PixArt-$\Sigma$ must be viewed critically too.
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.85\textwidth]{images/Experimente/Pixart_Block_Analysis/cka_vs_clip.png}  % adjust filename and width
+	\caption[\gls{CKA} transformation intensity vs \gls{CLIP}-score]{The histogram shows the transformation intensity based on \gls{CKA} comparing the input and output features of the individual transformer blocks (1-28). The blocks which have shown qualitatively (see fig. \ref{fig:PixArtBlockImportanceQualitatively}) to be very important for the image generation capabilities of PixArt-$\Sigma$ are marked with red. In addition, the \gls{CLIP}-scores for each block is displayed. The \gls{CLIP}-scores follow the qualitative observations in contrast to the transformation intensity analysis. }
+	
+	\label{fig:PixArtBlockImportanceCLIP}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.85\textwidth]{images/Experimente/Pixart_Block_Analysis/cka_vs_cmmd.png}  % adjust filename and width
+	\caption[\gls{CKA} transformation intensity vs \gls{CMMD}]{The histogram shows the transformation intensity based on \gls{CKA} comparing the input and output features of the individual transformer blocks (1-28). The blocks which have shown qualitatively (see fig. \ref{fig:PixArtBlockImportanceQualitatively}) to be very important for the image generation capabilities of PixArt-$\Sigma$ are marked with red. In addition, the \gls{CMMD} for each block is displayed. The \gls{CMMD} follow the qualitative observations in contrast to the transformation intensity analysis. }
+	
+	\label{fig:PixArtBlockImportanceCMMD}
+\end{figure}
+
+Due to the contradictory results of magnitude-based pruning and \gls{CKA}-scores when compared with the qualitative observations, a third methodology was investigated, namely quantifying the importance of individual blocks based on standard performance metrics \cite{FastFlux}. Specifically, the \gls{CLIP}-score and \gls{CMMD} are computed on a small reference dataset consisting of 100 images from the LAION dataset. While \gls{CLIP} is used to evaluate the semantic prompt-image coherence, \gls{CMMD} serves as measure for the general image quality and distributional fidelity. As illustrated in the fig. \ref{fig:PixArtBlockImportanceCLIP} and \ref{fig:PixArtBlockImportanceCMMD} (and likewise in fig. \ref{fig:PixArtBlockMagnitudeCLIP} and \ref{fig:PixArtBlockMagnitudeCMMD}) both metrics closely align with the qualitative evaluation, confirming that the first four and the last two blocks exert the greatest impact on the final image quality. Consequently, these metrics are selected as primary criteria for identifying redundant blocks in PixArt-$\Sigma$. Since \gls{CMMD} and \gls{CLIP}-score produces values in different ranges and have an inverse optimization direction (minimization vs maximizaiton), for both metrics a seperate ranking of the blocks is created where $r_{\text{CMMD},i}$ and  $r_{\text{final},i}$ are the corresponding ranks of block $i$. The final importance score is obtained by computing the aggregated rank $r_{\text{final},i}$ from both metrics
+\begin{equation}
+	r_{\text{final},i} = r_{\text{CMMD},i} + r_{\text{CLIP},i} \quad.
+	\label{eq:combined_importance}
+\end{equation}
+This ranking serves as foundation for the subsequent, more more sophisticated block selection algorithms.\\
+
+A further key challenge after establishing the pruning criteria in structural model distillation is identifying the optimal combinations of blocks to remove. When removing only a single block, there are merely 28 possibilities for Pixart-$\Sigma$. However, if the goal is to reduce the model size by $50\%$ necessitating the removal of 14 blocks, the number of possible block combinations escalates to $\binom{28}{14}$. Therefore, it is computationally infeasible to evaluate the \gls{CLIP}-score and \gls{CMMD} for every possible combination.\\
+A natural alternative is to perform a greedy search algorithm. In this approach,  the importance ranking for all blocks is initially computed, after which the least important block is identified and removed or compressed. Next, the \gls{CLIP}-scores and \gls{CMMD} are re-evaluated for the remaining blocks within the newly reduced architecture. By iteratively evaluating and compressing the least important block the model architecture is progressively reduced while accounting for the interdependencies between layers.
+
+
+\subsection{Black-Box Optimization with Optuna}
+- 11 blocks
+- fixed compression
+- target: cmmd value
+- prior was necessary
+- leicht bessere cmmd values aber nach Finetuning war unterschied nicht mehr vorhanden
+
+- no prior -> space to large
+- variable compression ratios as well as number of blocks -> always settls for larger models -> difficult auszutarieren da man zwei wiedersprüchliche Targets hat -> nicht geklappt
+\subsection{TinyFusion}
+- imploemented tiny fusion for wie in \cite{fang2025tinyfusion}
+
+\section{Training Data and Image Synthesis}
+\subsection{The LAION Dataset Baseline}
+\subsection{Synthetic Data Generation with PixArt}
+
+
+\section{Structural Compression Strategies}
+\subsection{Direct vs Iterative Layer Removal}
+\subsection{Global Layer Removal vs. Local Dimensional Compressio}
+\subsection{Component-Specific Scaling}
+
+
+\section{Knowledge Distillation Loss Functions}
+\subsection{Objective Functions for Performance Recovery}
+\subsection{Feature Alignment Strategies}
+
+\section{Main Contribution: Linear Iterative Compression}

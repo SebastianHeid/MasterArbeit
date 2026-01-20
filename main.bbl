@@ -197,6 +197,12 @@ Gongfan Fang, Kunjun Li, Xinyin Ma, and Xinchao Wang.
 \newblock In {\em Proceedings of the Computer Vision and Pattern Recognition
   Conference}, pages 18144--18154, 2025.
 
+\bibitem{fang2025tinyfusion}
+Gongfan Fang, Kunjun Li, Xinyin Ma, and Xinchao Wang.
+\newblock Tinyfusion: Diffusion transformers learned shallow.
+\newblock In {\em Proceedings of the Computer Vision and Pattern Recognition
+  Conference}, pages 18144--18154, 2025.
+
 \bibitem{feller1949stochastic}
 William Feller.
 \newblock On the theory of stochastic processes, with particular reference to
@@ -204,6 +210,11 @@ William Feller.
 \newblock In {\em Proceedings of the First Berkeley Symposium on Mathematical
   Statistics and Probability}, pages 403--432, Berkeley, CA, 1949. The Regents
   of the University of California.
+
+\bibitem{filters2016pruning}
+Determine Filters’Importance.
+\newblock Pruning filters for efficient convnets.
+\newblock {\em arXiv preprint arXiv:1608.08710}, 2016.
 
 \bibitem{ghosh2023geneval}
 Dhruba Ghosh, Hannaneh Hajishirzi, and Ludwig Schmidt.
@@ -235,6 +246,11 @@ Arthur Gretton, Karsten~M Borgwardt, Malte~J Rasch, Bernhard Sch{\"o}lkopf, and
   Alexander Smola.
 \newblock A kernel two-sample test.
 \newblock {\em The journal of machine learning research}, 13(1):723--773, 2012.
+
+\bibitem{han2015learning}
+Song Han, Jeff Pool, John Tran, and William Dally.
+\newblock Learning both weights and connections for efficient neural network.
+\newblock {\em Advances in neural information processing systems}, 28, 2015.
 
 \bibitem{ResidualConnection}
 Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun.
@@ -350,6 +366,12 @@ Shun Kiyono, Sosuke Kobayashi, Jun Suzuki, and Kentaro Inui.
 \newblock Shape: Shifted absolute position embedding for transformers.
 \newblock {\em arXiv preprint arXiv:2109.05644}, 2021.
 
+\bibitem{kornblith2019similarity}
+Simon Kornblith, Mohammad Norouzi, Honglak Lee, and Geoffrey Hinton.
+\newblock Similarity of neural network representations revisited.
+\newblock In {\em International conference on machine learning}, pages
+  3519--3529. PMlR, 2019.
+
 \bibitem{KL-Div}
 Solomon Kullback and Richard~A Leibler.
 \newblock On information and sufficiency.
@@ -365,6 +387,11 @@ Black~Forest Labs.
 Yann LeCun, L{\'e}on Bottou, Yoshua Bengio, and Patrick Haffner.
 \newblock Gradient-based learning applied to document recognition.
 \newblock {\em Proceedings of the IEEE}, 86(11):2278--2324, 2002.
+
+\bibitem{lee2020layer}
+Jaeho Lee, Sejun Park, Sangwoo Mo, Sungsoo Ahn, and Jinwoo Shin.
+\newblock Layer-adaptive sparsity for the magnitude-based pruning.
+\newblock {\em arXiv preprint arXiv:2010.07611}, 2020.
 
 \bibitem{Koala}
 Youngwan Lee, Kwanyong Park, Yoorhim Cho, Yong-Ju Lee, and Sung~Ju Hwang.
@@ -453,6 +480,13 @@ Jian Ma, Qirong Peng, Xujie Zhu, Peixing Xie, Chen Chen, and Haonan Lu.
   transformers.
 \newblock {\em arXiv preprint arXiv:2511.16156}, 2025.
 
+\bibitem{men2024shortgpt}
+Xin Men, Mingyu Xu, Qingyu Zhang, Bingning Wang, Hongyu Lin, Yaojie Lu, Xianpei
+  Han, and Weipeng Chen.
+\newblock Shortgpt: Layers in large language models are more redundant than you
+  expect, 2024.
+\newblock {\em URL https://arxiv. org/abs/2403.03853}, 2(3):4, 2024.
+
 \bibitem{GuidedDistillation}
 Chenlin Meng, Robin Rombach, Ruiqi Gao, Diederik Kingma, Stefano Ermon,
   Jonathan Ho, and Tim Salimans.
@@ -506,6 +540,12 @@ Dustin Podell, Zion English, Kyle Lacey, Andreas Blattmann, Tim Dockhorn, Jonas
 \newblock Sdxl: Improving latent diffusion models for high-resolution image
   synthesis.
 \newblock {\em arXiv preprint arXiv:2307.01952}, 2023.
+
+\bibitem{pons2024effective}
+Ian Pons, Bruno Yamamoto, Anna~H Reali~Costa, and Artur Jordao.
+\newblock Effective layer pruning through similarity metric perspective.
+\newblock In {\em International Conference on Pattern Recognition}, pages
+  423--438. Springer, 2024.
 
 \bibitem{CLIP}
 Alec Radford, Jong~Wook Kim, Chris Hallacy, Aditya Ramesh, Gabriel Goh,

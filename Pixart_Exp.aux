@@ -1,14 +1,46 @@
 \relax 
 \providecommand\hyper@newdestlabel[2]{}
-\@writefile{toc}{\contentsline {chapter}{\numberline {5}Pixart-$\Sigma $ Distillation}{38}{chapter.5}\protected@file@percent }
+\citation{men2024shortgpt,}
+\citation{han2015learning}
+\citation{kornblith2019similarity}
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}PixArt-$\Sigma $ Distillation}{38}{chapter.5}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {5.1}Block Importance}{38}{section.5.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces Qualitative analyse of the block sensitivitäy of PixArt-$\Sigma $}}{39}{figure.5.1}\protected@file@percent }
-\newlabel{PixartBlockImportance}{{5.1}{39}{Qualitative analyse of the block sensitivitäy of PixArt-$\Sigma $}{figure.5.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.1}Block Importance Analysis}{38}{section.5.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces Qualitative analyse of the block sensitivitäy of PixArt-$\Sigma $}}{38}{figure.5.1}\protected@file@percent }
+\newlabel{fig:PixArtBlockImportanceQualitatively}{{5.1}{38}{Qualitative analyse of the block sensitivitäy of PixArt-$\Sigma $}{figure.5.1}{}}
+\citation{han2015learning,filters2016pruning,lee2020layer}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.1}Sensitivity Analysis of Transformer Blocks}{39}{subsection.5.1.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces Magnitude-base pruning vs \gls {CLIP}-score}}{39}{figure.5.2}\protected@file@percent }
+\newlabel{fig:magnitude_clip}{{5.2}{39}{Magnitude-base pruning vs \gls {CLIP}-score}{figure.5.2}{}}
+\newlabel{fig:PixArtBlockMagnitudeCLIP}{{5.2}{39}{Magnitude-base pruning vs \gls {CLIP}-score}{figure.5.2}{}}
+\citation{men2024shortgpt}
+\citation{kornblith2019similarity,pons2024effective}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.3}{\ignorespaces Magnitude-base pruning vs \gls {CMMD}}}{40}{figure.5.3}\protected@file@percent }
+\newlabel{fig:PixArtBlockMagnitudeCMMD}{{5.3}{40}{Magnitude-base pruning vs \gls {CMMD}}{figure.5.3}{}}
+\citation{FastFlux}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.4}{\ignorespaces \gls {CKA} transformation intensity vs \gls {CLIP}-score}}{41}{figure.5.4}\protected@file@percent }
+\newlabel{fig:PixArtBlockImportanceCLIP}{{5.4}{41}{\gls {CKA} transformation intensity vs \gls {CLIP}-score}{figure.5.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.5}{\ignorespaces \gls {CKA} transformation intensity vs \gls {CMMD}}}{41}{figure.5.5}\protected@file@percent }
+\newlabel{fig:PixArtBlockImportanceCMMD}{{5.5}{41}{\gls {CKA} transformation intensity vs \gls {CMMD}}{figure.5.5}{}}
+\citation{fang2025tinyfusion}
+\newlabel{eq:combined_importance}{{5.1}{42}{Sensitivity Analysis of Transformer Blocks}{equation.5.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.2}Black-Box Optimization with Optuna}{42}{subsection.5.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.3}TinyFusion}{42}{subsection.5.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5.2}Training Data and Image Synthesis}{43}{section.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.1}The LAION Dataset Baseline}{43}{subsection.5.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.2}Synthetic Data Generation with PixArt}{43}{subsection.5.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5.3}Structural Compression Strategies}{43}{section.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.1}Direct vs Iterative Layer Removal}{43}{subsection.5.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.2}Global Layer Removal vs. Local Dimensional Compressio}{43}{subsection.5.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.3}Component-Specific Scaling}{43}{subsection.5.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5.4}Knowledge Distillation Loss Functions}{43}{section.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.1}Objective Functions for Performance Recovery}{43}{subsection.5.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.2}Feature Alignment Strategies}{43}{subsection.5.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5.5}Main Contribution: Linear Iterative Compression}{43}{section.5.5}\protected@file@percent }
 \@setckpt{Pixart_Exp}{
-\setcounter{page}{40}
-\setcounter{equation}{0}
+\setcounter{page}{44}
+\setcounter{equation}{1}
 \setcounter{enumi}{6}
 \setcounter{enumii}{0}
 \setcounter{enumiii}{0}
@@ -17,12 +49,12 @@
 \setcounter{mpfootnote}{0}
 \setcounter{part}{0}
 \setcounter{chapter}{5}
-\setcounter{section}{1}
+\setcounter{section}{5}
 \setcounter{subsection}{0}
 \setcounter{subsubsection}{0}
 \setcounter{paragraph}{0}
 \setcounter{subparagraph}{0}
-\setcounter{figure}{1}
+\setcounter{figure}{5}
 \setcounter{table}{0}
 \setcounter{parentequation}{0}
 \setcounter{caption@flags}{2}
@@ -34,7 +66,7 @@
 \setcounter{section@level}{1}
 \setcounter{Item}{6}
 \setcounter{Hfootnote}{0}
-\setcounter{bookmark@seq@number}{42}
+\setcounter{bookmark@seq@number}{56}
 \setcounter{algorithm}{3}
 \setcounter{ALG@line}{8}
 \setcounter{ALG@rem}{8}
