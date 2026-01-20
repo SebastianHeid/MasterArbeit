@@ -13,16 +13,10 @@
 \contentsline {figure}{\numberline {2.10}{\ignorespaces Vision transformer from \cite {VisionTransformer}.}}{21}{figure.2.10}%
 \contentsline {figure}{\numberline {2.11}{\ignorespaces Example of how image is investigated for GenEval benchmark \cite {ghosh2023geneval}.}}{27}{figure.2.11}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Overview architecture of Pixart-$\Sigma $. $H$ and $W$ are the height and width of the image. $h=\frac {H}{8}$ and $w=\frac {W}{8}$ represent the dimensions in latent space and $N = \frac {H}{8 \cdot p} \frac {W}{8 \cdot p}$ with $p$ being the patch size.}}{29}{figure.3.1}%
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Diffusion block architecture taken from \cite {Pixart_a}.}}{30}{figure.3.2}%
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Overview Flux-dev architecture.}}{33}{figure.3.3}%
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Single-stream block (left) and double-stream block (right) of Flux-dev. Graphics are adapted from \cite {FastFlux}.}}{34}{figure.3.4}%
 \addvspace {10\p@ }
-\addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Qualitative analyse of the block sensitivitäy of PixArt-$\Sigma $}}{38}{figure.5.1}%
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Magnitude-base pruning vs \gls {CLIP}-score}}{39}{figure.5.2}%
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Magnitude-base pruning vs \gls {CMMD}}}{40}{figure.5.3}%
-\contentsline {figure}{\numberline {5.4}{\ignorespaces \gls {CKA} transformation intensity vs \gls {CLIP}-score}}{41}{figure.5.4}%
-\contentsline {figure}{\numberline {5.5}{\ignorespaces \gls {CKA} transformation intensity vs \gls {CMMD}}}{41}{figure.5.5}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Overview architecture of Pixart-$\Sigma $. $H$ and $W$ are the height and width of the image. $h=\frac {H}{8}$ and $w=\frac {W}{8}$ represent the dimensions in latent space and $N = \frac {H}{8 \cdot p} \frac {W}{8 \cdot p}$ with $p$ being the patch size.}}{31}{figure.4.1}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Diffusion block architecture taken from \cite {Pixart_a}.}}{32}{figure.4.2}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Overview Flux-dev architecture.}}{35}{figure.4.3}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Single-stream block (left) and double-stream block (right) of Flux-dev. Graphics are adapted from \cite {FastFlux}.}}{36}{figure.4.4}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }

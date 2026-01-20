@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.9.24)  20 JAN 2026 15:34
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.9.24)  20 JAN 2026 21:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -685,8 +685,8 @@ Package glossaries Info: Writing glossary file main.acn on input line 6.
  (./glossary.tex) (./main.aux (./titel_page.aux) (./introduction.aux)
 (./theory_generative_models.aux) (./theory_diffusion_models.aux)
 (./theory_fundamental_NN.aux) (./Distillation.aux) (./theory_metrics.aux)
-(./Models.aux) (./Related_Work.aux) (./Pixart_Exp.aux) (./Flux_Exp.aux)
-(./conclusion.aux) (./Appendix.aux))
+(./Related_Work.aux) (./Methods_Models.aux) (./Methods_Experiments.aux)
+(./Experiments.aux) (./conclusion.aux) (./Appendix.aux))
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 10.
@@ -895,7 +895,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 3--6
 
  []
 
-<images/Background/MarkovChainDiffProcess.png, id=677, 555.07375pt x 93.34875pt
+<images/Background/MarkovChainDiffProcess.png, id=620, 555.07375pt x 93.34875pt
 >
 File: images/Background/MarkovChainDiffProcess.png Graphic file (type png)
 <use images/Background/MarkovChainDiffProcess.png>
@@ -932,13 +932,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 218--219
 
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
 put line 223.
-<images/Background/DDPM_Training.png, id=771, 571.8066pt x 343.08395pt>
+<images/Background/DDPM_Training.png, id=714, 571.8066pt x 343.08395pt>
 File: images/Background/DDPM_Training.png Graphic file (type png)
 <use images/Background/DDPM_Training.png>
 Package pdftex.def Info: images/Background/DDPM_Training.png  used on input lin
 e 238.
 (pdftex.def)             Requested size: 241.84843pt x 145.10986pt.
-<images/Background/DDPM.png, id=780, 1579.9025pt x 765.86125pt>
+<images/Background/DDPM.png, id=723, 1579.9025pt x 765.86125pt>
 File: images/Background/DDPM.png Graphic file (type png)
 <use images/Background/DDPM.png>
 Package pdftex.def Info: images/Background/DDPM.png  used on input line 282.
@@ -954,13 +954,13 @@ Package pdftex.def Info: images/Background/DDPM.png  used on input line 282.
 [13]
 
 [14]
-<images/Background/Overview_2.png, id=922, 1123.19624pt x 188.705pt>
+<images/Background/Overview_2.png, id=866, 1123.19624pt x 188.705pt>
 File: images/Background/Overview_2.png Graphic file (type png)
 <use images/Background/Overview_2.png>
 Package pdftex.def Info: images/Background/Overview_2.png  used on input line 4
 44.
 (pdftex.def)             Requested size: 483.69687pt x 81.2625pt.
-<images/Background/LDM.png, id=948, 457.71pt x 226.8475pt>
+<images/Background/LDM.png, id=892, 457.71pt x 226.8475pt>
 File: images/Background/LDM.png Graphic file (type png)
 <use images/Background/LDM.png>
 Package pdftex.def Info: images/Background/LDM.png  used on input line 475.
@@ -973,7 +973,7 @@ Package pdftex.def Info: images/Background/LDM.png  used on input line 475.
 \openout2 = `theory_fundamental_NN.aux'.
 
  (./theory_fundamental_NN.tex
-<images/Background/transformer.png, id=999, 1324.95pt x 1866.975pt>
+<images/Background/transformer.png, id=942, 1324.95pt x 1866.975pt>
 File: images/Background/transformer.png Graphic file (type png)
 <use images/Background/transformer.png>
 Package pdftex.def Info: images/Background/transformer.png  used on input line 
@@ -986,7 +986,7 @@ Package pdftex.def Info: images/Background/transformer.png  used on input line
 
 
  <./images/Background/transformer.png>]
-<images/Background/SelfAttention.png, id=1021, 927.465pt x 503.7pt>
+<images/Background/SelfAttention.png, id=965, 927.465pt x 503.7pt>
 File: images/Background/SelfAttention.png Graphic file (type png)
 <use images/Background/SelfAttention.png>
 Package pdftex.def Info: images/Background/SelfAttention.png  used on input lin
@@ -995,7 +995,7 @@ e 51.
 
 
 [18]
-<images/Background/CrossAttention.png, id=1040, 935.349pt x 503.7pt>
+<images/Background/CrossAttention.png, id=984, 935.349pt x 503.7pt>
 File: images/Background/CrossAttention.png Graphic file (type png)
 <use images/Background/CrossAttention.png>
 Package pdftex.def Info: images/Background/CrossAttention.png  used on input li
@@ -1005,7 +1005,7 @@ ne 62.
 
 [19 <./images/Background/SelfAttention.png> <./images/Background/CrossAttention
 .png>]
-<images/Background/multi-head-attention.png, id=1050, 578.16pt x 748.7975pt>
+<images/Background/multi-head-attention.png, id=994, 578.16pt x 748.7975pt>
 File: images/Background/multi-head-attention.png Graphic file (type png)
 <use images/Background/multi-head-attention.png>
 Package pdftex.def Info: images/Background/multi-head-attention.png  used on in
@@ -1018,7 +1018,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 144--145
 
  []
 
-<images/Background/VisionTransformer.png, id=1098, 598.235pt x 304.13625pt>
+<images/Background/VisionTransformer.png, id=1042, 598.235pt x 304.13625pt>
 File: images/Background/VisionTransformer.png Graphic file (type png)
 <use images/Background/VisionTransformer.png>
 Package pdftex.def Info: images/Background/VisionTransformer.png  used on input
@@ -1049,7 +1049,7 @@ Package pdftex.def Info: images/Background/VisionTransformer.png  used on input
 
 
 ]
-<images/Background/GenEval.png, id=1237, 892.33376pt x 361.35pt>
+<images/Background/GenEval.png, id=1181, 892.33376pt x 361.35pt>
 File: images/Background/GenEval.png Graphic file (type png)
 <use images/Background/GenEval.png>
 Package pdftex.def Info: images/Background/GenEval.png  used on input line 52.
@@ -1059,102 +1059,10 @@ Package pdftex.def Info: images/Background/GenEval.png  used on input line 52.
 [26])
 
 [27 <./images/Background/GenEval.png>]
-\openout2 = `Models.aux'.
-
- (./Models.tex
-Chapter 3.
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 3.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\Sigma' on input line 3.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 3.
-
-<images/Background/Pixart/Architektur_Uebersicht.pdf, id=1285, 1138.2525pt x 71
-1.13678pt>
-File: images/Background/Pixart/Architektur_Uebersicht.pdf Graphic file (type pd
-f)
-<use images/Background/Pixart/Architektur_Uebersicht.pdf>
-Package pdftex.def Info: images/Background/Pixart/Architektur_Uebersicht.pdf  u
-sed on input line 14.
-(pdftex.def)             Requested size: 483.69687pt x 302.202pt.
-
-
-[28
-
-
-
-
-]
-<images/Background/Pixart/Architekture_Detail.pdf, id=1303, 853.68938pt x 995.9
-7093pt>
-File: images/Background/Pixart/Architekture_Detail.pdf Graphic file (type pdf)
-<use images/Background/Pixart/Architekture_Detail.pdf>
-Package pdftex.def Info: images/Background/Pixart/Architekture_Detail.pdf  used
- on input line 28.
-(pdftex.def)             Requested size: 241.84843pt x 282.15257pt.
-
-
-[29 <./images/Background/Pixart/Architektur_Uebersicht.pdf>]
-
-[30 <./images/Background/Pixart/Architekture_Detail.pdf>]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 58.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\Sigma' on input line 58.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 58.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 75--76
-
- []
-
-
-
-[31]
-<images/Background/Flux/Flux_Uebersicht.pdf, id=1404, 1422.99635pt x 1280.62436
-pt>
-File: images/Background/Flux/Flux_Uebersicht.pdf Graphic file (type pdf)
-<use images/Background/Flux/Flux_Uebersicht.pdf>
-Package pdftex.def Info: images/Background/Flux/Flux_Uebersicht.pdf  used on in
-put line 88.
-(pdftex.def)             Requested size: 483.69687pt x 435.30882pt.
-
-
-[32]
-
-[33 <./images/Background/Flux/Flux_Uebersicht.pdf>]
-<images/Background/Flux/SingleDoubleBlocks.pdf, id=1448, 1849.38928pt x 1138.25
-25pt>
-File: images/Background/Flux/SingleDoubleBlocks.pdf Graphic file (type pdf)
-<use images/Background/Flux/SingleDoubleBlocks.pdf>
-Package pdftex.def Info: images/Background/Flux/SingleDoubleBlocks.pdf  used on
- input line 102.
-(pdftex.def)             Requested size: 483.69687pt x 297.69287pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-)
-
-[34 <./images/Background/Flux/SingleDoubleBlocks.pdf>]
-
-[35]
 \openout2 = `Related_Work.aux'.
 
  (./Related_Work.tex
-Chapter 4.
+Chapter 3.
 
 Overfull \hbox (0.63544pt too wide) in paragraph at lines 36--37
 []\T1/cmr/m/n/10 "ASVD: Ac-ti-va-tion Aware Sin-gu-lar value De-com-pos-tion Fo
@@ -1163,7 +1071,7 @@ r Com-press-ing Large Lan-guage Mod-els" (LLMs)
 
 
 
-[36
+[28
 
 
 
@@ -1177,33 +1085,92 @@ d Caching with Channel-Aware Sin-gu-lar Value
 
 )
 
+[29]
+\openout2 = `Methods_Models.aux'.
+
+ (./Methods_Models.tex
+Chapter 4.
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 4.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\Sigma' on input line 4.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 4.
+
+<images/Background/Pixart/Architektur_Uebersicht.pdf, id=1239, 1138.2525pt x 71
+1.13678pt>
+File: images/Background/Pixart/Architektur_Uebersicht.pdf Graphic file (type pd
+f)
+<use images/Background/Pixart/Architektur_Uebersicht.pdf>
+Package pdftex.def Info: images/Background/Pixart/Architektur_Uebersicht.pdf  u
+sed on input line 15.
+(pdftex.def)             Requested size: 483.69687pt x 302.202pt.
+
+
+[30
+
+
+
+
+]
+<images/Background/Pixart/Architekture_Detail.pdf, id=1257, 853.68938pt x 995.9
+7093pt>
+File: images/Background/Pixart/Architekture_Detail.pdf Graphic file (type pdf)
+<use images/Background/Pixart/Architekture_Detail.pdf>
+Package pdftex.def Info: images/Background/Pixart/Architekture_Detail.pdf  used
+ on input line 29.
+(pdftex.def)             Requested size: 241.84843pt x 282.15257pt.
+
+
+[31 <./images/Background/Pixart/Architektur_Uebersicht.pdf>]
+
+[32 <./images/Background/Pixart/Architekture_Detail.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 76--77
+
+ []
+
+
+
+[33]
+<images/Background/Flux/Flux_Uebersicht.pdf, id=1361, 1422.99635pt x 1280.62436
+pt>
+File: images/Background/Flux/Flux_Uebersicht.pdf Graphic file (type pdf)
+<use images/Background/Flux/Flux_Uebersicht.pdf>
+Package pdftex.def Info: images/Background/Flux/Flux_Uebersicht.pdf  used on in
+put line 89.
+(pdftex.def)             Requested size: 483.69687pt x 435.30882pt.
+
+
+[34]
+
+[35 <./images/Background/Flux/Flux_Uebersicht.pdf>]
+<images/Background/Flux/SingleDoubleBlocks.pdf, id=1406, 1849.38928pt x 1138.25
+25pt>
+File: images/Background/Flux/SingleDoubleBlocks.pdf Graphic file (type pdf)
+<use images/Background/Flux/SingleDoubleBlocks.pdf>
+Package pdftex.def Info: images/Background/Flux/SingleDoubleBlocks.pdf  used on
+ input line 103.
+(pdftex.def)             Requested size: 483.69687pt x 297.69287pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+)
+
+[36 <./images/Background/Flux/SingleDoubleBlocks.pdf>]
+
 [37]
-\openout2 = `Pixart_Exp.aux'.
+\openout2 = `Methods_Experiments.aux'.
 
- (./Pixart_Exp.tex
-Chapter 5.
+ (./Methods_Experiments.tex
+Underfull \hbox (badness 10000) in paragraph at lines 81--82
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\Sigma' on input line 1.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1.
-
-<images/Experimente/PixArt_Block_Analysis/BlockImportance.pdf, id=1489, 963.359
-12pt x 853.50871pt>
-File: images/Experimente/PixArt_Block_Analysis/BlockImportance.pdf Graphic file
- (type pdf)
-<use images/Experimente/PixArt_Block_Analysis/BlockImportance.pdf>
-Package pdftex.def Info: images/Experimente/PixArt_Block_Analysis/BlockImportan
-ce.pdf  used on input line 8.
-(pdftex.def)             Requested size: 338.58632pt x 299.96976pt.
-
-Package natbib Warning: Citation `' on page 38 undefined on input line 13.
+ []
 
 
 
@@ -1211,66 +1178,16 @@ Package natbib Warning: Citation `' on page 38 undefined on input line 13.
 
 
 
+])
 
- <./images/Experimente/PixArt_Block_Analysis/BlockImportance.pdf>]
-<images/Experimente/Pixart_Block_Analysis/magnitude_vs_clip.png, id=1547, 787.7
-43pt x 385.6809pt>
-File: images/Experimente/Pixart_Block_Analysis/magnitude_vs_clip.png Graphic fi
-le (type png)
-<use images/Experimente/Pixart_Block_Analysis/magnitude_vs_clip.png>
-Package pdftex.def Info: images/Experimente/Pixart_Block_Analysis/magnitude_vs_
-clip.png  used on input line 23.
-(pdftex.def)             Requested size: 411.14528pt x 201.30261pt.
-<images/Experimente/Pixart_Block_Analysis/magnitude_vs_cmmd.png, id=1554, 787.7
-43pt x 385.6809pt>
-File: images/Experimente/Pixart_Block_Analysis/magnitude_vs_cmmd.png Graphic fi
-le (type png)
-<use images/Experimente/Pixart_Block_Analysis/magnitude_vs_cmmd.png>
-Package pdftex.def Info: images/Experimente/Pixart_Block_Analysis/magnitude_vs_
-cmmd.png  used on input line 33.
-(pdftex.def)             Requested size: 411.14528pt x 201.30261pt.
+[39]
+\openout2 = `Experiments.aux'.
 
-
-[39 <./images/Experimente/Pixart_Block_Analysis/magnitude_vs_clip.png>]
-<images/Experimente/Pixart_Block_Analysis/cka_vs_clip.png, id=1581, 787.743pt x
- 385.6809pt>
-File: images/Experimente/Pixart_Block_Analysis/cka_vs_clip.png Graphic file (ty
-pe png)
-<use images/Experimente/Pixart_Block_Analysis/cka_vs_clip.png>
-Package pdftex.def Info: images/Experimente/Pixart_Block_Analysis/cka_vs_clip.p
-ng  used on input line 44.
-(pdftex.def)             Requested size: 411.14528pt x 201.30261pt.
-
-
-[40 <./images/Experimente/Pixart_Block_Analysis/magnitude_vs_cmmd.png>]
-<images/Experimente/Pixart_Block_Analysis/cka_vs_cmmd.png, id=1597, 787.743pt x
- 385.6809pt>
-File: images/Experimente/Pixart_Block_Analysis/cka_vs_cmmd.png Graphic file (ty
-pe png)
-<use images/Experimente/Pixart_Block_Analysis/cka_vs_cmmd.png>
-Package pdftex.def Info: images/Experimente/Pixart_Block_Analysis/cka_vs_cmmd.p
-ng  used on input line 52.
-(pdftex.def)             Requested size: 411.14528pt x 201.30261pt.
-
-
-[41 <./images/Experimente/Pixart_Block_Analysis/cka_vs_clip.png> <./images/Expe
-rimente/Pixart_Block_Analysis/cka_vs_cmmd.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 62--64
-
- []
-
+ (./Experiments.tex
+Chapter 5.
 )
 
-[42]
-
-[43]
-\openout2 = `Flux_Exp.aux'.
-
- (./Flux_Exp.tex
-Chapter 6.
-)
-
-[44
+[40
 
 
 
@@ -1282,8 +1199,8 @@ Chapter 6.
 \openout2 = `Appendix.aux'.
 
  (./Appendix.tex
-Chapter 7.
-<images/Experimente/Pixart_Block_Analysis/cka_heatmap_100_thesis.png, id=1644, 
+Chapter 6.
+<images/Experimente/Pixart_Block_Analysis/cka_heatmap_100_thesis.png, id=1475, 
 790.152pt x 502.2765pt>
 File: images/Experimente/Pixart_Block_Analysis/cka_heatmap_100_thesis.png Graph
 ic file (type png)
@@ -1293,7 +1210,7 @@ Package pdftex.def Info: images/Experimente/Pixart_Block_Analysis/cka_heatmap_1
 (pdftex.def)             Requested size: 411.14528pt x 261.3539pt.
 )
 
-[45
+[41
 
 
 
@@ -1304,48 +1221,44 @@ Package pdftex.def Info: images/Experimente/Pixart_Block_Analysis/cka_heatmap_1
  <./images/Experimente/Pixart_Block_Analysis/cka_heatmap_100_thesis.png>]
 (./main.bbl
 
-[46
+[42
 
 
 
 ]
 
+[43]
+
+[44]
+
+[45]
+
+[46]
+
 [47]
 
 [48]
 
-[49]
+[49])
 
-[50]
-
-[51]
-
-[52]
-
-[53])
-
-Package natbib Warning: There were undefined citations.
-
-
-
-[54] (./main.aux (./titel_page.aux) (./introduction.aux)
+[50] (./main.aux (./titel_page.aux) (./introduction.aux)
 (./theory_generative_models.aux) (./theory_diffusion_models.aux)
 (./theory_fundamental_NN.aux) (./Distillation.aux) (./theory_metrics.aux)
-(./Models.aux) (./Related_Work.aux) (./Pixart_Exp.aux) (./Flux_Exp.aux)
-(./conclusion.aux) (./Appendix.aux))
+(./Related_Work.aux) (./Methods_Models.aux) (./Methods_Experiments.aux)
+(./Experiments.aux) (./conclusion.aux) (./Appendix.aux))
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 32541F05398A4ACDD33D23042ECB678A;11210.
+(rerunfilecheck)             Checksum: 413932C0CFBF3F81237388B4C24D9237;9173.
  ) 
 Here is how much of TeX's memory you used:
- 25624 strings out of 473190
- 455101 string characters out of 5715800
- 966683 words of memory out of 5000000
- 47968 multiletter control sequences out of 15000+600000
- 590072 words of font info for 129 fonts, out of 8000000 for 9000
+ 25539 strings out of 473190
+ 452489 string characters out of 5715800
+ 966223 words of memory out of 5000000
+ 47892 multiletter control sequences out of 15000+600000
+ 582001 words of font info for 97 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,18n,96p,2365b,1090s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
@@ -1358,29 +1271,28 @@ ocal/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/l
 ocal/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib7.pfb></u
 sr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr
 /local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/l
-ocal/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/loc
-al/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/
-texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/tex
-live/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texl
-ive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texliv
-e/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/te
-xlive/2025/texmf-dist/fonts/type1/public/rsfs/rsfs10.pfb></usr/local/texlive/20
-25/texmf-dist/fonts/type1/public/rsfs/rsfs7.pfb></usr/local/texlive/2025/texmf-
-dist/fonts/type1/public/cm-super/sfbx0700.pfb></usr/local/texlive/2025/texmf-di
-st/fonts/type1/public/cm-super/sfbx1000.pfb></usr/local/texlive/2025/texmf-dist
-/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2025/texmf-dist/f
-onts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2025/texmf-dist/fon
-ts/type1/public/cm-super/sfbx2074.pfb></usr/local/texlive/2025/texmf-dist/fonts
-/type1/public/cm-super/sfbx2488.pfb></usr/local/texlive/2025/texmf-dist/fonts/t
-ype1/public/cm-super/sfrm0500.pfb></usr/local/texlive/2025/texmf-dist/fonts/typ
-e1/public/cm-super/sfrm0700.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1
-/public/cm-super/sfrm1000.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/p
-ublic/cm-super/sfti1000.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/pub
-lic/cm-super/sftt1000.pfb>
-Output written on main.pdf (63 pages, 4545622 bytes).
+ocal/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/loca
+l/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/t
+exlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/te
+xlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texl
+ive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/
+texlive/2025/texmf-dist/fonts/type1/public/rsfs/rsfs10.pfb></usr/local/texlive/
+2025/texmf-dist/fonts/type1/public/rsfs/rsfs7.pfb></usr/local/texlive/2025/texm
+f-dist/fonts/type1/public/cm-super/sfbx0700.pfb></usr/local/texlive/2025/texmf-
+dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/local/texlive/2025/texmf-di
+st/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2025/texmf-dist
+/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2025/texmf-dist/f
+onts/type1/public/cm-super/sfbx2074.pfb></usr/local/texlive/2025/texmf-dist/fon
+ts/type1/public/cm-super/sfbx2488.pfb></usr/local/texlive/2025/texmf-dist/fonts
+/type1/public/cm-super/sfrm0500.pfb></usr/local/texlive/2025/texmf-dist/fonts/t
+ype1/public/cm-super/sfrm0700.pfb></usr/local/texlive/2025/texmf-dist/fonts/typ
+e1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1
+/public/cm-super/sfti1000.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/p
+ublic/cm-super/sftt1000.pfb>
+Output written on main.pdf (59 pages, 2976121 bytes).
 PDF statistics:
- 1929 PDF objects out of 2073 (max. 8388607)
- 1663 compressed objects within 17 object streams
- 449 named destinations out of 1000 (max. 500000)
- 594 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1754 PDF objects out of 2073 (max. 8388607)
+ 1550 compressed objects within 16 object streams
+ 441 named destinations out of 1000 (max. 500000)
+ 505 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -13,6 +13,12 @@ Vivago AI.
 \newblock 2025.
 \newblock URL: \url{https://vivago.ai/home}.
 
+\bibitem{akiba2019optuna}
+Takuya Akiba, Shotaro Sano, Toshihiko Yanase, Takeru Ohta, and Masanori Koyama.
+\newblock Optuna: A next-generation hyperparameter optimization framework.
+\newblock In {\em Proceedings of the 25th ACM SIGKDD international conference
+  on knowledge discovery \& data mining}, pages 2623--2631, 2019.
+
 \bibitem{Anderson}
 Brian~DO Anderson.
 \newblock Reverse-time diffusion equation models.
@@ -41,6 +47,11 @@ Dzmitry Bahdanau, Kyunghyun Cho, and Yoshua Bengio.
 \newblock Neural machine translation by jointly learning to align and
   translate.
 \newblock {\em arXiv preprint arXiv:1409.0473}, 2014.
+
+\bibitem{bergstra2011algorithms}
+James Bergstra, R{\'e}mi Bardenet, Yoshua Bengio, and Bal{\'a}zs K{\'e}gl.
+\newblock Algorithms for hyper-parameter optimization.
+\newblock {\em Advances in neural information processing systems}, 24, 2011.
 
 \bibitem{ELBO}
 David~M Blei, Alp Kucukelbir, and Jon~D McAuliffe.
