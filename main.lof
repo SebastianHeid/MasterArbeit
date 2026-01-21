@@ -19,4 +19,9 @@
 \contentsline {figure}{\numberline {4.3}{\ignorespaces Overview Flux-dev architecture.}}{35}{figure.4.3}%
 \contentsline {figure}{\numberline {4.4}{\ignorespaces Single-stream block (left) and double-stream block (right) of Flux-dev. Graphics are adapted from \cite {FastFlux}.}}{36}{figure.4.4}%
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Qualitative analyse of the block sensitivitäy of PixArt-$\Sigma $}}{41}{figure.5.1}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Magnitude-base pruning vs \gls {CLIP}-score}}{42}{figure.5.2}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Magnitude-base pruning vs \gls {CMMD}}}{42}{figure.5.3}%
+\contentsline {figure}{\numberline {5.4}{\ignorespaces \gls {CKA} transformation intensity vs \gls {CLIP}-score}}{43}{figure.5.4}%
+\contentsline {figure}{\numberline {5.5}{\ignorespaces \gls {CKA} transformation intensity vs \gls {CMMD}}}{43}{figure.5.5}%
 \addvspace {10\p@ }

@@ -8,10 +8,10 @@ A level-1 auxiliary file: theory_diffusion_models.aux
 A level-1 auxiliary file: theory_fundamental_NN.aux
 A level-1 auxiliary file: Distillation.aux
 A level-1 auxiliary file: theory_metrics.aux
-A level-1 auxiliary file: Models.aux
 A level-1 auxiliary file: Related_Work.aux
-A level-1 auxiliary file: Pixart_Exp.aux
-A level-1 auxiliary file: Flux_Exp.aux
+A level-1 auxiliary file: Methods_Models.aux
+A level-1 auxiliary file: Methods_Experiments.aux
+A level-1 auxiliary file: Experiments.aux
 A level-1 auxiliary file: conclusion.aux
 A level-1 auxiliary file: Appendix.aux
 The style file: plainurl.bst
@@ -21,11 +21,10 @@ Reallocated glb_str_end (elt_size=4) to 20 items from 10.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: bibliography.bib
-Repeated entry---line 910 of file bibliography.bib
+Repeated entry---line 941 of file bibliography.bib
  : @article{KnowledgeDistillation
  :                               ,
 I'm skipping whatever remains of this entry
-Warning--I didn't find a database entry for ""
 Warning--empty journal in HiDream
 Warning--empty journal in Claude
 Warning--empty year in WGAN
@@ -56,45 +55,45 @@ Warning--empty journal in ConsistencyModel
 Warning--empty year in SlicedScoreMatching
 Warning--empty year in ModeCollapse1
 Warning--empty year in DistillationMatching
-You've used 139 entries,
+You've used 143 entries,
             2943 wiz_defined-function locations,
-            1400 strings with 31474 characters,
-and the built_in function-call counts, 73449 in all, are:
-= -- 7152
-> -- 4005
-< -- 42
-+ -- 1491
-- -- 1348
-* -- 4364
-:= -- 10771
-add.period$ -- 444
-call.type$ -- 139
-change.case$ -- 1085
+            1418 strings with 32295 characters,
+and the built_in function-call counts, 75495 in all, are:
+= -- 7348
+> -- 4134
+< -- 43
++ -- 1539
+- -- 1392
+* -- 4489
+:= -- 11085
+add.period$ -- 457
+call.type$ -- 143
+change.case$ -- 1118
 chr.to.int$ -- 0
-cite$ -- 169
-duplicate$ -- 2006
-empty$ -- 5971
-format.name$ -- 1348
-if$ -- 18349
+cite$ -- 173
+duplicate$ -- 2058
+empty$ -- 6127
+format.name$ -- 1392
+if$ -- 18853
 int.to.chr$ -- 0
-int.to.str$ -- 139
-missing$ -- 133
-newline$ -- 705
-num.names$ -- 278
-pop$ -- 1896
+int.to.str$ -- 143
+missing$ -- 137
+newline$ -- 725
+num.names$ -- 286
+pop$ -- 1950
 preamble$ -- 1
-purify$ -- 946
+purify$ -- 975
 quote$ -- 0
-skip$ -- 4573
+skip$ -- 4698
 stack$ -- 0
-substring$ -- 2816
-swap$ -- 602
-text.length$ -- 48
+substring$ -- 2863
+swap$ -- 614
+text.length$ -- 49
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 556
+type$ -- 572
 warning$ -- 30
-while$ -- 413
-width$ -- 142
-write$ -- 1487
+while$ -- 425
+width$ -- 146
+write$ -- 1530
 (There was 1 error message)
