@@ -14,20 +14,49 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.2.1}Block Selction Criterias}{38}{subsection.4.2.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{Magnitude-Pruning}{38}{section*.24}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{Representational Similarity Analysis}{38}{section*.25}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.2}Block Selection Algorithms}{38}{subsection.4.2.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{Black-Box Optimization with Optuna}{38}{section*.26}\protected@file@percent }
 \citation{hu2022lora}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.2}TinyFusion}{39}{subsection.4.2.2}\protected@file@percent }
+\citation{schuhmann2022laion}
+\citation{schuhmann2022laionaesthetic}
+\citation{fpgaminer2024joycaption}
+\@writefile{toc}{\contentsline {subsubsection}{TinyFusion}{39}{section*.27}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {4.3}Training Data and Image Synthesis}{39}{section.4.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.1}Training Data}{39}{subsection.4.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{LAION}{39}{section*.27}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.2}Evaluation Data}{39}{subsection.4.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4.4}Structural Compression Strategies}{39}{section.4.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.1}SVD Compression}{39}{subsection.4.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4.5}Knowledge Distillation Loss Functions}{39}{section.4.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.5.1}Objective Functions for Performance Recovery}{39}{subsection.4.5.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.5.2}Feature Alignment Strategies}{39}{subsection.4.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.1}Training Datasets}{39}{subsection.4.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{LAION Aesthetic}{39}{section*.28}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4.5}{\ignorespaces Example of LAION Dataset}}{39}{figure.4.5}\protected@file@percent }
+\newlabel{fig:LaionDataset}{{4.5}{39}{Example of LAION Dataset}{figure.4.5}{}}
+\@writefile{toc}{\contentsline {subsubsection}{LAION Pixart-$\Sigma $ Dataset}{40}{section*.29}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4.3}{\ignorespaces Inference Parameters}}{40}{table.4.3}\protected@file@percent }
+\newlabel{tab:PixartGeneratedDataset}{{4.3}{40}{Inference Parameters}{table.4.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.6}{\ignorespaces PixArt-$\Sigma $ generated dataset}}{40}{figure.4.6}\protected@file@percent }
+\newlabel{fig:PixartGeneratedDataset}{{4.6}{40}{PixArt-$\Sigma $ generated dataset}{figure.4.6}{}}
+\@writefile{toc}{\contentsline {subsubsection}{LAION Flux Dataset}{40}{section*.30}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4.4}{\ignorespaces Inference Parameters}}{40}{table.4.4}\protected@file@percent }
+\newlabel{tab:FluxLaionDataset}{{4.4}{40}{Inference Parameters}{table.4.4}{}}
+\citation{neuhold2017mapillary}
+\citation{cordts2016cityscapes}
+\citation{li2024playground}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.7}{\ignorespaces Flux-dev generated dataset}}{41}{figure.4.7}\protected@file@percent }
+\newlabel{fig:FluxLaionDataset}{{4.7}{41}{Flux-dev generated dataset}{figure.4.7}{}}
+\newlabel{fig:PixArtBlockMagnitudeCLIP}{{4.7}{41}{Flux-dev generated dataset}{figure.4.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.2}Evaluation Datasets}{41}{subsection.4.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Mapillary}{41}{section*.31}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4.8}{\ignorespaces Examples of Mapillary Dataset}}{41}{figure.4.8}\protected@file@percent }
+\newlabel{fig:MapillaryDataset}{{4.8}{41}{Examples of Mapillary Dataset}{figure.4.8}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Cityscapes}{41}{section*.32}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4.9}{\ignorespaces Examples of Cityscapes Dataset}}{41}{figure.4.9}\protected@file@percent }
+\newlabel{fig:CityscapesDataset}{{4.9}{41}{Examples of Cityscapes Dataset}{figure.4.9}{}}
+\@writefile{toc}{\contentsline {subsubsection}{MHJQ-30k}{41}{section*.33}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4.10}{\ignorespaces Examples of MHJQ-30k Dataset}}{41}{figure.4.10}\protected@file@percent }
+\newlabel{fig:CMHJQDataset}{{4.10}{41}{Examples of MHJQ-30k Dataset}{figure.4.10}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.4}Structural Compression Strategies}{42}{section.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.1}SVD Compression}{42}{subsection.4.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4.5}Knowledge Distillation Loss Functions}{42}{section.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5.1}Objective Functions for Performance Recovery}{42}{subsection.4.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5.2}Feature Alignment Strategies}{42}{subsection.4.5.2}\protected@file@percent }
 \@setckpt{Methods_Experiments}{
-\setcounter{page}{40}
+\setcounter{page}{43}
 \setcounter{equation}{4}
 \setcounter{enumi}{6}
 \setcounter{enumii}{0}
@@ -42,8 +71,8 @@
 \setcounter{subsubsection}{0}
 \setcounter{paragraph}{0}
 \setcounter{subparagraph}{0}
-\setcounter{figure}{4}
-\setcounter{table}{2}
+\setcounter{figure}{10}
+\setcounter{table}{4}
 \setcounter{parentequation}{0}
 \setcounter{caption@flags}{2}
 \setcounter{continuedfloat}{0}

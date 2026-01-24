@@ -136,6 +136,13 @@ Krzysztof Choromanski, Valerii Likhosherstov, David Dohan, Xingyou Song,
 \newblock Rethinking attention with performers.
 \newblock {\em arXiv preprint arXiv:2009.14794}, 2020.
 
+\bibitem{cordts2016cityscapes}
+Marius Cordts, Mohamed Omran, Sebastian Ramos, Timo Rehfeld, Markus Enzweiler,
+  Rodrigo Benenson, Uwe Franke, Stefan Roth, and Bernt Schiele.
+\newblock The cityscapes dataset for semantic urban scene understanding.
+\newblock In {\em Proceedings of the IEEE conference on computer vision and
+  pattern recognition}, pages 3213--3223, 2016.
+
 \bibitem{SurveyDM}
 Florinel-Alin Croitoru, Vlad Hondru, Radu~Tudor Ionescu, and Mubarak Shah.
 \newblock Diffusion models in vision: A survey.
@@ -232,6 +239,12 @@ William Feller.
 Determine Filters’Importance.
 \newblock Pruning filters for efficient convnets.
 \newblock {\em arXiv preprint arXiv:1608.08710}, 2016.
+
+\bibitem{fpgaminer2024joycaption}
+fpgaminer.
+\newblock {JoyCaption}: An open, uncensored image captioning {VLM}.
+\newblock \url{https://github.com/fpgaminer/joycaption}, 2024.
+\newblock Accessed: 2026-01-22.
 
 \bibitem{ghosh2023geneval}
 Dhruba Ghosh, Hannaneh Hajishirzi, and Ludwig Schmidt.
@@ -440,6 +453,13 @@ C~Li, H~Xu, J~Tian, W~Wang, M~Yan, B~Bi, J~Ye, H~Chen, G~Xu, Z~Cao, et~al.
   cross-modal skip-connections. arxiv 2022.
 \newblock {\em arXiv preprint arXiv:2205.12005}, 1, 2022.
 
+\bibitem{li2024playground}
+Daiqing Li, Aleks Kamko, Ehsan Akhgari, Ali Sabet, Linmiao Xu, and Suhail
+  Doshi.
+\newblock Playground v2.5: Three insights towards enhancing aesthetic quality
+  in text-to-image generation, 2024.
+\newblock \href {https://arxiv.org/abs/2402.17245} {\path{arXiv:2402.17245}}.
+
 \bibitem{FIRE}
 Shanda Li, Chong You, Guru Guruganesh, Joshua Ainslie, Santiago Ontanon, Manzil
   Zaheer, Sumit Sanghai, Yiming Yang, Sanjiv Kumar, and Srinadh Bhojanapalli.
@@ -527,6 +547,13 @@ Chenlin Meng, Robin Rombach, Ruiqi Gao, Diederik Kingma, Stefano Ermon,
 \newblock On distillation of guided diffusion models.
 \newblock In {\em Proceedings of the IEEE/CVF Conference on Computer Vision and
   Pattern Recognition}, pages 14297--14306.
+
+\bibitem{neuhold2017mapillary}
+Gerhard Neuhold, Tobias Ollmann, Samuel Rota~Bulo, and Peter Kontschieder.
+\newblock The mapillary vistas dataset for semantic understanding of street
+  scenes.
+\newblock In {\em Proceedings of the IEEE international conference on computer
+  vision}, pages 4990--4999, 2017.
 
 \bibitem{ImprovedDDPM}
 Alexander~Quinn Nichol and Prafulla Dhariwal.
@@ -681,6 +708,25 @@ Axel Sauer, Dominik Lorenz, Andreas Blattmann, and Robin Rombach.
 \newblock Adversarial diffusion distillation.
 \newblock In {\em European Conference on Computer Vision}, pages 87--103.
   Springer.
+
+\bibitem{schuhmann2022laion}
+Christoph Schuhmann, Romain Beaumont, Richard Vencu, Cade Gordon, Ross
+  Wightman, Mehdi Cherti, Theo Coombes, Aarush Katta, Clayton Mullis, Mitchell
+  Wortsman, et~al.
+\newblock Laion-5b: An open large-scale dataset for training next generation
+  image-text models.
+\newblock {\em Advances in neural information processing systems},
+  35:25278--25294, 2022.
+
+\bibitem{schuhmann2022laionaesthetic}
+Christoph Schuhmann, Romain Beaumont, Richard Vencu, Cade Gordon, Ross
+  Wightman, Mehdi Cherti, Theo Coombes, Aarush Katta, Clayton Mullis, Mitchell
+  Wortsman, et~al.
+\newblock {LAION-Aesthetic} v1.
+\newblock
+  \url{https://github.com/LAION-AI/laion-datasets/blob/main/laion-aesthetic.md},
+  2022.
+\newblock Accessed: 2026-01-22.
 
 \bibitem{Objects365}
 Shuai Shao, Zeming Li, Tianyuan Zhang, Chao Peng, Gang Yu, Xiangyu Zhang, Jing
