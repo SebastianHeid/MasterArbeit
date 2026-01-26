@@ -69,18 +69,23 @@
 \contentsline {subsection}{\numberline {4.3.2}Evaluation Datasets}{41}{subsection.4.3.2}%
 \contentsline {subsubsection}{Mapillary}{41}{section*.31}%
 \contentsline {subsubsection}{Cityscapes}{41}{section*.32}%
-\contentsline {subsubsection}{MHJQ-30k}{41}{section*.33}%
+\contentsline {subsubsection}{MJHQ-30k}{42}{section*.33}%
 \contentsline {section}{\numberline {4.4}Structural Compression Strategies}{42}{section.4.4}%
-\contentsline {subsection}{\numberline {4.4.1}SVD Compression}{42}{subsection.4.4.1}%
-\contentsline {section}{\numberline {4.5}Knowledge Distillation Loss Functions}{42}{section.4.5}%
-\contentsline {subsection}{\numberline {4.5.1}Objective Functions for Performance Recovery}{42}{subsection.4.5.1}%
-\contentsline {subsection}{\numberline {4.5.2}Feature Alignment Strategies}{42}{subsection.4.5.2}%
-\contentsline {chapter}{\numberline {5}Experiments}{43}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Pixart-$\Sigma $ Distillation}{43}{section.5.1}%
-\contentsline {subsection}{\numberline {5.1.1}Block Importance Analysis}{43}{subsection.5.1.1}%
-\contentsline {subsubsection}{Compression Criteria}{44}{section*.34}%
-\contentsline {subsubsection}{Blocks Selection Algorithms}{47}{section*.35}%
-\contentsline {chapter}{\numberline {6}Appendix}{49}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Appendix A}{49}{section.6.1}%
-\contentsline {subsection}{\numberline {6.1.1}Block Analysis}{49}{subsection.6.1.1}%
-\contentsline {chapter}{Bibliography}{50}{chapter*.36}%
+\contentsline {subsection}{\numberline {4.4.1}Block Removal}{42}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}SVD Compression}{43}{subsection.4.4.2}%
+\contentsline {section}{\numberline {4.5}Knowledge Distillation Loss Functions}{43}{section.4.5}%
+\contentsline {subsection}{\numberline {4.5.1}Objective Functions for Performance Recovery}{43}{subsection.4.5.1}%
+\contentsline {subsection}{\numberline {4.5.2}Feature Alignment Strategies}{43}{subsection.4.5.2}%
+\contentsline {section}{\numberline {4.6}Distillation Algorithms}{43}{section.4.6}%
+\contentsline {subsection}{\numberline {4.6.1}Direct Distillation}{43}{subsection.4.6.1}%
+\contentsline {subsection}{\numberline {4.6.2}Iterative Distillation}{43}{subsection.4.6.2}%
+\contentsline {subsection}{\numberline {4.6.3}Linear Compression Ratio}{43}{subsection.4.6.3}%
+\contentsline {chapter}{\numberline {5}Experiments}{44}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Pixart-$\Sigma $ Distillation}{44}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}Block Importance Analysis}{44}{subsection.5.1.1}%
+\contentsline {subsubsection}{Compression Criteria}{45}{section*.34}%
+\contentsline {subsubsection}{Blocks Selection Algorithms}{48}{section*.35}%
+\contentsline {chapter}{\numberline {6}Appendix}{50}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Appendix A}{50}{section.6.1}%
+\contentsline {subsection}{\numberline {6.1.1}Block Analysis}{50}{subsection.6.1.1}%
+\contentsline {chapter}{Bibliography}{51}{chapter*.36}%

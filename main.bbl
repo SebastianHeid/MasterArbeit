@@ -403,6 +403,14 @@ Alexander Kirillov, Eric Mintun, Nikhila Ravi, Hanzi Mao, Chloe Rolland, Laura
 \newblock In {\em Proceedings of the IEEE/CVF international conference on
   computer vision}, pages 4015--4026, 2023.
 
+\bibitem{kirstain2023pick}
+Yuval Kirstain, Adam Polyak, Uriel Singer, Shahbuland Matiana, Joe Penna, and
+  Omer Levy.
+\newblock Pick-a-pic: An open dataset of user preferences for text-to-image
+  generation.
+\newblock {\em Advances in neural information processing systems},
+  36:36652--36663, 2023.
+
 \bibitem{Reformer}
 Nikita Kitaev, Łukasz Kaiser, and Anselm Levskaya.
 \newblock Reformer: The efficient transformer.
@@ -863,6 +871,12 @@ Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones,
 \newblock Attention is all you need.
 \newblock {\em Advances in neural information processing systems}, 30, 2017.
 
+\bibitem{SVD_LLM_V2}
+Xin Wang, Samiul Alam, Zhongwei Wan, Hui Shen, and Mi~Zhang.
+\newblock Svd-llm v2: Optimizing singular value truncation for large language
+  model compression.
+\newblock {\em arXiv preprint arXiv:2503.12340}, 2025.
+
 \bibitem{DiffusionDB}
 Zijie~J Wang, Evan Montoya, David Munechika, Haoyang Yang, Benjamin Hoover, and
   Duen~Horng Chau.
@@ -912,6 +926,13 @@ Jiahui Yu, Yuanzhong Xu, Jing~Yu Koh, Thang Luong, Gunjan Baid, Zirui Wang,
   generation.
 \newblock {\em arXiv preprint arXiv:2206.10789}, 2(3):5, 2022.
 
+\bibitem{ASVD}
+Zhihang Yuan, Yuzhang Shang, Yue Song, Dawei Yang, Qiang Wu, Yan Yan, and
+  Guangyu Sun.
+\newblock Asvd: Activation-aware singular value decomposition for compressing
+  large language models.
+\newblock {\em arXiv preprint arXiv:2312.05821}, 2023.
+
 \bibitem{RMSNorm}
 Biao Zhang and Rico Sennrich.
 \newblock Root mean square layer normalization.
@@ -933,6 +954,11 @@ Lvmin Zhang, Anyi Rao, and Maneesh Agrawala.
 Qinsheng Zhang and Yongxin Chen.
 \newblock Fast sampling of diffusion models with exponential integrator.
 \newblock {\em arXiv preprint arXiv:2204.13902}, 2022.
+
+\bibitem{zhang2015singular}
+Zhihua Zhang.
+\newblock The singular value decomposition, applications and beyond.
+\newblock {\em arXiv preprint arXiv:1510.08532}, 2015.
 
 \bibitem{Dense2MoE}
 Youwei Zheng, Yuxi Ren, Xin Xia, Xuefeng Xiao, and Xiaohua Xie.

@@ -19,6 +19,7 @@ This calculation utilizes the Hilbert-Schmidt Independence Criterion (\gls{HSIC}
 
 
 \subsection{Block Selection Algorithms}
+\label{sec:BlockSelectionAlgo}
 \subsubsection{Black-Box Optimization with Optuna}
 Optuna \cite{akiba2019optuna} is an open-source hyperparameter optimization framework. It primarily leverages a tree-strucured parzen estimator \cite{bergstra2011algorithms}, a bayesian optimization algorithms, to search the space of all possible hyperparmeter settings. It partitions the observed hyperparameter configurations into promising and non-promising candidates based on a user defined objective function. By modeling these two groups using probability density functions it draws a new set of hyperparameters that belongs to the promising group  with high probability. Through this informed search the global optimum can be found much faster than with non-adaptive methods like random or grid search. For an in-depth descritption of the Optuna algorithm the reader is refered to the original paper \cite{akiba2019optuna} because this would go beyond the scope of this work. \\
 
@@ -102,23 +103,26 @@ Following the same methodology as for the LAION-PixArt dataset a LAION Flux data
 \end{figure}
 \subsection{Evaluation Datasets}
 \subsubsection{Mapillary}
-Mapillary \cite{neuhold2017mapillary}
+The Mapillary \cite{neuhold2017mapillary} dataset consists of 25,000 street level images. Additionally, it contains fine-grained semantic masks for 66 different object classes. In order to achieve high diversity, the images originate from various geographical regions, e.g., Europe, North and South America, Africa, Wider Geographic Oceania, Asia, and were captured during different seasons and at varying times of day with diverse lighting conditions. In addition, no image sequences, which are often recorded by car cameras, were integrated, only individual and unique images to avoid redundancy. Most of the images were taken from the street or sidewalk. These were supplemented by images taken on highways, in rural areas, and off-road environments. The use of different camera sensors and perspectives contribute to the diversity of the dataset. For quality assurance, only images with at least full HD resolution ($1920 \times 1080$) were selected that contain only a small amount of motion blurr. Due to privacy protection faces and number plates are blurred.
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.85\textwidth]{images/Methoden/Mapillary_Dataset.pdf}
 	\caption[Examples of Mapillary Dataset]{Examples of Mapillary dataset. }
 	\label{fig:MapillaryDataset}
 \end{figure}
+
 \subsubsection{Cityscapes}
-\cite{cordts2016cityscapes}
+The Cityscapes \cite{cordts2016cityscapes} dataset contains a total of 25,000 images ($1024 \times 2048$) extracted from stereo-video-sequences of urban street scenes. The images were captured at 50 different cities, in spring, summer or fall. However, there are only images taken during daylight hours and in good to moderate weather conditions. While 20,000 images provide coarse annotations, 5,000 images of the dataset are densely annotated at pixel level covering 30 different object classes.  The data set is highly relevant for the automotive sector, e.g., autonomous driving but is due to its high degree of standardization less diverse than the Mapillary dataset.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.85\textwidth]{images/Methoden/Cityscapes_Dataset.pdf}
 	\caption[Examples of Cityscapes Dataset]{Examples of Cityscapes dataset. }
 	\label{fig:CityscapesDataset}
 \end{figure}
-\subsubsection{MHJQ-30k}
-\cite{li2024playground}
+\subsubsection{MJHQ-30k}
+The MJHQ-30k \cite{li2024playground} dataset consists of 30,000 synthetic images from ten different categories (animals, art, fashion, food, indoor, landscape, logo, people, plants, vehicles) each containing 3,000 images to ensure a balanced distribution. These images were generated using Midjourney 5.2 \cite{li2024playground} and selected based on their text-alignmen (\gls{CLIP}) and their aesthetic \cite{kirstain2023pick} scores. 
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.85\textwidth]{images/Methoden/MHJQ_30k_Dataset.pdf}
@@ -127,10 +131,45 @@ Mapillary \cite{neuhold2017mapillary}
 \end{figure}
 
 \section{Structural Compression Strategies}
+There are two primary strategies in structural model distillation. On the one hand, individual parts can be removed completly from the model, or, on the other hand, individual parts can be compressed. The selection strategies of the individual parts are presented in sec. \ref{sec:BlockSelectionAlgo}. In this work, we investigated both compression strategies.
+\subsection{Block Removal}
+In structural model distillation, entire functional components of a model are often removed completely \cite{Bksdm, Laptop, Koala} while others that are considered as highly relevant for the models performance are maintained. In transformer-based architectures like PixArt-$\Sigma$ and Flux-dev, a natural choice is to dissect the model according to the individual transformer blocks and remove them entirely if they are identified as the least important. Concretely, if block $B_i$ is removed the output features of block $B_{i-1}$ denoted as $x_{i-1}$ are directly passed to block $B_{i+1}$
+
+\begin{equation}
+x_{i+1} = B_{i+1}(x_{i-1}) \quad.
+\end{equation}
+
+
+Due to consistent dimensionality of the hidden features across the model's depth no additional dimension adaption needs to be done. 
 \subsection{SVD Compression}
+Singular value decomposition (\gls{SVD}) \cite{zhang2015singular} factorizes a matrix $W \in \mathbb{R}^{n \times m}$ into three matrices $U, \Sigma, V$ such that 
+\begin{equation}
+W = U \Sigma V^T
+\end{equation}
+where $U \in \mathbb{R}^{n \times n}$ and $V \in \mathbb{R}^{m \times m}$ are orthonormal and $\Sigma \in \mathbb{R}^{n \times m}$ a diagonal matrix. The values of $\Sigma$ are called singular values and are sorted in descending order $\sigma_1 \geq \sigma_2 \geq \sigma_3 \dots \sigma_p$ with $p = \min(n,m)$. The magnitude of the singular value serves as proxy for the importance of the corresponding rows and columns of $U$ and $V$. In model compression \cite{SVD_LLM_V2,ASVD}, \gls{SVD} can be leveraged to approximate the weight matrices by just using the $k <p$ largest singular values such that $U_\text{red} \in \mathbb{R}^{n \times k}$, $V_\text{red} \in \mathbb{R}^{m \times k}$ and $\Sigma_\text{red} \in \mathbb{R}^{k \times k}$ reducing the total parameter count in dependence of the choice of $k$. Specifically, the matrix $W$ is approximated by two matrices $A=U_\text{red}\sqrt{\Sigma_\text{red}}$ and $B=\sqrt{\Sigma_\text{red}}V_\text{red}^T$. Let $\mathbf{x}$ be the features then instead of $\mathbf{x}_\text{next} = W\mathbf{x} + \mathbf{b} $ the features are updated via 
+\begin{equation}
+	\mathbf{x}_\text{next} =AB \mathbf{x} +  \mathbf{b}
+\end{equation}
+where $ \mathbf{b}$ is the bias term which is kept unmodified.
+Instead of specifying a specific rank $k$ we want to specify the ratio $r$ of parameters to remove. Assuming the weight matrix $W \in \mathbb{R}^{n \times m}$ the total number of parameters is given by $P_\text{orig} = n \times m$. The target number of parameters can be computed via $P_{\text{targ}} = P_{\text{orig}} \times (1.0 - r)$. The target rank is given by 
+\begin{equation}
+	k_{\text{targ}} = \max\left(1, \text{int}\left(\frac{P_{\text{targ}}}{n+m}\right)\right) \quad.
+\end{equation}
 
 
+\begin{figure}[t]
+	\centering
+		\includegraphics[width=\textwidth]{images/Methoden/CompressionRemovalScheme.pdf}
+		\caption{Example of removal (left) and compression (right) strategy based on PixArt-$\Sigma$ architecture.}
+		\label{fig:CompRemScheme}
+\end{figure}
 
 \section{Knowledge Distillation Loss Functions}
 \subsection{Objective Functions for Performance Recovery}
 \subsection{Feature Alignment Strategies}
+
+
+\section{Distillation Algorithms}
+\subsection{Direct Distillation}
+\subsection{Iterative Distillation}
+\subsection{Linear Compression Ratio}
