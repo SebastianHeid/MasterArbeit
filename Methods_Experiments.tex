@@ -160,16 +160,58 @@ Instead of specifying a specific rank $k$ we want to specify the ratio $r$ of pa
 \begin{figure}[t]
 	\centering
 		\includegraphics[width=\textwidth]{images/Methoden/CompressionRemovalScheme.pdf}
-		\caption{Example of removal (left) and compression (right) strategy based on PixArt-$\Sigma$ architecture.}
+		\caption{Example of removal (left) and compression (right) strategy based on a simplified representation of PixArt-$\Sigma$ architecture. The depictions show the case that the blocks 8,11,15,17 and 20 are removed or compressed. }
 		\label{fig:CompRemScheme}
 \end{figure}
 
+\subsection{Iteratively Repeated SVD Compression}
+In certain distillation setups, we adopt an iterative \gls{SVD} approach (see sec. \ref{sec:distillationAlgos}), which involves an iterative compression and finetuning scheme. In this approach, the original weight matrix $W$ is gradually compressed. Let $j$ denote the number of compressions already performed for the corresponding weight matrix. To compress it a $(j+1)^\text{th}$ time, first the full matrix based on the finetuned matrices $A^{(j)}$ and $B^{(j)}$, namely $W^{(j)} = A^{(j)}B^{(j)}$ is constructed. Then, \gls{SVD} is performed to obtain $W^{(j)} = U^{(j+1)} \Sigma^{(j+1)} V^{(j+1)^T}$. Assuming $k^{(j)}$ is the rank of the $j^{\text{th}}$ compression, a new smaller rank $k^{(j+1)} < k^{(j)} $ is used to obtain $A^{(j+1)} = U^{(j+1)}_\text{red} \sqrt{\Sigma_\text{red}^{(j+1)}}$  and $B^{(j+1)} =  \sqrt{\Sigma_\text{red}^{(j+1)}}V_\text{red}^{(j+1)^T}  $ which are then used as the new approximation for the weight matrix. This strategy allows the compression of individual blocks multiple times less intensely. 
+
 \section{Knowledge Distillation Loss Functions}
-\subsection{Objective Functions for Performance Recovery}
+As learning objective, different versions of the loss from eq. \ref{eq:KnowledgeDistillationLoss}
+\begin{equation}
+	\mathcal{L} = \mathcal{L_\text{Task}} + \lambda_\text{OutKD} \mathcal{L_\text{OutKD}} + \lambda_\text{FeatKD} \mathcal{L_\text{FeatKD}}
+\end{equation}
+(repeated here for convenience) are investigated which are described in the experiment section in more detailed. An important point to note is that the features of different blocks may have varying magnitudes. Therefore, after computing the difference between the teacher and the studen features a normalization is applied such as the individual blocks contribute equally to $\mathcal{L_\text{FeatKD}}$. The normalization which is utilized for this works is taken from \cite{Dense2MoE}.  Let $T_l$ and $S_l$ denote the features of the teacher and the student from transformer block $l \in \{1,\dots,L\}$. For a batch size of B, each feature tensor has the dimension $(B,D_l)$ where $D_l$ is the total numbers of flattened features. The $i$-th sample in the batch for layer $l$ is denoted as $T_{i,l}$ and respectively $S_{i,l}$.  
+First, the \gls{MSE} is computed between the teacher and the student featurs 
+\begin{equation}
+\mathcal{L}_{i,l} = \frac{1}{D_l} || T_{i,l} - S_{i,l}||_2^2
+\end{equation}
+Next, the root-mean square of the teacher features is computed acting as measure for the feature magnitude
+\begin{equation}
+ \eta_{i,l} = \sqrt{\frac{1}{D_l} ||T_{i,l}||^2_2}
+\end{equation}
+Additionally, the loss is scaled by the magnitude of the task loss $\mathcal{L}_{i,\text{Task}}$. The normalization factor is then given by
+
+\begin{equation}
+	w_{i,l} = \underbrace{\left( \frac{\mathcal{L}_{i,\text{Task}}}{\mathcal{L}_{i,l} + \epsilon} \right)}_{\text{Loss Balancing}} \cdot \underbrace{\left( \frac{\sum_{k=1}^{L} \eta_{i,k}}{L \cdot \eta_{i,l} + \epsilon} \right)}_{\text{Norm Normalization}}
+\end{equation}
+where a small $\epsilon$ is added to the denominator to prevent devision by zero. The final feature loss is then computed by
+\begin{equation}
+	\mathcal{L}_\text{FeatKD} = \frac{1}{B}\sum_{i=1}^{B} \left(\frac{1}{L} \sum_{l=1}^{L} w_{i,l} \cdot \mathcal{L}_{i,l}\right) \quad.
+\end{equation}
+Please note, if the normalization is applied it is not only applied to $\mathcal{L}_\text{FeatKD}$ but also to $\mathcal{L_\text{OutKD}}$ which compares the final output of the teacher with the studen model.
+\subsection{Feature Distribution for Loss Computation}
+
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=\textwidth]{images/Methoden/LossRemoval.pdf}
+	\caption{ }
+	\label{fig:LossRemoval}
+\end{figure}
+
+
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=\textwidth]{images/Methoden/LossCompression.pdf}
+	\caption{ }
+	\label{fig:LossCompression}
+\end{figure}
 \subsection{Feature Alignment Strategies}
 
 
 \section{Distillation Algorithms}
+\label{sec:distillationAlgos}
 \subsection{Direct Distillation}
 \subsection{Iterative Distillation}
 \subsection{Linear Compression Ratio}

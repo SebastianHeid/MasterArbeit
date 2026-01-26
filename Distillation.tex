@@ -17,6 +17,7 @@ This idea has been adapted to train smaller versions of diffusion \cite{Bksdm,La
 
   Additionally, the original diffusion loss $\mathcal{L_\text{Task}}$ is taken into account too such that the final loss is given by 
 \begin{equation}
+	\label{eq:KnowledgeDistillationLoss}
 	\mathcal{L} = \mathcal{L_\text{Task}} + \lambda_\text{OutKD} \mathcal{L_\text{OutKD}} + \lambda_\text{FeatKD} \mathcal{L_\text{FeatKD}}
 \end{equation}
 where $\mathcal{L_\text{Task}}$ is the standard diffusion loss, $\mathcal{L_\text{FeatKD}}$ is the loss computed between the intermediate features and $\mathcal{L_\text{OutKD}}$ is the loss computed between the final predictions of the student and the teacher model.
