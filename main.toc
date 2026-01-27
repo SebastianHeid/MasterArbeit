@@ -58,35 +58,35 @@
 \contentsline {subsection}{\numberline {4.2.1}Block Selction Criterias}{38}{subsection.4.2.1}%
 \contentsline {subsubsection}{Magnitude-Pruning}{38}{section*.24}%
 \contentsline {subsubsection}{Representational Similarity Analysis}{38}{section*.25}%
-\contentsline {subsection}{\numberline {4.2.2}Block Selection Algorithms}{38}{subsection.4.2.2}%
-\contentsline {subsubsection}{Black-Box Optimization with Optuna}{38}{section*.26}%
-\contentsline {subsubsection}{TinyFusion}{39}{section*.27}%
+\contentsline {subsubsection}{Metric Based Selection}{38}{section*.26}%
+\contentsline {subsection}{\numberline {4.2.2}Block Selection Algorithms}{39}{subsection.4.2.2}%
+\contentsline {subsubsection}{Black-Box Optimization with Optuna}{39}{section*.27}%
+\contentsline {subsubsection}{TinyFusion}{39}{section*.28}%
 \contentsline {section}{\numberline {4.3}Training Data and Image Synthesis}{39}{section.4.3}%
 \contentsline {subsection}{\numberline {4.3.1}Training Datasets}{39}{subsection.4.3.1}%
-\contentsline {subsubsection}{LAION Aesthetic}{39}{section*.28}%
-\contentsline {subsubsection}{LAION Pixart-$\Sigma $ Dataset}{40}{section*.29}%
-\contentsline {subsubsection}{LAION Flux Dataset}{40}{section*.30}%
+\contentsline {subsubsection}{LAION Aesthetic}{39}{section*.29}%
+\contentsline {subsubsection}{LAION Pixart-$\Sigma $ Dataset}{40}{section*.30}%
+\contentsline {subsubsection}{LAION Flux Dataset}{40}{section*.31}%
 \contentsline {subsection}{\numberline {4.3.2}Evaluation Datasets}{41}{subsection.4.3.2}%
-\contentsline {subsubsection}{Mapillary}{41}{section*.31}%
-\contentsline {subsubsection}{Cityscapes}{41}{section*.32}%
-\contentsline {subsubsection}{MJHQ-30k}{42}{section*.33}%
+\contentsline {subsubsection}{Mapillary}{41}{section*.32}%
+\contentsline {subsubsection}{Cityscapes}{41}{section*.33}%
+\contentsline {subsubsection}{MJHQ-30k}{42}{section*.34}%
 \contentsline {section}{\numberline {4.4}Structural Compression Strategies}{42}{section.4.4}%
 \contentsline {subsection}{\numberline {4.4.1}Block Removal}{42}{subsection.4.4.1}%
 \contentsline {subsection}{\numberline {4.4.2}SVD Compression}{43}{subsection.4.4.2}%
 \contentsline {subsection}{\numberline {4.4.3}Iteratively Repeated SVD Compression}{43}{subsection.4.4.3}%
 \contentsline {section}{\numberline {4.5}Knowledge Distillation Loss Functions}{43}{section.4.5}%
-\contentsline {subsection}{\numberline {4.5.1}Feature Distribution for Loss Computation}{44}{subsection.4.5.1}%
-\contentsline {subsection}{\numberline {4.5.2}Feature Alignment Strategies}{44}{subsection.4.5.2}%
-\contentsline {section}{\numberline {4.6}Distillation Algorithms}{44}{section.4.6}%
-\contentsline {subsection}{\numberline {4.6.1}Direct Distillation}{44}{subsection.4.6.1}%
-\contentsline {subsection}{\numberline {4.6.2}Iterative Distillation}{44}{subsection.4.6.2}%
-\contentsline {subsection}{\numberline {4.6.3}Linear Compression Ratio}{44}{subsection.4.6.3}%
-\contentsline {chapter}{\numberline {5}Experiments}{46}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Pixart-$\Sigma $ Distillation}{46}{section.5.1}%
-\contentsline {subsection}{\numberline {5.1.1}Block Importance Analysis}{46}{subsection.5.1.1}%
-\contentsline {subsubsection}{Compression Criteria}{47}{section*.34}%
-\contentsline {subsubsection}{Blocks Selection Algorithms}{50}{section*.35}%
+\contentsline {subsection}{\numberline {4.5.1}Feature Mapping for Loss Computation}{44}{subsection.4.5.1}%
+\contentsline {section}{\numberline {4.6}Distillation Algorithms}{45}{section.4.6}%
+\contentsline {subsection}{\numberline {4.6.1}One-Shot Model Compression}{45}{subsection.4.6.1}%
+\contentsline {subsection}{\numberline {4.6.2}Progressive Model Compression}{45}{subsection.4.6.2}%
+\contentsline {subsection}{\numberline {4.6.3}Linear Compression Ratio}{45}{subsection.4.6.3}%
+\contentsline {chapter}{\numberline {5}Experiments}{47}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Pixart-$\Sigma $ Distillation}{47}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}Block Importance Analysis}{47}{subsection.5.1.1}%
+\contentsline {subsubsection}{Compression Criteria}{48}{section*.35}%
+\contentsline {subsubsection}{Blocks Selection Algorithms}{51}{section*.36}%
 \contentsline {chapter}{\numberline {6}Appendix}{52}{chapter.6}%
 \contentsline {section}{\numberline {6.1}Appendix A}{52}{section.6.1}%
 \contentsline {subsection}{\numberline {6.1.1}Block Analysis}{52}{subsection.6.1.1}%
-\contentsline {chapter}{Bibliography}{53}{chapter*.36}%
+\contentsline {chapter}{Bibliography}{53}{chapter*.37}%

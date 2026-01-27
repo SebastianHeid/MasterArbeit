@@ -18,7 +18,7 @@
 \contentsline {figure}{\numberline {4.2}{\ignorespaces Diffusion block architecture taken from \cite {Pixart_a}.}}{32}{figure.4.2}%
 \contentsline {figure}{\numberline {4.3}{\ignorespaces Overview Flux-dev architecture.}}{35}{figure.4.3}%
 \contentsline {figure}{\numberline {4.4}{\ignorespaces Single-stream block (left) and double-stream block (right) of Flux-dev. Graphics are adapted from \cite {FastFlux}.}}{36}{figure.4.4}%
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Example of LAION Dataset}}{39}{figure.4.5}%
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Example of LAION Dataset}}{40}{figure.4.5}%
 \contentsline {figure}{\numberline {4.6}{\ignorespaces PixArt-$\Sigma $ generated dataset}}{40}{figure.4.6}%
 \contentsline {figure}{\numberline {4.7}{\ignorespaces Flux-dev generated dataset}}{41}{figure.4.7}%
 \contentsline {figure}{\numberline {4.8}{\ignorespaces Examples of Mapillary Dataset}}{41}{figure.4.8}%
@@ -26,11 +26,10 @@
 \contentsline {figure}{\numberline {4.10}{\ignorespaces Examples of MHJQ-30k Dataset}}{42}{figure.4.10}%
 \contentsline {figure}{\numberline {4.11}{\ignorespaces Example of removal (left) and compression (right) strategy based on a simplified representation of PixArt-$\Sigma $ architecture. The depictions show the case that the blocks 8,11,15,17 and 20 are removed or compressed. }}{43}{figure.4.11}%
 \contentsline {figure}{\numberline {4.12}{\ignorespaces }}{45}{figure.4.12}%
-\contentsline {figure}{\numberline {4.13}{\ignorespaces }}{45}{figure.4.13}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Qualitative analyse of the block sensitivitäy of PixArt-$\Sigma $}}{47}{figure.5.1}%
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Magnitude-base pruning vs \gls {CLIP}-score}}{48}{figure.5.2}%
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Magnitude-base pruning vs \gls {CMMD}}}{48}{figure.5.3}%
-\contentsline {figure}{\numberline {5.4}{\ignorespaces \gls {CKA} transformation intensity vs \gls {CLIP}-score}}{49}{figure.5.4}%
-\contentsline {figure}{\numberline {5.5}{\ignorespaces \gls {CKA} transformation intensity vs \gls {CMMD}}}{49}{figure.5.5}%
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Qualitative analyse of the block sensitivitäy of PixArt-$\Sigma $}}{48}{figure.5.1}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Magnitude-base pruning vs \gls {CLIP}-score}}{49}{figure.5.2}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Magnitude-base pruning vs \gls {CMMD}}}{49}{figure.5.3}%
+\contentsline {figure}{\numberline {5.4}{\ignorespaces \gls {CKA} transformation intensity vs \gls {CLIP}-score}}{50}{figure.5.4}%
+\contentsline {figure}{\numberline {5.5}{\ignorespaces \gls {CKA} transformation intensity vs \gls {CMMD}}}{50}{figure.5.5}%
 \addvspace {10\p@ }

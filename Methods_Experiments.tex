@@ -3,6 +3,7 @@
 
 
 \section{Block Importance Analysis}
+\label{sec:BlockImportanceAnalyses}
 \subsection{Block Selction Criterias}
 \subsubsection{Magnitude-Pruning}
 In magnitude pruning \cite{han2015learning,filters2016pruning,lee2020layer}, the magnitudes of the weights of the individual components of a model are computed to serve as a proxy for their importance. The underlying assumption is that small weight magnitudes correspond to a low overall impact on the model performance, implying that model parts with lower weight magnitude should be removed first. The aggregated magnitude $M_i$ of a transformer block $B_i$ is defined as the total Frobenius norm of its constituent weight matrices $W \in B_i$. To account for the multiple sub-layers within a block, we compute the block-wise magnitude as
@@ -17,7 +18,13 @@ Another approach to identify redundant model components is to compare their inpu
 \end{equation}
 This calculation utilizes the Hilbert-Schmidt Independence Criterion (\gls{HSIC}) \cite{gretton2005measuring} $\text{HSIC}(K,L) = \frac{1}{(n-1)^2}\text{tr}(KHLH)$ \cite{davari2022reliability}.
 
-
+\subsubsection{Metric Based Selection}
+A third approach to identify the least important model components is to remove or compress all components individually, e.g. each transformer block, and compute the metrics on a small reference dataset. In this work, we employ \gls{CMMD} and/or \gls{CLIP}-score to rank the importance of the individual model components. While \gls{CLIP} is used to evaluate the semantic prompt-image coherence, \gls{CMMD} serves as a measure for the general image quality and distributional fidelity. Since \gls{CMMD} and \gls{CLIP}-score produce values in different ranges and have an inverse optimization direction (minimization vs maximizaiton), for both metrics a separate ranking of the blocks is created where $r_{\text{CMMD},i}$ and  $r_{\text{CLiP},i}$ are the corresponding ranks of block $B_i$. The final importance score is obtained by computing the aggregated rank $r_{\text{final},i}$ from both metrics
+\begin{equation}
+	r_{\text{final},i} = r_{\text{CMMD},i} + r_{\text{CLIP},i} \quad.
+	\label{eq:combined_importance}
+\end{equation}
+In our linear model compression approach (see sec. \ref{label}) the compression-scheme of the individual model parts leads to different numbers of removed parameters due to varying sizes of the blocks despite using the same compression percentage. Therefore, only a \gls{CMMD} value is normalized by the number of removed parameters to quantify the degradation of image quality per removed parameter.
 \subsection{Block Selection Algorithms}
 \label{sec:BlockSelectionAlgo}
 \subsubsection{Black-Box Optimization with Optuna}
@@ -131,6 +138,7 @@ The MJHQ-30k \cite{li2024playground} dataset consists of 30,000 synthetic images
 \end{figure}
 
 \section{Structural Compression Strategies}
+\label{sec:StructuralCompressionStrategy}
 There are two primary strategies in structural model distillation. On the one hand, individual parts can be removed completly from the model, or, on the other hand, individual parts can be compressed. The selection strategies of the individual parts are presented in sec. \ref{sec:BlockSelectionAlgo}. In this work, we investigated both compression strategies.
 \subsection{Block Removal}
 In structural model distillation, entire functional components of a model are often removed completely \cite{Bksdm, Laptop, Koala} while others that are considered as highly relevant for the models performance are maintained. In transformer-based architectures like PixArt-$\Sigma$ and Flux-dev, a natural choice is to dissect the model according to the individual transformer blocks and remove them entirely if they are identified as the least important. Concretely, if block $B_i$ is removed the output features of block $B_{i-1}$ denoted as $x_{i-1}$ are directly passed to block $B_{i+1}$
@@ -157,7 +165,7 @@ Instead of specifying a specific rank $k$ we want to specify the ratio $r$ of pa
 \end{equation}
 
 
-\begin{figure}[t]
+\begin{figure}[H]
 	\centering
 		\includegraphics[width=\textwidth]{images/Methoden/CompressionRemovalScheme.pdf}
 		\caption{Example of removal (left) and compression (right) strategy based on a simplified representation of PixArt-$\Sigma$ architecture. The depictions show the case that the blocks 8,11,15,17 and 20 are removed or compressed. }
@@ -165,6 +173,7 @@ Instead of specifying a specific rank $k$ we want to specify the ratio $r$ of pa
 \end{figure}
 
 \subsection{Iteratively Repeated SVD Compression}
+\label{sec:IterativeRepeatedSVDCompression}
 In certain distillation setups, we adopt an iterative \gls{SVD} approach (see sec. \ref{sec:distillationAlgos}), which involves an iterative compression and finetuning scheme. In this approach, the original weight matrix $W$ is gradually compressed. Let $j$ denote the number of compressions already performed for the corresponding weight matrix. To compress it a $(j+1)^\text{th}$ time, first the full matrix based on the finetuned matrices $A^{(j)}$ and $B^{(j)}$, namely $W^{(j)} = A^{(j)}B^{(j)}$ is constructed. Then, \gls{SVD} is performed to obtain $W^{(j)} = U^{(j+1)} \Sigma^{(j+1)} V^{(j+1)^T}$. Assuming $k^{(j)}$ is the rank of the $j^{\text{th}}$ compression, a new smaller rank $k^{(j+1)} < k^{(j)} $ is used to obtain $A^{(j+1)} = U^{(j+1)}_\text{red} \sqrt{\Sigma_\text{red}^{(j+1)}}$  and $B^{(j+1)} =  \sqrt{\Sigma_\text{red}^{(j+1)}}V_\text{red}^{(j+1)^T}  $ which are then used as the new approximation for the weight matrix. This strategy allows the compression of individual blocks multiple times less intensely. 
 
 \section{Knowledge Distillation Loss Functions}
@@ -191,27 +200,66 @@ where a small $\epsilon$ is added to the denominator to prevent devision by zero
 	\mathcal{L}_\text{FeatKD} = \frac{1}{B}\sum_{i=1}^{B} \left(\frac{1}{L} \sum_{l=1}^{L} w_{i,l} \cdot \mathcal{L}_{i,l}\right) \quad.
 \end{equation}
 Please note, if the normalization is applied it is not only applied to $\mathcal{L}_\text{FeatKD}$ but also to $\mathcal{L_\text{OutKD}}$ which compares the final output of the teacher with the studen model.
-\subsection{Feature Distribution for Loss Computation}
-
-\begin{figure}[t]
+\subsection{Feature Mapping for Loss Computation}
+The assignment of the learning signals based on the intermediate features varies between the complete block removal and the \gls{SVD} block compression approach (see fig. \ref{fig:LossRemovalCompression}). In the \gls{SVD} compression approach, the intermediate features of every student block $S_l$ are directly compared with the feature of the teachers' block $T_l$ with $l \in \{1,\dots,L\}$ assuming the model consists of $L$ transformer blocks. \\
+In contrast, the selection of intermediate features requires more care in the block removal approach where a dynamic mapping strategy is needed. If a block $B_l$ is removed, the feature of the preceding student block $S_{l-1}$ is compared with the features of the teacher's block $T_l$. This effectively forces block $B_{l-1}$ to approximate the removed block $B_l$. Consequently, if several consecutive blocks $B_{l-i}$ through $B_l$ (with $i\geq1$) are removed the student feature $S_{l-(i+1)}$ is compared to $T_l$.
+\begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{images/Methoden/LossRemoval.pdf}
+	\includegraphics[width=\textwidth]{images/Methoden/LossRemovalCompression.pdf}
 	\caption{ }
-	\label{fig:LossRemoval}
+	\label{fig:LossRemovalCompression}
 \end{figure}
 
 
-\begin{figure}[t]
-	\centering
-	\includegraphics[width=\textwidth]{images/Methoden/LossCompression.pdf}
-	\caption{ }
-	\label{fig:LossCompression}
-\end{figure}
-\subsection{Feature Alignment Strategies}
-
+\
 
 \section{Distillation Algorithms}
+Various approaches can be chosen for structural model pruning. 
 \label{sec:distillationAlgos}
-\subsection{Direct Distillation}
-\subsection{Iterative Distillation}
-\subsection{Linear Compression Ratio}
+\subsection{One-Shot Model Compression}
+The standard approach of compressing transformer based diffusion and flow models \cite{Laptop, Koala, flux1-lite, flux_mini_2024} involves three main steps. First, the transformer blocks $\{B_1, \dots, B_L\}$ are sorted according to their importance, e.g. using \gls{CLIP}-score and \gls{CMMD} as importance proxy. Let $\{B^*_1, \dots, B^*_L\}$ denote the sorted blocks, where $B^*_1$ represents the least important block. Next, based on the desired compression ratio of the total model, a number $k \leq L$ of blocks is determined. Consequently, the blocks $\{B^*_1, \dots, B^*_k\}$ are modified based on the chosen compression strategy (see sec. \ref{sec:StructuralCompressionStrategy}). Finally, the compressed model is re-trained, e.g. using knowledge distillation, to recover the generation capabilities. This approach introduce a significant, abrupt structural alteration of the model, leading to temporary severe degeneration in image generation capabilities.
+
+\subsection{Progressive Model Compression}
+In contrast to one-shot model compression, progressive model compression \cite{ProgressiveDistillation} iteratively applies the three-step procedure described above. In each iteration the importance of the blocks is re-evaluated, the number of parameters to be removed specifies how many blocks need to be modified, and the model is then re-trained. The crucial difference is that the number of parameters removed in a single step is significantly smaller than in one-shot model compression. This leads to gradual and less severe performance degradation in one iteration which is easier recovarable. In the subsequent iteration, the block importance is re-assessed, as the relative block ranking may have changed as a result of the retraining. Another design choice concerns the number of parameters that are removed per iteration. On the one hand, the number of parameters can be set to a fixed value or, on the other hand, it could be chosen dynamically based on the importance metrics, e.g. by defining a threshold \gls{CMMD} value and performing retraining as if the model newly compressed model reaches it. This typically implies that in early iterations more parameters are removed than in later iterations.  
+
+
+\subsection{Linear Progressive Compression}
+Our approach, linear compression ratio, is a further development of progressive model compression and relies on the \gls{SVD} compression scheme where the same block can be compressed multiple times as described in sec. \ref{sec:IterativeRepeatedSVDCompression}. Concretely, as block importance metric the \gls{CMMD} value per removed parameter is leveraged that is esepcially important because already compressed blocks can be further compressed such that the \gls{CMMD} only is only a fair metric if all blocks would have the same size. Let again $\{B^*_1, \dots, B^*_L\}$ denote the sorted blocks, one specify by how much the least important block is compressed denoted as $S$, e.g. $40\%$, the number of blocks that should be compressed $k$ and the number of total parameters $N$ that should be removed. The compression rate is reduced linearly for each additional block, meaning the least important block $B_1^*$ is compressed most, the second least import block $B_2^*$ is compressed a little bit less  and block $B_k^*$ the most important block of all blocks that are compressed is compressed least. Concretely, the linear compression schedule works as follows: Let $c_i$ be the compression ratio of the $B_i^* \in \{B^*_1, \dots, B^*_k\}$, $c_1 = S$ the start compression ratio that decrease by a slope $x$ then the compression ratio for every block $B_i^*$ is given by
+\begin{equation}
+	\label{eq:CompressionRatio}
+	c_i = S - ((i-1) \cdot x)
+\end{equation}
+with $i \in \{1, \dots, k\}$. The goal is to identify $x$ based on the parameters $S, N, k$. The total number of parameter that are removed is computed by
+\begin{equation}
+	\label{eq:TotalParam}
+	P_\text{total} = \sum_{i=1}^{k} P_i \cdot c_i
+\end{equation}
+where $P_i$ is the current parameter count of block $B_i^*$ that might be already compressed. To solve for $x$, eq. \ref{eq:CompressionRatio} and eq. \ref{eq:TotalParam} are combined
+
+\begin{equation}
+	\begin{split}
+		& \sum_{i=1}^{k} P_i (S - (i-1) \cdot x) = N \\
+		\Leftrightarrow \quad & \sum_{i=1}^{k} (P_i \cdot S) - \sum_{i=1}^{k} (P_i \cdot (i-1) \cdot x) = N \\
+		\Leftrightarrow \quad & \sum_{i=1}^{k} (P_i \cdot S) - N = x \cdot \sum_{i=1}^{k} (P_i \cdot (i-1))
+	\end{split}
+	\label{eq:linear_compression_derivation}
+\end{equation}
+
+
+ending in the final equation for the slope
+\begin{equation}
+	x = \frac{\sum_{i=1}^{k}\left(P_i \cdot S \right) - N}{ \sum_{i=1}^{k}\left(P_i \cdot (i-1)  \right)} \quad.
+\end{equation}
+The input parameters $S,N,k$ specified by the user have to meet two conditions. First, $N \leq S \cdot \sum_{i=1}^{k} P_i$ meaning the total number of parameters that should be removed during this interation must not be larger than the number of parameters one obtain when using $S$ as compression ratio for all blocks $B_i^*$. Otherwise, the compression ratio would increase for more important blocks which would contradict the ranking strategy. Second, the compression ratio of the last block $cx_k$ must not be negative which results in the following condition
+\begin{equation}
+	\begin{split}
+		& 0 \leq c_k = S - (k-1) \cdot x \\
+		\Leftrightarrow \quad & 0 \leq S - (k-1) \frac{S \sum_{i=1}^{k} P_i - N}{\sum_{i=1}^{k}(P_i \cdot (i-1))} \\
+		\Leftrightarrow \quad & N \geq S \sum_{i=1}^{k} P_i - \frac{S \sum_{i=1}^{k}(P_i \cdot (i-1)) }{k-1} \quad.
+	\end{split}
+\end{equation}
+
+In total we get the following condition for the total number of paramters to remove in one iteration 
+\begin{equation}
+	\ S \sum_{i=1}^{k} P_i - \frac{S \sum_{i=1}^{k}(P_i \cdot (i-1)) }{k-1}  \leq N \leq S \cdot \sum_{i=1}^{k} P_i \quad.
+\end{equation}
