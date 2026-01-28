@@ -67,7 +67,7 @@
 \contentsline {subsection}{\numberline {4.3.1}Training Datasets}{40}{subsection.4.3.1}%
 \contentsline {subsubsection}{LAION Aesthetic}{40}{section*.30}%
 \contentsline {subsubsection}{LAION Pixart-$\Sigma $ Dataset}{40}{section*.31}%
-\contentsline {subsubsection}{LAION Flux Dataset}{41}{section*.32}%
+\contentsline {subsubsection}{LAION-Flux Dataset}{41}{section*.32}%
 \contentsline {subsection}{\numberline {4.3.2}Evaluation Datasets}{42}{subsection.4.3.2}%
 \contentsline {subsubsection}{Mapillary}{42}{section*.33}%
 \contentsline {subsubsection}{Cityscapes}{42}{section*.34}%
@@ -77,9 +77,10 @@
 \contentsline {subsection}{\numberline {4.4.2}SVD Compression}{43}{subsection.4.4.2}%
 \contentsline {subsection}{\numberline {4.4.3}Iteratively Repeated SVD Compression}{44}{subsection.4.4.3}%
 \contentsline {section}{\numberline {4.5}Knowledge Distillation Loss Functions}{44}{section.4.5}%
-\contentsline {subsection}{\numberline {4.5.1}Feature Mapping for Loss Computation}{45}{subsection.4.5.1}%
+\contentsline {subsection}{\numberline {4.5.1}Normalization}{44}{subsection.4.5.1}%
+\contentsline {subsection}{\numberline {4.5.2}Feature Mapping for Loss Computation}{45}{subsection.4.5.2}%
 \contentsline {section}{\numberline {4.6}Distillation Algorithms}{45}{section.4.6}%
-\contentsline {subsection}{\numberline {4.6.1}One-Shot Model Compression}{45}{subsection.4.6.1}%
+\contentsline {subsection}{\numberline {4.6.1}One-Shot Model Compression}{46}{subsection.4.6.1}%
 \contentsline {subsection}{\numberline {4.6.2}Progressive Model Compression}{46}{subsection.4.6.2}%
 \contentsline {subsection}{\numberline {4.6.3}Linear Progressive Compression}{46}{subsection.4.6.3}%
 \contentsline {chapter}{\numberline {5}Experiments}{48}{chapter.5}%
