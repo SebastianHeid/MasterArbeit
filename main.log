@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.9.24)  27 JAN 2026 21:25
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.9.24)  28 JAN 2026 15:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1179,117 +1179,113 @@ T1/cmr/m/n/10 ) = [][](\OML/cmm/m/it/10 KHLH\OT1/cmr/m/n/10 )$
  []
 
 
-LaTeX Warning: Reference `label' on page 38 undefined on input line 27.
-
-
 
 [38
 
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 31--32
 
- []
+LaTeX Warning: Reference `label' on page 39 undefined on input line 29.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 44--45
+Underfull \hbox (badness 10000) in paragraph at lines 42--43
 
  []
 
 
 
 [39]
-<images/Methoden/Original_Laion_Dataset.pdf, id=1580, 963.35912pt x 227.6505pt>
+Underfull \hbox (badness 10000) in paragraph at lines 55--56
+
+ []
+
+<images/Methoden/Original_Laion_Dataset.pdf, id=1575, 963.35912pt x 227.6505pt>
 
 File: images/Methoden/Original_Laion_Dataset.pdf Graphic file (type pdf)
 <use images/Methoden/Original_Laion_Dataset.pdf>
 Package pdftex.def Info: images/Methoden/Original_Laion_Dataset.pdf  used on in
-put line 48.
+put line 59.
 (pdftex.def)             Requested size: 411.14528pt x 97.15833pt.
-<images/Methoden/Pixart_Generated_Dataset.pdf, id=1584, 963.35912pt x 227.6505p
+<images/Methoden/Pixart_Generated_Dataset.pdf, id=1579, 963.35912pt x 227.6505p
 t>
 File: images/Methoden/Pixart_Generated_Dataset.pdf Graphic file (type pdf)
 <use images/Methoden/Pixart_Generated_Dataset.pdf>
 Package pdftex.def Info: images/Methoden/Pixart_Generated_Dataset.pdf  used on 
-input line 78.
+input line 89.
 (pdftex.def)             Requested size: 411.14528pt x 97.15833pt.
-<images/Methoden/Flux_Generated_Dataset.pdf, id=1588, 963.35912pt x 227.6505pt>
+
+
+[40 <./images/Methoden/Original_Laion_Dataset.pdf>]
+<images/Methoden/Flux_Generated_Dataset.pdf, id=1605, 963.35912pt x 227.6505pt>
 
 File: images/Methoden/Flux_Generated_Dataset.pdf Graphic file (type pdf)
 <use images/Methoden/Flux_Generated_Dataset.pdf>
 Package pdftex.def Info: images/Methoden/Flux_Generated_Dataset.pdf  used on in
-put line 105.
+put line 116.
 (pdftex.def)             Requested size: 411.14528pt x 97.15833pt.
 
 
-[40 <./images/Methoden/Original_Laion_Dataset.pdf> <./images/Methoden/Pixart_Ge
+[41 <./images/Methoden/Pixart_Generated_Dataset.pdf> <./images/Methoden/Flux_Ge
 nerated_Dataset.pdf
 
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./images/Methoden/Pixart_Gen
-erated_Dataset.pdf): PDF inclusion: multiple pdfs with page group included in a
- single page
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./images/Methoden/Flux_Gener
+ated_Dataset.pdf): PDF inclusion: multiple pdfs with page group included in a s
+ingle page
 >]
-<images/Methoden/Mapillary_Dataset.pdf, id=1613, 963.35912pt x 227.6505pt>
+<images/Methoden/Mapillary_Dataset.pdf, id=1628, 963.35912pt x 227.6505pt>
 File: images/Methoden/Mapillary_Dataset.pdf Graphic file (type pdf)
 <use images/Methoden/Mapillary_Dataset.pdf>
 Package pdftex.def Info: images/Methoden/Mapillary_Dataset.pdf  used on input l
-ine 117.
+ine 128.
 (pdftex.def)             Requested size: 411.14528pt x 97.15833pt.
-<images/Methoden/Cityscapes_Dataset.pdf, id=1615, 963.35912pt x 227.6505pt>
+<images/Methoden/Cityscapes_Dataset.pdf, id=1630, 963.35912pt x 227.6505pt>
 File: images/Methoden/Cityscapes_Dataset.pdf Graphic file (type pdf)
 <use images/Methoden/Cityscapes_Dataset.pdf>
 Package pdftex.def Info: images/Methoden/Cityscapes_Dataset.pdf  used on input 
-line 126.
+line 137.
 (pdftex.def)             Requested size: 411.14528pt x 97.15833pt.
-
-
-[41 <./images/Methoden/Flux_Generated_Dataset.pdf> <./images/Methoden/Mapillary
-_Dataset.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./images/Methoden/Mapillary_
-Dataset.pdf): PDF inclusion: multiple pdfs with page group included in a single
- page
->]
-<images/Methoden/MHJQ_30k_Dataset.pdf, id=1644, 963.35912pt x 227.6505pt>
+<images/Methoden/MHJQ_30k_Dataset.pdf, id=1635, 963.35912pt x 227.6505pt>
 File: images/Methoden/MHJQ_30k_Dataset.pdf Graphic file (type pdf)
 <use images/Methoden/MHJQ_30k_Dataset.pdf>
 Package pdftex.def Info: images/Methoden/MHJQ_30k_Dataset.pdf  used on input li
-ne 135.
+ne 146.
 (pdftex.def)             Requested size: 411.14528pt x 97.15833pt.
 
 
-[42 <./images/Methoden/Cityscapes_Dataset.pdf> <./images/Methoden/MHJQ_30k_Data
-set.pdf
+[42 <./images/Methoden/Mapillary_Dataset.pdf> <./images/Methoden/Cityscapes_Dat
+aset.pdf
 
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./images/Methoden/MHJQ_30k_D
-ataset.pdf): PDF inclusion: multiple pdfs with page group included in a single 
-page
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./images/Methoden/Cityscapes
+_Dataset.pdf): PDF inclusion: multiple pdfs with page group included in a singl
+e page
 >]
-<images/Methoden/CompressionRemovalScheme.pdf, id=1677, 1707.01741pt x 284.7437
+
+[43 <./images/Methoden/MHJQ_30k_Dataset.pdf>]
+<images/Methoden/CompressionRemovalScheme.pdf, id=1689, 1707.01741pt x 284.7437
 9pt>
 File: images/Methoden/CompressionRemovalScheme.pdf Graphic file (type pdf)
 <use images/Methoden/CompressionRemovalScheme.pdf>
 Package pdftex.def Info: images/Methoden/CompressionRemovalScheme.pdf  used on 
-input line 170.
+input line 181.
 (pdftex.def)             Requested size: 483.69687pt x 80.68358pt.
 
 
-[43 <./images/Methoden/CompressionRemovalScheme.pdf>]
-<images/Methoden/LossRemovalCompression.pdf, id=1720, 1991.76114pt x 568.76491p
+[44 <./images/Methoden/CompressionRemovalScheme.pdf>]
+<images/Methoden/LossRemovalCompression.pdf, id=1729, 1991.76114pt x 568.76491p
 t>
 File: images/Methoden/LossRemovalCompression.pdf Graphic file (type pdf)
 <use images/Methoden/LossRemovalCompression.pdf>
 Package pdftex.def Info: images/Methoden/LossRemovalCompression.pdf  used on in
-put line 208.
+put line 219.
 (pdftex.def)             Requested size: 483.69687pt x 138.12059pt.
 
 
-[44]
+[45 <./images/Methoden/LossRemovalCompression.pdf>]
 
-[45 <./images/Methoden/LossRemovalCompression.pdf>])
+[46])
 
-[46]
+[47]
 \openout2 = `Experiments.aux'.
 
  (./Experiments.tex
@@ -1306,7 +1302,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 3.
 
-<images/Experimente/PixArt_Block_Analysis/BlockImportance.pdf, id=1799, 963.359
+<images/Experimente/PixArt_Block_Analysis/BlockImportance.pdf, id=1808, 963.359
 12pt x 853.50871pt>
 File: images/Experimente/PixArt_Block_Analysis/BlockImportance.pdf Graphic file
  (type pdf)
@@ -1316,13 +1312,13 @@ ce.pdf  used on input line 10.
 (pdftex.def)             Requested size: 338.58632pt x 299.96976pt.
 
 
-[47
+[48
 
 
 
 
 ]
-<images/Experimente/Pixart_Block_Analysis/magnitude_vs_clip.png, id=1809, 787.7
+<images/Experimente/Pixart_Block_Analysis/magnitude_vs_clip.png, id=1818, 787.7
 43pt x 385.6809pt>
 File: images/Experimente/Pixart_Block_Analysis/magnitude_vs_clip.png Graphic fi
 le (type png)
@@ -1332,8 +1328,8 @@ clip.png  used on input line 21.
 (pdftex.def)             Requested size: 411.14528pt x 201.30261pt.
 
 
-[48 <./images/Experimente/PixArt_Block_Analysis/BlockImportance.pdf>]
-<images/Experimente/Pixart_Block_Analysis/magnitude_vs_cmmd.png, id=1858, 787.7
+[49 <./images/Experimente/PixArt_Block_Analysis/BlockImportance.pdf>]
+<images/Experimente/Pixart_Block_Analysis/magnitude_vs_cmmd.png, id=1867, 787.7
 43pt x 385.6809pt>
 File: images/Experimente/Pixart_Block_Analysis/magnitude_vs_cmmd.png Graphic fi
 le (type png)
@@ -1343,9 +1339,9 @@ cmmd.png  used on input line 31.
 (pdftex.def)             Requested size: 411.14528pt x 201.30261pt.
 
 
-[49 <./images/Experimente/Pixart_Block_Analysis/magnitude_vs_clip.png> <./image
+[50 <./images/Experimente/Pixart_Block_Analysis/magnitude_vs_clip.png> <./image
 s/Experimente/Pixart_Block_Analysis/magnitude_vs_cmmd.png>]
-<images/Experimente/Pixart_Block_Analysis/cka_vs_clip.png, id=1877, 787.743pt x
+<images/Experimente/Pixart_Block_Analysis/cka_vs_clip.png, id=1886, 787.743pt x
  385.6809pt>
 File: images/Experimente/Pixart_Block_Analysis/cka_vs_clip.png Graphic file (ty
 pe png)
@@ -1353,7 +1349,7 @@ pe png)
 Package pdftex.def Info: images/Experimente/Pixart_Block_Analysis/cka_vs_clip.p
 ng  used on input line 42.
 (pdftex.def)             Requested size: 411.14528pt x 201.30261pt.
-<images/Experimente/Pixart_Block_Analysis/cka_vs_cmmd.png, id=1886, 787.743pt x
+<images/Experimente/Pixart_Block_Analysis/cka_vs_cmmd.png, id=1895, 787.743pt x
  385.6809pt>
 File: images/Experimente/Pixart_Block_Analysis/cka_vs_cmmd.png Graphic file (ty
 pe png)
@@ -1363,7 +1359,7 @@ ng  used on input line 50.
 (pdftex.def)             Requested size: 411.14528pt x 201.30261pt.
 
 
-LaTeX Warning: Reference `label' on page 50 undefined on input line 55.
+LaTeX Warning: Reference `label' on page 51 undefined on input line 55.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 55--57
@@ -1372,7 +1368,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 55--57
 
 
 
-[50 <./images/Experimente/Pixart_Block_Analysis/cka_vs_clip.png> <./images/Expe
+[51 <./images/Experimente/Pixart_Block_Analysis/cka_vs_clip.png> <./images/Expe
 rimente/Pixart_Block_Analysis/cka_vs_cmmd.png>]
 Underfull \hbox (badness 2626) in paragraph at lines 78--78
 []|\T1/cmr/bx/n/10 Number Re-
@@ -1410,7 +1406,7 @@ Overfull \hbox (1.36676pt too wide) in paragraph at lines 78--78
 
 )
 
-[51]
+[52]
 \openout2 = `conclusion.aux'.
 
  (./conclusion.tex)
@@ -1418,7 +1414,7 @@ Overfull \hbox (1.36676pt too wide) in paragraph at lines 78--78
 
  (./Appendix.tex
 Chapter 6.
-<images/Experimente/Pixart_Block_Analysis/cka_heatmap_100_thesis.png, id=1932, 
+<images/Experimente/Pixart_Block_Analysis/cka_heatmap_100_thesis.png, id=1942, 
 790.152pt x 502.2765pt>
 File: images/Experimente/Pixart_Block_Analysis/cka_heatmap_100_thesis.png Graph
 ic file (type png)
@@ -1428,7 +1424,7 @@ Package pdftex.def Info: images/Experimente/Pixart_Block_Analysis/cka_heatmap_1
 (pdftex.def)             Requested size: 411.14528pt x 261.3539pt.
 )
 
-[52
+[53
 
 
 
@@ -1439,13 +1435,11 @@ Package pdftex.def Info: images/Experimente/Pixart_Block_Analysis/cka_heatmap_1
  <./images/Experimente/Pixart_Block_Analysis/cka_heatmap_100_thesis.png>]
 (./main.bbl
 
-[53
+[54
 
 
 
 ]
-
-[54]
 
 [55]
 
@@ -1460,6 +1454,8 @@ Package pdftex.def Info: images/Experimente/Pixart_Block_Analysis/cka_heatmap_1
 [60]
 
 [61]
+
+[62]
 Underfull \hbox (badness 1721) in paragraph at lines 959--962
 []\T1/cmr/m/n/10 Zhihua Zhang.  The sin-gu-lar value de-com-po-si-tion, ap-pli-
 ca-tions and be-yond.  \T1/cmr/m/it/10 arXiv preprint
@@ -1467,7 +1463,7 @@ ca-tions and be-yond.  \T1/cmr/m/it/10 arXiv preprint
 
 )
 
-[62] (./main.aux (./titel_page.aux) (./introduction.aux)
+[63] (./main.aux (./titel_page.aux) (./introduction.aux)
 (./theory_generative_models.aux) (./theory_diffusion_models.aux)
 (./theory_fundamental_NN.aux) (./Distillation.aux) (./theory_metrics.aux)
 (./Related_Work.aux) (./Methods_Models.aux) (./Methods_Experiments.aux)
@@ -1484,13 +1480,13 @@ LaTeX Warning: There were undefined references.
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 264364141E64F36CE5C045F289C683EE;10365.
+(rerunfilecheck)             Checksum: 0E401F501FF7F49FD5D13539FF5B2350;10395.
  ) 
 Here is how much of TeX's memory you used:
- 25891 strings out of 473190
- 462144 string characters out of 5715800
- 968848 words of memory out of 5000000
- 48162 multiletter control sequences out of 15000+600000
+ 25895 strings out of 473190
+ 462209 string characters out of 5715800
+ 969931 words of memory out of 5000000
+ 48163 multiletter control sequences out of 15000+600000
  585392 words of font info for 107 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,18n,96p,2365b,1148s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1523,10 +1519,10 @@ e1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1
 /public/cm-super/sfti0700.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/p
 ublic/cm-super/sfti1000.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/pub
 lic/cm-super/sftt1000.pfb>
-Output written on main.pdf (71 pages, 5941937 bytes).
+Output written on main.pdf (72 pages, 5946860 bytes).
 PDF statistics:
- 2241 PDF objects out of 2487 (max. 8388607)
- 1905 compressed objects within 20 object streams
- 521 named destinations out of 1000 (max. 500000)
+ 2251 PDF objects out of 2487 (max. 8388607)
+ 1914 compressed objects within 20 object streams
+ 524 named destinations out of 1000 (max. 500000)
  626 words of extra memory for PDF output out of 10000 (max. 10000000)
 
