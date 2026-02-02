@@ -510,6 +510,13 @@ Haotian Liu, Chunyuan Li, Qingyang Wu, and Yong~Jae Lee.
 \newblock {\em Advances in neural information processing systems},
   36:34892--34916, 2023.
 
+\bibitem{liu2025grasp}
+Kainan Liu, Yong Zhang, Ning Cheng, Zhitao Li, Shaojun Wang, and Jing Xiao.
+\newblock Grasp: Replace redundant layers with adaptive singular parameters for
+  efficient model compression.
+\newblock In {\em Proceedings of the 2025 Conference on Empirical Methods in
+  Natural Language Processing}, pages 26344--26359, 2025.
+
 \bibitem{RectifiedFlowMatching}
 Xingchao Liu, Chengyue Gong, and Qiang Liu.
 \newblock Flow straight and fast: Learning to generate and transfer data with

@@ -1,24 +1,72 @@
 \chapter{Experiments}
-This master thesis investigate structural model distillation techniques, specifically focusing on the removal and compression of transformer blocks within the PixArt-$\Sigma$ and Flux-dev architectures. PixArt-$\Sigma$ is employed as an experimental baseline to evaluate various design choices in the distillation frameworks due to its relatively low parameter count enabling rapid iteration and extensive ablation studies. Subsequently, the most effective strategies are applied to Flux-dev to assess their efficacy in high-parameter regimes. 
-\section{Pixart-$\Sigma$ Distillation}
+This master thesis investigate structural model pruning techniques, specifically focusing on the removal and compression of transformer blocks within the PixArt-$\Sigma$ and Flux-dev architectures. PixArt-$\Sigma$ is employed as an experimental baseline to evaluate various design choices in the structural pruning framework due to its relatively low parameter count enabling rapid iteration and extensive ablation studies. Subsequently, the most effective strategies are applied to Flux-dev to assess their efficacy in high-parameter regimes. 
+\section{PixArt-$\Sigma$ Pruning}
+
+\subsection{Experimental Default Setup}
+In the following section, individual components of the compression pipeline such as loss function, block selection algorithm, compression strategy, ..., are systematically investigated. To isolate the impact of each component, a default experimental setup is defined below. Unless stated otherwise all subsequent experiments utilize the baseline configuration. It is important to note that this setup serves as consistent starting point for the experiments and does not necessarily represent the final, best setting which is derived later in this work.
+
+\begin{itemize}
+	\item \textbf{Loss}: The learning objectiv is the sum of the unormalized feature and output distillation loss $\mathcal{L_\text{OutKD}} + \mathcal{L_\text{FeatKD}}$.
+	\item \textbf{Pruning Schedul}: The progressive compression strategy is employed.
+		\item \textbf{Structural Compression Strategy}: Complete block removal is used to reduce the model size.
+	\item \textbf{Block Selection Algorithm}: The Greedy algorithm based on \gls{CMMD} and \gls{CLIP}-score was utilized computed on 100 images.
+	\item \textbf{Training Datasets}: Training is performed sequentially starting on the LAION dataset followed by further training on the LAION-PixArt dataset. For each iteration, the models are trained for two epochs on each datasets.
+	\item \textbf{Training Hyperparameters}: All other training hyperparameters are summarized in tab. \ref{tab:hyperparameterTraining}.
+
+\end{itemize}
+
+
+\begin{table}[H]
+	\centering
+	\caption{Hyperparameters for the retraining of compressed models (One-Shot and Progressive).}
+	\label{tab:hyperparameterTraining}
+	\begin{tabular}{l c}
+		\toprule
+		\textbf{Hyperparameter} & \textbf{Value} \\
+		\midrule
+		\multicolumn{2}{l}{\textit{Optimization (CAME)}} \\
+		Optimizer Type & CAME \\
+		Learning Rate & $2 \times 10^{-5}$ \\
+		Weight Decay & $0.03$ \\
+		Betas & $(0.9, 0.999, 0.9999)$ \\
+		Epsilon & $(10^{-30}, 10^{-16})$ \\
+		\midrule
+		\multicolumn{2}{l}{\textit{Training Schedule}} \\
+		Warmup Steps & 1000 \\
+		Batch Size & 16 \\
+		Gradient Clipping & $0.001$ \\
+		\midrule
+		\multicolumn{2}{l}{\textit{Model \& Data}} \\
+		Precision & bf16 \\
+		Resolution & $512 \times 512$ \\
+		Class Dropout Prob. & $0.1$ \\
+		Max Prompt Length & 300 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+
 \subsection{Block Importance Analysis}
-In structural pruning, the selection of components to be removed or compressed is essential to ensure that the compressed model retains the highest possible image generation quality. Qualitatively, fig. \ref{fig:PixArtBlockImportanceQualitatively} shows the effect of removing every transformer block from PixArt-$\Sigma$ individually on its image generation capabilities without subsequent retraining. It is clearly visible that removing the first and last transformer blocks (blocks 1-4 and blocks 27-28) exerts the most significant influence on the image quality. This confirms the observation from previous work \cite{men2024shortgpt} that redundancies are primarily find in the middle part of transformer based model. To identify which blocks are best to remove meaning which blocks have a minimal contribution on the generation process of the final image, several different metrics can be employed. In the following section, different approaches are investigated to determine the importance of the individual transformer blocks. First, the traditional magnitude-based \cite{han2015learning} pruning and represential dissimilarity by computing the central kernal alignment score (\gls{CKA}) \cite{kornblith2019similarity} between the input and output of each transformer block are evaluated. Moreover, they are compared to standard performance metrics such as the \gls{CLIP}-score and \gls{CMMD}. \\
- Normally, several transformer blocks are removed or compressed simultaneously. Due to block interdependencies, we investigate three different options to identify the best grouping for blocks to remove. First, a greedy-algorithm is applied, iteratively searching for the best next block to compress based on the already compressed model from previous iterations. Second, the block selection process is formulated as hyperparameter search leveraging the Optuna framework. Last, a procedure of learning a mask indicating the blocks with least impact on the model performance is applied.
+In structural pruning, the selection of components to be removed or compressed is essential to ensure that the compressed model retains the highest possible image generation quality. Qualitatively, fig. \ref{fig:PixArtBlockImportanceQualitatively} shows the effect of removing every transformer block from PixArt-$\Sigma$ individually on its image generation capabilities without subsequent retraining. It is clearly visible that removing the first and last transformer blocks (blocks 1-4 and blocks 27-28) exerts the most significant influence on the image quality. This confirms the observation from previous work \cite{men2024shortgpt} that redundancies are primarily find in the middle part of transformer based models. To identify which blocks are best to remove meaning which blocks have a minimal contribution on the total image generation process, several different metrics can be employed. In the following section, different approaches are investigated to determine the importance of the individual transformer blocks based on completely removed blocks. First, the traditional magnitude-based (see sec. \ref{sec:MagnitudePruning}) pruning and represential dissimilarity by computing the central kernal alignment score (\gls{CKA}) (see sec. \ref{sec:CKA}) between the input and output of each transformer block are evaluated. Moreover, they are compared to standard performance metrics such as the \gls{CLIP}-score and \gls{CMMD} (see sec. \ref{sec:MetricBasedSelection}). \\
+ Normally, several transformer blocks are removed or compressed simultaneously. Due to block interdependencies, we investigate three different options to identify the best grouping for blocks to remove. First, a greedy-algorithm is applied (see sec. \ref{sec:GreedyBlockSelection}), iteratively searching for the best next block to compress based on the already compressed model from previous iterations. Second, the block selection process is formulated as hyperparameter search leveraging the Optuna framework (see sec. \ref{sec:Optuna}). Last, a procedure of learning a mask indicating the blocks with least impact on the model performance is applied (see sec. \ref{sec:TinyFusion}).
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\textwidth]{images/Experimente/PixArt_Block_Analysis/BlockImportance.pdf}  % adjust filename and width
-	\caption[Qualitative analyse of the block sensitivitäy of PixArt-$\Sigma$]{The figure shows the influence of selectively removing individual transformer blocks (1–28) on the final generation result. While the removal of middle blocks causes only minor visual deviations, interventions in early, structure-forming layers (blocks 1–4) and in the final layers (blocks 27–28) lead to a significant loss of image coherence and massive compression artifacts, respectively.}
+	\caption[Qualitative analyse of the block sensitivity of PixArt-$\Sigma$ for block removal]{The figure shows the influence of selectively removing individual transformer blocks (1–28) on the final generation result. While the removal of middle blocks causes only minor visual deviations, interventions in early, structure-forming layers (blocks 1–4) and in the final layers (blocks 27–28) lead to a significant loss of image coherence and massive compression artifacts, respectively.}
 	
 	\label{fig:PixArtBlockImportanceQualitatively}
 \end{figure}
 
+\subsubsection{Qualitative Block Analysis}
+Fig. \ref{fig:PixArtBlockImportanceQualitatively} displays an example for the qualitative influence of the removal of individual transformer blocks from the PixArt-$\Sigma$ architecture. For each image a different block was completely removed. The removal of the first four blocks and the last two blocks exhibit a strong degeneration in image quality which confirms the finding that the first and last layers are more critical for transformer-based models from \cite{men2024shortgpt}. In diffusion or flow models the first layers aggregate global context while the middle layers do a refinement for details. The last layers are acting as important for high frequency details as seen in fig. \ref{fig:PixArtBlockImportanceQualitatively} where for removed block 27 or 28 the concept of a man is present in the image but verry blurry.
+
 \subsubsection{Compression Criteria}
-In magnitude based pruning strategies the model parts with the lowest averaged weight magnitude are considered to be less important for the overall model performance. Interestingly, in Pixart-$\Sigma$ the weight magnitudes of the initial layers, which have a substantial influence on the final image synthesis (see fig. \ref{fig:PixArtBlockImportanceQualitatively}), have the lowest weight magnitudes across the architecture (see fig. \ref{fig:PixArtBlockMagnitudeCLIP} and \ref{fig:PixArtBlockMagnitudeCMMD} which both show the weight magnitudes for every block compared to the \gls{CLIP}-score or \gls{CMMD}). This observation contradicts with the assumption of low impact by low weights magnitudes. Furthermore, the weight magnitudes of the final layers are only marginally higher than those of the middle layers, while the middle layers' weight magnitudes exhibit a high degree of similarity. This would make a precise selection of blocks for removal based solely on this heuristic difficult. Consequently, using the weight magnitude to identify redundant blocks within PixArt-$\Sigma$ is not a suitable criterion for strucural distillation in this context.
+In magnitude based pruning strategies the model parts with the lowest averaged weight magnitude are considered to be less important for the overall model performance. Interestingly, in PixArt-$\Sigma$ the weight magnitudes of the initial layers, which have a substantial influence on the final image synthesis (see fig. \ref{fig:PixArtBlockImportanceQualitatively}), have the lowest weight magnitudes across the architecture (see fig. \ref{fig:PixArtBlockMagnitudeCLIP} and \ref{fig:PixArtBlockMagnitudeCMMD} which both show the weight magnitudes for every block compared to the \gls{CLIP}-score or \gls{CMMD}). This observation contradicts with the assumption of low impact by low weights magnitudes. It seems that despite the small weight magnitude the first layers act as important initial feature translator having a massive influence on model performance. Furthermore, the weight magnitudes of the final layers are only marginally higher than those of the middle layers, while the middle layers' weight magnitudes exhibit a high degree of similarity. This would make a precise selection of blocks for removal based solely on this heuristic difficult. Consequently, using the weight magnitude to identify redundant blocks within PixArt-$\Sigma$ is not a suitable criterion for strucural pruning in this context.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.85\textwidth]{images/Experimente/Pixart_Block_Analysis/magnitude_vs_clip.png}
+	\includegraphics[width=0.85\textwidth]{images/Experimente/PixArt_Block_Analysis/magnitude_vs_clip.png}
 	\caption[Magnitude-base pruning vs \gls{CLIP}-score]{The histogram shows the magnitudes of the weights of the individual transformer blocks (1-28). The blocks which have shown qualitatively (see fig. \ref{fig:PixArtBlockImportanceQualitatively}) to be very important for the image generation capabilities of PixArt-$\Sigma$ are marked with red. In addition, the \gls{CLIP}-scores for each block is displayed. The \gls{CLIP}-scores follow the qualitative observations in contrast to the magnitude-based analysis. }
 	\label{fig:magnitude_clip}
 	
@@ -28,18 +76,18 @@ In magnitude based pruning strategies the model parts with the lowest averaged w
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.85\textwidth]{images/Experimente/Pixart_Block_Analysis/magnitude_vs_cmmd.png}
+	\includegraphics[width=0.85\textwidth]{images/Experimente/PixArt_Block_Analysis/magnitude_vs_cmmd.png}
 	\caption[Magnitude-base pruning vs \gls{CMMD}]{The histogram shows the magnitudes of the weights of the individual transformer blocks (1-28). The blocks which have shown qualitatively (see fig. \ref{fig:PixArtBlockImportanceQualitatively}) to be very important for the image generation capabilities of PixArt-$\Sigma$ are marked with red. In addition, the \gls{CMMD} for each block is displayed. The \gls{CMMD} follow the qualitative observations in contrast to the magnitude-based analysis. }
 	
 	\label{fig:PixArtBlockMagnitudeCMMD}
 \end{figure}
 
-The \gls{CKA} score is computed for every block and every sampling step across 100 example prompts taken from the LAION dataset. Subsequently, these scores are averaged across all samples and time steps resulting in a mean similarity score $\mu_{CKA,i}$ for each individual Pixart-$\Sigma$ block. Averaging over the time steps should provide an estimate of the general importance of the block. However, the importance of a block at different time steps can vary drastically (see Appendix A). A low value indicates that the input and output of a specific block differs significantly, suggesting higher importance of the block. \\
+The \gls{CKA} score is computed for every block and every sampling step across 100 example prompts taken from the LAION dataset. Subsequently, these scores are averaged across all samples and time steps resulting in a mean similarity score $\mu_{CKA,i}$ for each individual PixArt-$\Sigma$ block. Averaging over the time steps should provide an estimate of the general importance of the block. However, the importance of a block at different time steps can vary drastically (see Appendix A). A low value indicates that the input and output of a specific block differs significantly, suggesting higher importance of the block. \\
 Both fig. \ref{fig:PixArtBlockImportanceCLIP} and \ref{fig:PixArtBlockImportanceCMMD} show the transformation intensity $1-\mu_{CKA,i}$ for every block compared with \gls{CMMD} or \gls{CLIP} score, a greate value signifies a more substantial feature transformaton. While blocks 17 and 22 stand out with their high values, the implied importance of these blocks cannot be confirmed by qualitative analysis (see fig. \ref{fig:PixArtBlockImportanceQualitatively}). Furthermore, blocks 1, 24, 27, and 28 are not uniquely identified as critical blocks for the performance of the model, as the values for blocks 19, 20, and 21 are higher, which would mark them as more relevant. As this ranking also fails to align with the qualitative review of block influence on the final image, the use of representational similarity for block selection in PixArt-$\Sigma$ must be viewed critically too.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.85\textwidth]{images/Experimente/Pixart_Block_Analysis/cka_vs_clip.png}  % adjust filename and width
+	\includegraphics[width=0.85\textwidth]{images/Experimente/PixArt_Block_Analysis/cka_vs_clip.png}  % adjust filename and width
 	\caption[\gls{CKA} transformation intensity vs \gls{CLIP}-score]{The histogram shows the transformation intensity based on \gls{CKA} comparing the input and output features of the individual transformer blocks (1-28). The blocks which have shown qualitatively (see fig. \ref{fig:PixArtBlockImportanceQualitatively}) to be very important for the image generation capabilities of PixArt-$\Sigma$ are marked with red. In addition, the \gls{CLIP}-scores for each block is displayed. The \gls{CLIP}-scores follow the qualitative observations in contrast to the transformation intensity analysis. }
 
 	\label{fig:PixArtBlockImportanceCLIP}
@@ -47,33 +95,131 @@ Both fig. \ref{fig:PixArtBlockImportanceCLIP} and \ref{fig:PixArtBlockImportance
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.85\textwidth]{images/Experimente/Pixart_Block_Analysis/cka_vs_cmmd.png}  adjust filename and width	\caption[\gls{CKA} transformation intensity vs \gls{CMMD}]{The histogram shows the transformation intensity based on \gls{CKA} comparing the input and output features of the individual transformer blocks (1-28). The blocks which have shown qualitatively (see fig. \ref{fig:PixArtBlockImportanceQualitatively}) to be very important for the image generation capabilities of PixArt-$\Sigma$ are marked with red. In addition, the \gls{CMMD} for each block is displayed. The \gls{CMMD} follow the qualitative observations in contrast to the transformation intensity analysis. }
+	\includegraphics[width=0.85\textwidth]{images/Experimente/PixArt_Block_Analysis/cka_vs_cmmd.png}  adjust filename and width	\caption[\gls{CKA} transformation intensity vs \gls{CMMD}]{The histogram shows the transformation intensity based on \gls{CKA} comparing the input and output features of the individual transformer blocks (1-28). The blocks which have shown qualitatively (see fig. \ref{fig:PixArtBlockImportanceQualitatively}) to be very important for the image generation capabilities of PixArt-$\Sigma$ are marked with red. In addition, the \gls{CMMD} for each block is displayed. The \gls{CMMD} follow the qualitative observations in contrast to the transformation intensity analysis. }
 
 	\label{fig:PixArtBlockImportanceCMMD}
 \end{figure}
 
-Due to the contradictory results of magnitude-based pruning and \gls{CKA}-scores when compared with the qualitative observations, a third methodology was investigated, namely quantifying the importance of individual blocks based on standard performance metrics \cite{FastFlux}. Specifically, the \gls{CLIP}-score and \gls{CMMD} are computed on a small reference dataset consisting of 100 images from the LAION dataset. It should be noted that the standard protocols for computing statistically robust \gls{CMMD} and \gls{CLIP} scores typically require larger datasets, e.g. upwards of 10,000. However, given the iterative nature of the greedy search (see sec. \ref{label}) and the high computational overhead associated with repeated evaluations, using such a large reference set was prohibitively expensive. Nevertheless, a sample size of 100 images serves as a sufficient proxy to capture the relative importance ranking of the transformer blocks, providing the necessary directional guidance for the distillation process. As illustrated in the fig. \ref{fig:PixArtBlockImportanceCLIP} and \ref{fig:PixArtBlockImportanceCMMD} (and likewise in fig. \ref{fig:PixArtBlockMagnitudeCLIP} and \ref{fig:PixArtBlockMagnitudeCMMD}) both metrics closely align with the qualitative evaluation, confirming that the first four and the last two blocks exert the greatest impact on the final image quality. Consequently, these metrics are selected as primary criteria for identifying redundant blocks in PixArt-$\Sigma$.
-This ranking serves as foundation for the subsequent, more more sophisticated block selection algorithms.\\
+Due to the contradictory results of magnitude-based pruning and \gls{CKA}-scores when compared with the qualitative observations, a third methodology was investigated, namely quantifying the importance of individual blocks based on standard performance metrics \cite{FastFlux}. Specifically, the \gls{CLIP}-score and \gls{CMMD} are computed on a small reference dataset consisting of 100 images from the LAION dataset. It should be noted that the standard protocols for computing statistically robust \gls{CMMD} and \gls{CLIP} scores typically require larger datasets, e.g. upwards of 10,000. However, given the iterative nature of the greedy search (see sec. \ref{sec:GreedyBlockSelection}) and the high computational overhead associated with repeated evaluations, using such a large reference set was prohibitively expensive. Nevertheless, a sample size of 100 images serves as a sufficient proxy to capture the relative importance ranking of the transformer blocks, providing the necessary directional guidance for the distillation process. As illustrated in the fig. \ref{fig:PixArtBlockImportanceCLIP} and \ref{fig:PixArtBlockImportanceCMMD} (and likewise in fig. \ref{fig:PixArtBlockMagnitudeCLIP} and \ref{fig:PixArtBlockMagnitudeCMMD}) both metrics closely align with the qualitative evaluation, confirming that the first four and the last two blocks exert the greatest impact on the final image quality. Consequently, these metrics are selected as primary criteria for identifying redundant blocks in PixArt-$\Sigma$.
+This ranking serves as foundation for the subsequent, more more sophisticated block selection algorithms and also for most experiments regarding block compression instead of block removal.\\
 
-\subsubsection{Blocks Selection Algorithms}
-A further key challenge after establishing the pruning criteria as the combination of \gls{CLIP}-score and \gls{CMMD} in structural model distillation is identifying the optimal combinations of blocks to remove simultaneously. When removing only a single block, there are merely 28 possibilities for Pixart-$\Sigma$. However, if the goal is to reduce the model size by $50\%$ necessitating the removal of 14 blocks, the number of possible block combinations escalates to $\binom{28}{14}$. Therefore, it is computationally infeasible to evaluate the \gls{CLIP}-score and \gls{CMMD} for every possible combination.\\
-A natural alternative is to perform a greedy search algorithm. In this approach, the importance ranking for all blocks is initially computed, after which the least important block is identified and compressed. Next, the \gls{CLIP}-scores and \gls{CMMD} are re-evaluated for the remaining blocks within the newly reduced architecture. By iteratively evaluating and compressing the least important block the model architecture is progressively reduced while accounting for the interdependencies between blocks. \\
-Another approach is to reformulate the block selection problem as hyperparameter search using the hyperparameter framework Optuna. The number of blocks to compress $N_c$, the blocks that are compressed $\{B_i\}_{i=1,\dots,N_c}$ and the compression ratios of each block $\{ \pi_i \}_{i=1,\dots,N_c}$ can be potential hyperparameters to optimize. We focused on identifying the blocks $\{B_i\}_{i=1,\dots,N_c}$ given $N_c$ and  $\{ \pi_i \}_{i=1,\dots,N_c}$ to reduce the search space. As objective function the \gls{CMMD} metric is used computed similarly like for the greedy algorithm on 100 reference images from LAION dataset. To further speed up the search process, the results of the greedy-algorithm are given as prior to Optuna such that the first trails are not picked randomly which would increase the search time drastically until a good setting is found. \\
-The Optuna hyperparameter search was tested for the iterative SVD distillation framework with fixed compression ratios 
+\subsubsection{Block Analysis for Compression Instead of Removal}
+In the experiments in which the blocks were compressed via \gls{SVD}, the scores for block selection were computed based on compressed blocks. In fig. \ref{fig:PixArtBlockImportanceCompressionQualitatively} the results of compressing every transformer block individually by $60\%$ are displayed. One important point to note is that the compressing the first blocks (1-4) which have a large impact when the blocks are completely removed (see fig. \ref{fig:PixArtBlockImportanceQualitatively}) resulting only in minimal image changes compared to the original image generated with the uncompressed model. Also the compression of block 28 results in less severe image quality degeneration than completely removing it. This demonstrates that these blocks are critical for the overall performans but contain high degree of redundancy. Notably, the compression block 27 also exhibit a strong smoothing of details like it was already observed by removing it. This indicates that block 27 is crucial and does not contain a high degree of redundancies. Compressing the middle blocks does not lead to a big drop of image quality but they differ even more from the original image compared to the first blocks. A possible explanation is that for setting the global structure which is done by the first blocks a low rank structure is sufficient. The middle blocks which are responsible for the details, e.g. direction in which the eagle looks, are more sensitive for compression.
 
-
-\begin{table}[ht]
+\begin{figure}[H]
 	\centering
-	\caption{Description of your table data.}
-	\label{tab:my_table}
-	\begin{tabularx}{\textwidth}{XXXXXXX} % l=left, c=center, r=right
+	\includegraphics[width=0.7\textwidth]{images/Experimente/PixArt_Block_Analysis/BlockAnalysisCompression06.pdf}  % adjust filename and width
+	\caption[Qualitative analyse of the block sensitivity of PixArt-$\Sigma$ of block compression]{The figure shows the influence of selectively compressing individual transformer blocks (1–28) by $60 \%$ on the final generation result.}
+	
+	\label{fig:PixArtBlockImportanceCompressionQualitatively}
+\end{figure}
+
+\subsubsection{Block Selection Algorithms}
+A further key challenge after establishing the pruning criteria as the combination of \gls{CLIP}-score and \gls{CMMD} in structural model pruning is identifying the optimal combinations of blocks to remove simultaneously. When removing only a single block, there are merely 28 possibilities for PixArt-$\Sigma$. However, if the goal is to reduce the model size by $50\%$ necessitating the removal of 14 blocks, the number of possible block combinations escalates to $\binom{28}{14}$. Therefore, it is computationally infeasible to evaluate the \gls{CLIP}-score and \gls{CMMD} for every possible combination.\\
+
+\subsubsection{Optuna}
+A natural alternative is to perform a greedy search algorithm. In this approach, the importance ranking for all blocks is initially computed, after which the least important block is identified and compressed. Next, the \gls{CLIP}-scores and \gls{CMMD} are re-evaluated for the remaining blocks within the newly reduced architecture. By iteratively evaluating and compressing the least important block the model architecture is progressively reduced while accounting for the interdependencies between blocks. \\
+Another approach is to reformulate the block selection problem as hyperparameter search using the hyperparameter framework Optuna. The number of blocks to compress $N_c$, the blocks that are compressed $\{B_i\}_{i=1,\dots,N_c}$ and the compression ratios of each block $\{ \pi_i \}_{i=1,\dots,N_c}$ can be potential hyperparameters to optimize. We focused on identifying the blocks $\{B_i\}_{i=1,\dots,N_c}$ given $N_c$ and  $\{ \pi_i \}_{i=1,\dots,N_c}$ to reduce the search space. As objective function the \gls{CMMD} metric is computed similarly like for the greedy algorithm on 100 reference images from LAION dataset. To further speed up the search process, the results of the greedy-algorithm are given as prior to the Optuna optimization framework such that the first trails are not picked randomly which would increase the search time drastically until a good setting is found. \\
+The Optuna hyperparameter search was tested for the iterative SVD distillation framework with fixed compression ratios $\pi_i = 0.6$ $ \forall i \in \{1, \dots, N_c\}$, where the number of compressed transformer blocks was chosen for each iteration individually. The procedure to determine the best transformer blocks to compress was as follows. First, a greedy algorithm was leveraged to find a prior of potentially good candidates for compression. Afterwards, the Optuna hyperparameter framework was applied to refine the block selection. In total 300 different configurations were tried out by Optuna where the decision criterion was solely the \gls{CMMD} score. The pruned model was then retrained. This procedure  was executed repeatedly for four iterations. Fig. \ref{fig:AdvantageOfOPtunaPreTraining} shows the prior blocks from the greedy algorithm as well as the final block selection of the Optuna algorithm. On the right side the corresponding \gls{CMMD} values which were computed on a small reference dataset of 100 images are displayed for each configuration. Note this is the \gls{CMMD} value before retraining to compare the prior with the final selection. The grey blocks, represent the consensus where the Optuna algorithm did not change the blocks from the prior whereas the yellow and green blocks mark the exclusive blocks selected by the greedy algorithm  and the Optuna algorithm respectively. For iterations one to three, one observes that the majority of blocks from the greedy prior are maintained by the optuna algorithm, only in iteration four do two out of three blocks differ. The large overlap is a first indication that the greedy algorithm already performs well. However, because the greedy result was used as prior the optuna framework search is focused around the greedy result which might also explain the high similarity. Overall, one can conclude that the \gls{CMMD} values obtained by the Optuna algorithm are consistently smaller (better) than the ones obtained by the greedy algorithm. This indicates that at least the pre-training performance is enhanced by the refinement step. \\
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.85\textwidth]{images/Experimente/optuna/optuna_greedy_comb.png}  
+	\caption[Comparison of Pruning Strategies: Optuna vs. Greedy Algorithm]{Comparison of removed blocks per iteration by the Greedy algorithm versus the Optuna framework. 
+		In each iteration, the Greedy algorithm's selection served as the initialization prior for the Optuna hyperparameter search. 
+		The heatmap visualizes the divergence in block selection:.While gray blocks represent consensus, the colored blocks highlight where Optuna (green) found a superior structural reduction compared to the Greedy baseline (yellow). 
+		The model was retrained between iterations based on the optimized configuration. 
+		The annotations demonstrate that Optuna consistently achieves lower (better) \gls{CMMD} scores. 
+	}
+	\label{fig:AdvantageOfOPtunaPreTraining}
+\end{figure}
+Above, we observed that in each iteration, the Optuna framework was able to identify a block combination for compression which resulted in a smaller \gls{CMMD} value compared to the prior greedy algorithm.
+ In the next step, we compressed the model twice, once based on the greedy algorithm and once based on the Optuna algorithm as described above, each time targeting the same number of parameters (same compression rates $\pi_i = 0.6$ and same number of blocks in each iteration). Fig. \ref{fig:AdvantageOfOPtunaPostTraining} shows the corresponding distribution of blocks being compressed in each iteration. Please note that here "Greedy" specifies the compression scheme where the greedy algorithm is strictly utilized as the block selection algorithm, in contrast to the previous section, where "Greedy" just represented the prior for the Optuna algorithm.
+  Looking at the block distribution, one observes that the early layers are compressed heavily in both schemes first, indicating a consensus on the high redundancy of these initial blocks. In the later layers, no clear structure is visible and the selections diverge. This lack of a consistent pattern suggests that the deeper blocks are largely interchangeable regarding their impact on the model's capacity. 
+ The evaluation of the retrained compressed models (see fig. \ref{fig:BenchmarksOptuna}) does not provide clear evidence that the Optuna block selection algorithm led to better performing models post-retraining. One observes that for the smallest model, the HPSv2 score is even better for the greedy algorithm, and a similar trend is observed for the second and third iteration regarding the GenEval score. This demonstrates that the retraining process acts as an equalizer, effectively eliminating the small primary advantage of the Optuna algorithm. Therefore, the Optuna algorithm is not considered further in the following experiments.
+
+
+
+
+
+
+\begin{figure}[H]
+	\centering
+	% --- First Image ---
+	\begin{subfigure}[b]{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{images/Experimente/optuna/optuna_hpsv2.png}
+		\caption{HPSv2 Benchmark}
+		\label{fig:image1}
+	\end{subfigure}% <--- WICHTIG: Dieses % verhindert ein ungewolltes Leerzeichen!
+	\hfill
+	% --- Second Image ---
+	\begin{subfigure}[b]{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{images/Experimente/optuna/optuna_geneval.png}
+		\caption{GenEval Benchmark}
+		\label{fig:image2}
+	\end{subfigure}
+	
+	\caption[Comparison of Pruning Strategies]{Comparison versus Optuna framework and greedy algorithm... (a) shows...}
+	\label{fig:BenchmarksOptuna}
+\end{figure}
+
+ \begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{images/Experimente/optuna/blocks_optuna_greedy.png}  
+\caption[Comparison of Pruning Strategies: Optuna vs. Greedy Algorithm Regarding Training]{Here, all compressed blocks based on a greedy and optuna pruning scheme are displayed per iteration. 
+}
+\label{fig:AdvantageOfOPtunaPostTraining}
+\end{figure}
+\subsubsection{TinyFusion}
+
+If not stated otherwise the block selection was executed based on the greedy algorithm on \gls{CMMD} and \gls{CLIP}-score.
+\subsection{Progressive Model Pruning vs One-Shot Model Pruning}
+One-shot model pruning compresses the model to target size in a single step, while progressive pruning employs an iterative scheme of incrementally removing parameters followed by recovery training phases. Both frameworks are tested using the complete block removal approach. The number of blocks removed for each model and the number of training steps are summarized in tab. \ref{tab:SettingOneShotvsProgressive} and the exact blocks which are removed for each model can be found in the appendix \ref{sec:OneShotvsProgressiveBlockDistribution} (see fig. \ref{fig:OneShotvsProgressiveBlockDistribution}). Fig. \ref{fig:OneShotvsProgressive} displays the performance of the one-shot versus progressive pruning on the HPSv2 and GenEval benchmarks across various compression ratios. To ensure a fair comparison, the models for both methods are trained for the same amount of training steps and on exactly the same data. Both benchmarks demonstrate that one-shot compression is a viable strategy in the low compression regime (10\% to 20\% parameter reduction). However, as the compression ratio increases the progressive approache becomes advantageous because the incremental removal of parameters allows the model to recover its generative capabilities more effectively compared to the abrupt removal of large amount of parameters at once. Based on this finding the following experiments are executed in the progressive model distillation framework.
+
+\begin{figure}[H]
+	\centering
+	% --- First Image ---
+	\begin{subfigure}[b]{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{images/Experimente/Iterative_vs_Direct/iterative_vs_direct_hpsv2.png}
+		\caption{HPSv2 Benchmark}
+		\label{fig:image1}
+	\end{subfigure}% <--- WICHTIG: Dieses % verhindert ein ungewolltes Leerzeichen!
+	\hfill
+	% --- Second Image ---
+	\begin{subfigure}[b]{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{images/Experimente/Iterative_vs_Direct/iterative_vs_direct_geneval.png}
+		\caption{GenEval Benchmark}
+		\label{fig:image2}
+	\end{subfigure}
+	
+	\caption[Comparison of Pruning Strategies]{Comparison versus Optuna framework and greedy algorithm... (a) shows...}
+	\label{fig:OneShotvsProgressive}
+\end{figure}
+
+	
+	
+
+
+\begin{table}[htbp]
+	\centering
+	\caption{Training and Model Specifications for Compressed Variants.}
+	\label{tab:SettingOneShotvsProgressive}
+	\begin{tabular}{@{} l c c c @{}}
 		\toprule
-		\textbf{Iteration     (Parameters)} & \textbf{Number Removed Blocks $N_c$} & \textbf{Greedy Algo $\{B_i\}_{i=1,\dots,N_c}$} & \textbf{Optuna $\{B_i\}_{i=1,\dots,N_c}$} & \textbf{Greedy Algo \gls{CMMD}} &  \textbf{Optuna \gls{CMMD}}\\
+		\textbf{Model Variant} & \textbf{Number of}  & \textbf{Training Steps} \\
+		\textbf{(Remaining \%)} & \textbf{Removed Blocks}  & \textbf{(in Thousands)} \\
 		\midrule
-		1       & 11   & [0,1,2,3,4,5,6,16, 21,23,27] & [0,1,2,3,4,6,7,16, 17,25,27] & 0.122 & 0.086\\
-		2  & 4 &[5,8,18,20]              &  [5,8,19,20]   & 0.128& 0.097\\
-		3    &3 & [9,11,18]              & [9,11,21]                  & 0.188 & 0.171 \\
-		4      &3     & [10,18,23]              & [14,18,22]                       & 0.551 & 0.292 \\
+		Model 90\% & 3 & 88.5 \\
+		Model 80\% & 6   & 265.5 \\
+		Model 70\% & 8   & 531.0 \\
+		Model 60\% & 11  & 708.0 \\
+		Model 50\% & 14  & 973.5 \\
 		\bottomrule
-	\end{tabularx}
+	\end{tabular}
+	
 \end{table}
+

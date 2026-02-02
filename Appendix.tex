@@ -11,3 +11,63 @@ Heatmap for cka: Block importance for different time steps
 	
 	\label{fig:PixArtBlockImportanceHeatmap}
 \end{figure}
+
+
+
+\section{Appendix B}
+\subsection{One Shot vs Progressive Model Pruning}
+\label{sec:OneShotvsProgressiveBlockDistribution}
+\begin{figure}[htbp]
+	\centering
+	
+	% --- BILD 1 ---
+	\begin{subfigure}[b]{0.9\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{images/Experimente/Iterative_vs_Direct/OneShotvsIterative/model_90.png}
+		\caption{Block Selection of model with 90\% parameters}
+		\label{fig:bild1}
+	\end{subfigure}
+	
+	\vspace{0.5cm} % Abstand nach unten
+	
+	% --- BILD 2 ---
+	\begin{subfigure}[b]{0.9\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{images/Experimente/Iterative_vs_Direct/OneShotvsIterative/model_80.png}
+		\caption{Block Selection of model with 80\% parameters}
+		\label{fig:bild2}
+	\end{subfigure}
+	
+	\vspace{0.5cm}
+	
+	% --- BILD 3 ---
+	\begin{subfigure}[b]{0.9\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{images/Experimente/Iterative_vs_Direct/OneShotvsIterative/model_70.png}
+		\caption{Block Selection of model with 70\% parameters}
+		\label{fig:bild3}
+	\end{subfigure}
+	
+	\vspace{0.5cm}
+	
+	% --- BILD 4 ---
+	\begin{subfigure}[b]{0.9\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{images/Experimente/Iterative_vs_Direct/OneShotvsIterative/model_60.png}
+		\caption{Block Selection of model with 60\% parameters}
+		\label{fig:bild4}
+	\end{subfigure}
+	
+	\vspace{0.5cm}
+	
+	% --- BILD 5 ---
+	\begin{subfigure}[b]{0.9\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{images/Experimente/Iterative_vs_Direct/OneShotvsIterative/model_50.png}
+		\caption{Block Selection of model with 50\% parameters}
+		\label{fig:bild5}
+	\end{subfigure}
+	
+	\caption{Comparison of removed blocks for one-shot vs progressive model pruning for different compression stages (90\% to 50\%).}
+	\label{fig:OneShotvsProgressiveBlockDistribution}
+\end{figure}

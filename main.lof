@@ -25,11 +25,17 @@
 \contentsline {figure}{\numberline {4.9}{\ignorespaces Examples of Cityscapes Dataset}}{42}{figure.4.9}%
 \contentsline {figure}{\numberline {4.10}{\ignorespaces Examples of MHJQ-30k Dataset}}{43}{figure.4.10}%
 \contentsline {figure}{\numberline {4.11}{\ignorespaces Example of removal (left) and compression (right) strategy based on a simplified representation of PixArt-$\Sigma $ architecture. The depictions show the case that the blocks 8,11,15,17 and 20 are removed or compressed. }}{44}{figure.4.11}%
-\contentsline {figure}{\numberline {4.12}{\ignorespaces }}{45}{figure.4.12}%
+\contentsline {figure}{\numberline {4.12}{\ignorespaces }}{46}{figure.4.12}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Qualitative analyse of the block sensitivitäy of PixArt-$\Sigma $}}{49}{figure.5.1}%
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Magnitude-base pruning vs \gls {CLIP}-score}}{50}{figure.5.2}%
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Magnitude-base pruning vs \gls {CMMD}}}{50}{figure.5.3}%
-\contentsline {figure}{\numberline {5.4}{\ignorespaces \gls {CKA} transformation intensity vs \gls {CLIP}-score}}{51}{figure.5.4}%
-\contentsline {figure}{\numberline {5.5}{\ignorespaces \gls {CKA} transformation intensity vs \gls {CMMD}}}{51}{figure.5.5}%
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Qualitative analyse of the block sensitivity of PixArt-$\Sigma $ for block removal}}{51}{figure.5.1}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Magnitude-base pruning vs \gls {CLIP}-score}}{52}{figure.5.2}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Magnitude-base pruning vs \gls {CMMD}}}{52}{figure.5.3}%
+\contentsline {figure}{\numberline {5.4}{\ignorespaces \gls {CKA} transformation intensity vs \gls {CLIP}-score}}{53}{figure.5.4}%
+\contentsline {figure}{\numberline {5.5}{\ignorespaces \gls {CKA} transformation intensity vs \gls {CMMD}}}{53}{figure.5.5}%
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Qualitative analyse of the block sensitivity of PixArt-$\Sigma $ of block compression}}{55}{figure.5.6}%
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Comparison of Pruning Strategies: Optuna vs. Greedy Algorithm}}{56}{figure.5.7}%
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Comparison of Pruning Strategies}}{57}{figure.5.8}%
+\contentsline {figure}{\numberline {5.9}{\ignorespaces Comparison of Pruning Strategies: Optuna vs. Greedy Algorithm Regarding Training}}{57}{figure.5.9}%
+\contentsline {figure}{\numberline {5.10}{\ignorespaces Comparison of Pruning Strategies}}{58}{figure.5.10}%
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Comparison of removed blocks for one-shot vs progressive model pruning for different compression stages (90\% to 50\%).}}{60}{figure.6.2}%
