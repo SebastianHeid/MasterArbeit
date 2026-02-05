@@ -210,8 +210,9 @@ The general learning objective for knowledge distillation as described in eq. \r
 \begin{equation}
 	\mathcal{L} = \mathcal{L_\text{Task}} + \lambda_\text{OutKD} \mathcal{L_\text{OutKD}} + \lambda_\text{FeatKD} \mathcal{L_\text{FeatKD}} \quad.
 \end{equation}
-In the experiment section \ref{label} we investigate the importance of the individual components.
+In the experiment section \ref{sec:ExpKDLoss} we investigate the importance of the individual components.
 \subsection{Normalization}
+\label{sec:KDLNormalization}
 An important point to note is that the features of different blocks may have varying magnitudes wherefore \cite{Laptop} found that applying a normalization to the features is beneficial. Therefore, after computing the difference between the teacher and the studen features a normalization is applied such as the individual blocks contribute equally to $\mathcal{L_\text{FeatKD}}$. The normalization which is utilized for this works is taken from \cite{Dense2MoE}.  Let $T_l$ and $S_l$ denote the features of the teacher and the student from transformer block $l \in \{1,\dots,L\}$. For a batch size of B, each feature tensor has the dimension $(B,D_l)$ where $D_l$ is the total numbers of flattened features. The $i$-th sample in the batch for layer $l$ is denoted as $T_{i,l}$ and respectively $S_{i,l}$.  
 First, the \gls{MSE} is computed between the teacher and the student featurs 
 \begin{equation}

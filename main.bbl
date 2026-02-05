@@ -193,6 +193,12 @@ Laurent Dinh, David Krueger, and Yoshua Bengio.
 \newblock Nice: Non-linear independent components estimation.
 \newblock {\em arXiv preprint arXiv:1410.8516}, 2014.
 
+\bibitem{dong2025attention}
+Yihe Dong, Lorenzo Noci, Mikhail Khodak, and Mufan Li.
+\newblock Attention retrieves, mlp memorizes: Disentangling trainable
+  components in the transformer.
+\newblock {\em arXiv preprint arXiv:2506.01115}, 2025.
+
 \bibitem{VisionTransformer}
 Alexey Dosovitskiy, Lucas Beyer, Alexander Kolesnikov, Dirk Weissenborn,
   Xiaohua Zhai, Thomas Unterthiner, Mostafa Dehghani, Matthias Minderer, Georg

@@ -3,15 +3,17 @@ This master thesis investigate structural model pruning techniques, specifically
 \section{PixArt-$\Sigma$ Pruning}
 
 \subsection{Experimental Default Setup}
+\label{sec:DefaultSetup}
 In the following section, individual components of the compression pipeline such as loss function, block selection algorithm, compression strategy, ..., are systematically investigated. To isolate the impact of each component, a default experimental setup is defined below. Unless stated otherwise all subsequent experiments utilize the baseline configuration. It is important to note that this setup serves as consistent starting point for the experiments and does not necessarily represent the final, best setting which is derived later in this work.
 
 \begin{itemize}
 	\item \textbf{Loss}: The learning objectiv is the sum of the unormalized feature and output distillation loss $\mathcal{L_\text{OutKD}} + \mathcal{L_\text{FeatKD}}$.
-	\item \textbf{Pruning Schedul}: The progressive compression strategy is employed.
+	\item \textbf{Pruning Schedul}: The progressive compression strategy is employed. As soon as the \gls{CMMD} value becomes larger than 0.1 in the block selection algorithm, the model was retrained to recover its generation capbilities.
 		\item \textbf{Structural Compression Strategy}: Complete block removal is used to reduce the model size.
 	\item \textbf{Block Selection Algorithm}: The Greedy algorithm based on \gls{CMMD} and \gls{CLIP}-score was utilized computed on 100 images.
 	\item \textbf{Training Datasets}: Training is performed sequentially starting on the LAION dataset followed by further training on the LAION-PixArt dataset. For each iteration, the models are trained for two epochs on each datasets.
 	\item \textbf{Training Hyperparameters}: All other training hyperparameters are summarized in tab. \ref{tab:hyperparameterTraining}.
+	\item  \textbf{Finetuning Protocol}: The recovery of the pruned model follows a structured three stage protocol. First, for local stabilization, optimization is restricted to  the block $B_{l-1}$ immediately preceding the removed block $B_l$ for one epoch (38k steps) on the LAION dataset. In case where several blocks are removed simultanousely, all corresponding preceding blocks are updated while the rest of the network is frozen. Subsequently, the complete model is optimized for an additional epoch on the LAION dataset. Finally for domain-specific refinement, the complete model is finetuned for two epochs (12.5k steps) on the LAION-PixArt dataset.  
 
 \end{itemize}
 
@@ -136,7 +138,7 @@ The Optuna hyperparameter search was tested for the iterative SVD distillation f
 Above, we observed that in each iteration, the Optuna framework was able to identify a block combination for compression which resulted in a smaller \gls{CMMD} value compared to the prior greedy algorithm.
  In the next step, we compressed the model twice, once based on the greedy algorithm and once based on the Optuna algorithm as described above, each time targeting the same number of parameters (same compression rates $\pi_i = 0.6$ and same number of blocks in each iteration). Fig. \ref{fig:AdvantageOfOPtunaPostTraining} shows the corresponding distribution of blocks being compressed in each iteration. Please note that here "Greedy" specifies the compression scheme where the greedy algorithm is strictly utilized as the block selection algorithm, in contrast to the previous section, where "Greedy" just represented the prior for the Optuna algorithm.
   Looking at the block distribution, one observes that the early layers are compressed heavily in both schemes first, indicating a consensus on the high redundancy of these initial blocks. In the later layers, no clear structure is visible and the selections diverge. This lack of a consistent pattern suggests that the deeper blocks are largely interchangeable regarding their impact on the model's capacity. 
- The evaluation of the retrained compressed models (see fig. \ref{fig:BenchmarksOptuna}) does not provide clear evidence that the Optuna block selection algorithm led to better performing models post-retraining. One observes that for the smallest model, the HPSv2 score is even better for the greedy algorithm, and a similar trend is observed for the second and third iteration regarding the GenEval score. This demonstrates that the retraining process acts as an equalizer, effectively eliminating the small primary advantage of the Optuna algorithm. Therefore, the Optuna algorithm is not considered further in the following experiments.
+ The evaluation of the retrained compressed models (see fig. \ref{fig:BenchmarksOptuna}) does not provide clear evidence that the Optuna block selection algorithm led to better performing models post-retraining. One observes that for the smallest model, the HPSv2 score is even better for the greedy algorithm, and a similar trend is observed for the second and third iteration regarding the GenEval score. This demonstrates that the retraining process acts as an equalizer, effectively eliminating the small primary advantage of the Optuna algorithm. 
 
 
 
@@ -223,3 +225,203 @@ One-shot model pruning compresses the model to target size in a single step, whi
 	
 \end{table}
 
+
+\subsection{Knowledge Distillation Loss}
+\label{sec:ExpKDLoss}
+In this section the standard setting (see sec. \ref{sec:DefaultSetup}) except the learning objective is varied to investigate the effectiveness of the individual components of the knowledge distillation loss (see eq. \ref{eq:KnowledgeDistillationLoss}). In total, five different loss functions are testet: 
+
+
+ \begin{itemize}
+ 	\item \textbf{Output-Only Distillation} ($\bm{\mathcal{L_\textbf{OutKD}}}$): \\ The \gls{MSE} between the final output of the student and the teacher serves as the sole learning signal.
+ 	\item \textbf{Standard Distillation} ($\bm{\mathcal{L_\textbf{OutKD}}} + \bm{\mathcal{L_\textbf{FeatKD}}}$): \\ The unweighted sum of the final output loss and the  intermediate feature loss is leveraged as learning objective.
+ 	\item   \textbf{Hybrid Distillation} ($\bm{\mathcal{L_\textbf{OutKD}}} + \bm{\mathcal{L_\textbf{FeatKD}}} + \bm{\mathcal{L_\textbf{Task}}}$): \\ The original diffusion loss is added to the standard distillation loss. 
+ 	\item \textbf{Normalized Distillation} ($\bm{\mathcal{L_\textbf{OutKD,norm}}} + \bm{\mathcal{L_\textbf{FeatKD,norm}}}$): \\ The final output and the intermediate feature loss are normalized (see sec. \ref{sec:KDLNormalization}) before summed together to ensure that individual layers do not dominate the total loss. 
+ 	\item  \textbf{Normalized Hybrid Distillation} ($\bm{\mathcal{L_\textbf{OutKD,norm}}} + \bm{\mathcal{L_\textbf{FeatKD,norm}}}+ \bm{\mathcal{L_\textbf{Task}}}$): \\ This configuration extends the normalized distillation objective by incorporating the original diffusion task loss.
+ \end{itemize}
+ For all loss configurations models of different size (90\% to 50\%) are trained whereas the same settings as described in tab. \ref{tab:SettingOneShotvsProgressive} are utilized. Fig. \ref{fig:LossInvestigation} presents the performance for the performance of models with varying degrees of compression based on the different learning objective. \\
+ According to the HPSv2 benchmark which measures overall image quality, the normalization of the intermediate features and the final output loss proves advantageous (blue and red lines). Both loss configurations which utilize normalization achieve a consistently higher HPSv2 score compared to the unnormalized counterparts. The normalization ensures that the contribution of each intermediate feature to the overall loss is balanced. This prevents the optimization process from prioritizing the later layers where the errors are numerically larger to the detriment of the earlier layer. The numerically larger discrepancies between the teacher and the student stem from the larger feature magnitudes in deeper layers as displayed in fig. \ref{fig:MagnitudeIntermediateFeatures} which presents the \gls{RMS} of the intermediate features after every transformer block in PixArt-$\Sigma$. The increase in feature magnitude results from to the signal accumulation inherent to the PixArt-$\Sigma$ architecture which follows the residual formulation $\mathbf{x}_{l+1} = \mathbf{x}_l + B_l(\mathbf{x}_l)$ where $B_l$ representing the $l^\text{th}$ transformer block. \\
+ Of the two loss configurations applying normalizaiton, the normalized hybrid distillation performs best. It is advantageous for the pruned model if besides the teacher's learning signal the original diffusion loss is leveraged too. The original loss becomes critical when the teacher is uncertain itself about a prediction as it anchors the student to the ground truth. \\
+  The benefit of the original diffusion loss is also confirmed by the unnormalized settings where the hybrid distillation consistently achieves a higher HPSv2 score compared to the standard distillation approach.\\
+  Interestingly, the output-only approach outperforms both standard and hybrid distillation settings for shallow compressed models. This suggests that the unbalanced feature loss prevents effective learning. However, for strongly compressed models the output-only loss configuration leads to an abrupt drop in quality. This shows that the intermediate feature loss despite being suboptimally distributed serves as a critical stabilizer of the training process.
+  
+  The GenEval benchmark mainly confirms the observations from the HPSv2 benchmark, that the normalized hybrid distillation approach performs best overall and that adding the original diffusion loss boosts performance. Notably, the output-only configuration results are even more pronounced by performing comparably good or better to the normalized hybrid distillation approach in the low compression regime (90\% to 70\%). This suggests that at low compression, removing the constraints of feature matching allows the student to optimize semantic alignment very effectively. However perfrmance drops severly for larger compression rates. Furthermore, it is worth noting, that for the high compression of 60\% or 50\% the unnormalized hybrid distillation approach slightly outperforms the normalized distillation approach. This indicates that in the high compression regime the original diffusion loss is critical for maintaining the text-to-image alignment.  \\
+  
+ \begin{figure}[H]
+ 	\centering
+ 	% --- First Image ---
+ 	\begin{subfigure}[b]{0.48\textwidth}
+ 		\centering
+ 		\includegraphics[width=\textwidth]{images/Experimente/loss_investigation/loss_investigation_hpsv2.png}
+ 		\caption{HPSv2 Benchmark}
+ 		\label{fig:image1}
+ 	\end{subfigure}% <--- WICHTIG: Dieses % verhindert ein ungewolltes Leerzeichen!
+ 	\hfill
+ 	% --- Second Image ---
+ 	\begin{subfigure}[b]{0.48\textwidth}
+ 		\centering
+ 		\includegraphics[width=\textwidth]{images/Experimente/loss_investigation/loss_investigation_geneval.png}
+ 		\caption{GenEval Benchmark}
+ 		\label{fig:image2}
+ 	\end{subfigure}
+ 	
+ 	\caption[Investigation of Knowledge Distialltion Loss]{Investigation of the importance of the individual components of the knowledge distillation loss.}
+ 	\label{fig:LossInvestigation}
+ \end{figure}
+ 
+  \begin{figure}[H]
+ 	\centering
+ 	\includegraphics[width=0.6\textwidth]{images/Experimente/loss_investigation/magnitude_block_features.png}  
+ 	\caption[Magnitude of Intermediate Features in PixArt-$\Sigma$]{The \gls{RMS} norm of the output features of the individual transformer blocks from PixArt-$\Sigma$ varies significantly. Features from later layers have a larger magnitude than earlier layers. The \gls{RMS} norm is computed on 100 prompts from LAION dataset and averaged. 
+ 	}
+ 	\label{fig:MagnitudeIntermediateFeatures}
+ \end{figure}
+ 
+ 
+ \subsection{Finetuning Protocol}
+ After removing blocks from the PixArt-$\Sigma$ architecture, the reduced model is finetuned to recover its image generation capabilities. In total, three different finetuning protocols are tested to identify the most effecive one. In all protocols, the model was trained for 88.5k optimization steps to enable fair comparison.
+ \begin{itemize}
+ 	\item \textbf{Three Stage Finetuning Protocol} \\
+ 	This is the default finetuning protocol described in sec. \ref{sec:DefaultSetup}. It is repeated for the reader's convinience.
+ 	\begin{enumerate}
+ 		\item Local Stabilization: The blocks immediately preceding the removed blocks are finetuned for 38k steps on the LAION dataset while all other parts of the model are frozen.
+ 		\item Global Optimization: The complete model is optimized for one epoch (38k steps) on the LAION dataset.
+ 		\item Domain Specific Refinement: The LAION-Pixart dataset is leveraged to finetune the pruned model for 12.5k steps on its teachers domain.
+ 	\end{enumerate}
+ 	
+ 	\item \textbf{Two Stage Finetunig Protocol} \\
+ 	In the following protocol, instead of performing local finetuning, the entire model is directly finetuned for 2 epochs.
+ 	\begin{enumerate}
+ 		 	\item Global Optimization: The complete model is optimized for two epoch (76k steps) on the LAION dataset.
+ 		\item Domain Specific Refinement: The LAION-Pixart dataset is leveraged to finetune the pruned model for 12.5k steps on its teachers domain.
+ 	\end{enumerate}
+
+ 	\item \textbf{Two Stage LAION only Finetuning Protocol} \\
+ 	The absence of the domain specific refinement is investigated in this protocol.
+ 	\begin{enumerate}
+ 		\item Local Stabilization: The blocks immediately preceding the removed blocks are finetuned for 38k steps on the LAION dataset while all other parts of the model are frozen.
+ 		\item Global Optimization: The complete model is optimized for two epoch (50.5k steps) on the LAION dataset.
+ 	\end{enumerate}
+ \end{itemize}
+ 
+ The evaluation of the performance obtained for models of different pruninng ratios (90\% to 50\%) can be found in fig. \ref{fig:FinetuningProtocols}. For both the HPSv2 and GenEval benchmarks, fine-tuning solely on the LAION dataset (yellow line) leads to a sharp decline for strongly compressed models. This is a strong indication that the image quality being higher in the LAION-PixArt dataset compared to the LAION dataset is highly relevant for the recoverage of the generation capability of a pruned transformer-based diffusion model. Moreover, it could be observed that for shallow compressed models (10\% to 20\%) the two stage finetuning protocol (green line) performs better than the three stage protocol (purple line). This indicates that in the low compression regime the model benefits from the extended global finetuning and no local repair is needed. For the middle compressed models (70\%-60\%), the three stage finetuning is consistently on better or on par with the two stage protocol. This performance gap suggests that the local stabilization step provides necessary structural regularization when the model capacity is reduced to a critical threshold. For strong compression there are contradictory results. According to the HPSv2 benchmark the three stage approach is still marginally better than the two stage approach. However, the GenEval benchmark suggests that it is reverse. Given the high degree of degradation in both models at this stage, these marginal differences may also reflect the inherent instability of training extremely pruned networks rather than a definitive superiority of one method over the other.
+ 
+ 
+  \begin{figure}[H]
+ 	\centering
+ 	% --- First Image ---
+ 	\begin{subfigure}[b]{0.48\textwidth}
+ 		\centering
+ 		\includegraphics[width=\textwidth]{images/Experimente/It_shortcut_no_pix/iter_shortcut_no_pix_hpsv2.png}
+ 		\caption{HPSv2 Benchmark}
+ 		\label{fig:image1}
+ 	\end{subfigure}% <--- WICHTIG: Dieses % verhindert ein ungewolltes Leerzeichen!
+ 	\hfill
+ 	% --- Second Image ---
+ 	\begin{subfigure}[b]{0.48\textwidth}
+ 		\centering
+ 		\includegraphics[width=\textwidth]{images/Experimente/It_shortcut_no_pix/iter_shortcut_no_pix_geneval.png}
+ 		\caption{GenEval Benchmark}
+ 		\label{fig:image2}
+ 	\end{subfigure}
+ 	
+ 	\caption[Finetuning Protocols Benchmark]{Investigation finetuning protocols.}
+ 	\label{fig:FinetuningProtocols}
+ \end{figure}
+ 
+ 
+ \subsection{Structural Compression Strategy}
+ As an alternative to the pruning strategy of removing entire transformer blocks from PixArt-$\Sigma$, a compression strategy utilizing \gls{SVD} compression is investigated. This decomposition is applied to the \gls{MLP}, self-attention and cross-attention matrices within a transformer block. To evaluate the efficiency of the \gls{SVD} compression method against the structural block removal method, a representative operating point is chosen. The rank for the \gls{MLP} is set to $r_\text{MLP} = 512$ corresponding to a compression of approximately $44\%$ of its parameters and the ranks for the self- and cross-attention matrices are fixed to $r_\text{self-attn} = r_\text{cross-attn} = 128$ representing a parameter reduction of approximately $78\%$. This serves as a starting point. Later, the choice of compressing attention matrices more aggressively than the \gls{MLP} matrices is further investigated (see sec. \ref{sec:MLPAttnDiffCompRatios}). \\
+  Tab. \ref{tab:SVDCompressionFirstExp} compares the configurations of both methods, specifically the number of blocks removed or compressed and corresponding training duration for each model. Note that the number of training steps differs significantly, as the default criterion - a \gls{CMMD} value exceeding 0.1 - was employed to the pruning rate per iteration, consistent with the default settings. The observation that the \gls{SVD} allows for more parameters to be removed with a less severe impact on the \gls{CMMD} value on the small reference dataset is an initial indication that compression is a more nuanced method than block removal. Fig. \ref{fig:SVD_vs_Removal} presents the performance for both methods on the HPSv2 and GenEval benchmarks. For both benchmarks the \gls{SVD} compression method outperforms the complete block removal method in low and high compression regimes. This suggests that distributing the parameter reduction across multiple blocks via compression is less adverse to model performance compared to removing individual blocks completely.
+ 
+ \begin{table}[htbp]
+ 	\centering
+ 	\caption{Comparing training steps and modified blocks for block removal versus \gls{SVD} compression method.}
+ 	\label{tab:SVDCompressionFirstExp}
+ 	\begin{tabular}{@{} l c c c c @{}}
+ 		\toprule
+ 		\textbf{Model Variant} & \textbf{Number of}  & \textbf{Number of SVD} & \textbf{Training Steps} \\
+ 		\textbf{(Remaining \%)} & \textbf{Removed Blocks} & \textbf{Compressed Blocks} & \textbf{(in Thousands)} \\
+ 		\midrule
+ 		Model 90\% & 3 & - & 88.5 \\
+ 		SVD Model 90\% & - & 6 & 88.5 \\
+ 		Model 80\% & 6   & - &  265.5 \\
+ 		SVD Model 80\% & - & 11 & 88.5 \\
+ 		Model 70\% & 8   & - &  531.0 \\
+ 		SVD Model 70\% & - & 17 & 265,5k \\
+ 		Model 60\% & 11  & - &  708.0 \\
+ 		SVD Model 60\% & - & 22 & 442,5k \\
+
+ 		\bottomrule
+ 	\end{tabular}
+ 	
+ \end{table}
+ 
+ 
+   \begin{figure}[H]
+ 	\centering
+ 	% --- First Image ---
+ 	\begin{subfigure}[b]{0.48\textwidth}
+ 		\centering
+ 		\includegraphics[width=\textwidth]{images/Experimente/SVD_VS_Removal/SVD_vs_removal_hpsv2.png}
+ 		\caption{HPSv2 Benchmark}
+ 		\label{fig:image1}
+ 	\end{subfigure}% <--- WICHTIG: Dieses % verhindert ein ungewolltes Leerzeichen!
+ 	\hfill
+ 	% --- Second Image ---
+ 	\begin{subfigure}[b]{0.48\textwidth}
+ 		\centering
+ 		\includegraphics[width=\textwidth]{images/Experimente/SVD_VS_Removal/SVD_vs_removal_geneval.png}
+ 		\caption{GenEval Benchmark}
+ 		\label{fig:image2}
+ 	\end{subfigure}
+ 	
+ 	\caption[Benchmarks Structural Compression Strategy]{HPSv2 (left) and GenEval (right) benchmark for complete block removal and \gls{SVD} compression strategy.}
+ 	\label{fig:SVD_vs_Removal}
+ \end{figure}
+ 
+ \subsection{SVD Compression Model Parts}
+ \label{sec:MLPAttnDiffCompRatios}
+ In this section the \gls{SVD} compression strategy is applied but otherwise the default settings remains. The goal is to investigate how to distribute the parameter removal of the individual components of one transformer blocks best. Therefore, individual compression ratios are applied to the \gls{MLP} matrix and the attention matrices whereby both self- and cross-attention matrices are prunded by the same amount. In total three different scenarios are explored:
+ 
+ \begin{itemize}
+ 	\item \textbf{Equal Compression}: \\
+ 	Both \gls{MLP} and attention matrices are compressed by the same percentage $p_\text{MLP} = p_\text{Attn} = 60\%$. 
+ 	\item \textbf{Attention-Dominant Compression}: \\
+ 	The attention matrices are more strongly compressed $p_\text{Attn} = 80\%$ compared to the \gls{MLP} matrix $p_\text{MLP} = 40\%$.
+ 	 	\item \textbf{\gls{MLP}-Dominant Compression}: \\
+ 	The \gls{MLP} matrix are more strongly compressed $p_\text{Attn} = 80\%$ compared to the attention matrices $p_\text{MLP} = 40\%$.
+ \end{itemize}
+ Note that the combined parameter count of self- and cross-attention is approximately equal to the parameter count of the \gls{MLP}. Therefore, all configurations remove a similar amount of total parameters of one transformer block. \\
+The scores in fig. \ref{fig:DistributionCompressionRatios} reveal two distinct trends. The HPSv2 score demonstrates that prioritizing the compression of the attention matrices consistently yields higher image quality than the method focused on compressing the MLP matrices. The GenEval benchmark, however, shows that although the attention-dominant approach is advantageous in the low-compression regime, it declines sharply under heavier compression, eventually falling below the MLP-dominant approach for models with approximately 400 million parameters. \\
+ One possible explanation for the divergence between the two benchmarks is the distribution of tasks among the different components of a transformer block. Recent studies suggest \cite{dong2025attention} that MLPs are crucial for knowledge storage and the processing of visual features. Consequently, strong compression of these layers leads to a significant decrease in image quality (see HPSv2 benchmark yellow line). In contrast, the GenEval benchmark measures text-image alignment. Since the cross-attention mechanism is responsible for integrating the text prompts into the visual latents its compression in many transformer blocks severially compromise severily compromising this linking. While the image quality suffers less than with the strong MLP compression, the model's text comprehension deteriorates disproportionately. This explains why the attention-dominant approach loses its advantage for heavy compression, and is in some cases even worse than the MLP-dominant approach in the GenEval benchmark. \\
+ The equal compression strategy exhibits results similar to the attention-dominant compression approach in the high-compression regimes but is slightly worse in the low-compression regime. 
+ 
+    \begin{figure}[H]
+ 	\centering
+ 	% --- First Image ---
+ 	\begin{subfigure}[b]{0.48\textwidth}
+ 		\centering
+ 		\includegraphics[width=\textwidth]{images/Experimente/Different_MLP_Attn_Pruning/differnt_comp_ratios_hpsv2.png}
+ 		\caption{HPSv2 Benchmark}
+ 		\label{fig:image1}
+ 	\end{subfigure}% <--- WICHTIG: Dieses % verhindert ein ungewolltes Leerzeichen!
+ 	\hfill
+ 	% --- Second Image ---
+ 	\begin{subfigure}[b]{0.48\textwidth}
+ 		\centering
+ 		\includegraphics[width=\textwidth]{images/Experimente/Different_MLP_Attn_Pruning/differnt_comp_ratios_geneval.png}
+ 		\caption{GenEval Benchmark}
+ 		\label{fig:image2}
+ 	\end{subfigure}
+ 	
+ 	\caption[Benchmarks Structural Compression Strategy]{HPSv2 (left) and GenEval (right) benchmark for complete block removal and \gls{SVD} compression strategy.}
+ 	\label{fig:DistributionCompressionRatios}
+ \end{figure}
+ 
+
+ 	
+
+ 
+ \subsection{SVD Compression Scheduling}
+ 
+ 
