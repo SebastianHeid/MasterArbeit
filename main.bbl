@@ -77,6 +77,11 @@ Fuhan Cai, Yong Guo, Jie Li, Wenbo Li, Xiangzhong Fang, and Jian Chen.
   training.
 \newblock {\em arXiv preprint arXiv:2506.10035}, 2025.
 
+\bibitem{pixartsigma_code}
+Junsong Chen, Chongjian Ge, Enze Xie, et~al.
+\newblock Pixart-sigma: Official pytorch implementation.
+\newblock \url{https://github.com/PixArt-alpha/PixArt-sigma}, 2024.
+
 \bibitem{Pixart_s}
 Junsong Chen, Chongjian Ge, Enze Xie, Yue Wu, Lewei Yao, Xiaozhe Ren, Zhongdao
   Wang, Ping Luo, Huchuan Lu, and Zhenguo Li.
@@ -426,6 +431,11 @@ Nikita Kitaev, Łukasz Kaiser, and Anselm Levskaya.
 Shun Kiyono, Sosuke Kobayashi, Jun Suzuki, and Kentaro Inui.
 \newblock Shape: Shifted absolute position embedding for transformers.
 \newblock {\em arXiv preprint arXiv:2109.05644}, 2021.
+
+\bibitem{kohya_ss_sd_scripts_2024}
+kohya ss.
+\newblock sd-scripts.
+\newblock \url{https://github.com/kohya-ss/sd-scripts}, October 2024.
 
 \bibitem{kornblith2019similarity}
 Simon Kornblith, Mohammad Norouzi, Honglak Lee, and Geoffrey Hinton.

@@ -47,7 +47,7 @@ In the first iteration, for all $L$ combinations of model configurations $\mathc
 Optuna \cite{akiba2019optuna} is an open-source hyperparameter optimization framework. It primarily leverages a tree-strucured parzen estimator \cite{bergstra2011algorithms}, a bayesian optimization algorithms, to search the space of all possible hyperparmeter settings. It partitions the observed hyperparameter configurations into promising and non-promising candidates based on a user defined objective function. By modeling these two groups using probability density functions it draws a new set of hyperparameters that belongs to the promising group  with high probability. Through this informed search the global optimum can be found much faster than with non-adaptive methods like random or grid search. For an in-depth descritption of the Optuna algorithm the reader is refered to the original paper \cite{akiba2019optuna} because this would go beyond the scope of this work. \\
 
 
-\subsubsection{TinyFusion}
+\subsubsection{Learnable Block Selection Algorithm}
 \label{sec:TinyFusion}
 The authors of TinyFusion \cite{fang2025tinyfusion} propose a learning based block selection method for pruning transformer based image generation models. They hypothesize that instead of focusing on the error/loss in image quality resulting from the model compression it is advantageous to focus on the recoverability capabilities of the compressed model meaning on the post-finetuning performance. Initially, the model is divided into $K$ subparts $\mathbf{\phi} = [\mathbf{\phi}_1,\dots, \mathbf{\phi}_K]$.  Each subpart consists of $M$ transformer blocks $\mathbf{\phi}_k = [\phi_{k1}, \dots, \phi_{kM}]$. Specifying the number $N$ of blocks retained in each subpart a local binary mask $\mathbf{m}_k \in \{0,1\}^M$ is introduced to determine the inclusion or exclusion of the individual blocks. A categorical distribution $p(\mathbf{m}_k)$ is assigned to each mask to model the probability for a specific combination of blocks to be removed. The goal is to jointly optimize the model and the categorical mask distributions.  To ensure that the sampling process of the mask remains differentiable during training the Gumbel-Softmax \cite{jang2016categorical} is utilized. The objective function for jointly optimizing weights and masks is given by
 \begin{equation}
@@ -167,6 +167,7 @@ x_{i+1} = B_{i+1}(x_{i-1}) \quad.
 
 Due to consistent dimensionality of the hidden features across the model's depth no additional dimension adaption needs to be done. 
 \subsection{SVD Compression}
+\label{sec:SVDCompression}
 Singular value decomposition (\gls{SVD}) \cite{zhang2015singular} factorizes a matrix $W \in \mathbb{R}^{n \times m}$ into three matrices $U, \Sigma, V$ such that 
 \begin{equation}
 W = U \Sigma V^T
@@ -197,6 +198,7 @@ In our final compression setup (see sec. \ref{sec:LinearProgressiveCompression})
 
 
 \subsection{GRASP}
+\label{sec:GRASP}
 The method gradient-based retention of adaptive singular parameters \gls{GRASP} was originally proposed for compressing \gls{LLM}s \cite{liu2025grasp}. It is based on the idea of exploiting the low-rank structure of redundant layers in \gls{LLM}s. Moreover, the authors hypothesized that the standard \gls{SVD} approach where the singular values are selected solely based on their magnitude is not optimal because even small singular values may be important for the final task of the model and should be preserved. Therefore, they proposed a gradient-based selection instead of a magnitude-based selection for the singular values. Here, we adapted the scheme to Flux-dev to investigate its applicability to flow models. First, the candidate blocks for pruning are identified with a method from sec. ref{sec:BlockImportanceAnalyses}. Next, the identified blocks are compressed via \gls{SVD}. Afterwards, all parameters are frozen and only the singular values are treated as the parameters for which the gradients are calculated. We utilized a calibration dataset consisting of 200 images. For each image, the gradients of each singular value based on all timesteps 1 to 1000 were computed and summed together. Finally, the gradients for all 200 images were averaged to obtain a final estimate of the importance of each singular value. Instead of choosing the $k$ largest singular values, the $k$ singular values with the largest gradients were chosen for the low-rank matrix approximating the original weight matrix. 
 %Assuming the original weight matrix $W$ is already compressed $j^\text{th}$ times such that it is replaced with the two matrices $A^{(j)}$ and $B^{(j)}$. Note, that $A^{(j)}$ and $B^{(j)}$ were finetuned during the compression process which means   and it should be reduced once again. During retraining  $W \approx AB$
 %

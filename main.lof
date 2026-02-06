@@ -36,11 +36,12 @@
 \contentsline {figure}{\numberline {5.7}{\ignorespaces Comparison of Pruning Strategies: Optuna vs. Greedy Algorithm}}{56}{figure.5.7}%
 \contentsline {figure}{\numberline {5.8}{\ignorespaces Comparison of Pruning Strategies}}{57}{figure.5.8}%
 \contentsline {figure}{\numberline {5.9}{\ignorespaces Comparison of Pruning Strategies: Optuna vs. Greedy Algorithm Regarding Training}}{57}{figure.5.9}%
-\contentsline {figure}{\numberline {5.10}{\ignorespaces Comparison of Pruning Strategies}}{58}{figure.5.10}%
-\contentsline {figure}{\numberline {5.11}{\ignorespaces Investigation of Knowledge Distialltion Loss}}{60}{figure.5.11}%
-\contentsline {figure}{\numberline {5.12}{\ignorespaces Magnitude of Intermediate Features in PixArt-$\Sigma $}}{60}{figure.5.12}%
-\contentsline {figure}{\numberline {5.13}{\ignorespaces Finetuning Protocols Benchmark}}{61}{figure.5.13}%
-\contentsline {figure}{\numberline {5.14}{\ignorespaces Benchmarks Structural Compression Strategy}}{62}{figure.5.14}%
-\contentsline {figure}{\numberline {5.15}{\ignorespaces Benchmarks Structural Compression Strategy}}{63}{figure.5.15}%
+\contentsline {figure}{\numberline {5.10}{\ignorespaces Confidence Score for Learned Mask}}{58}{figure.5.10}%
+\contentsline {figure}{\numberline {5.11}{\ignorespaces Learned Block Removal over Time}}{58}{figure.5.11}%
+\contentsline {figure}{\numberline {5.12}{\ignorespaces Comparison of Pruning Strategies}}{59}{figure.5.12}%
+\contentsline {figure}{\numberline {5.13}{\ignorespaces Investigation of Knowledge Distialltion Loss}}{61}{figure.5.13}%
+\contentsline {figure}{\numberline {5.14}{\ignorespaces Magnitude of Intermediate Features in PixArt-$\Sigma $}}{61}{figure.5.14}%
+\contentsline {figure}{\numberline {5.15}{\ignorespaces Finetuning Protocols Benchmark}}{63}{figure.5.15}%
+\contentsline {figure}{\numberline {5.16}{\ignorespaces Benchmarks Structural Compression Strategy}}{64}{figure.5.16}%
+\contentsline {figure}{\numberline {5.17}{\ignorespaces Benchmarks Structural Compression Strategy}}{65}{figure.5.17}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {6.2}{\ignorespaces Comparison of removed blocks for one-shot vs progressive model pruning for different compression stages (90\% to 50\%).}}{65}{figure.6.2}%

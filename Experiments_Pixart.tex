@@ -1,3 +1,5 @@
+%!TEX root = ./main.tex
+
 \chapter{Experiments}
 This master thesis investigate structural model pruning techniques, specifically focusing on the removal and compression of transformer blocks within the PixArt-$\Sigma$ and Flux-dev architectures. PixArt-$\Sigma$ is employed as an experimental baseline to evaluate various design choices in the structural pruning framework due to its relatively low parameter count enabling rapid iteration and extensive ablation studies. Subsequently, the most effective strategies are applied to Flux-dev to assess their efficacy in high-parameter regimes. 
 \section{PixArt-$\Sigma$ Pruning}
@@ -17,28 +19,33 @@ In the following section, individual components of the compression pipeline such
 
 \end{itemize}
 
+The implementation of all experiments build up on the official git repository for PixArt-$\Sigma$ \cite{pixartsigma_code}.
+
 
 \begin{table}[H]
 	\centering
-	\caption{Hyperparameters for the retraining of compressed models (One-Shot and Progressive).}
+	\caption{Default hyperparameters for the retraining of compressed models.}
 	\label{tab:hyperparameterTraining}
 	\begin{tabular}{l c}
 		\toprule
 		\textbf{Hyperparameter} & \textbf{Value} \\
 		\midrule
-		\multicolumn{2}{l}{\textit{Optimization (CAME)}} \\
+		\multicolumn{2}{l}{\textit{\textbf{Optimization}}} \\
+		\midrule
 		Optimizer Type & CAME \\
-		Learning Rate & $2 \times 10^{-5}$ \\
+		Learning Rate & $2 \times 10^{-5}$ (Block Removal)/ $2 \times 10^{-6}$ (SVD Compression)\\
 		Weight Decay & $0.03$ \\
 		Betas & $(0.9, 0.999, 0.9999)$ \\
 		Epsilon & $(10^{-30}, 10^{-16})$ \\
 		\midrule
-		\multicolumn{2}{l}{\textit{Training Schedule}} \\
+		\multicolumn{2}{l}{\textit{\textbf{Training Schedule}}} \\
+		\midrule
 		Warmup Steps & 1000 \\
 		Batch Size & 16 \\
 		Gradient Clipping & $0.001$ \\
 		\midrule
-		\multicolumn{2}{l}{\textit{Model \& Data}} \\
+		\multicolumn{2}{l}{\textit{\textbf{Model \& Data}}} \\
+		\midrule
 		Precision & bf16 \\
 		Resolution & $512 \times 512$ \\
 		Class Dropout Prob. & $0.1$ \\
@@ -46,7 +53,6 @@ In the following section, individual components of the compression pipeline such
 		\bottomrule
 	\end{tabular}
 \end{table}
-
 
 \subsection{Block Importance Analysis}
 In structural pruning, the selection of components to be removed or compressed is essential to ensure that the compressed model retains the highest possible image generation quality. Qualitatively, fig. \ref{fig:PixArtBlockImportanceQualitatively} shows the effect of removing every transformer block from PixArt-$\Sigma$ individually on its image generation capabilities without subsequent retraining. It is clearly visible that removing the first and last transformer blocks (blocks 1-4 and blocks 27-28) exerts the most significant influence on the image quality. This confirms the observation from previous work \cite{men2024shortgpt} that redundancies are primarily find in the middle part of transformer based models. To identify which blocks are best to remove meaning which blocks have a minimal contribution on the total image generation process, several different metrics can be employed. In the following section, different approaches are investigated to determine the importance of the individual transformer blocks based on completely removed blocks. First, the traditional magnitude-based (see sec. \ref{sec:MagnitudePruning}) pruning and represential dissimilarity by computing the central kernal alignment score (\gls{CKA}) (see sec. \ref{sec:CKA}) between the input and output of each transformer block are evaluated. Moreover, they are compared to standard performance metrics such as the \gls{CLIP}-score and \gls{CMMD} (see sec. \ref{sec:MetricBasedSelection}). \\
@@ -174,10 +180,50 @@ Above, we observed that in each iteration, the Optuna framework was able to iden
 }
 \label{fig:AdvantageOfOPtunaPostTraining}
 \end{figure}
-\subsubsection{TinyFusion}
+\subsubsection{Learnable Block Selection}
+The learnable block selection algorithm described in sec. \ref{sec:TinyFusion} is exploit on PixArt-$\Sigma$. As suggested in the corresponding paper \cite{TinyFusion} \gls{LoRA} finetuning was utilized for jointly learning the mask and updating the model. The exact training hyperparameters are provided in tab. \ref{tab:TinyFusionHyperparameters}. The 28 transformer blocks from PixArt-$\Sigma$ are disected into four subgroups (1-7, 8-14, 15-21, 22-28) and within each three blocks are masked out. \\
+Fig. \ref{fig:TinyFusionConfidence} displays the confidence score across all four block groups. In the first group, containing blocks 1-7, the confidence score initially remains low before exhibiting a rapid increase after 1,500 training steps. As shown in fig. \ref{fig:TinyFusionBlockSelection} this point marks the convergence to a final block configuration. Similarly, the fourth group, containing blocks 22-28, converges to a final block configuration with relatively high confidence. In contrast, the confidence for groups two and three fluctuates around 50\% . This result suggests that the blocks in the outer groups (one and four) fulfill distinct tasks, enabling to identify a clear hierarchy of importance. On the contrary, the confidence score of the middle groups (two and three)  is low suggesting that these blocks exhibit a high degree of redundancy, explaining the absence of a single optimal pruning configuration. This observation aligns with the qualitative investigation of the block importance, where early and late layers were identified as crucial for the image quality. Notably, however, the first, third, and twenty seventh blocks were selected for removal in this experiment although fig. \ref{fig:PixArtBlockImportanceQualitatively} suggests that their removal lead to severe quality degradation. 
 
-If not stated otherwise the block selection was executed based on the greedy algorithm on \gls{CMMD} and \gls{CLIP}-score.
+ \begin{figure}[H]
+	\centering
+	\includegraphics[width=0.75\textwidth]{images/Experimente/TinyFusion/ConfidenceScore.png}  
+	\caption[Confidence Score for Learned Mask]{Confidence score for the mask configuration of each subset.
+	}
+	\label{fig:TinyFusionConfidence}
+\end{figure}
+
+ \begin{figure}[H]
+	\centering
+	\includegraphics[width=0.75\textwidth]{images/Experimente/TinyFusion/BlockDistribution.png}  
+	\caption[Learned Block Removal over Time]{Evolution of selected blocks for removal during mask optimization process.
+	}
+	\label{fig:TinyFusionBlockSelection}
+\end{figure}
+
+\begin{table}[H]
+	\centering
+	\caption{Training hyperparameters for PixArt \gls{LoRA} finetuning and mask learning}
+	\label{tab:TinyFusionHyperparameters}
+	\begin{tabular}{l c l}
+		\toprule
+		\textbf{Hyperparameter} & \textbf{Value} & \textbf{Description} \\
+		\midrule
+		Resolution & 512 & Input image resolution \\
+		Dataset & LAION-HD-Subset & high-resolution subset of the LAION-5B dataset \tablefootnote{https://huggingface.co/datasets/yuvalkirstain/laion-hd-subset/viewer/default/train} \\
+		Batch Size & 16 & Samples per batch \\
+		Num Epochs & 10 & Total training duration \\
+		Learning Rate & $1 \times 10^{-5}$ & Constant learning rate \\
+		LoRA Rank & 16 & Rank for low-rank adaptation \\
+		Tau Range ($\tau$) & 4.0 -- 0.1 & Temperature range for Gumbel-Softmax \\
+		Gate LR Multiplier & 10.0 & Learning rate multiplier for gate parameters \\
+		Scaling Range & 100 -- 100 & Scaling range for gate logits \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+
 \subsection{Progressive Model Pruning vs One-Shot Model Pruning}
+\label{sec:OneShot_vs_Progrosseve_Pruning}
 One-shot model pruning compresses the model to target size in a single step, while progressive pruning employs an iterative scheme of incrementally removing parameters followed by recovery training phases. Both frameworks are tested using the complete block removal approach. The number of blocks removed for each model and the number of training steps are summarized in tab. \ref{tab:SettingOneShotvsProgressive} and the exact blocks which are removed for each model can be found in the appendix \ref{sec:OneShotvsProgressiveBlockDistribution} (see fig. \ref{fig:OneShotvsProgressiveBlockDistribution}). Fig. \ref{fig:OneShotvsProgressive} displays the performance of the one-shot versus progressive pruning on the HPSv2 and GenEval benchmarks across various compression ratios. To ensure a fair comparison, the models for both methods are trained for the same amount of training steps and on exactly the same data. Both benchmarks demonstrate that one-shot compression is a viable strategy in the low compression regime (10\% to 20\% parameter reduction). However, as the compression ratio increases the progressive approache becomes advantageous because the incremental removal of parameters allows the model to recover its generative capabilities more effectively compared to the abrupt removal of large amount of parameters at once. Based on this finding the following experiments are executed in the progressive model distillation framework.
 
 \begin{figure}[H]
@@ -278,6 +324,7 @@ In this section the standard setting (see sec. \ref{sec:DefaultSetup}) except th
  
  
  \subsection{Finetuning Protocol}
+ \label{sec:FinetuningProtocol}
  After removing blocks from the PixArt-$\Sigma$ architecture, the reduced model is finetuned to recover its image generation capabilities. In total, three different finetuning protocols are tested to identify the most effecive one. In all protocols, the model was trained for 88.5k optimization steps to enable fair comparison.
  \begin{itemize}
  	\item \textbf{Three Stage Finetuning Protocol} \\
@@ -303,7 +350,7 @@ In this section the standard setting (see sec. \ref{sec:DefaultSetup}) except th
  	\end{enumerate}
  \end{itemize}
  
- The evaluation of the performance obtained for models of different pruninng ratios (90\% to 50\%) can be found in fig. \ref{fig:FinetuningProtocols}. For both the HPSv2 and GenEval benchmarks, fine-tuning solely on the LAION dataset (yellow line) leads to a sharp decline for strongly compressed models. This is a strong indication that the image quality being higher in the LAION-PixArt dataset compared to the LAION dataset is highly relevant for the recoverage of the generation capability of a pruned transformer-based diffusion model. Moreover, it could be observed that for shallow compressed models (10\% to 20\%) the two stage finetuning protocol (green line) performs better than the three stage protocol (purple line). This indicates that in the low compression regime the model benefits from the extended global finetuning and no local repair is needed. For the middle compressed models (70\%-60\%), the three stage finetuning is consistently on better or on par with the two stage protocol. This performance gap suggests that the local stabilization step provides necessary structural regularization when the model capacity is reduced to a critical threshold. For strong compression there are contradictory results. According to the HPSv2 benchmark the three stage approach is still marginally better than the two stage approach. However, the GenEval benchmark suggests that it is reverse. Given the high degree of degradation in both models at this stage, these marginal differences may also reflect the inherent instability of training extremely pruned networks rather than a definitive superiority of one method over the other.
+ The evaluation of the performance obtained for models of different pruninng ratios (90\% to 50\%) can be found in fig. \ref{fig:FinetuningProtocols}. For both the HPSv2 and GenEval benchmarks, fine-tuning solely on the LAION dataset (yellow line) leads to a sharp decline for strongly compressed models. This is a strong indication that the image quality being higher in the LAION-PixArt dataset compared to the LAION dataset is highly relevant for the recoverage of the generation capability of a pruned transformer-based diffusion model. Moreover, it could be observed that for shallow compressed models (10\% to 20\%) the two stage finetuning protocol (green line) performs better than the three stage protocol (purple line). This indicates that in the low compression regime the model benefits from the extended global finetuning and no local repair is needed. For the middle compressed models (70\%-60\%), the three stage finetuning is consistently better or on par with the two stage protocol. This performance gap suggests that the local stabilization step provides necessary structural regularization when the model capacity is reduced to a critical threshold. For strong compression there are contradictory results. According to the HPSv2 benchmark the three stage approach is still marginally better than the two stage approach. However, the GenEval benchmark suggests that it is reverse. Given the high degree of degradation in both models at this stage, these marginal differences may also reflect the inherent instability of training extremely pruned networks rather than a definitive superiority of one method over the other.
  
  
   \begin{figure}[H]
@@ -379,7 +426,7 @@ In this section the standard setting (see sec. \ref{sec:DefaultSetup}) except th
  	\label{fig:SVD_vs_Removal}
  \end{figure}
  
- \subsection{SVD Compression Model Parts}
+ \subsection{Sensitivity Analysis of MLP and Attention Layers under \gls{SVD} Compression}
  \label{sec:MLPAttnDiffCompRatios}
  In this section the \gls{SVD} compression strategy is applied but otherwise the default settings remains. The goal is to investigate how to distribute the parameter removal of the individual components of one transformer blocks best. Therefore, individual compression ratios are applied to the \gls{MLP} matrix and the attention matrices whereby both self- and cross-attention matrices are prunded by the same amount. In total three different scenarios are explored:
  
@@ -423,5 +470,35 @@ The scores in fig. \ref{fig:DistributionCompressionRatios} reveal two distinct t
 
  
  \subsection{SVD Compression Scheduling}
+In previous experiments, SVD compression was applied to each block at most once. However, restricting compression to untouched blocks may be suboptimal and incrementally reducing the size of an already compressed block could potentially preserve model performance better than pruning a dense block. To investigate this, we apply the linear progressive compression scheme defined in sec. \ref{sec:LinearProgressiveCompression} is investigated in the following. Hereby, three different scenarios are investigated where different number of blocks (7, 14 or 21, 28) are compressed per iteration. This examines whether it is advantageous to compress more blocks but to a lesser extent, or whether the parameters to be removed should be better distributed across fewer blocks. Here, in each iteration 10\% of the original number of parameters are removed.  \\
+
+
+
+ \textbf{Untersuche ob immer neue Blöcke gepruned werden oder eher dieselbenr mehrfach}
  
+ \subsection{Summary of Best Settings for Structural Model Pruning}
+ Considering the results of all experiments, they lead to the following best configuration for structural model pruning:
  
+ \begin{itemize}
+ 	\item \textbf{Block Importance Analysis} \\
+ 	The experiments (sec. \ref{sec:BlockImportanceAnalyses}) showed that using the \gls{CMMD} value as primary block selection criteria is working well. Particularly in linear \gls{SVD} compression scheduling, where the number of compressed parameters varies per block, the \gls{CMMD} can be weighted by the number of removed parameters to ensure a fair comparison. \\
+ 	As block selection method, we found that the greedy algorithm already performs well enough such that more advanced methods like Optuna do not provide substantial benefits that would justify the additional compute.
+ 	
+ 	\item \textbf{Pruning Method} \\
+ 	The progressive model pruning has profen advantageous over the one-shot model pruning in the high-compression regime where models are compressed more than 70\% of the original size (sec. \ref{sec:OneShot_vs_Progrosseve_Pruning})). Therefore, this is the first choice.
+ 	
+ 	\item \textbf{Knowledge Distillation Loss} \\
+ 	The results indicates that the combination of the original diffusion loss together with the normalized feature and output loss leads to the strongest performance in all pruning regimes (sec. \ref{sec:ExpKDLoss}). 
+ 	
+ 	\item \textbf{Finetuning Protocol} \\
+ 	The finding suggests that incorporating the LAION-PixArt dataset into the training procedure is critical as it contains images of higher quality demonstrated in the higher HPSv2 and GenEval scores for the three and two stage finetuning protocols. However, the results regarding the superiority of three stage protocal over the two stage protocal are inconclusive. It is not clear if local finetuning is beneficial or not for high compression regimes (sec. \ref{sec:FinetuningProtocol}). Therefore, the two stage approach is chosen for the final setting.
+ 	
+ 	\item \textbf{Structural Compressin Strategy} \\
+ 	The experiments demonstrated that leveraging \gls{SVD} compression over complete block removal leads to superior performance even for less training steps (sec. \ref{sec:StructuralCompressionStrategy}).
+ 	
+ 	\item \textbf{Sensitivity Analysis of MLP and Attention Layers under \gls{SVD} Compression} \\
+ 	The sensitivity analysis for \gls{MLP} and attention layers revealed that strong compression of \gls{MLP}s led to more severe deterioration than heavy compression of attention layers. However, compressing both \gls{MLP} and attention layers equally yielded performance comparable to the strong attention compression experiment. Consequently, the equal compression scheme was adopted for the final configuration.
+ 	
+ 	\item \textbf{\gls{SVD} Compression Scheduling} \\
+ 	
+ \end{itemize}

@@ -62,7 +62,7 @@
 \contentsline {subsection}{\numberline {4.2.2}Block Selection Algorithms}{39}{subsection.4.2.2}%
 \contentsline {subsubsection}{Greedy Block Selection}{39}{section*.27}%
 \contentsline {subsubsection}{Black-Box Optimization with Optuna}{39}{section*.28}%
-\contentsline {subsubsection}{TinyFusion}{39}{section*.29}%
+\contentsline {subsubsection}{Learnable Block Selection Algorithm}{39}{section*.29}%
 \contentsline {section}{\numberline {4.3}Training Data and Image Synthesis}{40}{section.4.3}%
 \contentsline {subsection}{\numberline {4.3.1}Training Datasets}{40}{subsection.4.3.1}%
 \contentsline {subsubsection}{LAION Aesthetic}{40}{section*.30}%
@@ -93,16 +93,20 @@
 \contentsline {subsubsection}{Block Analysis for Compression Instead of Removal}{54}{section*.38}%
 \contentsline {subsubsection}{Block Selection Algorithms}{55}{section*.39}%
 \contentsline {subsubsection}{Optuna}{55}{section*.40}%
-\contentsline {subsubsection}{TinyFusion}{57}{section*.41}%
-\contentsline {subsection}{\numberline {5.1.3}Progressive Model Pruning vs One-Shot Model Pruning}{58}{subsection.5.1.3}%
-\contentsline {subsection}{\numberline {5.1.4}Knowledge Distillation Loss}{58}{subsection.5.1.4}%
-\contentsline {subsection}{\numberline {5.1.5}Finetuning Protocol}{60}{subsection.5.1.5}%
-\contentsline {subsection}{\numberline {5.1.6}Structural Compression Strategy}{61}{subsection.5.1.6}%
-\contentsline {subsection}{\numberline {5.1.7}SVD Compression Model Parts}{62}{subsection.5.1.7}%
-\contentsline {subsection}{\numberline {5.1.8}SVD Compression Scheduling}{63}{subsection.5.1.8}%
-\contentsline {chapter}{\numberline {6}Appendix}{64}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Appendix A}{64}{section.6.1}%
-\contentsline {subsection}{\numberline {6.1.1}Block Analysis}{64}{subsection.6.1.1}%
-\contentsline {section}{\numberline {6.2}Appendix B}{64}{section.6.2}%
-\contentsline {subsection}{\numberline {6.2.1}One Shot vs Progressive Model Pruning}{64}{subsection.6.2.1}%
-\contentsline {chapter}{Bibliography}{66}{chapter*.42}%
+\contentsline {subsubsection}{Learnable Block Selection}{57}{section*.41}%
+\contentsline {subsection}{\numberline {5.1.3}Progressive Model Pruning vs One-Shot Model Pruning}{59}{subsection.5.1.3}%
+\contentsline {subsection}{\numberline {5.1.4}Knowledge Distillation Loss}{59}{subsection.5.1.4}%
+\contentsline {subsection}{\numberline {5.1.5}Finetuning Protocol}{61}{subsection.5.1.5}%
+\contentsline {subsection}{\numberline {5.1.6}Structural Compression Strategy}{63}{subsection.5.1.6}%
+\contentsline {subsection}{\numberline {5.1.7}Sensitivity Analysis of MLP and Attention Layers under \gls {SVD} Compression}{64}{subsection.5.1.7}%
+\contentsline {subsection}{\numberline {5.1.8}SVD Compression Scheduling}{65}{subsection.5.1.8}%
+\contentsline {subsection}{\numberline {5.1.9}Summary of Best Settings for Structural Model Pruning}{65}{subsection.5.1.9}%
+\contentsline {section}{\numberline {5.2}Flux.1-dev Pruning}{67}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Training Details}{67}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Training-Free Pruning}{68}{subsection.5.2.2}%
+\contentsline {subsection}{\numberline {5.2.3}Linear Progressive SVD Compression}{68}{subsection.5.2.3}%
+\contentsline {chapter}{\numberline {6}Appendix}{69}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Appendix A}{69}{section.6.1}%
+\contentsline {subsection}{\numberline {6.1.1}Block Analysis}{69}{subsection.6.1.1}%
+\contentsline {section}{\numberline {6.2}Appendix B - Detailed Overview of Selected Blocks Experiments}{69}{section.6.2}%
+\contentsline {chapter}{Bibliography}{70}{chapter*.42}%

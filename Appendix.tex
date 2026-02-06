@@ -16,59 +16,138 @@ Heatmap for cka: Block importance for different time steps
 
 \section{Appendix B - Detailed Overview of Selected Blocks Experiments}
 In this section, the removed or compressed blocks for each experiments are visualized. Different colors indicates during which iteration of the progressive pruning framework the specific block was selected. 
-\subsection{One Shot vs Progressive Model Pruning}
-\label{sec:OneShotvsProgressiveBlockDistribution}
-\begin{figure}[htbp]
-	\centering
-	
-	% --- BILD 1 ---
-	\begin{subfigure}[b]{0.9\textwidth}
-		\centering
-		\includegraphics[width=\textwidth]{images/Experimente/Iterative_vs_Direct/OneShotvsIterative/model_90.png}
-		\caption{Block Selection of model with 90\% parameters}
-		\label{fig:bild1}
-	\end{subfigure}
-	
-	\vspace{0.5cm} % Abstand nach unten
-	
-	% --- BILD 2 ---
-	\begin{subfigure}[b]{0.9\textwidth}
-		\centering
-		\includegraphics[width=\textwidth]{images/Experimente/Iterative_vs_Direct/OneShotvsIterative/model_80.png}
-		\caption{Block Selection of model with 80\% parameters}
-		\label{fig:bild2}
-	\end{subfigure}
-	
-	\vspace{0.5cm}
-	
-	% --- BILD 3 ---
-	\begin{subfigure}[b]{0.9\textwidth}
-		\centering
-		\includegraphics[width=\textwidth]{images/Experimente/Iterative_vs_Direct/OneShotvsIterative/model_70.png}
-		\caption{Block Selection of model with 70\% parameters}
-		\label{fig:bild3}
-	\end{subfigure}
-	
-	\vspace{0.5cm}
-	
-	% --- BILD 4 ---
-	\begin{subfigure}[b]{0.9\textwidth}
-		\centering
-		\includegraphics[width=\textwidth]{images/Experimente/Iterative_vs_Direct/OneShotvsIterative/model_60.png}
-		\caption{Block Selection of model with 60\% parameters}
-		\label{fig:bild4}
-	\end{subfigure}
-	
-	\vspace{0.5cm}
-	
-	% --- BILD 5 ---
-	\begin{subfigure}[b]{0.9\textwidth}
-		\centering
-		\includegraphics[width=\textwidth]{images/Experimente/Iterative_vs_Direct/OneShotvsIterative/model_50.png}
-		\caption{Block Selection of model with 50\% parameters}
-		\label{fig:bild5}
-	\end{subfigure}
-	
-	\caption{Comparison of removed blocks for one-shot vs progressive model pruning for different compression stages (90\% to 50\%).}
-	\label{fig:OneShotvsProgressiveBlockDistribution}
-\end{figure}
+
+
+%\subsection{One-Shot vs. Progressive Blockverteilung}
+%\label{sec:OneShotVsProgressive}
+%
+%% --- BILD 1: One-Shot vs Progressive 90% ---
+%\begin{figure}[htbp]
+%	\centering
+%	\includegraphics[width=0.9\textwidth]{images/Experimente/Block_Selection/OneShotvsIterative/model_90.png}
+%	\caption{Comparison block selection for one-shot versus progressive pruning (90\% Parameter).}
+%	\label{fig:OneShot_90}
+%\end{figure}
+%
+%% --- BILD 2: One-Shot vs Progressive 80% ---
+%\begin{figure}[htbp]
+%	\centering
+%	\includegraphics[width=0.9\textwidth]{images/Experimente/Block_Selection/OneShotvsIterative/model_80.png}
+%	\caption{Comparison block selection for one-shot versus progressive pruning (80\% Parameter).}
+%	\label{fig:OneShot_80}
+%\end{figure}
+%
+%% --- BILD 3: One-Shot vs Progressive 70% ---
+%\begin{figure}[htbp]
+%	\centering
+%	\includegraphics[width=0.9\textwidth]{images/Experimente/Block_Selection/OneShotvsIterative/model_70.png}
+%	\caption{Comparison block selection for one-shot versus progressive pruning (70\% Parameter).}
+%	\label{fig:OneShot_70}
+%\end{figure}
+%
+%% --- BILD 4: One-Shot vs Progressive 60% ---
+%\begin{figure}[htbp]
+%	\centering
+%	\includegraphics[width=0.9\textwidth]{images/Experimente/Block_Selection/OneShotvsIterative/model_60.png}
+%	\caption{Comparison block selection for one-shot versus progressive pruning (60\% Parameter).}
+%	\label{fig:OneShot_60}
+%\end{figure}
+%
+%% --- BILD 5: One-Shot vs Progressive 50% ---
+%\begin{figure}[htbp]
+%	\centering
+%	\includegraphics[width=0.9\textwidth]{images/Experimente/Block_Selection/OneShotvsIterative/model_50.png}
+%	\caption{Comparison block selection for one-shot versus progressive pruning (50\% Parameter).}
+%	\label{fig:OneShot_50}
+%\end{figure}
+%
+%\clearpage % Optional: Erzwingt, dass alle bisherigen Bilder ausgegeben werden, bevor die nächste Sektion startet
+%
+%\subsection{Knowledge Distillation Loss}
+%\label{sec:BlockSelection_LossInvestigation}
+%
+%% --- BILD 6: Loss Investigation 90% ---
+%\begin{figure}[htbp]
+%	\centering
+%	\includegraphics[width=0.9\textwidth]{images/Experimente/Block_Selection/Loss_Investigation/model_90.png}
+%	\caption{Influence of the loss configuration for block selection (90\% Parameter).}
+%	\label{fig:Loss_90}
+%\end{figure}
+%
+%% --- BILD 7: Loss Investigation 80% ---
+%\begin{figure}[htbp]
+%	\centering
+%	\includegraphics[width=0.9\textwidth]{images/Experimente/Block_Selection/Loss_Investigation/model_80.png}
+%	\caption{Influence of the loss configuration for block selection (80\% Parameter).}
+%	\label{fig:Loss_80}
+%\end{figure}
+%
+%% --- BILD 8: Loss Investigation 70% ---
+%\begin{figure}[htbp]
+%	\centering
+%	\includegraphics[width=0.9\textwidth]{images/Experimente/Block_Selection/Loss_Investigation/model_70.png}
+%	\caption{Influence of the loss configuration for block selection (70\% Parameter).}
+%	\label{fig:Loss_70}
+%\end{figure}
+%
+%% --- BILD 9: Loss Investigation 60% ---
+%\begin{figure}[htbp]
+%	\centering
+%	\includegraphics[width=0.9\textwidth]{images/Experimente/Block_Selection/Loss_Investigation/model_60.png}
+%	\caption{Influence of the loss configuration for block selection (60\% Parameter).}
+%	\label{fig:Loss_60}
+%\end{figure}
+%
+%% --- BILD 10: Loss Investigation 50% ---
+%\begin{figure}[htbp]
+%	\centering
+%	\includegraphics[width=0.9\textwidth]{images/Experimente/Block_Selection/Loss_Investigation/model_50.png}
+%	\caption{Influence of the loss configuration for block selectionn (50\% Parameter).}
+%	\label{fig:Loss_50}
+%\end{figure}
+%
+%
+%
+%\subsection{Finetuning Protocol}
+%\label{sec:BlockSelection_FinetuningProtocol}
+%
+%% --- BILD 6: Loss Investigation 90% ---
+%\begin{figure}[H]
+%	\centering
+%	\includegraphics[width=0.9\textwidth]{images/Experimente/Block_Selection/Finetuning_Protocol/model_90.png}
+%	\caption{Influence of the finetuning protocol for block selection (90\% Parameter).}
+%	\label{fig:Loss_90}
+%\end{figure}
+%
+%% --- BILD 7: Loss Investigation 80% ---
+%\begin{figure}[htbp]
+%	\centering
+%	\includegraphics[width=0.9\textwidth]{images/Experimente/Block_Selection/Finetuning_Protocol/model_80.png}
+%	\caption{Influence of the finetuning protocol for block selection (80\% Parameter).}
+%	\label{fig:Loss_80}
+%\end{figure}
+%
+%% --- BILD 8: Loss Investigation 70% ---
+%\begin{figure}[htbp]
+%	\centering
+%	\includegraphics[width=0.9\textwidth]{images/Experimente/Block_Selection/Finetuning_Protocol/model_70.png}
+%	\caption{Influence of the finetuning protocol for block selection (70\% Parameter).}
+%	\label{fig:Loss_70}
+%\end{figure}
+%
+%% --- BILD 9: Loss Investigation 60% ---
+%\begin{figure}[htbp]
+%	\centering
+%	\includegraphics[width=0.9\textwidth]{images/Experimente/Block_Selection/Finetuning_Protocol/model_60.png}
+%	\caption{Influence of the finetuning protocol for block selection (60\% Parameter).}
+%	\label{fig:Loss_60}
+%\end{figure}
+%
+%% --- BILD 10: Loss Investigation 50% ---
+%\begin{figure}[htbp]
+%	\centering
+%	\includegraphics[width=0.9\textwidth]{images/Experimente/Block_Selection/Finetuning_Protocol/model_50.png}
+%	\caption{Influence of the finetuning protocol for block selection (50\% Parameter).}
+%	\label{fig:Loss_50}
+%\end{figure}
+
