@@ -14,7 +14,7 @@ Heatmap for cka: Block importance for different time steps
 
 
 
-\section{Appendix B - Detailed Overview of Selected Blocks Experiments}
+\section{Appendix B - Detailed Overview of Selected Blocks Experiments PixArt-$\Sigma$}
 In this section, the removed or compressed blocks for each experiments are visualized. Different colors indicates during which iteration of the progressive pruning framework the specific block was selected. 
 
 
@@ -150,4 +150,16 @@ In this section, the removed or compressed blocks for each experiments are visua
 %	\caption{Influence of the finetuning protocol for block selection (50\% Parameter).}
 %	\label{fig:Loss_50}
 %\end{figure}
+
+
+\section{Experimen Flux.1-dev}
+\subsection{GRASP Block Selection}
+For this experiment the importance of blocks determined in \cite{FastFlux} was leveraged. Below the figure from the corresponding work is presented. 
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.9\textwidth]{images/Experimente/Flux/Training_Free/BlockImportanceFastFlux.png}
+	\caption{Block importance for Flux.1-dev taken from \cite{FastFlux}.}
+	\label{fig:Loss_70}
+\end{figure}
 

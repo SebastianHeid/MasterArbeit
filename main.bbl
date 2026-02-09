@@ -978,6 +978,13 @@ Qinsheng Zhang and Yongxin Chen.
 \newblock Fast sampling of diffusion models with exponential integrator.
 \newblock {\em arXiv preprint arXiv:2204.13902}, 2022.
 
+\bibitem{EcoDiff}
+Yang Zhang, Er~Jin, Wenzhong Liang, Yanfei Dong, Ashkan Khakzar, Philip Torr,
+  Johannes Stegmaier, and Kenji Kawaguchi.
+\newblock Learnable sparsity for vision generative models, 2025.
+\newblock URL: \url{https://arxiv.org/abs/2412.02852}, \href
+  {https://arxiv.org/abs/2412.02852} {\path{arXiv:2412.02852}}.
+
 \bibitem{zhang2015singular}
 Zhihua Zhang.
 \newblock The singular value decomposition, applications and beyond.

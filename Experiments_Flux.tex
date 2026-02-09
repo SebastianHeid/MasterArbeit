@@ -2,7 +2,8 @@
 Flux.1-dev is a 11.9 billion parameter rectified flow model capable of generating detailed, high-quality, and high-aesthetic images. Due to its high parameter count, it is one primary target for model reduction techniques in the literature and should be used to demonstrate the effectiveness of the best settings found for PixArt-$\Sigma$ by comparing it to various competitors. In addition, as training of Flux.1-dev is extremely computatinally intensive, the training-free GRASP method (see sec. \ref{sec:GRASP}) originally developped for \gls{LLM} compression is transfered to Flux1.dev.
 
 \subsection{Training Details}
-All Experiments in this section are build upon the training and inference code for flux.1-dev published in the following git repo \cite{kohya_ss_sd_scripts_2024}. The hyperparameters used for finetuning Flux.1-dev after pruning are specified in Tab. \ref{tab:flux_training_config}. For pruning Flux.1-dev the best settings found for PixArt-$\Sigma$ are leveraged and specified here again for completeness:
+\label{sec:flux_training_details}
+in this section, all Experiments are built upon the training and inference code for Flux.1-dev published in the following git repo \cite{kohya_ss_sd_scripts_2024}. The hyperparameters used for finetuning Flux.1-dev are specified in Tab. \ref{tab:flux_training_config}. For pruning Flux.1-dev the best settings found for PixArt-$\Sigma$ are leveraged and specified here again for completeness:
 
 \begin{itemize}
 	\item \textbf{Block Importance Analysis} \\
@@ -75,8 +76,101 @@ A specific
 \end{table}
 
 \subsection{Training-Free Pruning}
-In this section, it is investigated if \gls{GRASP} is transferable from \gls{LLM}s to flow-based image generation models like Flux.1-dev. The goal is to identify singular values based on their importance for the image generation task and not based on their magnitude how it is done using ordinary \gls{SVD} compression. \\
+In this section, it is investigated if \gls{GRASP} (see sec. \ref{sec:GRASP}) is transferable from \gls{LLM}s to flow-based image generation models like Flux.1-dev. The goal is to identify singular values based on their importance for the image generation task and not based on their magnitude how it is done using ordinary \gls{SVD} compression. The performance of \gls{GRASP} is compared to Eco-Diff \cite{EcoDiff}  another recently proposed learning free method to prune Flux.1-dev and the simple application of \gls{SVD} without retraining. \\
+First, we examine the extent to which the gradient-based method GRASP selects different singular values than a normal SVD, which sorts them by magnitude. The double-stream blocks are compressed by about 76\%, specifically using the following ranks for \gls{SVD}: 
+\begin{align*}
+	r_{\text{img\_mod}}  &= 526 \\
+	r_{\text{img\_mlp}}  &= 491 \\
+	r_{\text{img\_attn}} &= 307 \\
+	r_{\text{txt\_mod}}  &= 526 \\
+	r_{\text{txt\_mlp}}  &= 491 \\
+	r_{\text{txt\_attn}} &= 307
+\end{align*}
 
+
+
+    \begin{figure}[H]
+	\centering
+	% --- First Image ---
+	\begin{subfigure}[b]{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{images/Experimente/Flux/Training_Free/double_blocks_4_img_mod_lin_grasp.png}
+		\caption{Total view}
+		\label{fig:image1}
+	\end{subfigure}% <--- WICHTIG: Dieses % verhindert ein ungewolltes Leerzeichen!
+	\hfill
+	% --- Second Image ---
+	\begin{subfigure}[b]{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{images/Experimente/Flux/Training_Free/double_blocks_4_img_mod_lin_grasp_zoom.png}
+		\caption{Zoomed in visualization.‚}
+		\label{fig:image2}
+	\end{subfigure}
+	
+	\caption{Comparing the magnitude (x-axis) with the gradient-based importance (y-axis) of singular values from \gls{SVD}. The visualization is from the $4^\text{th}$ block of the mod img matrix. }
+	\label{fig:DistributionCompressionRatios}
+\end{figure}
+
+
+
+
+
+    \begin{figure}[H]
+	\centering
+	% --- First Image ---
+	\begin{subfigure}[b]{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{images/Experimente/Flux/Training_Free/GRASP_vs_SVD_hpsv2.png}
+		\caption{HPSv2 Benchmark}
+		\label{fig:image1}
+	\end{subfigure}% <--- WICHTIG: Dieses % verhindert ein ungewolltes Leerzeichen!
+	\hfill
+	% --- Second Image ---
+	\begin{subfigure}[b]{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{images/Experimente/Flux/Training_Free/GRASP_vs_SVD_geneval.png}
+		\caption{GenEval Benchmark}
+		\label{fig:image2}
+	\end{subfigure}
+	
+	\caption{Comparing the magnitude (x-axis) with the gradient-based importance (y-axis) of singular values from \gls{SVD}. The visualization is from the $4^\text{th}$ block of the mod img matrix. }
+	\label{fig:DistributionCompressionRatios}
+\end{figure}
+
+
+
+
+
+
+	
+	\begin{table}[H]
+		\centering
+		\caption{Performance Comparison of Compression Methods across HPSv2, GenEval, and DPG Benchmarks}
+		\label{tab:compression_comparison}
+		\begin{tabular}{@{}lcccc@{}}
+			\toprule
+			\textbf{Ratio} & \textbf{Method} & \textbf{HPSv2} $\uparrow$ & \textbf{GenEval} $\uparrow$ & \textbf{DPG} $\uparrow$ \\ \midrule
+			
+			\multirow{3}{*}{90\%}  
+			& EcoDiff & 29.67 & - & - \\
+			& SVD &  &  &  \\
+			& GRASP  & \textbf{} & \textbf{} & \textbf{} \\ \midrule
+			
+			\multirow{3}{*}{80\%}  
+			& EcoDiff & 23.633 & 0.1873 &  \\
+			& SVD & 30.45 & 0.5845 & 81.30 \\
+			& GRASP  & \textbf{30.82} & \textbf{0.6232} & \textbf{83.12} \\ \midrule
+			
+			\multirow{3}{*}{70\%}  
+			& EcoDiff & 7.26 &  &  \\
+			& SVD 28.87
+			 &  & 0.45516
+			 &  \\
+			& GRASP  & \textbf{30.08} & \textbf{0.48951
+			} & \textbf{} \\ \bottomrule
+		\end{tabular}
+	\end{table}
+	
 
 double block: reduced by 76\%
 

@@ -23,12 +23,12 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: bibliography.bib
 Warning--entry type for "kohya_ss_sd_scripts_2024" isn't style-file defined
---line 95 of file bibliography.bib
-I was expecting a `,' or a `}'---line 112 of file bibliography.bib
+--line 105 of file bibliography.bib
+I was expecting a `,' or a `}'---line 122 of file bibliography.bib
  :  commit = {INSERT_COMMIT_HASH_HERE} 
  :                                     % Optional: Falls Sie eine spezifische Version genutzt haben
 I'm skipping whatever remains of this entry
-Repeated entry---line 1057 of file bibliography.bib
+Repeated entry---line 1067 of file bibliography.bib
  : @article{KnowledgeDistillation
  :                               ,
 I'm skipping whatever remains of this entry
@@ -62,45 +62,45 @@ Warning--empty journal in ConsistencyModel
 Warning--empty year in SlicedScoreMatching
 Warning--empty year in ModeCollapse1
 Warning--empty year in DistillationMatching
-You've used 157 entries,
+You've used 158 entries,
             2943 wiz_defined-function locations,
-            1481 strings with 35179 characters,
-and the built_in function-call counts, 82901 in all, are:
-= -- 8059
-> -- 4573
+            1487 strings with 35416 characters,
+and the built_in function-call counts, 83476 in all, are:
+= -- 8111
+> -- 4617
 < -- 46
-+ -- 1708
-- -- 1544
-* -- 4929
-:= -- 12179
-add.period$ -- 501
-call.type$ -- 157
-change.case$ -- 1233
++ -- 1725
+- -- 1560
+* -- 4974
+:= -- 12265
+add.period$ -- 504
+call.type$ -- 158
+change.case$ -- 1244
 chr.to.int$ -- 0
-cite$ -- 187
-duplicate$ -- 2232
-empty$ -- 6718
-format.name$ -- 1544
-if$ -- 20678
+cite$ -- 188
+duplicate$ -- 2241
+empty$ -- 6761
+format.name$ -- 1560
+if$ -- 20815
 int.to.chr$ -- 0
-int.to.str$ -- 157
+int.to.str$ -- 158
 missing$ -- 146
-newline$ -- 797
-num.names$ -- 314
-pop$ -- 2160
+newline$ -- 802
+num.names$ -- 316
+pop$ -- 2181
 preamble$ -- 1
-purify$ -- 1076
+purify$ -- 1086
 quote$ -- 0
-skip$ -- 5141
+skip$ -- 5170
 stack$ -- 0
-substring$ -- 3138
-swap$ -- 668
+substring$ -- 3143
+swap$ -- 671
 text.length$ -- 52
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 628
+type$ -- 632
 warning$ -- 30
-while$ -- 466
-width$ -- 160
-write$ -- 1679
+while$ -- 468
+width$ -- 161
+write$ -- 1690
 (There were 2 error messages)

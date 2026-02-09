@@ -201,9 +201,9 @@
 		\setentrycounter[]{page}\glsnumberformat{43\delimR 45}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{48}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{54}\delimN 
-		\setentrycounter[]{page}\glsnumberformat{63\delimR 68}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{63\delimR 69}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{V}\delimN 
-		\setentrycounter[]{page}\glsnumberformat{X}}}\glsgroupskip
+		\setentrycounter[]{page}\glsnumberformat{IX\delimN X}}}\glsgroupskip
 \glsgroupheading{V}\relax \glsresetentrylist %
 \glossentry{VAE}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{2\delimR 5}\delimN 
