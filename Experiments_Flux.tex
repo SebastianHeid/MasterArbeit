@@ -76,16 +76,10 @@ A specific
 \end{table}
 
 \subsection{Training-Free Pruning}
-In this section, it is investigated if \gls{GRASP} (see sec. \ref{sec:GRASP}) is transferable from \gls{LLM}s to flow-based image generation models like Flux.1-dev. The goal is to identify singular values based on their importance for the image generation task and not based on their magnitude how it is done using ordinary \gls{SVD} compression. The performance of \gls{GRASP} is compared to Eco-Diff \cite{EcoDiff}  another recently proposed learning free method to prune Flux.1-dev and the simple application of \gls{SVD} without retraining. \\
-First, we examine the extent to which the gradient-based method GRASP selects different singular values than a normal SVD, which sorts them by magnitude. The double-stream blocks are compressed by about 76\%, specifically using the following ranks for \gls{SVD}: 
-\begin{align*}
-	r_{\text{img\_mod}}  &= 526 \\
-	r_{\text{img\_mlp}}  &= 491 \\
-	r_{\text{img\_attn}} &= 307 \\
-	r_{\text{txt\_mod}}  &= 526 \\
-	r_{\text{txt\_mlp}}  &= 491 \\
-	r_{\text{txt\_attn}} &= 307
-\end{align*}
+In this section, it is investigated whether \gls{GRASP} (see Sec. \ref{sec:GRASP}) is transferable from \gls{LLM}s to flow-based image generation models like Flux.1-dev. The goal is to identify singular values based on their importance for the image generation task rather than solely based on their magnitude as is standard practise in ordinary \gls{SVD} compression. The performance of \gls{GRASP} is compared to Eco-Diff \cite{EcoDiff}  another recently proposed training-free method to prune Flux.1-dev and to the simple application of \gls{SVD} without retraining. \\
+First, we examine the extent to which the gradient-based method GRASP selects different singular values than a normal SVD, which selects them by magnitude. This experiment foxuses exclusively on the compression of double-stream blocks from Flux.1-dev . Exclusively for this setup a pre-existing importance ranking for the Flux.1-dev transformer blocks from \cite{FastFlux} (see Sec. \ref{app:GRASP_BlockImportance}) is utilized. The method was implemented in four different intensity levels, with each level defined by a specific number of compressed double-blocks while maintaining a fixed compression rate of 76\% for each block. For the exact ranks used during \gls{SVD} for the individual components please refer to Tab. \ref{tab:GRASPSVD_ranks}. \\
+Fig. \ref{fig:MagnitudeVsImportanceSVD} illustrates the magnitude and the importance estimated by \gls{GRASP} for each singular value of the image modulation matrix from double-stream block number four. The total view reveals a few significant outliers with very high magnitude and importance. Therefore, to investigate the correlation between magnitude and importance for the majority of singulare values Fig. \ref{fig:MagnitudeVsImportanceSVDb} provides a zoomed-in version. Here, one can observe a general positive where higher magnitude correlates with higher importance. However, there are numerous singular values with low magnitude but high importance and high magnitude values with negligible important values. This discrepancy indicates that \gls{GRASP} might could effectively identify important features that magnitude-based methods would miss, potentially leading to an improvement over ordinary \gls{SVD}.
+
 
 
 
@@ -103,16 +97,22 @@ First, we examine the extent to which the gradient-based method GRASP selects di
 	\begin{subfigure}[b]{0.48\textwidth}
 		\centering
 		\includegraphics[width=\textwidth]{images/Experimente/Flux/Training_Free/double_blocks_4_img_mod_lin_grasp_zoom.png}
-		\caption{Zoomed in visualization.‚}
-		\label{fig:image2}
+		\caption{Zoomed in visualization}
+		\label{fig:MagnitudeVsImportanceSVDb}
 	\end{subfigure}
 	
-	\caption{Comparing the magnitude (x-axis) with the gradient-based importance (y-axis) of singular values from \gls{SVD}. The visualization is from the $4^\text{th}$ block of the mod img matrix. }
-	\label{fig:DistributionCompressionRatios}
+	\caption{Comparing the magnitude (x-axis) with the gradient-based importance (y-axis) of singular values from \gls{SVD}. The visualization is from the $4^\text{th}$ block of the image modulation matrix. }
+	\label{fig:MagnitudeVsImportanceSVD}
 \end{figure}
 
 
+The potential for improvements over \gls{SVD} suggested by the analysis of the correlation between magnitude and importance is confirmed by evaluating both methods on the HPSv2 and GenEval benchmarks (see Fig. \ref{fig:GRASPvsSVDBenchmarks}). The results show that models obtained using the most important singular values based on gradients (\gls{GRASP}) instead of the ones having the highest magnitude outperform the ordinary \gls{SVD} across all compression intensities on both benchmarks. Fig. \ref{fig:ImagesGRASPvsSVD} displays example images, demonstrating that especially for strong compression  (68\% and 60\%) both image quality and text generation capabilities are superior with the \gls{GRASP} method. These results suggest that the high-magnitude singular values primarily encode low-frequency information. Consequently, \gls{SVD}-based approaches, by discarding low-magnitude singular values critical high-frequency information being important for text generation and semantics are lost. By prioritizing gradients, \gls{GRASP} better preserves these subtle but important singular values and thereby mainiting superior text-image alignment and preserving finer details. \\
+Furthermore, comparing both methods \gls{GRASP} and \gls{SVD} to EcoDiff (see Tab. \ref{tab:TrainingFreeMethods}) they are significantly superior for 10\% and 20\% compression. In fact, for even stronger compression, e.g. 30\%, EcoDiff fails completely and no meaningful images are obtained anymore. This proves the effectiveness of the general concept of the general \gls{SVD} and its variants \gls{GRASP}.
 
+\textbf{Finde Gründe warum EcoDiff so viel schlechter funktioniert.‚}
+
+
+ However, note that as demonstrated in Sec. \ref{} the model performance can significantly benefit from retraining. \\
 
 
     \begin{figure}[H]
@@ -134,19 +134,24 @@ First, we examine the extent to which the gradient-based method GRASP selects di
 	\end{subfigure}
 	
 	\caption{Comparing the magnitude (x-axis) with the gradient-based importance (y-axis) of singular values from \gls{SVD}. The visualization is from the $4^\text{th}$ block of the mod img matrix. }
-	\label{fig:DistributionCompressionRatios}
+	\label{fig:GRASPvsSVDBenchmarks}
 \end{figure}
 
 
 
-
+    \begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{images/Experimente/Flux/Training_Free/SVD_vs_GRASP_Images.pdf}
+	\caption{Images from compression Flux.1-dev with \gls{SVD} or \gls{GRASP} respectively.}
+	\label{fig:ImagesGRASPvsSVD}
+\end{figure}
 
 
 	
 	\begin{table}[H]
 		\centering
 		\caption{Performance Comparison of Compression Methods across HPSv2, GenEval, and DPG Benchmarks}
-		\label{tab:compression_comparison}
+		\label{tab:TrainingFreeMethods}
 		\begin{tabular}{@{}lcccc@{}}
 			\toprule
 			\textbf{Ratio} & \textbf{Method} & \textbf{HPSv2} $\uparrow$ & \textbf{GenEval} $\uparrow$ & \textbf{DPG} $\uparrow$ \\ \midrule
@@ -163,9 +168,7 @@ First, we examine the extent to which the gradient-based method GRASP selects di
 			
 			\multirow{3}{*}{70\%}  
 			& EcoDiff & 7.26 &  &  \\
-			& SVD 28.87
-			 &  & 0.45516
-			 &  \\
+			& SVD & 28.87 & 0.45516 & \\
 			& GRASP  & \textbf{30.08} & \textbf{0.48951
 			} & \textbf{} \\ \bottomrule
 		\end{tabular}

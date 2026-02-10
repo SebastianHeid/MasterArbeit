@@ -1,0 +1,116 @@
+\babel@toc {english}{}\relax 
+\contentsline {chapter}{Table of Contents}{IV}{chapter*.1}%
+\contentsline {chapter}{List of Abbreviations}{VII}{chapter*.3}%
+\contentsline {chapter}{List of Figures}{VIII}{chapter*.4}%
+\contentsline {chapter}{List of Tables}{X}{chapter*.5}%
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}%
+\contentsline {chapter}{\numberline {2}Background}{2}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Generative Models}{2}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Variational Autoencoder}{2}{subsection.2.1.1}%
+\contentsline {subsubsection}{Autoencoder}{2}{section*.6}%
+\contentsline {subsubsection}{Evidence Lower Bound Loss (\gls {ELBO})}{3}{section*.7}%
+\contentsline {subsection}{\numberline {2.1.2}Normalizing Flow}{4}{subsection.2.1.2}%
+\contentsline {subsection}{\numberline {2.1.3}Generative Adversarial Network}{5}{subsection.2.1.3}%
+\contentsline {section}{\numberline {2.2}Diffusion and Flow Matching Models}{6}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Denoising Diffusion Probabilistic Models}{6}{subsection.2.2.1}%
+\contentsline {subsubsection}{Forward Process}{7}{section*.8}%
+\contentsline {subsubsection}{Reverse Process }{7}{section*.9}%
+\contentsline {subsubsection}{Objective Function}{8}{section*.10}%
+\contentsline {subsubsection}{DDPM Sampler}{10}{section*.11}%
+\contentsline {subsection}{\numberline {2.2.2}Denoising Diffusion Implicit Models}{11}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}Score-Based Generative Models}{12}{subsection.2.2.3}%
+\contentsline {subsection}{\numberline {2.2.4}Stochastic Differential Equations}{13}{subsection.2.2.4}%
+\contentsline {subsection}{\numberline {2.2.5}Flow Matching}{13}{subsection.2.2.5}%
+\contentsline {subsubsection}{Rectified Flow}{14}{section*.12}%
+\contentsline {subsection}{\numberline {2.2.6}Latent Diffusion Models}{15}{subsection.2.2.6}%
+\contentsline {subsection}{\numberline {2.2.7}Conditioning and Classifier-Free Guidance}{16}{subsection.2.2.7}%
+\contentsline {subsubsection}{Classifier-Free Guidance}{16}{section*.13}%
+\contentsline {section}{\numberline {2.3}Fundamentals of Neural Network Architectures}{17}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Transformer}{17}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Attention Mechanism}{18}{subsection.2.3.2}%
+\contentsline {subsubsection}{Self-Attention}{18}{section*.14}%
+\contentsline {subsubsection}{Cross-Attention}{19}{section*.15}%
+\contentsline {subsubsection}{Multi-Head Attention}{20}{section*.16}%
+\contentsline {subsection}{\numberline {2.3.3}Positional Encoding}{20}{subsection.2.3.3}%
+\contentsline {subsubsection}{Sinusoidal Positional Encoding}{20}{section*.17}%
+\contentsline {subsection}{\numberline {2.3.4}Vision Transformer}{21}{subsection.2.3.4}%
+\contentsline {subsection}{\numberline {2.3.5}Adaptive Layer Normalization}{21}{subsection.2.3.5}%
+\contentsline {section}{\numberline {2.4}Model Distillation}{23}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}Knowledge Distillation}{23}{subsection.2.4.1}%
+\contentsline {section}{\numberline {2.5}Evaluation Metrics}{25}{section.2.5}%
+\contentsline {subsection}{\numberline {2.5.1}Fr\'echet Inception Distance}{25}{subsection.2.5.1}%
+\contentsline {subsection}{\numberline {2.5.2}CLIP-Maximum Mean Discrepancy}{25}{subsection.2.5.2}%
+\contentsline {subsection}{\numberline {2.5.3}Human Preference Score v2 Benchmark}{26}{subsection.2.5.3}%
+\contentsline {subsection}{\numberline {2.5.4}GenEval Benchmark}{26}{subsection.2.5.4}%
+\contentsline {subsection}{\numberline {2.5.5}Dense Prompt Graph Benchmark}{27}{subsection.2.5.5}%
+\contentsline {chapter}{\numberline {3}Related Work}{28}{chapter.3}%
+\contentsline {chapter}{\numberline {4}Methods}{30}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Image Generation Models}{30}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Pixart-$\Sigma $}{30}{subsection.4.1.1}%
+\contentsline {subsubsection}{Architecture }{30}{section*.18}%
+\contentsline {subsubsection}{Training Strategy}{32}{section*.19}%
+\contentsline {subsubsection}{PixArt-$\Sigma $ Enhancements }{33}{section*.20}%
+\contentsline {subsection}{\numberline {4.1.2}Flux.1-dev}{33}{subsection.4.1.2}%
+\contentsline {subsubsection}{Architecture}{33}{section*.21}%
+\contentsline {subsubsection}{Double-Stream Blocks}{35}{section*.22}%
+\contentsline {subsubsection}{Single-Stream Blocks}{36}{section*.23}%
+\contentsline {section}{\numberline {4.2}Block Importance Analysis}{38}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Block Selction Criterias}{38}{subsection.4.2.1}%
+\contentsline {subsubsection}{Magnitude-Pruning}{38}{section*.24}%
+\contentsline {subsubsection}{Representational Similarity Analysis}{38}{section*.25}%
+\contentsline {subsubsection}{Metric Based Selection}{38}{section*.26}%
+\contentsline {subsection}{\numberline {4.2.2}Block Selection Algorithms}{39}{subsection.4.2.2}%
+\contentsline {subsubsection}{Greedy Block Selection}{39}{section*.27}%
+\contentsline {subsubsection}{Black-Box Optimization with Optuna}{39}{section*.28}%
+\contentsline {subsubsection}{Learnable Block Selection Algorithm}{39}{section*.29}%
+\contentsline {section}{\numberline {4.3}Training Data and Image Synthesis}{40}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Training Datasets}{40}{subsection.4.3.1}%
+\contentsline {subsubsection}{LAION Aesthetic}{40}{section*.30}%
+\contentsline {subsubsection}{LAION Pixart-$\Sigma $ Dataset}{40}{section*.31}%
+\contentsline {subsubsection}{LAION-Flux Dataset}{41}{section*.32}%
+\contentsline {subsection}{\numberline {4.3.2}Evaluation Datasets}{42}{subsection.4.3.2}%
+\contentsline {subsubsection}{Mapillary}{42}{section*.33}%
+\contentsline {subsubsection}{Cityscapes}{42}{section*.34}%
+\contentsline {subsubsection}{MJHQ-30k}{42}{section*.35}%
+\contentsline {section}{\numberline {4.4}Structural Compression Strategies}{43}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Block Removal}{43}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}SVD Compression}{43}{subsection.4.4.2}%
+\contentsline {subsection}{\numberline {4.4.3}Iteratively Repeated SVD Compression}{44}{subsection.4.4.3}%
+\contentsline {subsection}{\numberline {4.4.4}GRASP}{44}{subsection.4.4.4}%
+\contentsline {section}{\numberline {4.5}Knowledge Distillation Loss Functions}{45}{section.4.5}%
+\contentsline {subsection}{\numberline {4.5.1}Normalization}{45}{subsection.4.5.1}%
+\contentsline {subsection}{\numberline {4.5.2}Feature Mapping for Loss Computation}{45}{subsection.4.5.2}%
+\contentsline {section}{\numberline {4.6}Pruning Schedule}{46}{section.4.6}%
+\contentsline {subsection}{\numberline {4.6.1}One-Shot Model Compression}{46}{subsection.4.6.1}%
+\contentsline {subsection}{\numberline {4.6.2}Progressive Model Compression}{46}{subsection.4.6.2}%
+\contentsline {subsection}{\numberline {4.6.3}Linear Progressive Compression}{46}{subsection.4.6.3}%
+\contentsline {chapter}{\numberline {5}Experiments}{49}{chapter.5}%
+\contentsline {section}{\numberline {5.1}PixArt-$\Sigma $ Pruning}{49}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}Experimental Default Setup}{49}{subsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.1.2}Block Importance Analysis}{50}{subsection.5.1.2}%
+\contentsline {subsubsection}{Qualitative Block Analysis}{51}{section*.36}%
+\contentsline {subsubsection}{Compression Criteria}{51}{section*.37}%
+\contentsline {subsubsection}{Block Analysis for Compression Instead of Removal}{54}{section*.38}%
+\contentsline {subsubsection}{Block Selection Algorithms}{55}{section*.39}%
+\contentsline {subsubsection}{Optuna}{55}{section*.40}%
+\contentsline {subsubsection}{Learnable Block Selection}{57}{section*.41}%
+\contentsline {subsection}{\numberline {5.1.3}Progressive Model Pruning vs One-Shot Model Pruning}{59}{subsection.5.1.3}%
+\contentsline {subsection}{\numberline {5.1.4}Knowledge Distillation Loss}{59}{subsection.5.1.4}%
+\contentsline {subsection}{\numberline {5.1.5}Finetuning Protocol}{61}{subsection.5.1.5}%
+\contentsline {subsection}{\numberline {5.1.6}Structural Compression Strategy}{63}{subsection.5.1.6}%
+\contentsline {subsection}{\numberline {5.1.7}Sensitivity Analysis of MLP and Attention Layers under \gls {SVD} Compression}{64}{subsection.5.1.7}%
+\contentsline {subsection}{\numberline {5.1.8}SVD Compression Scheduling}{65}{subsection.5.1.8}%
+\contentsline {subsection}{\numberline {5.1.9}Summary of Best Settings for Structural Model Pruning}{65}{subsection.5.1.9}%
+\contentsline {section}{\numberline {5.2}Flux.1-dev Pruning}{67}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Training Details}{67}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Training-Free Pruning}{68}{subsection.5.2.2}%
+\contentsline {subsection}{\numberline {5.2.3}Linear Progressive SVD Compression}{72}{subsection.5.2.3}%
+\contentsline {chapter}{\numberline {6}Appendix}{73}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Appendix A}{73}{section.6.1}%
+\contentsline {subsection}{\numberline {6.1.1}Block Analysis}{73}{subsection.6.1.1}%
+\contentsline {section}{\numberline {6.2}Appendix B - Detailed Overview of Selected Blocks Experiments PixArt-$\Sigma $}{73}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Experimen Flux.1-dev}{74}{section.6.3}%
+\contentsline {subsection}{\numberline {6.3.1}GRASP}{74}{subsection.6.3.1}%
+\contentsline {subsubsection}{Block Importance Ranking}{74}{section*.42}%
+\contentsline {subsubsection}{Compression Details}{74}{section*.43}%
+\contentsline {chapter}{Bibliography}{75}{chapter*.44}%

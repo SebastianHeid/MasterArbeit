@@ -153,7 +153,9 @@ In this section, the removed or compressed blocks for each experiments are visua
 
 
 \section{Experimen Flux.1-dev}
-\subsection{GRASP Block Selection}
+\subsection{GRASP}
+\subsubsection{Block Importance Ranking}
+\label{app:GRASP_BlockImportance}
 For this experiment the importance of blocks determined in \cite{FastFlux} was leveraged. Below the figure from the corresponding work is presented. 
 
 \begin{figure}[htbp]
@@ -162,4 +164,37 @@ For this experiment the importance of blocks determined in \cite{FastFlux} was l
 	\caption{Block importance for Flux.1-dev taken from \cite{FastFlux}.}
 	\label{fig:Loss_70}
 \end{figure}
+
+\subsubsection{Compression Details}
+\begin{table}[h]
+	\label{tab:GRASPSVD_ranks}
+	\centering
+	\caption{Overview of compressed double-stream block components and the respecive rank used in \gls{SVD}.}
+	\begin{tabular}{l|c}
+		\hline
+		\textbf{Components Double Block} & \textbf{Rank for \gls{SVD}} \\ \hline
+		Double-Stream Image Linear Layer (Attention) & $307$ \\
+		Double-Stream Image MLP                      & $491$ \\
+		Double-Stream Image Modulation               & $526$ \\
+		Double-Stream Text Linear Layer (Attention)  & $307$ \\
+		Double-Stream Text MLP                       & $491$ \\
+		Double-Stream Text Modulation                & $526$ \\ \hline
+	\end{tabular}
+\end{table}
+
+\begin{table}[h]
+	\centering
+	\caption{Overview of Pruned Models and Block Configurations}
+	\label{tab:pruned_blocks}
+	\begin{tabular}{l c p{6cm}}
+		\toprule
+		\textbf{Model Size} & \textbf{\# Pruned} & \textbf{Pruned Block IDs} \\
+		\midrule
+		80\% & 9 & 13, 14, 10, 12, 11, 16, 9, 15, 3 \\
+		74\% & 12 &  13, 14, 10, 12, 11, 16, 9, 15, 3, 5, 17, 6 \\
+		68\% & 15 & 13, 14, 10, 12, 11, 16, 9, 15, 3, 5, 17, 6, 4, 7, 8 \\
+		60\% & 18 & 13, 14, 10, 12, 11, 16, 9, 15, 3, 5, 17, 6, 4, 7, 8, 18, 1, 0  \\
+		\bottomrule
+	\end{tabular}
+\end{table}
 
