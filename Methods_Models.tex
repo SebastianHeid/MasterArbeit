@@ -13,7 +13,7 @@ The first input is the \textbf{timestep} $t$ which is projected into a time embe
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1.0\textwidth]{images/Background/Pixart/Architektur_Uebersicht.pdf}  % adjust filename and width
-	\caption{Overview architecture of Pixart-$\Sigma$. $H$ and $W$ are the height and width of the image. $h=\frac{H}{8}$ and $w=\frac{W}{8}$ represent the dimensions in latent space and $N = \frac{H}{8 \cdot p} \frac{W}{8 \cdot p}$ with $p$ being the patch size.}
+	\caption[PixArt-$\Sigma$ Architecture]{Overview of the Pixart-$\Sigma$ architecture. $H$ and $W$ are the height and width of the image. $h=\frac{H}{8}$ and $w=\frac{W}{8}$ represent the dimensions in latent space and $N = \frac{H}{8 \cdot p} \frac{W}{8 \cdot p}$ with $p$ being the patch size.}
 	\label{Pixart_Übersicht}
 \end{figure}
 
@@ -27,7 +27,7 @@ The \textbf{\gls{MLP}} processes each token individually to refine the features.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.5\textwidth]{images/Background/Pixart/Architekture_Detail.pdf}  % adjust filename and width
-	\caption{Diffusion block architecture taken from  \cite{Pixart_a}.}
+	\caption[Transformer Block from PixArt-$\Sigma$]{Visualization of the transformer block within PixArt-$\Sigma$. Taken from  \cite{Pixart_a}.}
 	\label{TransformerBlock}
 \end{figure}
 
@@ -35,7 +35,7 @@ The output of the final transformer block is modulated and processed by a linear
 
 \begin{table}[h]
 	\centering
-	\caption{Number of parameters for the individual components of the Transformer block and the total Pixart-$\Sigma$ model.}
+	\caption[PixArt-$\Sigma$ Parameter Distribution]{Number of parameters for the individual components of the Transformer block and the total Pixart-$\Sigma$ model.}
 	\label{Pix_parameter_count}
 	\renewcommand{\arraystretch}{1.2} % Macht die Tabelle etwas luftiger/lesbarer
 	\begin{tabular}{@{}l c@{}} % @{} entfernt den seitlichen Rand für einen cleanen Look
@@ -87,7 +87,7 @@ The output, sepcifically the text and image hidden states, of the 19th double-st
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1.0\textwidth]{images/Background/Flux/Flux_Uebersicht.pdf}  % adjust filename and width
-	\caption{Overview Flux.1-dev architecture.}
+	\caption[Flux.1-dev Architecture]{Overview of the Flux.1-dev architecture.}
 \label{FluxOverview}
 \end{figure}
 
@@ -101,7 +101,7 @@ The single-stream blocks (see fig. \ref{SingleDoubleStreamBlock} on the left) ar
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1.0\textwidth]{images/Background/Flux/SingleDoubleBlocks.pdf}  % adjust filename and width
-	\caption{Single-stream block (left) and double-stream block (right) of Flux.1-dev. Graphics are adapted from \cite{FastFlux}.}
+	\caption[Double- and Single-Stream Transformer Blocks from Flux.1-dev]{Visualization of single-stream block (left) and double-stream block (right) of Flux.1-dev. Graphics are adapted from \cite{FastFlux}.}
 	\label{SingleDoubleStreamBlock}
 \end{figure}
 
@@ -109,7 +109,7 @@ The single-stream blocks (see fig. \ref{SingleDoubleStreamBlock} on the left) ar
 
 \begin{table}[h]
 	\centering
-	\caption{Number of parameters for the individual components of double-stream block from Flux.1-dev.}
+	\caption[Flux.1-dev Parameter Distribution]{Number of parameters for the individual components of double-stream block from Flux.1-dev.}
 	\label{tab:Flux_parameter_count}
 	\renewcommand{\arraystretch}{1.2} % Macht die Tabelle etwas luftiger/lesbarer
 	\begin{tabular}{@{}l c@{}} % @{} entfernt den seitlichen Rand für einen cleanen Look

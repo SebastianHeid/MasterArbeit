@@ -17,7 +17,7 @@ This key concept is illustrated in fig. \ref{GraphicalModelDDPM}. Let $\mathbf{x
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.6\textwidth]{images/Background/MarkovChainDiffProcess.png}  % adjust filename and width
-    \caption{The graphical model of DDPM from \cite{DDPM}.}
+    \caption[Visualization of DDPM]{Visualization of the forward and backward process of \gls{DDPM} taken from \cite{DDPM}.}
     \label{GraphicalModelDDPM}
 \end{figure}
 
@@ -236,7 +236,7 @@ In addition, they found empirically that ignoring the weighting term of eq. \ref
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.5\textwidth]{images/Background/DDPM_Training.png}  % adjust filename and width
-    \caption{DDPM training  \cite{DDPMSamplerImage}.}
+    \caption[DDPM Training Scheme]{Visualization of the training procedure for DDPM. Taken from  \cite{DDPMSamplerImage}.}
     \label{FigDDPMTraining}
 \end{figure}
 
@@ -280,7 +280,7 @@ Here, it becomes clear that the model has to predict the noise $T$ times which m
 \begin{figure}[H]
     \centering
     \includegraphics[width=1.\textwidth]{images/Background/DDPM.png}  % adjust filename and width
-    \caption{DDPM sampling \cite{DDPMSamplerImage}.}
+    \caption[DDPM Sampline Scheme]{Visualization of the iterative sampling process of \gls{DDPM}. Taken from \cite{DDPMSamplerImage}.}
     \label{FigDDPMSampling}
 \end{figure}
 
@@ -442,7 +442,7 @@ where $\mathbf{x}_t = t\mathbf{x}_1 + (1-t)\mathbf{x}_0$ is the linear interpola
 \begin{figure}[H]
     \centering
     \includegraphics[width=1.\textwidth]{images/Background/Overview_2.png}  % adjust filename and width
-    \caption{Rectified Flow \cite{RectifiedFlowMatching}.}
+    \caption[Rectified Flow]{Visualization of the path unwiring and straighting of the first iteration in the Reflow algorithm. Taken from \cite{RectifiedFlowMatching}.}
     \label{RectifiedFlow}
 \end{figure}
 
@@ -473,7 +473,7 @@ with $\mathbf{z}$ denoting the latents, specifically,  $\mathbf{z}_0$ being the 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.6\textwidth]{images/Background/LDM.png}  % adjust filename and width
-	\caption{Structure of a Latent Diffusion Model  \cite{LDM}.}
+	\caption[Latent Diffusion Model]{Visualizaiton of the structure of a latent diffusion model. Taken from  \cite{LDM}.}
 	\label{LDM}
 \end{figure}
 \subsection{Conditioning and Classifier-Free Guidance}

@@ -161,15 +161,16 @@ For this experiment the importance of blocks determined in \cite{FastFlux} was l
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.9\textwidth]{images/Experimente/Flux/Training_Free/BlockImportanceFastFlux.png}
-	\caption{Block importance for Flux.1-dev taken from \cite{FastFlux}.}
+	\caption[Training-Free: Flux.1-dev Block Importance Ranking]{Block importance for Flux.1-dev taken from \cite{FastFlux}.}
 	\label{fig:Loss_70}
 \end{figure}
 
 \subsubsection{Compression Details}
 \begin{table}[h]
-	\label{tab:GRASPSVD_ranks}
+
 	\centering
-	\caption{Overview of compressed double-stream block components and the respecive rank used in \gls{SVD}.}
+	\caption[Trainig-Free Flux Compression: SVD Ranks]{Overview of compressed double-stream block components and the respecive rank used in \gls{SVD}.}
+		\label{tab:GRASPSVD_ranks}
 	\begin{tabular}{l|c}
 		\hline
 		\textbf{Components Double Block} & \textbf{Rank for \gls{SVD}} \\ \hline
@@ -184,8 +185,8 @@ For this experiment the importance of blocks determined in \cite{FastFlux} was l
 
 \begin{table}[h]
 	\centering
-	\caption{Overview of Pruned Models and Block Configurations}
-	\label{tab:pruned_blocks}
+	\caption[Training Free Flux Compression: Model Compression Configuration]{Overview of Pruned Models and Block Configurations}
+	\label{tab:GRASPpruned_blocks}
 	\begin{tabular}{l c p{6cm}}
 		\toprule
 		\textbf{Model Size} & \textbf{\# Pruned} & \textbf{Pruned Block IDs} \\

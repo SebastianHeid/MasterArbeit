@@ -1,7 +1,7 @@
 %!TEX root = ./main.tex
 
 \chapter{Experiments}
-This master thesis investigate structural model pruning techniques, specifically focusing on the removal and compression of transformer blocks within the PixArt-$\Sigma$ and Flux-dev architectures. PixArt-$\Sigma$ is employed as an experimental baseline to evaluate various design choices in the structural pruning framework due to its relatively low parameter count enabling rapid iteration and extensive ablation studies. Subsequently, the most effective strategies are applied to Flux-dev to assess their efficacy in high-parameter regimes. 
+This master thesis investigates model pruning techniques, specifically focusing on the removal and compression of transformer blocks within the PixArt-$\Sigma$ and Flux-dev architectures. PixArt-$\Sigma$ is employed as an experimental baseline to evaluate various design choices in the structural pruning framework due to its relatively low parameter count enabling rapid iteration and extensive ablation studies. Subsequently, the most effective strategies are applied to Flux-dev to assess their efficacy in high-parameter regimes. 
 \section{PixArt-$\Sigma$ Pruning}
 
 \subsection{Experimental Default Setup}
@@ -24,7 +24,7 @@ The implementation of all experiments build up on the official git repository fo
 
 \begin{table}[H]
 	\centering
-	\caption{Default hyperparameters for the retraining of compressed models.}
+	\caption[Hyperparameter Setting for PixArt-$\Sigma$ Finetuning]{Default hyperparameter settings for PixArt-$\Sigma$ finetuning after compression.}
 	\label{tab:hyperparameterTraining}
 	\begin{tabular}{l c}
 		\toprule
@@ -75,7 +75,7 @@ In magnitude based pruning strategies the model parts with the lowest averaged w
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.85\textwidth]{images/Experimente/PixArt_Block_Analysis/magnitude_vs_clip.png}
-	\caption[Magnitude-base pruning vs \gls{CLIP}-score]{The histogram shows the magnitudes of the weights of the individual transformer blocks (1-28). The blocks which have shown qualitatively (see fig. \ref{fig:PixArtBlockImportanceQualitatively}) to be very important for the image generation capabilities of PixArt-$\Sigma$ are marked with red. In addition, the \gls{CLIP}-scores for each block is displayed. The \gls{CLIP}-scores follow the qualitative observations in contrast to the magnitude-based analysis. }
+	\caption[Magnitude-base pruning versus \gls{CLIP}-score]{The histogram shows the magnitudes of the weights of the individual transformer blocks (1-28). The blocks which have shown qualitatively (see fig. \ref{fig:PixArtBlockImportanceQualitatively}) to be very important for the image generation capabilities of PixArt-$\Sigma$ are marked with red. In addition, the \gls{CLIP}-scores for each block is displayed. The \gls{CLIP}-scores follow the qualitative observations in contrast to the magnitude-based analysis. }
 	\label{fig:magnitude_clip}
 	
 	\label{fig:PixArtBlockMagnitudeCLIP}
@@ -85,7 +85,7 @@ In magnitude based pruning strategies the model parts with the lowest averaged w
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.85\textwidth]{images/Experimente/PixArt_Block_Analysis/magnitude_vs_cmmd.png}
-	\caption[Magnitude-base pruning vs \gls{CMMD}]{The histogram shows the magnitudes of the weights of the individual transformer blocks (1-28). The blocks which have shown qualitatively (see fig. \ref{fig:PixArtBlockImportanceQualitatively}) to be very important for the image generation capabilities of PixArt-$\Sigma$ are marked with red. In addition, the \gls{CMMD} for each block is displayed. The \gls{CMMD} follow the qualitative observations in contrast to the magnitude-based analysis. }
+	\caption[Magnitude-base pruning versus \gls{CMMD}]{The histogram shows the magnitudes of the weights of the individual transformer blocks (1-28). The blocks which have shown qualitatively (see fig. \ref{fig:PixArtBlockImportanceQualitatively}) to be very important for the image generation capabilities of PixArt-$\Sigma$ are marked with red. In addition, the \gls{CMMD} for each block is displayed. The \gls{CMMD} follow the qualitative observations in contrast to the magnitude-based analysis. }
 	
 	\label{fig:PixArtBlockMagnitudeCMMD}
 \end{figure}
@@ -96,14 +96,14 @@ Both fig. \ref{fig:PixArtBlockImportanceCLIP} and \ref{fig:PixArtBlockImportance
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.85\textwidth]{images/Experimente/PixArt_Block_Analysis/cka_vs_clip.png}  % adjust filename and width
-	\caption[\gls{CKA} transformation intensity vs \gls{CLIP}-score]{The histogram shows the transformation intensity based on \gls{CKA} comparing the input and output features of the individual transformer blocks (1-28). The blocks which have shown qualitatively (see fig. \ref{fig:PixArtBlockImportanceQualitatively}) to be very important for the image generation capabilities of PixArt-$\Sigma$ are marked with red. In addition, the \gls{CLIP}-scores for each block is displayed. The \gls{CLIP}-scores follow the qualitative observations in contrast to the transformation intensity analysis. }
+	\caption[\gls{CKA} transformation intensity versus \gls{CLIP}-score]{The histogram shows the transformation intensity based on \gls{CKA} comparing the input and output features of the individual transformer blocks (1-28). The blocks which have shown qualitatively (see fig. \ref{fig:PixArtBlockImportanceQualitatively}) to be very important for the image generation capabilities of PixArt-$\Sigma$ are marked with red. In addition, the \gls{CLIP}-scores for each block is displayed. The \gls{CLIP}-scores follow the qualitative observations in contrast to the transformation intensity analysis. }
 
 	\label{fig:PixArtBlockImportanceCLIP}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.85\textwidth]{images/Experimente/PixArt_Block_Analysis/cka_vs_cmmd.png}  adjust filename and width	\caption[\gls{CKA} transformation intensity vs \gls{CMMD}]{The histogram shows the transformation intensity based on \gls{CKA} comparing the input and output features of the individual transformer blocks (1-28). The blocks which have shown qualitatively (see fig. \ref{fig:PixArtBlockImportanceQualitatively}) to be very important for the image generation capabilities of PixArt-$\Sigma$ are marked with red. In addition, the \gls{CMMD} for each block is displayed. The \gls{CMMD} follow the qualitative observations in contrast to the transformation intensity analysis. }
+	\includegraphics[width=0.85\textwidth]{images/Experimente/PixArt_Block_Analysis/cka_vs_cmmd.png}  adjust filename and width	\caption[\gls{CKA} transformation intensity versus \gls{CMMD}]{The histogram shows the transformation intensity based on \gls{CKA} comparing the input and output features of the individual transformer blocks (1-28). The blocks which have shown qualitatively (see fig. \ref{fig:PixArtBlockImportanceQualitatively}) to be very important for the image generation capabilities of PixArt-$\Sigma$ are marked with red. In addition, the \gls{CMMD} for each block is displayed. The \gls{CMMD} follow the qualitative observations in contrast to the transformation intensity analysis. }
 
 	\label{fig:PixArtBlockImportanceCMMD}
 \end{figure}
@@ -133,7 +133,7 @@ The Optuna hyperparameter search was tested for the iterative SVD distillation f
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.85\textwidth]{images/Experimente/optuna/optuna_greedy_comb.png}  
-	\caption[Comparison of Pruning Strategies: Optuna vs. Greedy Algorithm]{Comparison of removed blocks per iteration by the Greedy algorithm versus the Optuna framework. 
+	\caption[Distribution of Selected Blocks: Optuna versus Greedy Algorithm]{Comparison of removed blocks per iteration by the Greedy algorithm versus the Optuna framework. 
 		In each iteration, the Greedy algorithm's selection served as the initialization prior for the Optuna hyperparameter search. 
 		The heatmap visualizes the divergence in block selection:.While gray blocks represent consensus, the colored blocks highlight where Optuna (green) found a superior structural reduction compared to the Greedy baseline (yellow). 
 		The model was retrained between iterations based on the optimized configuration. 
@@ -169,14 +169,14 @@ Above, we observed that in each iteration, the Optuna framework was able to iden
 		\label{fig:image2}
 	\end{subfigure}
 	
-	\caption[Comparison of Pruning Strategies]{Comparison versus Optuna framework and greedy algorithm... (a) shows...}
+	\caption[Benchmark Performance: Optuna versus Greedy Algorithm]{Compare the performance of pruned models based on the Optuna and Greedy block selection algorithm.}
 	\label{fig:BenchmarksOptuna}
 \end{figure}
 
  \begin{figure}[H]
 \centering
 \includegraphics[width=0.75\textwidth]{images/Experimente/optuna/blocks_optuna_greedy.png}  
-\caption[Comparison of Pruning Strategies: Optuna vs. Greedy Algorithm Regarding Training]{Here, all compressed blocks based on a greedy and optuna pruning scheme are displayed per iteration. 
+\caption[Comparison of Pruning Strategies: Optuna versus Greedy Algorithm]{Here, all compressed blocks based on a greedy and optuna pruning scheme are displayed per iteration. 
 }
 \label{fig:AdvantageOfOPtunaPostTraining}
 \end{figure}
@@ -187,7 +187,7 @@ Fig. \ref{fig:TinyFusionConfidence} displays the confidence score across all fou
  \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.75\textwidth]{images/Experimente/TinyFusion/ConfidenceScore.png}  
-	\caption[Confidence Score for Learned Mask]{Confidence score for the mask configuration of each subset.
+	\caption[Confidence Score for Learned Block Mask]{Confidence score for the mask configuration of each subset.
 	}
 	\label{fig:TinyFusionConfidence}
 \end{figure}
@@ -195,14 +195,14 @@ Fig. \ref{fig:TinyFusionConfidence} displays the confidence score across all fou
  \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.75\textwidth]{images/Experimente/TinyFusion/BlockDistribution.png}  
-	\caption[Learned Block Removal over Time]{Evolution of selected blocks for removal during mask optimization process.
+	\caption[Learned Block Masks over Time]{Evolution of selected blocks for removal during mask optimization process.
 	}
 	\label{fig:TinyFusionBlockSelection}
 \end{figure}
 
 \begin{table}[H]
 	\centering
-	\caption{Training hyperparameters for PixArt \gls{LoRA} finetuning and mask learning}
+	\caption[Hyperparameter Setting for Learnable Block Selection]{Hyperparameter setting for PixArt-$\Sigma$ \gls{LoRA} finetuning and mask learning.}
 	\label{tab:TinyFusionHyperparameters}
 	\begin{tabular}{l c l}
 		\toprule
@@ -244,7 +244,7 @@ One-shot model pruning compresses the model to target size in a single step, whi
 		\label{fig:image2}
 	\end{subfigure}
 	
-	\caption[Comparison of Pruning Strategies]{Comparison versus Optuna framework and greedy algorithm... (a) shows...}
+	\caption[Benchmark Performance: Progessive versus One-Shot Model Pruning]{Performance comparison between progressive and one-shot pruning across varying degrees of model compression.}
 	\label{fig:OneShotvsProgressive}
 \end{figure}
 
@@ -254,7 +254,7 @@ One-shot model pruning compresses the model to target size in a single step, whi
 
 \begin{table}[htbp]
 	\centering
-	\caption{Training and Model Specifications for Compressed Variants.}
+	\caption[Training and Compression Settings PixArt-$\Sigma$ for Block Removal]{Training and compression settings for compressed PixArt-$\Sigma$ models.}
 	\label{tab:SettingOneShotvsProgressive}
 	\begin{tabular}{@{} l c c c @{}}
 		\toprule
@@ -310,7 +310,7 @@ In this section the standard setting (see sec. \ref{sec:DefaultSetup}) except th
  		\label{fig:image2}
  	\end{subfigure}
  	
- 	\caption[Investigation of Knowledge Distialltion Loss]{Investigation of the importance of the individual components of the knowledge distillation loss.}
+ 	\caption[Benchmark Performance: Different Knowledge Distialltion Loss Configurations]{Impact of different loss configurations on performance across varying compression ratios.}
  	\label{fig:LossInvestigation}
  \end{figure}
  
@@ -371,18 +371,18 @@ In this section the standard setting (see sec. \ref{sec:DefaultSetup}) except th
  		\label{fig:image2}
  	\end{subfigure}
  	
- 	\caption[Finetuning Protocols Benchmark]{Investigation finetuning protocols.}
+ 	\caption[Benchmark Performance: Finetuning Protocols]{Impact of different finetuning protocols on performance across varying compression ratios.}
  	\label{fig:FinetuningProtocols}
  \end{figure}
  
  
- \subsection{Structural Compression Strategy}
+ \subsection{Compression Strategy}
  As an alternative to the pruning strategy of removing entire transformer blocks from PixArt-$\Sigma$, a compression strategy utilizing \gls{SVD} compression is investigated. This decomposition is applied to the \gls{MLP}, self-attention and cross-attention matrices within a transformer block. To evaluate the efficiency of the \gls{SVD} compression method against the structural block removal method, a representative operating point is chosen. The rank for the \gls{MLP} is set to $r_\text{MLP} = 512$ corresponding to a compression of approximately $44\%$ of its parameters and the ranks for the self- and cross-attention matrices are fixed to $r_\text{self-attn} = r_\text{cross-attn} = 128$ representing a parameter reduction of approximately $78\%$. This serves as a starting point. Later, the choice of compressing attention matrices more aggressively than the \gls{MLP} matrices is further investigated (see sec. \ref{sec:MLPAttnDiffCompRatios}). \\
   Tab. \ref{tab:SVDCompressionFirstExp} compares the configurations of both methods, specifically the number of blocks removed or compressed and corresponding training duration for each model. Note that the number of training steps differs significantly, as the default criterion - a \gls{CMMD} value exceeding 0.1 - was employed to the pruning rate per iteration, consistent with the default settings. The observation that the \gls{SVD} allows for more parameters to be removed with a less severe impact on the \gls{CMMD} value on the small reference dataset is an initial indication that compression is a more nuanced method than block removal. Fig. \ref{fig:SVD_vs_Removal} presents the performance for both methods on the HPSv2 and GenEval benchmarks. For both benchmarks the \gls{SVD} compression method outperforms the complete block removal method in low and high compression regimes. This suggests that distributing the parameter reduction across multiple blocks via compression is less adverse to model performance compared to removing individual blocks completely.
  
  \begin{table}[htbp]
  	\centering
- 	\caption{Comparing training steps and modified blocks for block removal versus \gls{SVD} compression method.}
+ 	\caption[Training and Compression Settings PixArt-$\Sigma$ for Block Removal and \gls{SVD}]{Comparing training steps and modified blocks for block removal versus \gls{SVD} compression method.}
  	\label{tab:SVDCompressionFirstExp}
  	\begin{tabular}{@{} l c c c c @{}}
  		\toprule
@@ -394,9 +394,9 @@ In this section the standard setting (see sec. \ref{sec:DefaultSetup}) except th
  		Model 80\% & 6   & - &  265.5 \\
  		SVD Model 80\% & - & 11 & 88.5 \\
  		Model 70\% & 8   & - &  531.0 \\
- 		SVD Model 70\% & - & 17 & 265,5k \\
+ 		SVD Model 70\% & - & 17 & 265,5 \\
  		Model 60\% & 11  & - &  708.0 \\
- 		SVD Model 60\% & - & 22 & 442,5k \\
+ 		SVD Model 60\% & - & 22 & 442,5 \\
 
  		\bottomrule
  	\end{tabular}
@@ -422,7 +422,7 @@ In this section the standard setting (see sec. \ref{sec:DefaultSetup}) except th
  		\label{fig:image2}
  	\end{subfigure}
  	
- 	\caption[Benchmarks Structural Compression Strategy]{HPSv2 (left) and GenEval (right) benchmark for complete block removal and \gls{SVD} compression strategy.}
+ 	\caption[Benchmark Performance: Compression Strategies]{Impact of different compression strategies on performance across varying compression ratios.}
  	\label{fig:SVD_vs_Removal}
  \end{figure}
  
@@ -461,7 +461,7 @@ The scores in fig. \ref{fig:DistributionCompressionRatios} reveal two distinct t
  		\label{fig:image2}
  	\end{subfigure}
  	
- 	\caption[Benchmarks Structural Compression Strategy]{HPSv2 (left) and GenEval (right) benchmark for complete block removal and \gls{SVD} compression strategy.}
+\caption[Benchmark Performance: Compression of Individual Transformer Block Components]{Impact of varying degrees of compression of individual transformer block components on performance across varying compression ratios.}
  	\label{fig:DistributionCompressionRatios}
  \end{figure}
  

@@ -1,51 +1,52 @@
 \babel@toc {english}{}\relax 
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces The graphical model of DDPM from \cite {DDPM}.}}{6}{figure.2.1}%
-\contentsline {figure}{\numberline {2.2}{\ignorespaces DDPM training \cite {DDPMSamplerImage}.}}{10}{figure.2.2}%
-\contentsline {figure}{\numberline {2.3}{\ignorespaces DDPM sampling \cite {DDPMSamplerImage}.}}{11}{figure.2.3}%
-\contentsline {figure}{\numberline {2.4}{\ignorespaces Rectified Flow \cite {RectifiedFlowMatching}.}}{15}{figure.2.4}%
-\contentsline {figure}{\numberline {2.5}{\ignorespaces Structure of a Latent Diffusion Model \cite {LDM}.}}{16}{figure.2.5}%
-\contentsline {figure}{\numberline {2.6}{\ignorespaces Transformer architecture from \cite {AttentionIsAllYouNeed}.}}{17}{figure.2.6}%
-\contentsline {figure}{\numberline {2.7}{\ignorespaces Self-attention mechanism based on \cite {SelfAttentionFigure}.}}{19}{figure.2.7}%
-\contentsline {figure}{\numberline {2.8}{\ignorespaces Cross-attention mechanism based on \cite {SelfAttentionFigure}.}}{19}{figure.2.8}%
-\contentsline {figure}{\numberline {2.9}{\ignorespaces Multi-head attention from \cite {AttentionIsAllYouNeed}.}}{20}{figure.2.9}%
-\contentsline {figure}{\numberline {2.10}{\ignorespaces Vision transformer from \cite {VisionTransformer}.}}{21}{figure.2.10}%
-\contentsline {figure}{\numberline {2.11}{\ignorespaces Example of how image is investigated for GenEval benchmark \cite {ghosh2023geneval}.}}{27}{figure.2.11}%
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Visualization of DDPM}}{7}{figure.2.1}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces DDPM Training Scheme}}{11}{figure.2.2}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces DDPM Sampline Scheme}}{12}{figure.2.3}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Rectified Flow}}{16}{figure.2.4}%
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Latent Diffusion Model}}{17}{figure.2.5}%
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Transformer Architecture}}{18}{figure.2.6}%
+\contentsline {figure}{\numberline {2.7}{\ignorespaces Self-Attention Mechanism}}{20}{figure.2.7}%
+\contentsline {figure}{\numberline {2.8}{\ignorespaces Cross-Attention Mechanism}}{20}{figure.2.8}%
+\contentsline {figure}{\numberline {2.9}{\ignorespaces Multi-Head Attention}}{21}{figure.2.9}%
+\contentsline {figure}{\numberline {2.10}{\ignorespaces Vision Transformer Architecture}}{22}{figure.2.10}%
+\contentsline {figure}{\numberline {2.11}{\ignorespaces GenEval Benchmark}}{28}{figure.2.11}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Overview architecture of Pixart-$\Sigma $. $H$ and $W$ are the height and width of the image. $h=\frac {H}{8}$ and $w=\frac {W}{8}$ represent the dimensions in latent space and $N = \frac {H}{8 \cdot p} \frac {W}{8 \cdot p}$ with $p$ being the patch size.}}{31}{figure.4.1}%
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Diffusion block architecture taken from \cite {Pixart_a}.}}{32}{figure.4.2}%
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Overview Flux.1-dev architecture.}}{35}{figure.4.3}%
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Single-stream block (left) and double-stream block (right) of Flux.1-dev. Graphics are adapted from \cite {FastFlux}.}}{36}{figure.4.4}%
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Example of LAION Dataset}}{40}{figure.4.5}%
-\contentsline {figure}{\numberline {4.6}{\ignorespaces PixArt-$\Sigma $ generated dataset}}{41}{figure.4.6}%
-\contentsline {figure}{\numberline {4.7}{\ignorespaces Flux-dev generated dataset}}{41}{figure.4.7}%
-\contentsline {figure}{\numberline {4.8}{\ignorespaces Examples of Mapillary Dataset}}{42}{figure.4.8}%
-\contentsline {figure}{\numberline {4.9}{\ignorespaces Examples of Cityscapes Dataset}}{42}{figure.4.9}%
-\contentsline {figure}{\numberline {4.10}{\ignorespaces Examples of MHJQ-30k Dataset}}{43}{figure.4.10}%
-\contentsline {figure}{\numberline {4.11}{\ignorespaces Example of removal (left) and compression (right) strategy based on a simplified representation of PixArt-$\Sigma $ architecture. The depictions show the case that the blocks 8,11,15,17 and 20 are removed or compressed. }}{44}{figure.4.11}%
-\contentsline {figure}{\numberline {4.12}{\ignorespaces }}{46}{figure.4.12}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces PixArt-$\Sigma $ Architecture}}{32}{figure.4.1}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Transformer Block from PixArt-$\Sigma $}}{33}{figure.4.2}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Flux.1-dev Architecture}}{36}{figure.4.3}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Double- and Single-Stream Transformer Blocks from Flux.1-dev}}{37}{figure.4.4}%
+\contentsline {figure}{\numberline {4.5}{\ignorespaces LAION Dataset}}{41}{figure.4.5}%
+\contentsline {figure}{\numberline {4.6}{\ignorespaces LAION-PixArt-$\Sigma $ dataset}}{42}{figure.4.6}%
+\contentsline {figure}{\numberline {4.7}{\ignorespaces LAION-Flux.1-dev dataset}}{42}{figure.4.7}%
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Mapillary Dataset}}{43}{figure.4.8}%
+\contentsline {figure}{\numberline {4.9}{\ignorespaces Cityscapes Dataset}}{43}{figure.4.9}%
+\contentsline {figure}{\numberline {4.10}{\ignorespaces MHJQ-30k Dataset}}{44}{figure.4.10}%
+\contentsline {figure}{\numberline {4.11}{\ignorespaces Model Compression Strategies}}{45}{figure.4.11}%
+\contentsline {figure}{\numberline {4.12}{\ignorespaces Feature Mapping Strategy}}{47}{figure.4.12}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Qualitative analyse of the block sensitivity of PixArt-$\Sigma $ for block removal}}{51}{figure.5.1}%
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Magnitude-base pruning vs \gls {CLIP}-score}}{52}{figure.5.2}%
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Magnitude-base pruning vs \gls {CMMD}}}{52}{figure.5.3}%
-\contentsline {figure}{\numberline {5.4}{\ignorespaces \gls {CKA} transformation intensity vs \gls {CLIP}-score}}{53}{figure.5.4}%
-\contentsline {figure}{\numberline {5.5}{\ignorespaces \gls {CKA} transformation intensity vs \gls {CMMD}}}{53}{figure.5.5}%
-\contentsline {figure}{\numberline {5.6}{\ignorespaces Qualitative analyse of the block sensitivity of PixArt-$\Sigma $ of block compression}}{55}{figure.5.6}%
-\contentsline {figure}{\numberline {5.7}{\ignorespaces Comparison of Pruning Strategies: Optuna vs. Greedy Algorithm}}{56}{figure.5.7}%
-\contentsline {figure}{\numberline {5.8}{\ignorespaces Comparison of Pruning Strategies}}{57}{figure.5.8}%
-\contentsline {figure}{\numberline {5.9}{\ignorespaces Comparison of Pruning Strategies: Optuna vs. Greedy Algorithm Regarding Training}}{57}{figure.5.9}%
-\contentsline {figure}{\numberline {5.10}{\ignorespaces Confidence Score for Learned Mask}}{58}{figure.5.10}%
-\contentsline {figure}{\numberline {5.11}{\ignorespaces Learned Block Removal over Time}}{58}{figure.5.11}%
-\contentsline {figure}{\numberline {5.12}{\ignorespaces Comparison of Pruning Strategies}}{59}{figure.5.12}%
-\contentsline {figure}{\numberline {5.13}{\ignorespaces Investigation of Knowledge Distialltion Loss}}{61}{figure.5.13}%
-\contentsline {figure}{\numberline {5.14}{\ignorespaces Magnitude of Intermediate Features in PixArt-$\Sigma $}}{61}{figure.5.14}%
-\contentsline {figure}{\numberline {5.15}{\ignorespaces Finetuning Protocols Benchmark}}{63}{figure.5.15}%
-\contentsline {figure}{\numberline {5.16}{\ignorespaces Benchmarks Structural Compression Strategy}}{64}{figure.5.16}%
-\contentsline {figure}{\numberline {5.17}{\ignorespaces Benchmarks Structural Compression Strategy}}{65}{figure.5.17}%
-\contentsline {figure}{\numberline {5.18}{\ignorespaces Comparing the magnitude (x-axis) with the gradient-based importance (y-axis) of singular values from \gls {SVD}. The visualization is from the $4^\text {th}$ block of the image modulation matrix. }}{69}{figure.5.18}%
-\contentsline {figure}{\numberline {5.19}{\ignorespaces Comparing the magnitude (x-axis) with the gradient-based importance (y-axis) of singular values from \gls {SVD}. The visualization is from the $4^\text {th}$ block of the mod img matrix. }}{70}{figure.5.19}%
-\contentsline {figure}{\numberline {5.20}{\ignorespaces Images from compression Flux.1-dev with \gls {SVD} or \gls {GRASP} respectively.}}{71}{figure.5.20}%
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Qualitative analyse of the block sensitivity of PixArt-$\Sigma $ for block removal}}{52}{figure.5.1}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Magnitude-base pruning versus \gls {CLIP}-score}}{53}{figure.5.2}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Magnitude-base pruning versus \gls {CMMD}}}{53}{figure.5.3}%
+\contentsline {figure}{\numberline {5.4}{\ignorespaces \gls {CKA} transformation intensity versus \gls {CLIP}-score}}{54}{figure.5.4}%
+\contentsline {figure}{\numberline {5.5}{\ignorespaces \gls {CKA} transformation intensity versus \gls {CMMD}}}{54}{figure.5.5}%
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Qualitative analyse of the block sensitivity of PixArt-$\Sigma $ of block compression}}{56}{figure.5.6}%
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Distribution of Selected Blocks: Optuna versus Greedy Algorithm}}{57}{figure.5.7}%
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Benchmark Performance: Optuna versus Greedy Algorithm}}{58}{figure.5.8}%
+\contentsline {figure}{\numberline {5.9}{\ignorespaces Comparison of Pruning Strategies: Optuna versus Greedy Algorithm}}{58}{figure.5.9}%
+\contentsline {figure}{\numberline {5.10}{\ignorespaces Confidence Score for Learned Block Mask}}{59}{figure.5.10}%
+\contentsline {figure}{\numberline {5.11}{\ignorespaces Learned Block Masks over Time}}{59}{figure.5.11}%
+\contentsline {figure}{\numberline {5.12}{\ignorespaces Benchmark Performance: Progessive versus One-Shot Model Pruning}}{60}{figure.5.12}%
+\contentsline {figure}{\numberline {5.13}{\ignorespaces Benchmark Performance: Different Knowledge Distialltion Loss Configurations}}{62}{figure.5.13}%
+\contentsline {figure}{\numberline {5.14}{\ignorespaces Magnitude of Intermediate Features in PixArt-$\Sigma $}}{62}{figure.5.14}%
+\contentsline {figure}{\numberline {5.15}{\ignorespaces Benchmark Performance: Finetuning Protocols}}{64}{figure.5.15}%
+\contentsline {figure}{\numberline {5.16}{\ignorespaces Benchmark Performance: Compression Strategies}}{65}{figure.5.16}%
+\contentsline {figure}{\numberline {5.17}{\ignorespaces Benchmark Performance: Compression of Individual Transformer Block Components}}{66}{figure.5.17}%
+\contentsline {figure}{\numberline {5.18}{\ignorespaces Magnitude versus Importance Analysis of Singular Values}}{70}{figure.5.18}%
+\contentsline {figure}{\numberline {5.19}{\ignorespaces Benchmark Performance: \gls {SVD} versus \gls {GRASP} Compression Method}}{71}{figure.5.19}%
+\contentsline {figure}{\numberline {5.20}{\ignorespaces Flux.1-dev Images: \gls {SVD} versus \gls {GRASP} Compression}}{72}{figure.5.20}%
+\contentsline {figure}{\numberline {5.21}{\ignorespaces Flux.1-dev Images: \gls {SVD} versus \gls {GRASP} versus EcoDiff Compression}}{74}{figure.5.21}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {6.2}{\ignorespaces Block importance for Flux.1-dev taken from \cite {FastFlux}.}}{74}{figure.6.2}%
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Training-Free: Flux.1-dev Block Importance Ranking}}{76}{figure.6.2}%
