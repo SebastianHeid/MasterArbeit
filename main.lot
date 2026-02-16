@@ -3,16 +3,16 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {4.1}{\ignorespaces PixArt-$\Sigma $ Parameter Distribution}}{33}{table.4.1}%
-\contentsline {table}{\numberline {4.2}{\ignorespaces Flux.1-dev Parameter Distribution}}{38}{table.4.2}%
-\contentsline {table}{\numberline {4.3}{\ignorespaces Parameter LAION-PixArt-$\Sigma $ Dataset}}{42}{table.4.3}%
+\contentsline {table}{\numberline {4.1}{\ignorespaces PixArt-$\Sigma $ Parameter Distribution}}{34}{table.4.1}%
+\contentsline {table}{\numberline {4.2}{\ignorespaces Flux.1-dev Parameter Distribution}}{39}{table.4.2}%
+\contentsline {table}{\numberline {4.3}{\ignorespaces Parameter LAION-PixArt-$\Sigma $ Dataset}}{43}{table.4.3}%
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {5.1}{\ignorespaces Hyperparameter Setting for PixArt-$\Sigma $ Finetuning}}{51}{table.5.1}%
-\contentsline {table}{\numberline {5.2}{\ignorespaces Hyperparameter Setting for Learnable Block Selection}}{60}{table.5.2}%
-\contentsline {table}{\numberline {5.3}{\ignorespaces Training and Compression Settings PixArt-$\Sigma $ for Block Removal}}{61}{table.5.3}%
-\contentsline {table}{\numberline {5.4}{\ignorespaces Training and Compression Settings PixArt-$\Sigma $ for Block Removal and \gls {SVD}}}{64}{table.5.4}%
-\contentsline {table}{\numberline {5.5}{\ignorespaces Flux Finetuning Hyperparameters}}{69}{table.5.5}%
-\contentsline {table}{\numberline {5.6}{\ignorespaces Benchmark Performance: Training-Free Compression Methods}}{73}{table.5.6}%
+\contentsline {table}{\numberline {5.1}{\ignorespaces Hyperparameter Setting for PixArt-$\Sigma $ Finetuning}}{52}{table.5.1}%
+\contentsline {table}{\numberline {5.2}{\ignorespaces Hyperparameter Setting for Learnable Block Selection}}{61}{table.5.2}%
+\contentsline {table}{\numberline {5.3}{\ignorespaces Training and Compression Settings PixArt-$\Sigma $ for Block Removal}}{62}{table.5.3}%
+\contentsline {table}{\numberline {5.4}{\ignorespaces Training and Compression Settings PixArt-$\Sigma $ for Block Removal and \gls {SVD}}}{65}{table.5.4}%
+\contentsline {table}{\numberline {5.5}{\ignorespaces Flux Finetuning Hyperparameters}}{70}{table.5.5}%
+\contentsline {table}{\numberline {5.6}{\ignorespaces Benchmark Performance: Training-Free Compression Methods}}{74}{table.5.6}%
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {6.1}{\ignorespaces Trainig-Free Flux Compression: SVD Ranks}}{76}{table.6.1}%
-\contentsline {table}{\numberline {6.2}{\ignorespaces Training Free Flux Compression: Model Compression Configuration}}{76}{table.6.2}%
+\contentsline {table}{\numberline {6.1}{\ignorespaces Trainig-Free Flux Compression: SVD Ranks}}{77}{table.6.1}%
+\contentsline {table}{\numberline {6.2}{\ignorespaces Training Free Flux Compression: Model Compression Configuration}}{77}{table.6.2}%

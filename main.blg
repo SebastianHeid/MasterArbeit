@@ -22,13 +22,17 @@ Reallocated glb_str_end (elt_size=4) to 20 items from 10.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: bibliography.bib
+Repeated entry---line 181 of file bibliography.bib
+ : @misc{EcoDiff
+ :              ,
+I'm skipping whatever remains of this entry
 Warning--entry type for "kohya_ss_sd_scripts_2024" isn't style-file defined
---line 105 of file bibliography.bib
-I was expecting a `,' or a `}'---line 122 of file bibliography.bib
+--line 191 of file bibliography.bib
+I was expecting a `,' or a `}'---line 208 of file bibliography.bib
  :  commit = {INSERT_COMMIT_HASH_HERE} 
  :                                     % Optional: Falls Sie eine spezifische Version genutzt haben
 I'm skipping whatever remains of this entry
-Repeated entry---line 1067 of file bibliography.bib
+Repeated entry---line 1153 of file bibliography.bib
  : @article{KnowledgeDistillation
  :                               ,
 I'm skipping whatever remains of this entry
@@ -53,6 +57,7 @@ Warning--can't use both volume and number fields in adaLN
 Warning--empty journal in SelfAttentionFigure
 Warning--empty year in NormalizingFlow
 Warning--empty year in SD21
+Warning--empty year in Unet
 Warning--empty year in LADD
 Warning--empty year in StyleGAN_T
 Warning--empty year in ADD
@@ -62,45 +67,45 @@ Warning--empty journal in ConsistencyModel
 Warning--empty year in SlicedScoreMatching
 Warning--empty year in ModeCollapse1
 Warning--empty year in DistillationMatching
-You've used 158 entries,
+You've used 169 entries,
             2943 wiz_defined-function locations,
-            1487 strings with 35416 characters,
-and the built_in function-call counts, 83476 in all, are:
-= -- 8111
-> -- 4617
-< -- 46
-+ -- 1725
-- -- 1560
-* -- 4974
-:= -- 12265
-add.period$ -- 504
-call.type$ -- 158
-change.case$ -- 1244
+            1533 strings with 37758 characters,
+and the built_in function-call counts, 89756 in all, are:
+= -- 8702
+> -- 5039
+< -- 49
++ -- 1884
+- -- 1708
+* -- 5386
+:= -- 13227
+add.period$ -- 539
+call.type$ -- 169
+change.case$ -- 1349
 chr.to.int$ -- 0
-cite$ -- 188
-duplicate$ -- 2241
-empty$ -- 6761
-format.name$ -- 1560
-if$ -- 20815
+cite$ -- 200
+duplicate$ -- 2394
+empty$ -- 7211
+format.name$ -- 1708
+if$ -- 22325
 int.to.chr$ -- 0
-int.to.str$ -- 158
-missing$ -- 146
-newline$ -- 802
-num.names$ -- 316
-pop$ -- 2181
+int.to.str$ -- 169
+missing$ -- 157
+newline$ -- 857
+num.names$ -- 338
+pop$ -- 2347
 preamble$ -- 1
-purify$ -- 1086
+purify$ -- 1180
 quote$ -- 0
-skip$ -- 5170
+skip$ -- 5524
 stack$ -- 0
-substring$ -- 3143
-swap$ -- 671
-text.length$ -- 52
+substring$ -- 3338
+swap$ -- 714
+text.length$ -- 55
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 632
-warning$ -- 30
-while$ -- 468
-width$ -- 161
-write$ -- 1690
-(There were 2 error messages)
+type$ -- 676
+warning$ -- 31
+while$ -- 501
+width$ -- 172
+write$ -- 1806
+(There were 3 error messages)
