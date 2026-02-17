@@ -55,6 +55,12 @@ Jason Baldridge, Jakob Bauer, Mukul Bhutani, Nicole Brichtova, Andrew Bunner,
 \newblock Imagen 3.
 \newblock {\em arXiv preprint arXiv:2408.07009}, 2024.
 
+\bibitem{bengio2013estimating}
+Yoshua Bengio, Nicholas L{\'e}onard, and Aaron Courville.
+\newblock Estimating or propagating gradients through stochastic neurons for
+  conditional computation.
+\newblock {\em arXiv preprint arXiv:1308.3432}, 2013.
+
 \bibitem{bergstra2011algorithms}
 James Bergstra, R{\'e}mi Bardenet, Yoshua Bengio, and Bal{\'a}zs K{\'e}gl.
 \newblock Algorithms for hyper-parameter optimization.
@@ -90,6 +96,13 @@ Fuhan Cai, Yong Guo, Jie Li, Wenbo Li, Xiangzhong Fang, and Jian Chen.
   training.
 \newblock {\em arXiv preprint arXiv:2506.10035}, 2025.
 
+\bibitem{cai2020zeroq}
+Yaohui Cai, Zhewei Yao, Zhen Dong, Amir Gholami, Michael~W Mahoney, and Kurt
+  Keutzer.
+\newblock Zeroq: A novel zero shot quantization framework.
+\newblock In {\em Proceedings of the IEEE/CVF conference on computer vision and
+  pattern recognition}, pages 13169--13178, 2020.
+
 \bibitem{pixartsigma_code}
 Junsong Chen, Chongjian Ge, Enze Xie, et~al.
 \newblock Pixart-sigma: Official pytorch implementation.
@@ -116,6 +129,14 @@ Junsong Chen, Jincheng Yu, Chongjian Ge, Lewei Yao, Enze Xie, Yue Wu, Zhongdao
 \newblock Pixart-$\alpha$: Fast training of diffusion transformer for
   photorealistic text-to-image synthesis.
 \newblock {\em arXiv preprint arXiv:2310.00426}, 2023.
+
+\bibitem{QDiT}
+Lei Chen, Yuan Meng, Chen Tang, Xinzhu Ma, Jingyan Jiang, Xin Wang, Zhi Wang,
+  and Wenwu Zhu.
+\newblock Q-dit: Accurate post-training quantization for diffusion
+  transformers.
+\newblock In {\em Proceedings of the Computer Vision and Pattern Recognition
+  Conference}, pages 28306--28315, 2025.
 
 \bibitem{chen2024sharegpt4v}
 Lin Chen, Jinsong Li, Xiaoyi Dong, Pan Zhang, Conghui He, Jiaqi Wang, Feng
@@ -247,13 +268,13 @@ Patrick Esser, Sumith Kulal, Andreas Blattmann, Rahim Entezari, Jonas
 \newblock In {\em Forty-first international conference on machine learning},
   2024.
 
-\bibitem{TinyFusion}
-Gongfan Fang, Kunjun Li, Xinyin Ma, and Xinchao Wang.
-\newblock Tinyfusion: Diffusion transformers learned shallow.
-\newblock In {\em Proceedings of the Computer Vision and Pattern Recognition
-  Conference}, pages 18144--18154, 2025.
+\bibitem{esser2019learned}
+Steven~K Esser, Jeffrey~L McKinstry, Deepika Bablani, Rathinakumar Appuswamy,
+  and Dharmendra~S Modha.
+\newblock Learned step size quantization.
+\newblock {\em arXiv preprint arXiv:1902.08153}, 2019.
 
-\bibitem{fang2025tinyfusion}
+\bibitem{TinyFusion}
 Gongfan Fang, Kunjun Li, Xinyin Ma, and Xinchao Wang.
 \newblock Tinyfusion: Diffusion transformers learned shallow.
 \newblock In {\em Proceedings of the Computer Vision and Pattern Recognition
@@ -332,6 +353,24 @@ Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun.
 \newblock In {\em Proceedings of the IEEE conference on computer vision and
   pattern recognition}, pages 770--778.
 
+\bibitem{he2023efficientdm}
+Yefei He, Jing Liu, Weijia Wu, Hong Zhou, and Bohan Zhuang.
+\newblock Efficientdm: Efficient quantization-aware fine-tuning of low-bit
+  diffusion models.
+\newblock {\em arXiv preprint arXiv:2310.03270}, 2023.
+
+\bibitem{he2023ptqd}
+Yefei He, Luping Liu, Jing Liu, Weijia Wu, Hong Zhou, and Bohan Zhuang.
+\newblock Ptqd: Accurate post-training quantization for diffusion models.
+\newblock {\em Advances in Neural Information Processing Systems},
+  36:13237--13249, 2023.
+
+\bibitem{PTQD}
+Yefei He, Luping Liu, Jing Liu, Weijia Wu, Hong Zhou, and Bohan Zhuang.
+\newblock Ptqd: Accurate post-training quantization for diffusion models.
+\newblock {\em Advances in Neural Information Processing Systems},
+  36:13237--13249, 2023.
+
 \bibitem{FID}
 Martin Heusel, Hubert Ramsauer, Thomas Unterthiner, Bernhard Nessler, and Sepp
   Hochreiter.
@@ -386,10 +425,13 @@ Sergey Ioffe.
   internal covariate shift.
 \newblock {\em arXiv preprint arXiv:1502.03167}, 2015.
 
-\bibitem{jang2016categorical}
-Eric Jang, Shixiang Gu, and Ben Poole.
-\newblock Categorical reparameterization with gumbel-softmax.
-\newblock {\em arXiv preprint arXiv:1611.01144}, 2016.
+\bibitem{jacob2018quantization}
+Benoit Jacob, Skirmantas Kligys, Bo~Chen, Menglong Zhu, Matthew Tang, Andrew
+  Howard, Hartwig Adam, and Dmitry Kalenichenko.
+\newblock Quantization and training of neural networks for efficient
+  integer-arithmetic-only inference.
+\newblock In {\em Proceedings of the IEEE conference on computer vision and
+  pattern recognition}, pages 2704--2713, 2018.
 
 \bibitem{cmmd}
 Sadeep Jayasumana, Srikumar Ramalingam, Andreas Veit, Daniel Glasner, Ayan
@@ -404,6 +446,13 @@ Alexia Jolicoeur-Martineau, Ke~Li, Rémi Piché-Taillefer, Tal Kachman, and
   Ioannis Mitliagkas.
 \newblock Gotta go fast when generating data with score-based models.
 \newblock {\em arXiv preprint arXiv:2105.14080}, 2021.
+
+\bibitem{BF16}
+Dhiraj Kalamkar, Dheevatsa Mudigere, Naveen Mellempudi, Dipankar Das, Kunal
+  Banerjee, Sasikanth Avancha, Dharma~Teja Vooturi, Nataraj Jammalamadaka,
+  Jianyu Huang, Hector Yuen, et~al.
+\newblock A study of bfloat16 for deep learning training.
+\newblock {\em arXiv preprint arXiv:1905.12322}, 2019.
 
 \bibitem{ODESolver1}
 Tero Karras, Miika Aittala, Timo Aila, and Samuli Laine.
@@ -505,6 +554,13 @@ Youngwan Lee, Kwanyong Park, Yoorhim Cho, Yong-Ju Lee, and Sung~Ju Hwang.
 \newblock {\em Advances in Neural Information Processing Systems},
   37:51597--51633, 2024.
 
+\bibitem{lefaudeux2022xformers}
+B.~Lefaudeux, F.~Massa, D.~Liskovich, W.~Xiong, V.~Caggiano, S.~Naren, M.~Xu,
+  J.~Hu, M.~Tintore, S.~Zhang, P.~Labatut, D.~Haziza, L.~Wehrstedt,
+  J.~Reizenstein, and G.~Sizov.
+\newblock xformers: A modular and hackable transformer modelling library.
+\newblock \url{https://github.com/facebookresearch/xformers}, 2022.
+
 \bibitem{mplug}
 C~Li, H~Xu, J~Tian, W~Wang, M~Yan, B~Bi, J~Ye, H~Chen, G~Xu, Z~Cao, et~al.
 \newblock mplug: Effective and efficient vision-language learning by
@@ -518,12 +574,26 @@ Daiqing Li, Aleks Kamko, Ehsan Akhgari, Ali Sabet, Linmiao Xu, and Suhail
   in text-to-image generation, 2024.
 \newblock \href {https://arxiv.org/abs/2402.17245} {\path{arXiv:2402.17245}}.
 
+\bibitem{li2024svdquant}
+Muyang Li, Yujun Lin, Zhekai Zhang, Tianle Cai, Xiuyu Li, Junxian Guo, Enze
+  Xie, Chenlin Meng, Jun-Yan Zhu, and Song Han.
+\newblock Svdquant: Absorbing outliers by low-rank components for 4-bit
+  diffusion models.
+\newblock {\em arXiv preprint arXiv:2411.05007}, 2024.
+
 \bibitem{FIRE}
 Shanda Li, Chong You, Guru Guruganesh, Joshua Ainslie, Santiago Ontanon, Manzil
   Zaheer, Sumit Sanghai, Yiming Yang, Sanjiv Kumar, and Srinadh Bhojanapalli.
 \newblock Functional interpolation for relative positions improves long context
   transformers.
 \newblock {\em arXiv preprint arXiv:2310.04418}, 2023.
+
+\bibitem{QDiffusion}
+Xiuyu Li, Yijiang Liu, Long Lian, Huanrui Yang, Zhen Dong, Daniel Kang,
+  Shanghang Zhang, and Kurt Keutzer.
+\newblock Q-diffusion: Quantizing diffusion models.
+\newblock In {\em Proceedings of the IEEE/CVF International Conference on
+  Computer Vision}, pages 17535--17545, 2023.
 
 \bibitem{li2023snapfusion}
 Yanyu Li, Huan Wang, Qing Jin, Ju~Hu, Pavlo Chemerys, Yun Fu, Yanzhi Wang,
@@ -626,6 +696,13 @@ Chenlin Meng, Robin Rombach, Ruiqi Gao, Diederik Kingma, Stefano Ermon,
 \newblock On distillation of guided diffusion models.
 \newblock In {\em Proceedings of the IEEE/CVF Conference on Computer Vision and
   Pattern Recognition}, pages 14297--14306.
+
+\bibitem{nagel2020up}
+Markus Nagel, Rana~Ali Amjad, Mart Van~Baalen, Christos Louizos, and Tijmen
+  Blankevoort.
+\newblock Up or down? adaptive rounding for post-training quantization.
+\newblock In {\em International conference on machine learning}, pages
+  7197--7206. PMLR, 2020.
 
 \bibitem{neuhold2017mapillary}
 Gerhard Neuhold, Tobias Ollmann, Samuel Rota~Bulo, and Peter Kontschieder.
