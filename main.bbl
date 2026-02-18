@@ -993,6 +993,12 @@ Zhenxiong Tan, Songhua Liu, Xingyi Yang, Qiaochu Xue, and Xinchao Wang.
 \newblock In {\em Proceedings of the IEEE/CVF International Conference on
   Computer Vision}, pages 14940--14950, 2025.
 
+\bibitem{tang2023lightweight}
+Siao Tang, Xin Wang, Hong Chen, Chaoyu Guan, Yansong Tang, et~al.
+\newblock Lightweight diffusion models with distillation-based block neural
+  architecture search.
+\newblock {\em arXiv preprint arXiv:2311.04950}, 2023.
+
 \bibitem{Gemini}
 Gemini Team, Rohan Anil, Sebastian Borgeaud, Jean-Baptiste Alayrac, Jiahui Yu,
   Radu Soricut, Johan Schalkwyk, Andrew~M Dai, Anja Hauth, and Katie Millican.
