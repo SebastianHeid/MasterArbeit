@@ -76,6 +76,41 @@ A specific
 	\end{tabular}
 \end{table}
 
+
+\subsection{Qualitative Block Analysis}
+To identify blocks of lower importance in the Flux.1-dev architecture, the \gls{CMMD} values weighted by the removed parameters are calculated, as previously discussed for PixArt-$\Sigma$. To obtain a better understanding of the impact of the individual blocks, a qualitative block analysis is performed. \\
+Fig. \ref{fig:BlockAnalysisRemovalSingle} presents images generated after removing a single-stream block comprising approximately 141 million parameters. In most cases, removing a single block does not lead to observable artifacts. The direction in which the tiger head points may change, but visible artifacts or severe changes are only observed when removing single-stream block 35, which results in vertical stripes, or block 38, which leads to overly smoothed details.\\
+Similarly, only the removal of a few double-stream blocks, containing approximately 340 million parameters, leads to severe degradation of the generated images (see Fig. \ref{fig:BlockAnalysisRemovalDouble}). In particular, double-stream blocks 1, 2 and 3 seem to be critical, because the image generation capabilities of Flux.1-dev completely collapse after their removal. A possible reason is that early blocks are essential for the text-image alignment or the global layout structure. In addition, the removal of the last double-stream block leads to a notable lighting change, while the content of the image remains intact. \\
+Overall, the double-stream blocks seem to have a greater impact on the image generation quality, which may be explained by their higher parameter count. Interestingly, for the double-stream blocks, a similar U-shaped importance ranking emerges, as previously noted for PixArt-$\Sigma$ indicating that the transformer blocks at the very beginning and end are the most critical. \\\\
+Fig. \ref{fig:BlockAnalysisCompressionSingle} and Fig. \ref{fig:BlockAnalysisCompressionDouble} present visual results for compressing individual blocks by 60\% rather than removing them entirely. Similar to PixArt-$\Sigma$, blocks whose removal leads to severe degradation in image quality, can be compressed without significant loss of image quality, e.g. single-stream blocks 35 and 38 or double-stream blocks 1, 2 and 19. The only double-stream block which appears to be highly critical and even compression exerts a substantial impact on the generated image quality is double-stream block number 3, whose compression results in visible stripes. This suggests that block 3 serves as a critical bottleneck for high-frequency processing. \\\\
+Ultimately, the visual robustness of the compressed double-stream blocks strongly aligns with the parameter-weighted \gls{CMMD} predictions displayed in Fig. \ref{label}.
+
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{images/Experimente/Flux/Block_Analysis/BlockRemovalSingle.pdf}
+	\caption[Flux.1-dev Analysis Block Removal - Single-Stream Blocks]{Qualitative analysis of the impact of removing individual single-stream blocks from the Flux.1-dev architecture.}
+	\label{fig:BlockAnalysisRemovalSingle}
+\end{figure}
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{images/Experimente/Flux/Block_Analysis/BlockRemovalDouble.pdf}
+	\caption[Flux.1-dev Analysis Block Removal - Double-Stream Blocks]{Qualitative analysis of the impact of removing individual double-stream blocks from the Flux.1-dev architecture.}
+	\label{fig:BlockAnalysisRemovalDouble}
+\end{figure}
+
+
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{images/Experimente/Flux/Block_Analysis/BlockCompressionSingle.pdf}
+	\caption[Flux.1-dev Analysis Block Compression - Single-Stream Blocks]{Qualitative analysis of the impact of compressing individual single-stream blocks from the Flux.1-dev architecture by 60\%.}
+	\label{fig:BlockAnalysisCompressionSingle}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{images/Experimente/Flux/Block_Analysis/BlockCompressionDouble.pdf}
+	\caption[Flux.1-dev Analysis Block Compression - Double-Stream Blocks]{Qualitative analysis of the impact of compressing individual double-stream blocks from the Flux.1-dev architecture by 60\%.}
+	\label{fig:BlockAnalysisCompressionDouble}
+\end{figure}
 \subsection{Training-Free Pruning}
 In this section, it is investigated whether \gls{GRASP} (see Sec. \ref{sec:GRASP}) is transferable from \gls{LLM}s to flow-based image generation models like Flux.1-dev. The goal is to identify singular values based on their importance for the image generation task rather than solely based on their magnitude as is standard practise in ordinary \gls{SVD} compression. The performance of \gls{GRASP} is compared to Eco-Diff \cite{EcoDiff}  another recently proposed training-free method to prune Flux.1-dev and to the simple application of \gls{SVD} without retraining. \\
 First, we examine the extent to which the gradient-based method GRASP selects different singular values than a normal SVD, which selects them by magnitude. This experiment focuses exclusively on the compression of double-stream blocks from Flux.1-dev as they contain the most parameters. Exclusively for this setup a pre-existing importance ranking for the Flux.1-dev transformer blocks from \cite{FastFlux} (see Sec. \ref{app:GRASP_BlockImportance}) is utilized. In total four different compression levels are tested. The compression rate for the double-stream blocks is fixed to 76\% such that the levels differs in the number of compressed blocks. For the exact ranks used during \gls{SVD} for the individual components please refer to Tab. \ref{tab:GRASPSVD_ranks}. \\
@@ -143,7 +178,7 @@ The potential for improvements over \gls{SVD} implied by the analysis of the cor
 
 
 
-Finally, \gls{GRASP} and \gls{SVD} are compared to EcoDiff (see Tab. \ref{tab:TrainingFreeMethods}) demonstrating that these approaches are significantly superior in maintaining image quality for the same degree of parameter reduction. For a parameter reduction of 20\%, the \gls{SVD}-based methods obtain a GenEval score of 0.58 and 0.62 wheras EcoDiff drops to 0.18 indicating a loss of text-alignment. Fig. \ref{fig:GRASP_SVD_EcoDiff} presents example images from GenEval Benchmark providing visual proof of the strong degeneration and poor text-alignment for compressed Flux.1-dev being smaller than 80\% of the original size using EcoDiff. Similarly, the HPSv2 score of EcoDiff measuring human preferences is only 23.6 while \gls{SVD} and \gls{GRASP} reach 30.45 and 30.82.  Notably, when compressing Flux.1-dev by 30\% utilizing the EcoDiff method, the model completely collapses. Visual inspection show that the model ceases to generate meaningful images, producing grey images with undefined texture, in contrast to the performance observed with \gls{GRASP}. This performance gap indicates that strucutrally removing entire neurons breaks the Markovian generation trajectory of Flux.1-dev and validates the effectiveness of the general concept of \gls{SVD} that approximates the original information flow instead of relying on the hard removal of neurons as in EcoDiff. \\
+Finally, \gls{GRASP} and \gls{SVD} are compared to EcoDiff (see Tab. \ref{tab:TrainingFreeMethods}) demonstrating that these approaches are significantly superior in maintaining image quality for the same degree of parameter reduction. For a parameter reduction of 20\%, the \gls{SVD}-based methods obtain a GenEval score of 0.58 and 0.62 wheras EcoDiff drops to 0.18 indicating a loss of text-alignment. Fig. \ref{fig:GRASP_SVD_EcoDiff} presents example images from the GenEval Benchmark providing visual proof of the strong degeneration and poor text-alignment for the compressed Flux.1-dev model when reduced to less than 90\% of its original size using EcoDiff. In addition, Fig. \ref{fig:GRASP_SDPG} presents images testing the text-generation capabilities of models compressed by 20\% leveraging EcoDiff, SVD, or GRASP as the compression method. It clearly shows that EcoDiff-compressed models completely fail to generate text and visually appealing images.Overall, \gls{GRASP}-compressed models are slightly superior to simple SVD-compressed models in the text generation task (columns 2 and 4) as the generated text contains fewer errors. However, column 4 also indicates that the GRASP-compressed model also exhibits minor flaws. Similarly, the HPSv2 score of EcoDiff measuring human preferences is only 23.6 while \gls{SVD} and \gls{GRASP} reach 30.45 and 30.82.  Notably, when compressing Flux.1-dev by 30\% utilizing the EcoDiff method, the model completely collapses. Visual inspection show that the model ceases to generate meaningful images, producing grey images with undefined texture, in contrast to the performance observed with \gls{GRASP}. This performance gap indicates that strucutrally removing entire neurons breaks the Markovian generation trajectory of Flux.1-dev and validates the effectiveness of the general concept of \gls{SVD} that approximates the original information flow instead of relying on the hard removal of neurons as in EcoDiff. \\
 Nevertheless, while all methods effectively reduce the VRAM consumption during inference, standard implementations of \gls{SVD} and \gls{GRASP} do not inherently reduce the inference time as EcoDiff. This is because low-rank decomposition replaces one large matrix by two smaller matrices which doubles the number of matrix multiplications.
 
 	
@@ -156,23 +191,31 @@ Nevertheless, while all methods effectively reduce the VRAM consumption during i
 			\textbf{Ratio} & \textbf{Method} & \textbf{HPSv2} $\uparrow$ & \textbf{GenEval} $\uparrow$ & \textbf{DPG} $\uparrow$ \\ \midrule
 			
 			\multirow{3}{*}{90\%}  
-			& EcoDiff & 29.67 & - & - \\
-			& SVD &  &  &  \\
-			& GRASP  & \textbf{} & \textbf{} & \textbf{} \\ \midrule
+			& EcoDiff & 29.67 & 0.452 & 77.98 \\
+			& SVD & 30.86 & 0.653 & 82.77 \\
+			& GRASP  & \textbf{31.08} & \textbf{0.659} & \textbf{} \\ \midrule
 			
 			\multirow{3}{*}{80\%}  
-			& EcoDiff & 23.633 & 0.1873 &  \\
-			& SVD & 30.45 & 0.5845 & 81.30 \\
-			& GRASP  & \textbf{30.82} & \textbf{0.6232} & \textbf{83.12} \\ \midrule
+			& EcoDiff & 23.633 & 0.1873 &  49.12 \\
+			& SVD & 30.45 & 0.585 & 79.84 \\
+			& GRASP  & \textbf{30.82} & \textbf{0.623} & \textbf{81.19} \\ \midrule
 			
 			\multirow{3}{*}{70\%}  
-			& EcoDiff & 7.26 &  &  \\
-			& SVD & 28.87 & 0.45516 & \\
-			& GRASP  & \textbf{30.08} & \textbf{0.48951
-			} & \textbf{} \\ \bottomrule
+			& EcoDiff & 7.26 &  & 17.02  \\
+			& SVD & 28.87 & 0.455 & 73.13 \\
+			& GRASP  & \textbf{30.08} & \textbf{0.490
+			} & \textbf{75.50} \\ \bottomrule
 		\end{tabular}
 	\end{table}
 
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{images/Experimente/Flux/Training_Free/GRASP_DPG.pdf}
+	\caption[Flux.1-dev Text Generation Capabilities: \gls{SVD} versus \gls{GRASP} versus EcoDiff Compression]{The images provide examples for text generation capabilities of models compressed to 80\% of the original parameters using EcoDiff, SVD or GRASP as compression method.}
+	\label{fig:GRASP_SDPG}
+\end{figure}
 
 
 \begin{figure}[H]

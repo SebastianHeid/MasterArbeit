@@ -386,7 +386,10 @@ In this section the standard setting (see sec. \ref{sec:DefaultSetup}) except th
  
  \subsection{Compression Strategy}
  As an alternative to the pruning strategy of removing entire transformer blocks from PixArt-$\Sigma$, a compression strategy utilizing \gls{SVD} compression is investigated. This decomposition is applied to the \gls{MLP}, self-attention and cross-attention matrices within a transformer block. To evaluate the efficiency of the \gls{SVD} compression method against the structural block removal method, a representative operating point is chosen. The rank for the \gls{MLP} is set to $r_\text{MLP} = 512$ corresponding to a compression of approximately $44\%$ of its parameters and the ranks for the self- and cross-attention matrices are fixed to $r_\text{self-attn} = r_\text{cross-attn} = 128$ representing a parameter reduction of approximately $78\%$. This serves as a starting point. Later, the choice of compressing attention matrices more aggressively than the \gls{MLP} matrices is further investigated (see sec. \ref{sec:MLPAttnDiffCompRatios}). \\
-  Tab. \ref{tab:SVDCompressionFirstExp} compares the configurations of both methods, specifically the number of blocks removed or compressed and corresponding training duration for each model. Note that the number of training steps differs significantly, as the default criterion - a \gls{CMMD} value exceeding 0.1 - was employed to the pruning rate per iteration, consistent with the default settings. The observation that the \gls{SVD} allows for more parameters to be removed with a less severe impact on the \gls{CMMD} value on the small reference dataset is an initial indication that compression is a more nuanced method than block removal. Fig. \ref{fig:SVD_vs_Removal} presents the performance for both methods on the HPSv2 and GenEval benchmarks. For both benchmarks the \gls{SVD} compression method outperforms the complete block removal method in low and high compression regimes. This suggests that distributing the parameter reduction across multiple blocks via compression is less adverse to model performance compared to removing individual blocks completely.
+  Tab. \ref{tab:SVDCompressionFirstExp} compares the configurations of both methods, specifically the number of blocks removed or compressed and corresponding training duration for each model. Note that the number of training steps differs significantly, as the default criterion - a \gls{CMMD} value exceeding 0.1 - was employed to the pruning rate per iteration, consistent with the default settings. The observation that the \gls{SVD} allows for more parameters to be removed with a less severe impact on the \gls{CMMD} value on the small reference dataset is an initial indication that compression is a more nuanced method than block removal. Fig. \ref{fig:SVD_vs_Removal} presents the performance for both methods on the HPSv2 and GenEval benchmarks. For both benchmarks the \gls{SVD} compression method outperforms the complete block removal method in low and high compression regimes. This suggests that distributing the parameter reduction across multiple blocks via compression is less adverse to model performance compared to removing individual blocks completely. \\\\
+  For a qualitative comparison of both methods, Fig. \ref{fig:Example_Images_SVD_vs_Removal} provides a set of example images for compression ratios ranging from 90\% to 50\%. The advantage of the \gls{SVD} compression method becomes particularly evident in the high-compression regimes (60\% and 50\% compression ratios). Its images contain more details, exhibit fewer artefacts and are more closely resembel to the original image. Specifically, column two demonstrates that the woman's face is accurately preserved up to 60\% compression ratio when applying the \gls{SVD} compression technique. Moreover, column one shows that in high-compression regimes, complete block removal can lead to severe deviations compared to the original image, in contrast to the \gls{SVD} compression technique. Additionally, column five reveals that the images generated via complete block removal exhibit reduced sharpness and the plants seem to be blurry compared to those produced by \gls{SVD} compression.\\
+   Interestingly, at a 90\% compression ratio, the \gls{SVD} compression technique leads to a valid but semantically altered image in column one, where the man's head is replaced by that of an alien. However, at different compression stages the model recovers and correctly generates a human head again. 
+  In conclusion, the qualitative results confirm the quantitative results of the benchmarks and demonstrate a clear advantage of \gls{SVD} compression over entire block removal.
  
  \begin{table}[htbp]
  	\centering
@@ -434,6 +437,14 @@ In this section the standard setting (see sec. \ref{sec:DefaultSetup}) except th
  	\label{fig:SVD_vs_Removal}
  \end{figure}
  
+  	\begin{figure}[H]
+ 	\centering
+ 	\includegraphics[width=0.9\textwidth]{images/Experimente/SVD_VS_Removal/ImageExamples.pdf}
+ 	\caption[Qualitative Comparison of Compression Strategies]{Qualitative comparison between both compression strategies: Complete block removal versus block compression with \gls{SVD}}
+ 	\label{fig:Example_Images_SVD_vs_Removal}
+ \end{figure}
+ 
+ 
  \subsection{Sensitivity Analysis of MLP and Attention Layers under \gls{SVD} Compression}
  \label{sec:MLPAttnDiffCompRatios}
  In this section the \gls{SVD} compression strategy is applied but otherwise the default settings remains. The goal is to investigate how to distribute the parameter removal of the individual components of one transformer blocks best. Therefore, individual compression ratios are applied to the \gls{MLP} matrix and the attention matrices whereby both self- and cross-attention matrices are prunded by the same amount. In total three different scenarios are explored:
@@ -448,7 +459,9 @@ In this section the standard setting (see sec. \ref{sec:DefaultSetup}) except th
  \end{itemize}
  Note that the combined parameter count of self- and cross-attention is approximately equal to the parameter count of the \gls{MLP}. Therefore, all configurations remove a similar amount of total parameters of one transformer block. \\
 The scores in fig. \ref{fig:DistributionCompressionRatios} reveal two distinct trends. The HPSv2 score demonstrates that prioritizing the compression of the attention matrices consistently yields higher image quality than the method focused on compressing the MLP matrices. The GenEval benchmark, however, shows that although the attention-dominant approach is advantageous in the low-compression regime, it declines sharply under heavier compression, eventually falling below the MLP-dominant approach for models with approximately 400 million parameters. \\
- One possible explanation for the divergence between the two benchmarks is the distribution of tasks among the different components of a transformer block. Recent studies suggest \cite{dong2025attention} that MLPs are crucial for knowledge storage and the processing of visual features. Consequently, strong compression of these layers leads to a significant decrease in image quality (see HPSv2 benchmark yellow line). In contrast, the GenEval benchmark measures text-image alignment. Since the cross-attention mechanism is responsible for integrating the text prompts into the visual latents its compression in many transformer blocks severially compromise severily compromising this linking. While the image quality suffers less than with the strong MLP compression, the model's text comprehension deteriorates disproportionately. This explains why the attention-dominant approach loses its advantage for heavy compression, and is in some cases even worse than the MLP-dominant approach in the GenEval benchmark. \\
+ One possible explanation for the divergence between the two benchmarks is the distribution of tasks among the different components of a transformer block. A recent study suggests \cite{dong2025attention} that MLPs are crucial for knowledge storage and the processing of visual features. Consequently, strong compression of these layers leads to a significant decrease in image quality (see HPSv2 benchmark yellow line).
+  Fig. \ref{fig:ImagesAttnVsMLP} visually supports the benchmark results. The images clearly demonstrate that the \gls{MLP}-dominant approach lacks detail, texture, and structural integrity in the high compression regime. At model sizes below 71\%, the \gls{MLP}-dominant approch hallucinates an unprompted headband in the samurai image (column 4) and the facial features become distorted at the highest compression ratio. Moreover, for the 60\% model, the burger (column 2) is hovering in the air instead of being placed on the table, and the humanoid (column 6) is completly distorted. In contrast, the models of the attention-dominant approach, despite being approximately of the same size, do not indicate such severe structural errors, although a general degeneration of image quality at higher compression rate is also visible. 
+ In contrast, the GenEval benchmark measures text-image alignment. Since the cross-attention mechanism is responsible for integrating the text prompts into the visual latents its compression in many transformer blocks severily compromise this linking. While the image quality suffers less than with the strong MLP compression, the model's text comprehension deteriorates disproportionately. This explains why the attention-dominant approach loses its advantage for heavy compression, and is in some cases even worse than the MLP-dominant approach in the GenEval benchmark. \\
  The equal compression strategy exhibits results similar to the attention-dominant compression approach in the high-compression regimes but is slightly worse in the low-compression regime. 
  
     \begin{figure}[H]
@@ -474,11 +487,23 @@ The scores in fig. \ref{fig:DistributionCompressionRatios} reveal two distinct t
  \end{figure}
  
 
- 	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=\textwidth]{images/Experimente/Different_MLP_Attn_Pruning/ImageExamples.pdf}
+		\caption[Example Images Sensitivity Analysis of MLP and Attention Layers]{Example images for differently strong compression of \gls{MLP}  and Attention matrices. Note that due to the slightly different matrix sizes of \gls{MLP} and attnetion there is a different in model size by 1\% between both methods.}
+		\label{fig:ImagesAttnVsMLP}
+	\end{figure}
 
  
  \subsection{SVD Compression Scheduling}
-In previous experiments, SVD compression was applied to each block at most once. However, restricting compression to untouched blocks may be suboptimal and incrementally reducing the size of an already compressed block could potentially preserve model performance better than pruning a dense block. To investigate this, we apply the linear progressive compression scheme defined in sec. \ref{sec:LinearProgressiveCompression} is investigated in the following. Hereby, three different scenarios are investigated where different number of blocks (7, 14 or 21, 28) are compressed per iteration. This examines whether it is advantageous to compress more blocks but to a lesser extent, or whether the parameters to be removed should be better distributed across fewer blocks. Here, in each iteration 10\% of the original number of parameters are removed.  \\
+In previous experiments, SVD compression was applied to each block at most once. However, restricting compression to untouched blocks may be suboptimal and incrementally reducing the size of an already compressed block could potentially preserve model performance better than pruning a dense block. For this reason, the linear progressive compression scheme defined in sec. \ref{sec:LinearProgressiveCompression} is investigated. Assuming that a fixed number of parameters should be removed per iteration, a desgin choice is how to distribute them across the model. One can either compress many blocks slightly or compress a few blocks heavily. To investigate which works better, the linear progressive compression scheme is performed for four different cases where the number of compressed blocks per iteration differs:
+\begin{itemize}
+	\item \textbf{SVD\_7}: Seven blocks are compressed per iteration.
+	\item \textbf{SVD\_14}: Fourteen blocks are compressed per iteration.
+	\item \textbf{SVD\_21}: Twenty-one blocks are compressed per iteration.
+	\item \textbf{SVD\_28}: All blocks are compressed per iteration.
+\end{itemize}
+As block selection criteria the parameter-weighted \gls{CMMD} value is utilized as in previous experiments in this Master's thesis to \gls{SVD} compression technique and within each iteration 10\% of the original number of parameters are removed.  \\
 
 
 
@@ -493,7 +518,7 @@ In previous experiments, SVD compression was applied to each block at most once.
  	As block selection method, we found that the greedy algorithm already performs well enough such that more advanced methods like Optuna do not provide substantial benefits that would justify the additional compute.
  	
  	\item \textbf{Pruning Method} \\
- 	The progressive model pruning has profen advantageous over the one-shot model pruning in the high-compression regime where models are compressed more than 70\% of the original size (sec. \ref{sec:OneShot_vs_Progrosseve_Pruning})). Therefore, this is the first choice.
+ 	The progressive model pruning has proven advantageous over the one-shot model pruning in the high-compression regime where models are compressed more than 70\% of the original size (sec. \ref{sec:OneShot_vs_Progrosseve_Pruning}). Therefore, this is the first choice.
  	
  	\item \textbf{Knowledge Distillation Loss} \\
  	The results indicates that the combination of the original diffusion loss together with the normalized feature and output loss leads to the strongest performance in all pruning regimes (sec. \ref{sec:ExpKDLoss}). 

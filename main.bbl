@@ -55,6 +55,12 @@ Jason Baldridge, Jakob Bauer, Mukul Bhutani, Nicole Brichtova, Andrew Bunner,
 \newblock Imagen 3.
 \newblock {\em arXiv preprint arXiv:2408.07009}, 2024.
 
+\bibitem{bell2008efficient}
+Nathan Bell and Michael Garland.
+\newblock Efficient sparse matrix-vector multiplication on cuda.
+\newblock Technical report, Nvidia Technical Report NVR-2008-004, Nvidia
+  Corporation, 2008.
+
 \bibitem{bengio2013estimating}
 Yoshua Bengio, Nicholas L{\'e}onard, and Aaron Courville.
 \newblock Estimating or propagating gradients through stochastic neurons for
@@ -299,6 +305,25 @@ fpgaminer.
 \newblock \url{https://github.com/fpgaminer/joycaption}, 2024.
 \newblock Accessed: 2026-01-22.
 
+\bibitem{frankle2018lottery}
+Jonathan Frankle and Michael Carbin.
+\newblock The lottery ticket hypothesis: Finding sparse, trainable neural
+  networks.
+\newblock {\em arXiv preprint arXiv:1803.03635}, 2018.
+
+\bibitem{frantar2023sparsegpt}
+Elias Frantar and Dan Alistarh.
+\newblock Sparsegpt: Massive language models can be accurately pruned in
+  one-shot.
+\newblock In {\em International conference on machine learning}, pages
+  10323--10337. PMLR, 2023.
+
+\bibitem{gale2020sparse}
+Trevor Gale, Matei Zaharia, Cliff Young, and Erich Elsen.
+\newblock Sparse gpu kernels for deep learning.
+\newblock In {\em SC20: International Conference for High Performance
+  Computing, Networking, Storage and Analysis}, pages 1--14. IEEE, 2020.
+
 \bibitem{ghosh2023geneval}
 Dhruba Ghosh, Hannaneh Hajishirzi, and Ludwig Schmidt.
 \newblock Geneval: An object-focused framework for evaluating text-to-image
@@ -335,6 +360,13 @@ Arthur Gretton, Olivier Bousquet, Alex Smola, and Bernhard Sch{\"o}lkopf.
 \newblock Measuring statistical dependence with hilbert-schmidt norms.
 \newblock In {\em International conference on algorithmic learning theory},
   pages 63--77. Springer, 2005.
+
+\bibitem{accelerate}
+Sylvain Gugger, Lysandre Debut, Thomas Wolf, Philipp Schmid, Zachary Mueller,
+  Sourab Mangrulkar, Marc Sun, and Benjamin Bossan.
+\newblock Accelerate: Training and inference at scale made simple, efficient
+  and adaptable.
+\newblock \url{https://github.com/huggingface/accelerate}, 2022.
 
 \bibitem{han2015deep}
 Song Han, Huizi Mao, and William~J Dally.
@@ -412,6 +444,12 @@ Xiwei Hu, Rui Wang, Yixiao Fang, Bin Fu, Pei Cheng, and Gang Yu.
   alignment.
 \newblock {\em arXiv preprint arXiv:2403.05135}, 2024.
 
+\bibitem{DLowRankEst}
+Ting Hua, Xiao Li, Shangqian Gao, Yen-Chang Hsu, Yilin Shen, and Hongxia Jin.
+\newblock Dynamic low-rank estimation for transformer-based language models.
+\newblock In {\em Findings of the Association for Computational Linguistics:
+  EMNLP 2023}, pages 9275--9287, 2023.
+
 \bibitem{Ccnet}
 Zilong Huang, Xinggang Wang, Lichao Huang, Chang Huang, Yunchao Wei, and Wenyu
   Liu.
@@ -432,6 +470,11 @@ Benoit Jacob, Skirmantas Kligys, Bo~Chen, Menglong Zhu, Matthew Tang, Andrew
   integer-arithmetic-only inference.
 \newblock In {\em Proceedings of the IEEE conference on computer vision and
   pattern recognition}, pages 2704--2713, 2018.
+
+\bibitem{janowsky1989pruning}
+Steven~A Janowsky.
+\newblock Pruning versus clipping in neural networks.
+\newblock {\em Physical Review A}, 39(12):6600, 1989.
 
 \bibitem{cmmd}
 Sadeep Jayasumana, Srikumar Ramalingam, Andreas Veit, Daniel Glasner, Ayan
@@ -638,12 +681,33 @@ Haotian Liu, Chunyuan Li, Qingyang Wu, and Yong~Jae Lee.
 \newblock {\em Advances in neural information processing systems},
   36:34892--34916, 2023.
 
+\bibitem{GRASP}
+Kainan Liu, Yong Zhang, Ning Cheng, Zhitao Li, Shaojun Wang, and Jing Xiao.
+\newblock {GRASP}: Replace redundant layers with adaptive singular parameters
+  for efficient model compression.
+\newblock In {\em Proceedings of the 2025 Conference on Empirical Methods in
+  Natural Language Processing}, pages 26344--26359, 2025.
+
 \bibitem{liu2025grasp}
 Kainan Liu, Yong Zhang, Ning Cheng, Zhitao Li, Shaojun Wang, and Jing Xiao.
 \newblock Grasp: Replace redundant layers with adaptive singular parameters for
   efficient model compression.
 \newblock In {\em Proceedings of the 2025 Conference on Empirical Methods in
   Natural Language Processing}, pages 26344--26359, 2025.
+
+\bibitem{liu2022unreasonable}
+Shiwei Liu, Tianlong Chen, Xiaohan Chen, Li~Shen, Decebal~Constantin Mocanu,
+  Zhangyang Wang, and Mykola Pechenizkiy.
+\newblock The unreasonable effectiveness of random pruning: Return of the most
+  naive baseline for sparse training.
+\newblock {\em arXiv preprint arXiv:2202.02643}, 2022.
+
+\bibitem{liu2020topological}
+Shiwei Liu, Tim Van~der Lee, Anil Yaman, Zahra Atashgahi, Davide Ferraro, Ghada
+  Sokar, Mykola Pechenizkiy, and Decebal~Constantin Mocanu.
+\newblock Topological insights into sparse neural networks.
+\newblock In {\em Joint European conference on machine learning and knowledge
+  discovery in databases}, pages 279--294. Springer, 2020.
 
 \bibitem{RectifiedFlowMatching}
 Xingchao Liu, Chengyue Gong, and Qiang Liu.
@@ -683,6 +747,13 @@ Jian Ma, Qirong Peng, Xujie Zhu, Peixing Xie, Chen Chen, and Haonan Lu.
   transformers.
 \newblock {\em arXiv preprint arXiv:2511.16156}, 2025.
 
+\bibitem{ma2018shufflenet}
+Ningning Ma, Xiangyu Zhang, Hai-Tao Zheng, and Jian Sun.
+\newblock Shufflenet v2: Practical guidelines for efficient cnn architecture
+  design.
+\newblock In {\em Proceedings of the European conference on computer vision
+  (ECCV)}, pages 116--131, 2018.
+
 \bibitem{men2024shortgpt}
 Xin Men, Mingyu Xu, Qingyu Zhang, Bingning Wang, Hongyu Lin, Yaojie Lu, Xianpei
   Han, and Weipeng Chen.
@@ -696,6 +767,11 @@ Chenlin Meng, Robin Rombach, Ruiqi Gao, Diederik Kingma, Stefano Ermon,
 \newblock On distillation of guided diffusion models.
 \newblock In {\em Proceedings of the IEEE/CVF Conference on Computer Vision and
   Pattern Recognition}, pages 14297--14306.
+
+\bibitem{mozer1989using}
+Michael~C Mozer and Paul Smolensky.
+\newblock Using relevance to reduce network size automatically.
+\newblock {\em Connection Science}, 1(1):3--16, 1989.
 
 \bibitem{nagel2020up}
 Markus Nagel, Rana~Ali Amjad, Mart Van~Baalen, Christos Louizos, and Tijmen
@@ -716,6 +792,11 @@ Alexander~Quinn Nichol and Prafulla Dhariwal.
 \newblock Improved denoising diffusion probabilistic models.
 \newblock In {\em International conference on machine learning}, pages
   8162--8171. PMLR.
+
+\bibitem{nordstrom2022unstructured}
+Oscar Nordstr{\"o}m.
+\newblock Unstructured pruning of pre-trained language models tuned for
+  sentiment classification., 2022.
 
 \bibitem{ALiBi}
 Joon~Sung Park, Joseph O'Brien, Carrie~Jun Cai, Meredith~Ringel Morris, Percy
@@ -786,6 +867,13 @@ Colin Raffel, Noam Shazeer, Adam Roberts, Katherine Lee, Sharan Narang, Michael
   transformer.
 \newblock {\em Journal of machine learning research}, 21(140):1--67, 2020.
 
+\bibitem{rajbhandari2021zero}
+Samyam Rajbhandari, Olatunji Ruwase, Jeff Rasley, Shaden Smith, and Yuxiong He.
+\newblock Zero-infinity: Breaking the gpu memory wall for extreme scale deep
+  learning.
+\newblock In {\em Proceedings of the international conference for high
+  performance computing, networking, storage and analysis}, pages 1--14, 2021.
+
 \bibitem{StandAloneAttentionVisonModels}
 Prajit Ramachandran, Niki Parmar, Ashish Vaswani, Irwan Bello, Anselm Levskaya,
   and Jon Shlens.
@@ -805,6 +893,14 @@ Sebastian Raschka.
 \newblock 2023.
 \newblock URL:
   \url{https://sebastianraschka.com/blog/2023/self-attention-from-scratch.html}.
+
+\bibitem{ren2021zero}
+Jie Ren, Samyam Rajbhandari, Reza~Yazdani Aminabadi, Olatunji Ruwase, Shuangyan
+  Yang, Minjia Zhang, Dong Li, and Yuxiong He.
+\newblock $\{$Zero-offload$\}$: Democratizing $\{$billion-scale$\}$ model
+  training.
+\newblock In {\em 2021 USENIX Annual Technical Conference (USENIX ATC 21)},
+  pages 551--564, 2021.
 
 \bibitem{NormalizingFlow}
 Danilo Rezende and Shakir Mohamed.
@@ -1040,6 +1136,14 @@ Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones,
 \newblock Attention is all you need.
 \newblock {\em Advances in neural information processing systems}, 30, 2017.
 
+\bibitem{wang2025svd}
+Xin Wang, Samiul Alam, Zhongwei Wan, Hui Shen, and Mi~Zhang.
+\newblock {SVD-LLM} v2: Optimizing singular value truncation for large language
+  model compression.
+\newblock In {\em Proceedings of the 2025 Conference of the Nations of the
+  Americas Chapter of the Association for Computational Linguistics: Human
+  Language Technologies (Volume 1: Long Papers)}, pages 4287--4296, 2025.
+
 \bibitem{SVD_LLM_V2}
 Xin Wang, Samiul Alam, Zhongwei Wan, Hui Shen, and Mi~Zhang.
 \newblock Svd-llm v2: Optimizing singular value truncation for large language
@@ -1053,6 +1157,11 @@ Zijie~J Wang, Evan Montoya, David Munechika, Haoyang Yang, Benjamin Hoover, and
   generative models.
 \newblock In {\em Proceedings of the 61st Annual Meeting of the Association for
   Computational Linguistics (Volume 1: Long Papers)}, pages 893--911, 2023.
+
+\bibitem{wen2016learning}
+Wei Wen, Chunpeng Wu, Yandan Wang, Yiran Chen, and Hai Li.
+\newblock Learning structured sparsity in deep neural networks.
+\newblock {\em Advances in neural information processing systems}, 29, 2016.
 
 \bibitem{HPSv2}
 Xiaoshi Wu, Yiming Hao, Keqiang Sun, Yixiong Chen, Feng Zhu, Rui Zhao, and
@@ -1100,6 +1209,13 @@ Jiahui Yu, Yuanzhong Xu, Jing~Yu Koh, Thang Luong, Gunjan Baid, Zirui Wang,
 \newblock Scaling autoregressive models for content-rich text-to-image
   generation.
 \newblock {\em arXiv preprint arXiv:2206.10789}, 2(3):5, 2022.
+
+\bibitem{yuan2023asvd}
+Zhihang Yuan, Yuzhang Shang, Yue Song, Dawei Yang, Qiang Wu, Yan Yan, and
+  Guangyu Sun.
+\newblock {ASVD}: Activation-aware singular value decomposition for compressing
+  large language models.
+\newblock {\em arXiv preprint arXiv:2312.05821}, 2023.
 
 \bibitem{ASVD}
 Zhihang Yuan, Yuzhang Shang, Yue Song, Dawei Yang, Qiang Wu, Yan Yan, and

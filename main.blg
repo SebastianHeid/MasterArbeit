@@ -21,23 +21,27 @@ Reallocated global_strs (elt_size=200001) to 20 items from 10.
 Reallocated glb_str_end (elt_size=4) to 20 items from 10.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
-Reallocated field_info (elt_size=4) to 10068 items from 5000.
+Reallocated field_info (elt_size=4) to 10572 items from 5000.
 Database file #1: bibliography.bib
-Repeated entry---line 246 of file bibliography.bib
+Repeated entry---line 240 of file bibliography.bib
  : @article{han2015deep
  :                     ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 305 of file bibliography.bib
+Repeated entry---line 445 of file bibliography.bib
  : @misc{EcoDiff
  :              ,
 I'm skipping whatever remains of this entry
 Warning--entry type for "kohya_ss_sd_scripts_2024" isn't style-file defined
---line 315 of file bibliography.bib
-I was expecting a `,' or a `}'---line 332 of file bibliography.bib
+--line 455 of file bibliography.bib
+I was expecting a `,' or a `}'---line 472 of file bibliography.bib
  :  commit = {INSERT_COMMIT_HASH_HERE} 
  :                                     % Optional: Falls Sie eine spezifische Version genutzt haben
 I'm skipping whatever remains of this entry
-Repeated entry---line 1277 of file bibliography.bib
+Repeated entry---line 643 of file bibliography.bib
+ : @article{han2015learning
+ :                         ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1417 of file bibliography.bib
  : @article{KnowledgeDistillation
  :                               ,
 I'm skipping whatever remains of this entry
@@ -72,45 +76,45 @@ Warning--empty journal in ConsistencyModel
 Warning--empty year in SlicedScoreMatching
 Warning--empty year in ModeCollapse1
 Warning--empty year in DistillationMatching
-You've used 181 entries,
+You've used 199 entries,
             2943 wiz_defined-function locations,
-            1585 strings with 40544 characters,
-and the built_in function-call counts, 97469 in all, are:
-= -- 9429
-> -- 5569
-< -- 53
-+ -- 2087
-- -- 1898
-* -- 5913
-:= -- 14393
-add.period$ -- 576
-call.type$ -- 181
-change.case$ -- 1478
+            1665 strings with 44203 characters,
+and the built_in function-call counts, 107352 in all, are:
+= -- 10419
+> -- 6060
+< -- 62
++ -- 2273
+- -- 2064
+* -- 6463
+:= -- 15791
+add.period$ -- 632
+call.type$ -- 199
+change.case$ -- 1616
 chr.to.int$ -- 0
-cite$ -- 212
-duplicate$ -- 2577
-empty$ -- 7747
-format.name$ -- 1898
-if$ -- 24151
+cite$ -- 230
+duplicate$ -- 2872
+empty$ -- 8584
+format.name$ -- 2064
+if$ -- 26652
 int.to.chr$ -- 0
-int.to.str$ -- 181
-missing$ -- 168
-newline$ -- 917
-num.names$ -- 362
-pop$ -- 2548
+int.to.str$ -- 199
+missing$ -- 183
+newline$ -- 1006
+num.names$ -- 398
+pop$ -- 2804
 preamble$ -- 1
-purify$ -- 1297
+purify$ -- 1416
 quote$ -- 0
-skip$ -- 5934
+skip$ -- 6565
 stack$ -- 0
-substring$ -- 3649
-swap$ -- 778
-text.length$ -- 59
+substring$ -- 4079
+swap$ -- 889
+text.length$ -- 68
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 724
+type$ -- 796
 warning$ -- 31
-while$ -- 541
-width$ -- 184
-write$ -- 1933
-(There were 4 error messages)
+while$ -- 607
+width$ -- 202
+write$ -- 2127
+(There were 5 error messages)
