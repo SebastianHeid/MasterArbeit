@@ -3,7 +3,7 @@ Flux.1-dev is a 11.9 billion parameter rectified flow model capable of generatin
 
 \subsection{Training Details}
 \label{sec:flux_training_details}
-In this section, all experiments are built upon the training and inference code for Flux.1-dev published in the following git repo \cite{kohya_ss_sd_scripts_2024}. The hyperparameters used for finetuning Flux.1-dev are specified in Tab. \ref{tab:flux_training_config}. For pruning Flux.1-dev the best settings found for PixArt-$\Sigma$ are leveraged and specified here again for completeness:
+In this section, all experiments are built upon the training and inference code for Flux.1-dev published in the following git repository \cite{kohya_ss_sd_scripts_2024}. The hyperparameters used for finetuning Flux.1-dev are specified in Tab. \ref{tab:flux_training_config}. For pruning Flux.1-dev the best settings found for PixArt-$\Sigma$ are leveraged and specified here again for completeness:
 
 \begin{itemize}
 	\item \textbf{Block Importance Analysis} \\
@@ -78,12 +78,12 @@ A specific
 
 
 \subsection{Qualitative Block Analysis}
-To identify blocks of lower importance in the Flux.1-dev architecture, the \gls{CMMD} values weighted by the removed parameters are calculated, as previously discussed for PixArt-$\Sigma$. To obtain a better understanding of the impact of the individual blocks, a qualitative block analysis is performed. \\
-Fig. \ref{fig:BlockAnalysisRemovalSingle} presents images generated after removing a single-stream block comprising approximately 141 million parameters. In most cases, removing a single block does not lead to observable artifacts. The direction in which the tiger head points may change, but visible artifacts or severe changes are only observed when removing single-stream block 35, which results in vertical stripes, or block 38, which leads to overly smoothed details.\\
+To identify blocks of lower importance in the Flux.1-dev architecture, the \gls{CMMD} values weighted by the removed parameters are calculated, as previously discussed in Sec. \ref{sec:MetricBasedSelection}. To obtain a better understanding of the impact of the individual blocks, a qualitative block analysis is performed for Flux.1-dev too. \\
+Fig. \ref{fig:BlockAnalysisRemovalSingle} presents images generated after removing a single-stream block comprising approximately 142 million parameters. In most cases, removing a single block does not lead to observable artifacts. The direction in which the tiger head points may change, but visible artifacts or severe changes are only observed when removing single-stream block 35, which results in vertical stripes, or block 38, which leads to overly smoothed details.\\
 Similarly, only the removal of a few double-stream blocks, containing approximately 340 million parameters, leads to severe degradation of the generated images (see Fig. \ref{fig:BlockAnalysisRemovalDouble}). In particular, double-stream blocks 1, 2 and 3 seem to be critical, because the image generation capabilities of Flux.1-dev completely collapse after their removal. A possible reason is that early blocks are essential for the text-image alignment or the global layout structure. In addition, the removal of the last double-stream block leads to a notable lighting change, while the content of the image remains intact. \\
 Overall, the double-stream blocks seem to have a greater impact on the image generation quality, which may be explained by their higher parameter count. Interestingly, for the double-stream blocks, a similar U-shaped importance ranking emerges, as previously noted for PixArt-$\Sigma$ indicating that the transformer blocks at the very beginning and end are the most critical. \\\\
-Fig. \ref{fig:BlockAnalysisCompressionSingle} and Fig. \ref{fig:BlockAnalysisCompressionDouble} present visual results for compressing individual blocks by 60\% rather than removing them entirely. Similar to PixArt-$\Sigma$, blocks whose removal leads to severe degradation in image quality, can be compressed without significant loss of image quality, e.g. single-stream blocks 35 and 38 or double-stream blocks 1, 2 and 19. The only double-stream block which appears to be highly critical and even compression exerts a substantial impact on the generated image quality is double-stream block number 3, whose compression results in visible stripes. This suggests that block 3 serves as a critical bottleneck for high-frequency processing. \\\\
-Ultimately, the visual robustness of the compressed double-stream blocks strongly aligns with the parameter-weighted \gls{CMMD} predictions displayed in Fig. \ref{label}.
+Fig. \ref{fig:BlockAnalysisCompressionSingle} and Fig. \ref{fig:BlockAnalysisCompressionDouble} present visual results for compressing individual blocks by 60\% rather than removing them entirely. Similar to PixArt-$\Sigma$, blocks whose removal leads to severe degradation in image quality, can be compressed without without creating artifacts, e.g. single-stream blocks 35 and 38 or double-stream blocks 1, 2 and 19. The only double-stream block which appears to be highly critical and even compression exerts a substantial impact on the generated image quality is double-stream block number 3, whose compression results in visible stripes. \\\\
+Ultimately, the visual robustness of the compressed double-stream blocks strongly aligns with the parameter-weighted \gls{CMMD} predictions displayed in Fig. \ref{fig:flux_cmmd_broken_axis_scaled}.
 
 	\begin{figure}[H]
 	\centering
@@ -94,7 +94,7 @@ Ultimately, the visual robustness of the compressed double-stream blocks strongl
 	\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\textwidth]{images/Experimente/Flux/Block_Analysis/BlockRemovalDouble.pdf}
-	\caption[Flux.1-dev Analysis Block Removal - Double-Stream Blocks]{Qualitative analysis of the impact of removing individual double-stream blocks from the Flux.1-dev architecture.}
+	\caption[Flux.1-dev Qualitative Analysis Block Removal - Double-Stream Blocks]{Qualitative analysis of the impact of removing individual double-stream blocks from the Flux.1-dev architecture.}
 	\label{fig:BlockAnalysisRemovalDouble}
 \end{figure}
 
@@ -102,15 +102,25 @@ Ultimately, the visual robustness of the compressed double-stream blocks strongl
 	\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\textwidth]{images/Experimente/Flux/Block_Analysis/BlockCompressionSingle.pdf}
-	\caption[Flux.1-dev Analysis Block Compression - Single-Stream Blocks]{Qualitative analysis of the impact of compressing individual single-stream blocks from the Flux.1-dev architecture by 60\%.}
+	\caption[Flux.1-dev Qualitative Analysis Block Compression - Single-Stream Blocks]{Qualitative analysis of the impact of compressing individual single-stream blocks from the Flux.1-dev architecture by 60\%.}
 	\label{fig:BlockAnalysisCompressionSingle}
 \end{figure}
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\textwidth]{images/Experimente/Flux/Block_Analysis/BlockCompressionDouble.pdf}
-	\caption[Flux.1-dev Analysis Block Compression - Double-Stream Blocks]{Qualitative analysis of the impact of compressing individual double-stream blocks from the Flux.1-dev architecture by 60\%.}
+	\includegraphics[width=0.9\textwidth]{images/Experimente/Flux/Block_Analysis/BlockCompressionDouble.pdf}
+	\caption[Flux.1-dev Qualitative Analysis Block Compression - Double-Stream Blocks]{Qualitative analysis of the impact of compressing individual double-stream blocks from the Flux.1-dev architecture by 60\%.}
 	\label{fig:BlockAnalysisCompressionDouble}
 \end{figure}
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{images/Experimente/Flux/Block_Analysis/flux_cmmd_broken_axis_scaled.png}
+	\caption[Flux.1-dev Parameter Scaled CMMD Values]{\gls{CMMD} values scaled by the number of removed parameters for double- and single-stream blocks compressed by 60\% of Flux.1-dev .}
+	\label{fig:flux_cmmd_broken_axis_scaled}
+\end{figure}
+
+
 \subsection{Training-Free Pruning}
 In this section, it is investigated whether \gls{GRASP} (see Sec. \ref{sec:GRASP}) is transferable from \gls{LLM}s to flow-based image generation models like Flux.1-dev. The goal is to identify singular values based on their importance for the image generation task rather than solely based on their magnitude as is standard practise in ordinary \gls{SVD} compression. The performance of \gls{GRASP} is compared to Eco-Diff \cite{EcoDiff}  another recently proposed training-free method to prune Flux.1-dev and to the simple application of \gls{SVD} without retraining. \\
 First, we examine the extent to which the gradient-based method GRASP selects different singular values than a normal SVD, which selects them by magnitude. This experiment focuses exclusively on the compression of double-stream blocks from Flux.1-dev as they contain the most parameters. Exclusively for this setup a pre-existing importance ranking for the Flux.1-dev transformer blocks from \cite{FastFlux} (see Sec. \ref{app:GRASP_BlockImportance}) is utilized. In total four different compression levels are tested. The compression rate for the double-stream blocks is fixed to 76\% such that the levels differs in the number of compressed blocks. For the exact ranks used during \gls{SVD} for the individual components please refer to Tab. \ref{tab:GRASPSVD_ranks}. \\
@@ -212,7 +222,7 @@ Nevertheless, while all methods effectively reduce the VRAM consumption during i
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\textwidth]{images/Experimente/Flux/Training_Free/GRASP_DPG.pdf}
+	\includegraphics[width=0.6\textwidth]{images/Experimente/Flux/Training_Free/GRASP_DPG.pdf}
 	\caption[Flux.1-dev Text Generation Capabilities: \gls{SVD} versus \gls{GRASP} versus EcoDiff Compression]{The images provide examples for text generation capabilities of models compressed to 80\% of the original parameters using EcoDiff, SVD or GRASP as compression method.}
 	\label{fig:GRASP_SDPG}
 \end{figure}
@@ -220,7 +230,7 @@ Nevertheless, while all methods effectively reduce the VRAM consumption during i
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{images/Experimente/Flux/Training_Free/GRASP_SVD_EcoDiff.pdf}
+	\includegraphics[width=0.6\textwidth]{images/Experimente/Flux/Training_Free/GRASP_SVD_EcoDiff.pdf}
 \caption[Flux.1-dev Images: \gls{SVD} versus \gls{GRASP} versus EcoDiff Compression]{Examples from GenEval benchmark for Flux.1-dev compressed by 10\%, 20\% and 30\% using EcoDiff, \gls{SVD} and \gls{GRASP}.}
 	\label{fig:GRASP_SVD_EcoDiff}
 \end{figure}
