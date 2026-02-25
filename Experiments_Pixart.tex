@@ -496,7 +496,7 @@ The scores in fig. \ref{fig:DistributionCompressionRatios} reveal two distinct t
 
  
  \subsection{SVD Compression Scheduling}
-In previous experiments, SVD compression was applied to each block at most once. However, restricting compression to untouched blocks may be suboptimal Incrementally reducing the size of an already compressed block could potentially preserve model performance better than pruning a dense block. For this reason, the linear progressive compression scheme defined in sec. \ref{sec:LinearProgressiveCompression} is investigated. Assuming that a fixed number of parameters should be removed per iteration, a desgin choice is how to distribute them across the model. One can either compress many blocks slightly or compress a few blocks heavily. To investigate which works better, the linear progressive compression scheme is performed for four different cases where the number of compressed blocks per iteration differs:
+In previous experiments, SVD compression was applied to each block at most once. However, restricting compression to untouched blocks may be suboptimal Incrementally reducing the size of an already compressed block could potentially preserve model performance better than pruning a dense block. For this reason, the linear progressive compression scheme defined in Sec. \ref{sec:LinearProgressiveCompression} is investigated. Assuming that a fixed number of parameters should be removed per iteration, a desgin choice is how to distribute them across the model. One can either compress many blocks slightly or compress a few blocks heavily. To investigate which works better, the linear progressive compression scheme is performed for four different cases where the number of compressed blocks per iteration differs:
 \begin{itemize}
 	\item \textbf{SVD\_7}: Seven blocks are compressed per iteration.
 	\item \textbf{SVD\_14}: Fourteen blocks are compressed per iteration.
@@ -508,6 +508,13 @@ As block selection criteria the parameter-weighted \gls{CMMD} value is utilized 
 
 
  \textbf{Untersuche ob immer neue Blöcke gepruned werden oder eher dieselbenr mehrfach}
+ 
+ 
+ Trainiere bestes Model und Gebe ergebnisse auf HPSv2, GenEval und DPG an
+ 
+ Finetuning auf Mapillary und Cityscapes
+ 
+ Evaluiere Bildqualität, Text-Generierungsfähigkeiten, Bilder auf Mappillary und Cityscapes
  
  \subsection{Summary of Best Settings for Structural Model Pruning}
  Considering the results of all experiments, they lead to the following best configuration for structural model pruning:

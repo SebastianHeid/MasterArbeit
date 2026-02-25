@@ -1,0 +1,20 @@
+\babel@toc {english}{}\relax 
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {4.1}{\ignorespaces PixArt-$\Sigma $ Parameter Distribution}}{36}{table.4.1}%
+\contentsline {table}{\numberline {4.2}{\ignorespaces Flux.1-dev Parameter Distribution}}{41}{table.4.2}%
+\contentsline {table}{\numberline {4.3}{\ignorespaces Parameter LAION-PixArt-$\Sigma $ Dataset}}{44}{table.4.3}%
+\contentsline {table}{\numberline {4.4}{\ignorespaces Parameter LAION-Flux.1-dev Dataset}}{45}{table.4.4}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {5.1}{\ignorespaces Hyperparameter Setting for PixArt-$\Sigma $ Finetuning}}{54}{table.5.1}%
+\contentsline {table}{\numberline {5.2}{\ignorespaces Training and Compression Settings PixArt-$\Sigma $ for Block Removal}}{62}{table.5.2}%
+\contentsline {table}{\numberline {5.3}{\ignorespaces Training and Compression Settings PixArt-$\Sigma $ for Block Removal and \gls {SVD}}}{66}{table.5.3}%
+\contentsline {table}{\numberline {5.4}{\ignorespaces Flux Finetuning Hyperparameters}}{75}{table.5.4}%
+\contentsline {table}{\numberline {5.5}{\ignorespaces Benchmark Performance: Training-Free Compression Methods}}{82}{table.5.5}%
+\contentsline {table}{\numberline {5.6}{\ignorespaces Overview of training details similar for both experiments, random and metric-based block selection.}}{84}{table.5.6}%
+\contentsline {table}{\numberline {5.7}{\ignorespaces Benchmark Performance: Training-Free Compression Methods}}{85}{table.5.7}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {6.1}{\ignorespaces Trainig-Free Flux Compression: SVD Ranks}}{87}{table.6.1}%
+\contentsline {table}{\numberline {6.2}{\ignorespaces Training Free Flux Compression: Model Compression Configuration}}{87}{table.6.2}%
