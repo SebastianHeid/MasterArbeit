@@ -259,26 +259,43 @@ In contrast, the block removal approach necessitates a dynamic mapping strategy 
 \
 
 \section{Pruning Schedule}
-Three distinct approaches, namely one-shot, progressive and linear progressove pruning, are investigated and presented in the following section.
+The pruning schedule for models dictates when and to what extent the compression of individual model components is performed. There are mainly two options for the temporal progression of parameter removal. Concretely, all parameters can be removed at once or iteratively. Regarding the structural distribution of removed parameters, one needs to decide how they are allocated across the model and whether model components can only be compressed once or multiple times. To explore these aspects,
+three distinct pruning schedules, namely one-shot, progressive, and linear progressive pruning, are investigated in this Master's thesis and presented in the following subsections.
 \label{sec:distillationAlgos}
 \subsection{One-Shot Model Pruning}
-The standard approach for compressing transformer-based diffusion and flow models \cite{Laptop, Koala, flux1-lite, flux_mini_2024} involves three main steps. First, the transformer blocks $\{B_1, \dots, B_L\}$ are sorted according to their importance, e.g. using \gls{CLIP}-score and \gls{CMMD} as importance proxies. Let $\{B^*_1, \dots, B^*_L\}$ denote the sorted blocks, where $B^*_1$ represents the least important block. Next, based on the target compression ratio of the total model, the number of blocks $k \leq L$ to be pruned is determined. Subsequently, the blocks $\{B^*_1, \dots, B^*_k\}$ are modified based on the chosen compression strategy (see Sec. \ref{sec:StructuralCompressionStrategy}). Finally, the compressed model is retrained, e.g. using knowledge distillation, to recover the generative capabilities. This approach introduces a significant, abrupt structural alteration of the model, leading to a severe drop in performance.
+The standard approach for compressing transformer-based diffusion and flow models \cite{Laptop, Koala, flux1-lite, flux_mini_2024} involves three main steps. First, the transformer blocks $\{B_1, \dots, B_L\}$ are sorted according to their importance, e.g. using \gls{CLIP}-score and \gls{CMMD} as importance proxies (see Sec. \ref{sec:MetricBasedSelection}). Let $\{B^*_1, \dots, B^*_L\}$ denote the sorted blocks, where $B^*_1$ represents the least important one. Second, based on the target compression ratio of the total model, the number of blocks $k \leq L$ to be pruned is determined and the blocks $\{B^*_1, \dots, B^*_k\}$ are modified based on the chosen compression strategy (see Sec. \ref{sec:StructuralCompressionStrategy}). Third, the compressed model is retrained, e.g. using knowledge distillation (see Sec. \ref{sec:BackgroundKnowledgeDistillation}), to recover the generative capabilities. This approach introduces a significant, abrupt structural alteration of the model, leading to a severe drop in performance. A scheme of this schedule is depicted in Fig. \ref{fig:OneShotCompressionScheme}.
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{images/Methoden/OneShotCompressionScheme.pdf}
+	\caption[One-Shot Compression Scheme]{Visualization of the one-shot compression procedure which iteratively compresses the model.}
+	\label{fig:OneShotCompressionScheme}
+\end{figure}
 
 \subsection{Progressive Model Pruning}
-In contrast to one-shot model compression, progressive model compression, e.g. \cite{ProgressiveDistillation}, iteratively applies the three-step procedure described above. In each iteration the importance of the blocks is re-evaluated, the number of need to be modified based on the target parameter reduction is determined, and finally after compression the model is retrained. The crucial difference is that the number of parameters removed in a single step is significantly smaller than in one-shot model compression. This leads to a gradual and less severe performance degradation in each iteration, which is easier to recover from. In the subsequent iteration, the block importance is re-assessed for all remaining unmodified blocks $\{B_1, \dots, B_L\}\setminus \{B^*_1, \dots, B^*_k\}$, as the relative block ranking may have changed as a result of the retraining. Another design choice of the progressive model compression concerns the number of parameters that are removed per iteration. On the one hand, the number of parameters can be set to a fixed value. On the other hand, it could be chosen dynamically based on the importance metrics, e.g., by defining a threshold \gls{CMMD} value and initiating retraining as soon as the compressed model exceeds it. This typically implies that in early iterations more parameters are removed than in later iterations.  
+In contrast to one-shot model compression, progressive model compression, e.g. \cite{ProgressiveDistillation}, iteratively applies the three-step procedure described above. In each iteration, the importance of previously unmodified blocks is evaluated, the number of blocks need to be modified is determined, and the compressed model is retrained. The crucial difference is that the number of parameters removed in a single iteration is significantly smaller than in one-shot model pruning. This leads to a gradual and less severe performance degradation in each iteration, which is easier to recover from. Note that each transformer block is only compressed once and in a subsequent iteration, the block importance is re-assessed only for all remaining unmodified blocks, as the relative block ranking may have changed as a result of the retraining. A scheme of this schedule is depicted in Fig. \ref{fig:ProgressiveCompressionScheme}.
 
+ A design choice of the progressive model compression concerns the number of parameters that are removed per iteration. Either, the number of parameters can be set to a fixed value, or it could be chosen dynamically based on the importance metrics, e.g., by defining a threshold $\text{CMMD}=0.1$ and initiating retraining as soon as it is exceeded by compressing an additional transformer block. The latter is utilized as standard setting for all experiments. This typically implies that in early iterations more parameters are removed than in later iterations.  
 
-\subsection{Linear Progressive Pruning}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{images/Methoden/ProgressiveCompressionScheme.pdf}
+	\caption[One-Shot Compression Scheme]{Visualization of the progressive compression procedure which iteratively compresses the model.}
+	\label{fig:ProgressiveCompressionScheme}
+\end{figure}
+
+\subsection{Linear Progressive Model Pruning}
 \label{sec:LinearProgressiveCompression}
-In this work, a new linear progressive compression method is investigated, acting as an advancement of of progressive model compression is investigated. Instead of compressing all blocks uniformly and each block only once, the compression ratio of each block is determined based on its importance, allowing blocks to be modified across multiple iterations.
+In this work, a new linear progressive compression schedule is proposed, acting as an advancement of progressive model compression, which introduces a fourth step, namely determining individual compression ratios of each block during each iteration. Instead of compressing all blocks uniformly and each block only once, as it was done in standard progressive pruning, the compression ratio of each block is determined only based on its importance, allowing blocks to be modified across multiple iterations. Specifically, the assigned compression ratio linearly decreases with increasing block importance. 
 
- The approach follows of the same three main steps as progressive model compression. First, the block importance is determined by leveraging the \gls{CMMD} value per removed parameter. Let $P_i$ $(i \in \{1, \dots, L\})$ denote the current number of parameters of block $B_i$. Note that $P_i$ may differ between blocks as some might have already been compressed in previous iterations. To compute the \gls{CMMD} values, images are generated using a temporary model where each block is individually compressed by a fixed percentage $c_\text{fixed}$. Specifically, this means that a potentially different number of parameters are removed for each block. Therefore, the final importance score for each block $B_i$ is given by 
+ The first step of linear progressive model pruning is similar to standard progressive pruning. The block importance is determined by leveraging the \gls{CMMD}. However, as multiple compressions of the same transformer block are possible, the \gls{CMMD} value is normalized by the number of removed parameters to ensure fair compairison, as reducing an already compressed block by $c_\text{fixed} = 60\%$ removes less parameters than compressing a full transformer block by the same percentage. Let $P_i$ $(i \in \{1, \dots, L\})$ denote the current number of parameters of block $B_i$. Then, the final importance score for each block $B_i$ is given by 
  \begin{equation}
  	s_i = \frac{\text{CMMD}_i}{P_i \cdot c_\text{fixed}}
  \end{equation}
-where $\text{CMMD}_i$ is the metric obtained from the dataset generated by the model with the compressed block $B_i$. Based on these scores, the blocks are sorted into an order $\{B^*_1, \dots, B^*_L\}$ where $B_1^*$ has the smallest importance score. 
+where $\text{CMMD}_i$ is the metric obtained from the dataset generated by the current model with the newly compressed block $B_i$. Based on these scores, the blocks are sorted into an order $\{B^*_1, \dots, B^*_L\}$ where $B_1^*$ has the smallest importance score. 
 
-To determine the compression ratio for each block a linear compression schedule is applied where the least important block is compressed most, and blocks of higher importance less. Specifically, three parameters need to be specified by the user to compute the individual compression ratios $c_i$, namely the total number of parameters to be removed $N$, the number of blocks to be compressed during the current iteration $k$ and the compression ratio of the least important block $c_1 = S$ to which is refered to as base compression ratio. To determine the compression ratios $c_i$ of the remaining blocks $B_i^* \in \{B^*_1, \dots, B^*_k\}$, the base compression ratio $S$ is decreased by a slope $x$ between every block. Therefore, the compression ratio for every block $B_i^*$ is given by
+Second, in a crucial departure from standard progressive pruning, to determine the compression ratio for each block a linear compression schedule is applied where the least important block is compressed most, and blocks of higher importance less. Specifically, three parameters need to be specified by the user to compute the individual compression ratios $c_i$, namely the total number of parameters to be removed $N$, the number of blocks to be compressed during the current iteration $k$ and the compression ratio of the least important block $c_1 = S$ to which is referred to as base compression ratio. To determine the compression ratios $c_i$ of the remaining blocks $B_i^* \in \{B^*_1, \dots, B^*_k\}$, the base compression ratio $S$ is decreased linearly by $x$ according to the block's rank in the importance-sorted list. Therefore, the compression ratio for every block $B_i^*$ is given by
 \begin{equation}
 	\label{eq:CompressionRatio}
 	c_i = S - ((i-1) \cdot x)
@@ -300,7 +317,7 @@ where $P^*_i$ is the current parameter count of block $B_i^*$. To solve for $x$,
 \end{equation}
 
 
-ending in the final equation for the slope
+resulting in the final equation for the slope
 \begin{equation}
 	x = \frac{\sum_{i=1}^{k}\left(P^*_i \cdot S \right) - N}{ \sum_{i=1}^{k}\left(P^*_i \cdot (i-1)  \right)} \quad.
 \end{equation}
@@ -313,8 +330,21 @@ The input parameters $S,N,k$ specified by the user have to meet two conditions. 
 	\end{split}
 \end{equation}
 
-Combining these constraints, a valid range is obtained for the total number of parameters to remove in one iteration based on the choice of $S$ and $k$ is obtained
+Combining these constraints, a valid range for the total number of parameters to remove in one iteration based on the choice of $S$ and $k$ is obtained by
 \begin{equation}
 	\ S \sum_{i=1}^{k} P^*_i - \frac{S \sum_{i=1}^{k}(P^*_i \cdot (i-1)) }{k-1}  \leq N \leq S \cdot \sum_{i=1}^{k} P^*_i \quad.
 \end{equation}
-After computing the compression ratios $c_i$, the model can be compressed based on the \gls{SVD} compression scheme as described in Sec. \ref{sec:IterativeRepeatedSVDCompression} and subsequently retrained. This procedure is repeated until the desired model size is reached.
+
+Third, after computing the compression ratios $c_i$, the model can be compressed based on the \gls{SVD} compression scheme as described in Sec. \ref{sec:IterativeRepeatedSVDCompression} and is subsequently retrained. Finally, this procedure is repeated until the desired model size is reached.
+
+ A scheme of the whole procedure is depicted in Fig. \ref{fig:LinearCompressionScheme}. where step three and four, model compression and retraining, are summarized in the last element of the graphic.
+
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{images/Methoden/LinearCompressionScheme.pdf}
+	\caption[Linear Progressive Compression Scheme]{Visualization of the linear progressive compression procedure which iteratively compresses the model.}
+	\label{fig:LinearCompressionScheme}
+\end{figure}
+

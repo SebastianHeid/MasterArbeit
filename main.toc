@@ -85,38 +85,38 @@
 \contentsline {subsection}{\numberline {4.5.2}Feature Mapping for Loss Computation}{49}{subsection.4.5.2}%
 \contentsline {section}{\numberline {4.6}Pruning Schedule}{50}{section.4.6}%
 \contentsline {subsection}{\numberline {4.6.1}One-Shot Model Pruning}{50}{subsection.4.6.1}%
-\contentsline {subsection}{\numberline {4.6.2}Progressive Model Pruning}{50}{subsection.4.6.2}%
-\contentsline {subsection}{\numberline {4.6.3}Linear Progressive Pruning}{51}{subsection.4.6.3}%
-\contentsline {chapter}{\numberline {5}Experiments}{53}{chapter.5}%
-\contentsline {section}{\numberline {5.1}PixArt-$\Sigma $ Pruning}{53}{section.5.1}%
-\contentsline {subsection}{\numberline {5.1.1}Experimental Default Setup}{53}{subsection.5.1.1}%
-\contentsline {subsection}{\numberline {5.1.2}Block Importance Analysis}{54}{subsection.5.1.2}%
-\contentsline {subsubsection}{Qualitative Block Analysis}{55}{section*.39}%
-\contentsline {subsubsection}{Compression Criteria}{55}{section*.40}%
-\contentsline {subsubsection}{Block Analysis for Compression Instead of Removal}{58}{section*.41}%
-\contentsline {subsection}{\numberline {5.1.3}Block Selection Algorithms}{59}{subsection.5.1.3}%
-\contentsline {subsubsection}{Greedy}{59}{section*.42}%
-\contentsline {subsubsection}{Optuna}{59}{section*.43}%
-\contentsline {subsection}{\numberline {5.1.4}One-Shot vs Progressive Model Pruning}{61}{subsection.5.1.4}%
-\contentsline {subsection}{\numberline {5.1.5}Knowledge Distillation Loss}{62}{subsection.5.1.5}%
-\contentsline {subsection}{\numberline {5.1.6}Finetuning Protocol}{64}{subsection.5.1.6}%
-\contentsline {subsection}{\numberline {5.1.7}Compression Strategy}{65}{subsection.5.1.7}%
-\contentsline {subsection}{\numberline {5.1.8}Sensitivity Analysis of MLP and Attention Layers under \gls {SVD} Compression}{69}{subsection.5.1.8}%
-\contentsline {subsection}{\numberline {5.1.9}SVD Compression Scheduling}{72}{subsection.5.1.9}%
-\contentsline {subsection}{\numberline {5.1.10}Summary of Best Settings for Structural Model Pruning}{72}{subsection.5.1.10}%
-\contentsline {section}{\numberline {5.2}Flux.1-dev Pruning}{74}{section.5.2}%
-\contentsline {subsection}{\numberline {5.2.1}Training Details}{74}{subsection.5.2.1}%
-\contentsline {subsection}{\numberline {5.2.2}Qualitative Block Analysis}{75}{subsection.5.2.2}%
-\contentsline {subsection}{\numberline {5.2.3}Training-Free Pruning}{78}{subsection.5.2.3}%
-\contentsline {subsection}{\numberline {5.2.4}Linear Progressive SVD Compression}{84}{subsection.5.2.4}%
-\contentsline {subsubsection}{Block Importance Analysis}{84}{section*.44}%
-\contentsline {subsubsection}{Sensitivity Analysis: The Role of Parameter Removal Distribution}{85}{section*.45}%
-\contentsline {chapter}{\numberline {6}Appendix}{86}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Appendix A}{86}{section.6.1}%
-\contentsline {subsection}{\numberline {6.1.1}Block Analysis}{86}{subsection.6.1.1}%
-\contentsline {section}{\numberline {6.2}Appendix B - Detailed Overview of Selected Blocks Experiments PixArt-$\Sigma $}{86}{section.6.2}%
-\contentsline {section}{\numberline {6.3}Experimen Flux.1-dev}{87}{section.6.3}%
-\contentsline {subsection}{\numberline {6.3.1}GRASP}{87}{subsection.6.3.1}%
-\contentsline {subsubsection}{Block Importance Ranking}{87}{section*.46}%
-\contentsline {subsubsection}{Compression Details}{87}{section*.47}%
-\contentsline {chapter}{Bibliography}{88}{chapter*.48}%
+\contentsline {subsection}{\numberline {4.6.2}Progressive Model Pruning}{51}{subsection.4.6.2}%
+\contentsline {subsection}{\numberline {4.6.3}Linear Progressive Model Pruning}{52}{subsection.4.6.3}%
+\contentsline {chapter}{\numberline {5}Experiments}{55}{chapter.5}%
+\contentsline {section}{\numberline {5.1}PixArt-$\Sigma $ Pruning}{55}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}Experimental Default Setup}{55}{subsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.1.2}Block Importance Analysis}{56}{subsection.5.1.2}%
+\contentsline {subsubsection}{Qualitative Block Analysis}{57}{section*.39}%
+\contentsline {subsubsection}{Compression Criteria}{57}{section*.40}%
+\contentsline {subsubsection}{Qualitative Block Analysis for SVD Compression}{60}{section*.41}%
+\contentsline {subsection}{\numberline {5.1.3}Block Selection Algorithms}{61}{subsection.5.1.3}%
+\contentsline {subsubsection}{Greedy}{61}{section*.42}%
+\contentsline {subsubsection}{Optuna}{61}{section*.43}%
+\contentsline {subsection}{\numberline {5.1.4}One-Shot vs Progressive Model Pruning}{63}{subsection.5.1.4}%
+\contentsline {subsection}{\numberline {5.1.5}Knowledge Distillation Loss}{65}{subsection.5.1.5}%
+\contentsline {subsection}{\numberline {5.1.6}fine-tuning Protocol}{66}{subsection.5.1.6}%
+\contentsline {subsection}{\numberline {5.1.7}Compression Strategy}{68}{subsection.5.1.7}%
+\contentsline {subsection}{\numberline {5.1.8}Sensitivity Analysis of MLP and Attention Layers under \gls {SVD} Compression}{71}{subsection.5.1.8}%
+\contentsline {subsection}{\numberline {5.1.9}SVD Compression Scheduling}{74}{subsection.5.1.9}%
+\contentsline {subsection}{\numberline {5.1.10}Summary of Best Settings for Structural Model Pruning}{74}{subsection.5.1.10}%
+\contentsline {section}{\numberline {5.2}Flux.1-dev Pruning}{76}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Training Details}{76}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Qualitative Block Analysis}{77}{subsection.5.2.2}%
+\contentsline {subsection}{\numberline {5.2.3}Training-Free Pruning}{80}{subsection.5.2.3}%
+\contentsline {subsection}{\numberline {5.2.4}Linear Progressive SVD Compression}{86}{subsection.5.2.4}%
+\contentsline {subsubsection}{Block Importance Analysis}{86}{section*.44}%
+\contentsline {subsubsection}{Sensitivity Analysis: The Role of Parameter Removal Distribution}{87}{section*.45}%
+\contentsline {chapter}{\numberline {6}Appendix}{90}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Appendix A}{90}{section.6.1}%
+\contentsline {subsection}{\numberline {6.1.1}Block Analysis}{90}{subsection.6.1.1}%
+\contentsline {section}{\numberline {6.2}Appendix B - Detailed Overview of Selected Blocks Experiments PixArt-$\Sigma $}{90}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Experimen Flux.1-dev}{91}{section.6.3}%
+\contentsline {subsection}{\numberline {6.3.1}GRASP}{91}{subsection.6.3.1}%
+\contentsline {subsubsection}{Block Importance Ranking}{91}{section*.46}%
+\contentsline {subsubsection}{Compression Details}{91}{section*.47}%
+\contentsline {chapter}{Bibliography}{92}{chapter*.48}%
