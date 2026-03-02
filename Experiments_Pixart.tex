@@ -319,6 +319,8 @@ In this section, the effectiveness of the individual components of the knowledge
   
   Furthermore, it is worth noting that for the high-compression regime of 60\% or 50\% the unnormalized hybrid distillation approach slightly outperforms the normalized distillation approach. This indicates that in the high-compression regime, the original diffusion loss is critical for maintaining text-to-image alignment.  \\
   
+  
+  Fig. \ref{fig:QualitativeLossInvestigation} presents a visual comparison between the standard distillation and the normalized hybrid distillation approach, where PixArt-$\Sigma$ is pruned to 60\%. The examples clearly demonstrate a higher quality of the images obtained with the normalized hybrid distillation approach. They exhibit fewer artifacts, the faces of people and animals are more clearer and they contain more detail which supports the results from the benchmarks. 
  \begin{figure}[H]
  	\centering
  	% --- First Image ---
@@ -341,6 +343,14 @@ In this section, the effectiveness of the individual components of the knowledge
  	\label{fig:LossInvestigation}
  \end{figure}
  
+ 		\begin{figure}[H]
+ 	\centering
+ 	\includegraphics[width=0.9\textwidth]{images/Experimente/loss_investigation/QualitativeExamples.pdf}
+ 	\caption{Qualitative examples for normalized hybrid distillation versus standard distillation based on model pruned models by 60\%.}
+ 	\label{fig:QualitativeLossInvestigation}
+ \end{figure}
+ 
+ 
   \begin{figure}[H]
  	\centering
  	\includegraphics[width=0.6\textwidth]{images/Experimente/loss_investigation/magnitude_block_features.png}  
@@ -350,34 +360,37 @@ In this section, the effectiveness of the individual components of the knowledge
  \end{figure}
  
  
- \subsection{fine-tuning Protocol}
+ \subsection{Fine-Tuning Protocol}
  \label{sec:fine-tuningProtocol}
- After removing blocks from the PixArt-$\Sigma$ architecture, the reduced model is finetuned to recover its image generation capabilities. In total, three different fine-tuning protocols are tested to identify the most effecive one. In all protocols, the model was trained for 88.5k optimization steps to enable fair comparison.
+ After removing blocks from the PixArt-$\Sigma$ architecture, the reduced model is fine-tuned to recover its image generation capabilities. In total, three different fine-tuning protocols are tested to identify the most effective one. In all protocols, the model was trained for 88.5k optimization steps per iteration of the progressive pruning schedule to enable a fair comparison.
  \begin{itemize}
- 	\item \textbf{Three Stage fine-tuning Protocol} \\
- 	This is the default fine-tuning protocol described in sec. \ref{sec:DefaultSetup}. It is repeated for the reader's convinience.
+ 	\item \textbf{Three-Stage Fine-Tuning Protocol} \\
+ 	This is the default fine-tuning protocol described in Sec. \ref{sec:DefaultSetup}. It is repeated here for the reader's convenience.
  	\begin{enumerate}
- 		\item Local Stabilization: The blocks immediately preceding the removed blocks are finetuned for 38k steps on the LAION dataset while all other parts of the model are frozen.
+ 		\item Local Stabilization: The blocks immediately preceding the removed blocks are fine-tuned for 38k steps on the LAION dataset while all other parts of the model are frozen.
  		\item Global Optimization: The complete model is optimized for one epoch (38k steps) on the LAION dataset.
- 		\item Domain Specific Refinement: The LAION-Pixart dataset is leveraged to finetune the pruned model for 12.5k steps on its teachers domain.
+ 		\item Domain Specific Refinement: The LAION-PixArt dataset is leveraged to fine-tune the pruned model for 12.5k steps on its teacher's domain.
  	\end{enumerate}
  	
- 	\item \textbf{Two Stage Finetunig Protocol} \\
- 	In the following protocol, instead of performing local fine-tuning, the entire model is directly finetuned for 2 epochs.
+ 	\item \textbf{Two-Stage Fine-Tuning Protocol} \\
+ 	In the following protocol, instead of performing local fine-tuning, the entire model is directly fine-tuned for 2 epochs on the LAION dataset.
  	\begin{enumerate}
- 		 	\item Global Optimization: The complete model is optimized for two epoch (76k steps) on the LAION dataset.
+ 		 	\item Global Optimization: The complete model is optimized for two epochs (76k steps) on the LAION dataset.
  		\item Domain Specific Refinement: The LAION-Pixart dataset is leveraged to finetune the pruned model for 12.5k steps on its teachers domain.
  	\end{enumerate}
 
- 	\item \textbf{Two Stage LAION only fine-tuning Protocol} \\
+ 	\item \textbf{Two-Stage LAION only Fine-Tuning Protocol} \\
  	The absence of the domain specific refinement is investigated in this protocol.
  	\begin{enumerate}
- 		\item Local Stabilization: The blocks immediately preceding the removed blocks are finetuned for 38k steps on the LAION dataset while all other parts of the model are frozen.
- 		\item Global Optimization: The complete model is optimized for two epoch (50.5k steps) on the LAION dataset.
+ 		\item Local Stabilization: The blocks immediately preceding the removed blocks are fine-tuned for 38k steps on the LAION dataset while all other parts of the model are frozen.
+ 		\item Global Optimization: The complete model is optimized for 50.5k steps on the LAION dataset to ensure the same number of training steps as in the previous fine-tuning protocols.
  	\end{enumerate}
  \end{itemize}
  
- The evaluation of the performance obtained for models of different pruninng ratios (90\% to 50\%) can be found in fig. \ref{fig:fine-tuningProtocols}. For both the HPSv2 and GenEval benchmarks, fine-tuning solely on the LAION dataset (yellow line) leads to a sharp decline for strongly compressed models. This is a strong indication that the image quality being higher in the LAION-PixArt dataset compared to the LAION dataset is highly relevant for the recoverage of the generation capability of a pruned transformer-based diffusion model. Moreover, it could be observed that for shallow compressed models (10\% to 20\%) the two stage fine-tuning protocol (green line) performs better than the three stage protocol (purple line). This indicates that in the low compression regime the model benefits from the extended global fine-tuning and no local repair is needed. For the middle compressed models (70\%-60\%), the three stage fine-tuning is consistently better or on par with the two stage protocol. This performance gap suggests that the local stabilization step provides necessary structural regularization when the model capacity is reduced to a critical threshold. For strong compression there are contradictory results. According to the HPSv2 benchmark the three stage approach is still marginally better than the two stage approach. However, the GenEval benchmark suggests that it is reverse. Given the high degree of degradation in both models at this stage, these marginal differences may also reflect the inherent instability of training extremely pruned networks rather than a definitive superiority of one method over the other.
+ The evaluation of the performance obtained for models of different pruning ratios (10\% to 50\%) can be found in Fig. \ref{fig:fine-tuningProtocols}. For both the HPSv2 and GenEval benchmarks, fine-tuning solely on the LAION dataset (yellow line) leads to a sharp decline for strongly compressed models. This is a strong indication that the higher image quality in the LAION-PixArt dataset compared to the LAION dataset is highly relevant for the recovery of the generation capabilities of a pruned transformer-based diffusion model. Qualitatively, this can be observed in Fig. \ref{fig:QualitativeFinetuningProtocol} showcasing example images from models compressed to 60\% of the original size using the three-stage, two-stage and the two-stage LAION only fine-tuning protocol. Moreover, it could be observed that for shallowly compressed models (10\% to 20\%) the two stage fine-tuning protocol (green line) performs better than the three stage protocol (purple line). This indicates that in the low-compression regime, the model benefits from the extended global fine-tuning and no local repair is needed. For the moderately compressed models (30\%-40\%), the three-stage fine-tuning is consistently better or on par with the two-stage protocol. This performance gap suggests that the local stabilization step provides necessary structural regularization when the model capacity is reduced to a critical threshold. For strong compression, there are contradictory results. According to the HPSv2 benchmark, the three-stage approach is still marginally better than the two-stage approach. However, the GenEval benchmark suggests that the reverse is true. 
+ As Fig. \ref{fig:QualitativeFinetuningProtocol} qualitatively shows images with fewer artifacts for the three stage approach, therefor, the three-stage approach is selected as the overall most effective method.
+ 
+%  Given the high degree of degradation in both models at this stage, these marginal differences may also reflect the inherent instability of training extremely pruned networks rather than a definitive superiority of one method over the other.
  
  
   \begin{figure}[H]
@@ -401,6 +414,14 @@ In this section, the effectiveness of the individual components of the knowledge
  	\caption[Benchmark Performance: fine-tuning Protocols]{Impact of different fine-tuning protocols on performance across varying compression ratios.}
  	\label{fig:fine-tuningProtocols}
  \end{figure}
+ 
+  		\begin{figure}[H]
+ 	\centering
+ 	\includegraphics[width=0.9\textwidth]{images/Experimente/It_shortcut_no_pix/Qualitative_Examples_Finetuning_Protocols.pdf}
+ 	\caption{Qualitative examples for three stage versus two stage LAION only fine-tuning protocol based on model pruned models by 60\%.}
+ 	\label{fig:QualitativeFinetuningProtocol}
+ \end{figure}
+ 
  
  
  \subsection{Compression Strategy}

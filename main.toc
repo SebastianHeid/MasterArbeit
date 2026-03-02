@@ -99,24 +99,24 @@
 \contentsline {subsubsection}{Optuna}{61}{section*.43}%
 \contentsline {subsection}{\numberline {5.1.4}One-Shot vs Progressive Model Pruning}{63}{subsection.5.1.4}%
 \contentsline {subsection}{\numberline {5.1.5}Knowledge Distillation Loss}{65}{subsection.5.1.5}%
-\contentsline {subsection}{\numberline {5.1.6}fine-tuning Protocol}{66}{subsection.5.1.6}%
-\contentsline {subsection}{\numberline {5.1.7}Compression Strategy}{68}{subsection.5.1.7}%
-\contentsline {subsection}{\numberline {5.1.8}Sensitivity Analysis of MLP and Attention Layers under \gls {SVD} Compression}{71}{subsection.5.1.8}%
-\contentsline {subsection}{\numberline {5.1.9}SVD Compression Scheduling}{74}{subsection.5.1.9}%
-\contentsline {subsection}{\numberline {5.1.10}Summary of Best Settings for Structural Model Pruning}{74}{subsection.5.1.10}%
-\contentsline {section}{\numberline {5.2}Flux.1-dev Pruning}{76}{section.5.2}%
-\contentsline {subsection}{\numberline {5.2.1}Training Details}{76}{subsection.5.2.1}%
-\contentsline {subsection}{\numberline {5.2.2}Qualitative Block Analysis}{77}{subsection.5.2.2}%
-\contentsline {subsection}{\numberline {5.2.3}Training-Free Pruning}{80}{subsection.5.2.3}%
-\contentsline {subsection}{\numberline {5.2.4}Linear Progressive SVD Compression}{86}{subsection.5.2.4}%
-\contentsline {subsubsection}{Block Importance Analysis}{86}{section*.44}%
-\contentsline {subsubsection}{Sensitivity Analysis: The Role of Parameter Removal Distribution}{87}{section*.45}%
-\contentsline {chapter}{\numberline {6}Appendix}{90}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Appendix A}{90}{section.6.1}%
-\contentsline {subsection}{\numberline {6.1.1}Block Analysis}{90}{subsection.6.1.1}%
-\contentsline {section}{\numberline {6.2}Appendix B - Detailed Overview of Selected Blocks Experiments PixArt-$\Sigma $}{90}{section.6.2}%
-\contentsline {section}{\numberline {6.3}Experimen Flux.1-dev}{91}{section.6.3}%
-\contentsline {subsection}{\numberline {6.3.1}GRASP}{91}{subsection.6.3.1}%
-\contentsline {subsubsection}{Block Importance Ranking}{91}{section*.46}%
-\contentsline {subsubsection}{Compression Details}{91}{section*.47}%
-\contentsline {chapter}{Bibliography}{92}{chapter*.48}%
+\contentsline {subsection}{\numberline {5.1.6}Fine-Tuning Protocol}{67}{subsection.5.1.6}%
+\contentsline {subsection}{\numberline {5.1.7}Compression Strategy}{69}{subsection.5.1.7}%
+\contentsline {subsection}{\numberline {5.1.8}Sensitivity Analysis of MLP and Attention Layers under \gls {SVD} Compression}{72}{subsection.5.1.8}%
+\contentsline {subsection}{\numberline {5.1.9}SVD Compression Scheduling}{75}{subsection.5.1.9}%
+\contentsline {subsection}{\numberline {5.1.10}Summary of Best Settings for Structural Model Pruning}{75}{subsection.5.1.10}%
+\contentsline {section}{\numberline {5.2}Flux.1-dev Pruning}{77}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Training Details}{77}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Qualitative Block Analysis}{78}{subsection.5.2.2}%
+\contentsline {subsection}{\numberline {5.2.3}Training-Free Pruning}{81}{subsection.5.2.3}%
+\contentsline {subsection}{\numberline {5.2.4}Linear Progressive SVD Compression}{87}{subsection.5.2.4}%
+\contentsline {subsubsection}{Block Importance Analysis}{87}{section*.44}%
+\contentsline {subsubsection}{Sensitivity Analysis: The Role of Parameter Removal Distribution}{88}{section*.45}%
+\contentsline {chapter}{\numberline {6}Appendix}{91}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Appendix A}{91}{section.6.1}%
+\contentsline {subsection}{\numberline {6.1.1}Block Analysis}{91}{subsection.6.1.1}%
+\contentsline {section}{\numberline {6.2}Appendix B - Detailed Overview of Selected Blocks Experiments PixArt-$\Sigma $}{91}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Experimen Flux.1-dev}{92}{section.6.3}%
+\contentsline {subsection}{\numberline {6.3.1}GRASP}{92}{subsection.6.3.1}%
+\contentsline {subsubsection}{Block Importance Ranking}{92}{section*.46}%
+\contentsline {subsubsection}{Compression Details}{92}{section*.47}%
+\contentsline {chapter}{Bibliography}{93}{chapter*.48}%
