@@ -27,22 +27,22 @@
 \contentsline {figure}{\numberline {4.11}{\ignorespaces Model Compression Strategies}}{48}{figure.4.11}%
 \contentsline {figure}{\numberline {4.12}{\ignorespaces Feature Mapping Strategy}}{50}{figure.4.12}%
 \contentsline {figure}{\numberline {4.13}{\ignorespaces One-Shot Compression Scheme}}{51}{figure.4.13}%
-\contentsline {figure}{\numberline {4.14}{\ignorespaces One-Shot Compression Scheme}}{52}{figure.4.14}%
-\contentsline {figure}{\numberline {4.15}{\ignorespaces Linear Progressive Compression Scheme}}{54}{figure.4.15}%
+\contentsline {figure}{\numberline {4.14}{\ignorespaces One-Shot Compression Scheme}}{51}{figure.4.14}%
+\contentsline {figure}{\numberline {4.15}{\ignorespaces Linear Progressive Compression Scheme}}{53}{figure.4.15}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Qualitative analyse of the block sensitivity of PixArt-$\Sigma $ for block removal}}{57}{figure.5.1}%
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Magnitude-base pruning versus \gls {CLIP}-score}}{58}{figure.5.2}%
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Magnitude-base pruning versus \gls {CMMD}}}{58}{figure.5.3}%
-\contentsline {figure}{\numberline {5.4}{\ignorespaces \gls {CKA} transformation intensity versus \gls {CLIP}-score}}{59}{figure.5.4}%
-\contentsline {figure}{\numberline {5.5}{\ignorespaces \gls {CKA} transformation intensity versus \gls {CMMD}}}{59}{figure.5.5}%
-\contentsline {figure}{\numberline {5.6}{\ignorespaces Qualitative analyse of the block sensitivity of PixArt-$\Sigma $ of block compression}}{61}{figure.5.6}%
-\contentsline {figure}{\numberline {5.7}{\ignorespaces Distribution of Selected Blocks: Optuna versus Greedy Algorithm}}{62}{figure.5.7}%
-\contentsline {figure}{\numberline {5.8}{\ignorespaces Benchmark Performance: Optuna versus Greedy Algorithm}}{63}{figure.5.8}%
-\contentsline {figure}{\numberline {5.9}{\ignorespaces Comparison of Pruning Strategies: Optuna versus Greedy Algorithm}}{63}{figure.5.9}%
-\contentsline {figure}{\numberline {5.10}{\ignorespaces Benchmark Performance: Progessive versus One-Shot Model Pruning}}{64}{figure.5.10}%
-\contentsline {figure}{\numberline {5.11}{\ignorespaces Example images for one-shot versus progressive pruned models by 50\%.}}{64}{figure.5.11}%
-\contentsline {figure}{\numberline {5.12}{\ignorespaces Benchmark Performance: Different Knowledge Distialltion Loss Configurations}}{66}{figure.5.12}%
-\contentsline {figure}{\numberline {5.13}{\ignorespaces Qualitative examples for normalized hybrid distillation versus standard distillation based on model pruned models by 60\%.}}{66}{figure.5.13}%
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Qualitative analyse of the block sensitivity of PixArt-$\Sigma $ for block removal}}{56}{figure.5.1}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Magnitude-base pruning versus \gls {CLIP}-score}}{57}{figure.5.2}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Magnitude-base pruning versus \gls {CMMD}}}{57}{figure.5.3}%
+\contentsline {figure}{\numberline {5.4}{\ignorespaces \gls {CKA} transformation intensity versus \gls {CLIP}-score}}{58}{figure.5.4}%
+\contentsline {figure}{\numberline {5.5}{\ignorespaces \gls {CKA} transformation intensity versus \gls {CMMD}}}{58}{figure.5.5}%
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Qualitative analyse of the block sensitivity of PixArt-$\Sigma $ of block compression}}{60}{figure.5.6}%
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Distribution of Selected Blocks: Optuna versus Greedy Algorithm}}{61}{figure.5.7}%
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Benchmark Performance: Optuna versus Greedy Algorithm}}{62}{figure.5.8}%
+\contentsline {figure}{\numberline {5.9}{\ignorespaces Comparison of Pruning Strategies: Optuna versus Greedy Algorithm}}{62}{figure.5.9}%
+\contentsline {figure}{\numberline {5.10}{\ignorespaces Benchmark Performance: Progessive versus One-Shot Model Pruning}}{63}{figure.5.10}%
+\contentsline {figure}{\numberline {5.11}{\ignorespaces Example images for one-shot versus progressive pruned models by 50\%.}}{63}{figure.5.11}%
+\contentsline {figure}{\numberline {5.12}{\ignorespaces Benchmark Performance: Different Knowledge Distialltion Loss Configurations}}{65}{figure.5.12}%
+\contentsline {figure}{\numberline {5.13}{\ignorespaces Qualitative examples for different loss functions used to compress PixArt-$\Sigma $ to 60\% of the original size.}}{66}{figure.5.13}%
 \contentsline {figure}{\numberline {5.14}{\ignorespaces Magnitude of Intermediate Features in PixArt-$\Sigma $}}{67}{figure.5.14}%
 \contentsline {figure}{\numberline {5.15}{\ignorespaces Benchmark Performance: fine-tuning Protocols}}{68}{figure.5.15}%
 \contentsline {figure}{\numberline {5.16}{\ignorespaces Qualitative examples for three stage versus two stage LAION only fine-tuning protocol based on model pruned models by 60\%.}}{69}{figure.5.16}%
@@ -64,4 +64,17 @@
 \contentsline {figure}{\numberline {5.32}{\ignorespaces Example images of the 49\% models (5.8B parameters) obtained by random and importance-based block selection.}}{88}{figure.5.32}%
 \contentsline {figure}{\numberline {5.33}{\ignorespaces Benchmark Performance: Random versus Metric-based Block Selection}}{89}{figure.5.33}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {6.2}{\ignorespaces Training-Free: Flux.1-dev Block Importance Ranking}}{92}{figure.6.2}%
+\contentsline {figure}{\numberline {A.2}{\ignorespaces Qualitative examples for different loss functions used to compress PixArt-$\Sigma $ to 90\% of the original size.}}{92}{figure.A.2}%
+\contentsline {figure}{\numberline {A.3}{\ignorespaces Qualitative examples for different loss functions used to compress PixArt-$\Sigma $ to 80\% of the original size.}}{92}{figure.A.3}%
+\contentsline {figure}{\numberline {A.4}{\ignorespaces Qualitative examples for different loss functions used to compress PixArt-$\Sigma $ to 70\% of the original size.}}{93}{figure.A.4}%
+\contentsline {figure}{\numberline {A.5}{\ignorespaces Qualitative examples for different loss functions used to compress PixArt-$\Sigma $ to 50\% of the original size.}}{93}{figure.A.5}%
+\contentsline {figure}{\numberline {A.6}{\ignorespaces Qualitative examples for different loss functions used to compress PixArt-$\Sigma $ to 90\% of the original size.}}{94}{figure.A.6}%
+\contentsline {figure}{\numberline {A.7}{\ignorespaces Qualitative examples for different loss functions used to compress PixArt-$\Sigma $ to 80\% of the original size.}}{94}{figure.A.7}%
+\contentsline {figure}{\numberline {A.8}{\ignorespaces Qualitative examples for different loss functions used to compress PixArt-$\Sigma $ to 70\% of the original size.}}{95}{figure.A.8}%
+\contentsline {figure}{\numberline {A.9}{\ignorespaces Qualitative examples for different loss functions used to compress PixArt-$\Sigma $ to 50\% of the original size.}}{95}{figure.A.9}%
+\contentsline {figure}{\numberline {A.10}{\ignorespaces Qualitative examples for progressive and one-shot pruning used to compress PixArt-$\Sigma $ to 90\% of the original size.}}{96}{figure.A.10}%
+\contentsline {figure}{\numberline {A.11}{\ignorespaces Qualitative examples for progressive and one-shot pruning used to compress PixArt-$\Sigma $ to 80\% of the original size.}}{96}{figure.A.11}%
+\contentsline {figure}{\numberline {A.12}{\ignorespaces Qualitative examples for progressive and one-shot pruning used to compress PixArt-$\Sigma $ to 70\% of the original size.}}{96}{figure.A.12}%
+\contentsline {figure}{\numberline {A.13}{\ignorespaces Qualitative examples for progressive and one-shot pruning used to compress PixArt-$\Sigma $ to 60\% of the original size.}}{97}{figure.A.13}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {B.1}{\ignorespaces Training-Free: Flux.1-dev Block Importance Ranking}}{98}{figure.B.1}%

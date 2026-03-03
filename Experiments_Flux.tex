@@ -1,13 +1,13 @@
 \section{Flux.1-dev Pruning}
-Flux.1-dev is a 11.9 billion parameter rectified flow model capable of generating detailed, high-quality, and high-aesthetic images. Due to its high parameter count, it is one primary target for model reduction techniques in the literature and should be used to demonstrate the effectiveness of the best settings found for PixArt-$\Sigma$ by comparing it to various competitors. Furthermore, the method is also applied to Flux.1-schnell to demonstrate that it also works for step-distilled models. In addition, as training of Flux.1-dev is extremely computatinally intensive, the training-free GRASP method (see Sec. \ref{sec:GRASP}) originally developped for \gls{LLM} compression is transfered to Flux1.dev.
+Flux.1-dev is a 11.9 billion parameter rectified flow model capable of generating detailed, high-quality, and high-aesthetic images. Due to its high parameter count, it is one primary target for model reduction techniques in the literature and should be used to demonstrate the effectiveness of the best settings found for PixArt-$\Sigma$ by comparing it to various competitors. Furthermore, the method is also applied to Flux.1-schnell to demonstrate that it works for step-distilled models. In addition, as training of Flux.1-dev is extremely computationally intensive, it is investigated how well \gls{SVD} compression works without any subsequent fine-tuning. Furthermore, the training-free GRASP method (see Sec. \ref{sec:GRASP}) originally developped for \gls{LLM} compression is transfered to Flux1.dev.
 
 \subsection{Training Details}
 \label{sec:flux_training_details}
-In this section, all experiments are built upon the training and inference code for Flux.1-dev published in the following git repository \cite{kohya_ss_sd_scripts_2024}. The hyperparameters used for fine-tuning Flux.1-dev are specified in Tab. \ref{tab:flux_training_config}. For pruning Flux.1-dev the best settings found for PixArt-$\Sigma$ are leveraged and specified here again for completeness:
+All experiments are built upon the training and inference code for Flux.1-dev published in the following git repository \cite{kohya_ss_sd_scripts_2024}. The hyperparameters used for fine-tuning Flux.1-dev are specified in Tab. \ref{tab:flux_training_config}. For pruning Flux.1-dev the best settings found for PixArt-$\Sigma$ are leveraged and specified here again for completeness:
 
 \begin{itemize}
 	\item \textbf{Block Importance Analysis} \\
-	To determine the importance of individual blocks in Flux.1-dev, every block is individually compressed by 60\% and a small reference dataset (100 JoyCaption prompts based on LAION datset) is utilized to compute the \gls{CMMD} score. Afterwards, the \gls{CMMD} score is weighted by the number of removed parameters, e.g. a single-stream block contains less parameters than a double-stream block. In contrast to the experiments with PixArt-$\Sigma$, the scoring is computed in a single initial pass rather than leveraging a dynamic greedy algorithm that would iteratively reevaluate the remaining blocks after each sequential compression due to the high computational demands of Flux.1-dev.
+	To determine the importance of individual blocks in Flux.1-dev, every block is individually compressed by 60\% and a small reference dataset (100 JoyCaption prompts based on LAION datset) is utilized to compute the \gls{CMMD} score. Afterwards, the \gls{CMMD} score is weighted by the number of removed parameters, e.g. a single-stream block contains less parameters than a double-stream block. In contrast to the experiments with PixArt-$\Sigma$, the scoring is computed in a single initial pass for each iteration rather than leveraging a dynamic greedy algorithm that would iteratively reevaluate the remaining blocks after each sequential compression due to the high computational demands of Flux.1-dev.
 	
 	\item \textbf{Pruning Method} \\
 	Progressive structural model pruning is performed.
@@ -19,7 +19,7 @@ In this section, all experiments are built upon the training and inference code 
 	\end{equation}
 	with $\lambda_\text{OutKD}  = 10$, $\lambda_\text{SingleFeatKD}=0.01$ and $\lambda_\text{DoubleFeatKD}=0.1$.
 	
-	\item \textbf{fine-tuning Protocol} \\
+	\item \textbf{Fine-Tuning Protocol} \\
 	The complete model is directly retrained on the LAION-Flux.1-dev dataset with image resolution of $1024 \times 1024$.
 	
 	\item \textbf{Structural Compression Strategy} \\
@@ -30,7 +30,6 @@ In this section, all experiments are built upon the training and inference code 
 	
 \end{itemize} 
 
-A specific 
 \begin{table}[H]
 	\centering
 	\caption[Flux fine-tuning Hyperparameters]{Configuration details for the compressed model retraining, including optimizer settings and flow matching specific parameters. These parameters represent the configuration setup for the training using the git repository \cite{kohya_ss_sd_scripts_2024}.}

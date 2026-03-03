@@ -1,6 +1,5 @@
-\chapter{Appendix}
-\section{Appendix A}
-\subsection{Block Analysis}
+\chapter{PixArt-$\Sigma$ Experiments}
+\section{Block Analysis}
 Heatmap for cka: Block importance for different time steps
 
 
@@ -12,9 +11,110 @@ Heatmap for cka: Block importance for different time steps
 	\label{fig:PixArtBlockImportanceHeatmap}
 \end{figure}
 
+\section{Knowledge Distillation Loss}
+\label{sec:KnowledgeDistillationAppendix}
+Example images for various compressed models (90\%, 80\%, 70\% and 50\%) are presented here obtained with different loss functions as described in Sec. \ref{sec:ExpKDLoss}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.65\textwidth]{images/Appendix/KnowledgeDistillation/model_90.pdf}
+	\caption{Qualitative examples for different loss functions used to compress PixArt-$\Sigma$ to 90\% of the original size.}
+	\label{fig:QualitativeLossInvestigation_90}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.65\textwidth]{images/Appendix/KnowledgeDistillation/model_80.pdf}
+	\caption{Qualitative examples for different loss functions used to compress PixArt-$\Sigma$ to 80\% of the original size.}
+	\label{fig:QualitativeLossInvestigation_80}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.65\textwidth]{images/Appendix/KnowledgeDistillation/model_70.pdf}
+	\caption{Qualitative examples for different loss functions used to compress PixArt-$\Sigma$ to 70\% of the original size.}
+	\label{fig:QualitativeLossInvestigation_70}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.65\textwidth]{images/Appendix/KnowledgeDistillation/model_50.pdf}
+	\caption{Qualitative examples for different loss functions used to compress PixArt-$\Sigma$ to 50\% of the original size.}
+	\label{fig:QualitativeLossInvestigation_50}
+\end{figure}
 
 
-\section{Appendix B - Detailed Overview of Selected Blocks Experiments PixArt-$\Sigma$}
+
+\section{Fine-Tuning Protocol}
+\label{sec:FinetuningProtocolAppendix}
+Example images for various compressed models (90\%, 80\%, 70\% and 50\%) are presented here obtained with different fine-tuning protocols as described in Sec. \ref{sec:fine-tuningProtocol}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{images/Appendix/FinetuningProtocol/model_90.pdf}
+	\caption{Qualitative examples for different loss functions used to compress PixArt-$\Sigma$ to 90\% of the original size.}
+	\label{fig:FinetuningProtocol_90}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{images/Appendix/FinetuningProtocol/model_80.pdf}
+	\caption{Qualitative examples for different loss functions used to compress PixArt-$\Sigma$ to 80\% of the original size.}
+	\label{fig:FinetuningProtocol_80}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{images/Appendix/FinetuningProtocol/model_70.pdf}
+	\caption{Qualitative examples for different loss functions used to compress PixArt-$\Sigma$ to 70\% of the original size.}
+	\label{fig:FinetuningProtocol_70}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{images/Appendix/FinetuningProtocol/model_50.pdf}
+	\caption{Qualitative examples for different loss functions used to compress PixArt-$\Sigma$ to 50\% of the original size.}
+	\label{fig:FinetuningProtocol_50}
+\end{figure}
+
+
+
+
+\section{One-Shot versus Progressive Pruning}
+\label{sec:OneShotVsProgressivePrunAppendix}
+Example images for various compressed models (80\%, 70\% and 60\%) are presented here obtained with the one-shot and progressive pruning approach as described in Sec. \ref{sec:OneShot_vs_Progrosseve_Pruning}. Note that for the 90\% model both one-shot and progressive pruning are the same.  
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{images/Experimente/Iterative_vs_Direct/Examples_model_90.pdf}
+	\caption{Qualitative examples for progressive and one-shot pruning used to compress PixArt-$\Sigma$ to 90\% of the original size.}
+	\label{fig:FinetuningProtocol_80}
+\end{figure}
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{images/Experimente/Iterative_vs_Direct/Examples_model_80.pdf}
+	\caption{Qualitative examples for progressive and one-shot pruning used to compress PixArt-$\Sigma$ to 80\% of the original size.}
+	\label{fig:FinetuningProtocol_80}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{images/Experimente/Iterative_vs_Direct/Examples_model_70.pdf}
+	\caption{Qualitative examples for progressive and one-shot pruning used to compress PixArt-$\Sigma$ to 70\% of the original size.}
+	\label{fig:FinetuningProtocol_70}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{images/Experimente/Iterative_vs_Direct/Examples_model_60.pdf}
+	\caption{Qualitative examples for progressive and one-shot pruning used to compress PixArt-$\Sigma$ to 60\% of the original size.}
+	\label{fig:FinetuningProtocol_50}
+\end{figure}
+
+
+\section{Detailed Overview of Selected Blocks Experiments PixArt-$\Sigma$}
 In this section, the removed or compressed blocks for each experiments are visualized. Different colors indicates during which iteration of the progressive pruning framework the specific block was selected. 
 
 
@@ -152,9 +252,9 @@ In this section, the removed or compressed blocks for each experiments are visua
 %\end{figure}
 
 
-\section{Experimen Flux.1-dev}
-\subsection{GRASP}
-\subsubsection{Block Importance Ranking}
+\chapter{Experimen Flux.1-dev}
+\section{GRASP}
+\subsection{Block Importance Ranking}
 \label{app:GRASP_BlockImportance}
 For this experiment the importance of blocks determined in \cite{FastFlux} was leveraged. Below the figure from the corresponding work is presented. 
 
