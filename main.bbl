@@ -432,12 +432,6 @@ Jonathan Ho and Tim Salimans.
 \newblock Classifier-free diffusion guidance.
 \newblock {\em arXiv preprint arXiv:2207.12598}, 2022.
 
-\bibitem{hu2022lora}
-Edward~J Hu, Yelong Shen, Phillip Wallis, Zeyuan Allen-Zhu, Yuanzhi Li, Shean
-  Wang, Lu~Wang, Weizhu Chen, et~al.
-\newblock Lora: Low-rank adaptation of large language models.
-\newblock {\em ICLR}, 1(2):3, 2022.
-
 \bibitem{DPG}
 Xiwei Hu, Rui Wang, Yixiao Fang, Bin Fu, Pei Cheng, and Gang Yu.
 \newblock Ella: Equip diffusion models with llm for enhanced semantic

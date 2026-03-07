@@ -21,7 +21,7 @@ Reallocated global_strs (elt_size=200001) to 20 items from 10.
 Reallocated glb_str_end (elt_size=4) to 20 items from 10.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
-Reallocated field_info (elt_size=4) to 10572 items from 5000.
+Reallocated field_info (elt_size=4) to 10600 items from 5000.
 Database file #1: bibliography.bib
 Repeated entry---line 240 of file bibliography.bib
  : @article{han2015deep
@@ -45,6 +45,8 @@ Repeated entry---line 1417 of file bibliography.bib
  : @article{KnowledgeDistillation
  :                               ,
 I'm skipping whatever remains of this entry
+Warning--I didn't find a database entry for "bibid"
+Warning--I didn't find a database entry for ""
 Warning--empty journal in HiDream
 Warning--empty journal in Claude
 Warning--empty year in WGAN
@@ -76,45 +78,45 @@ Warning--empty journal in ConsistencyModel
 Warning--empty year in SlicedScoreMatching
 Warning--empty year in ModeCollapse1
 Warning--empty year in DistillationMatching
-You've used 199 entries,
+You've used 198 entries,
             2943 wiz_defined-function locations,
-            1665 strings with 44203 characters,
-and the built_in function-call counts, 107352 in all, are:
-= -- 10419
-> -- 6060
+            1662 strings with 43999 characters,
+and the built_in function-call counts, 106758 in all, are:
+= -- 10367
+> -- 6010
 < -- 62
-+ -- 2273
-- -- 2064
-* -- 6463
-:= -- 15791
-add.period$ -- 632
-call.type$ -- 199
-change.case$ -- 1616
++ -- 2254
+- -- 2046
+* -- 6416
+:= -- 15693
+add.period$ -- 629
+call.type$ -- 198
+change.case$ -- 1605
 chr.to.int$ -- 0
-cite$ -- 230
-duplicate$ -- 2872
-empty$ -- 8584
-format.name$ -- 2064
-if$ -- 26652
+cite$ -- 229
+duplicate$ -- 2861
+empty$ -- 8547
+format.name$ -- 2046
+if$ -- 26516
 int.to.chr$ -- 0
-int.to.str$ -- 199
-missing$ -- 183
-newline$ -- 1006
-num.names$ -- 398
-pop$ -- 2804
+int.to.str$ -- 198
+missing$ -- 182
+newline$ -- 1001
+num.names$ -- 396
+pop$ -- 2790
 preamble$ -- 1
-purify$ -- 1416
+purify$ -- 1406
 quote$ -- 0
-skip$ -- 6565
+skip$ -- 6534
 stack$ -- 0
-substring$ -- 4079
-swap$ -- 889
+substring$ -- 4071
+swap$ -- 888
 text.length$ -- 68
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 796
+type$ -- 792
 warning$ -- 31
-while$ -- 607
-width$ -- 202
-write$ -- 2127
+while$ -- 604
+width$ -- 201
+write$ -- 2116
 (There were 5 error messages)

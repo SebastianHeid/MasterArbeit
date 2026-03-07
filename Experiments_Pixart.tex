@@ -1,12 +1,18 @@
 %!TEX root = ./main.tex
 
 \chapter{Experiments}
-This master thesis investigates model pruning techniques, specifically focusing on the removal and \gls{SVD} compression of transformer blocks within the PixArt-$\Sigma$ and Flux.1-dev architectures. PixArt-$\Sigma$ is employed as an experimental baseline to evaluate various design choices in the pruning framework due to its relatively low parameter count enabling rapid iteration and extensive ablation studies. Subsequently, the most effective strategies are applied to Flux.1-dev to assess their efficacy in high-parameter regimes. 
+This master thesis investigates low-rank model compression leveraging \gls{SVD} of transformer blocks within the PixArt-$\Sigma$ and Flux.1-dev architectures. PixArt-$\Sigma$ is employed as an experimental baseline to evaluate various design choices in the pruning framework due to its relatively low parameter count enabling rapid iteration and extensive ablation studies. Subsequently, the most effective strategies are applied to Flux.1-dev to assess their efficacy in high-parameter regimes. 
 \section{PixArt-$\Sigma$ Pruning}
+\label{sec:PixArtExp}
+
+In the following sections, individual components of the compression pipeline are evaluated to find a best setting. To isolate the impact of each component, a default experimental setup is defined (Sec. \ref{sec:DefaultSetup}). In the experiment sections only the deviations from the default settings are described, e.g. different loss function, but the remaining settings follow the default and are not mentionned explicitly to avoid repetition. The first experiments investigate how to select the model parts containing the highest redundancy and are most suitable to prune (Sec. \ref{sec:ExpBlockImportanceAnalysis} and Sec. \ref{sec:PixartBlockSelectionAlgorithms}). Subsequently,  two different pruning schedules (Sec. \ref{sec:OneShot_vs_Progrosseve_Pruning}), the loss function (Sec. \ref{sec:ExpKDLoss}) and  post-compression fine-tuning protocols (Sec. \ref{sec:fine-tuningProtocol}) are evaluated. Furthermore, compression strategies, namely complete block removal and \gls{SVD}-based block compression are investigated (Sec. \ref{sec:CompressionStrategyPixart}). Subsequently, it is dived into \gls{SVD} compression and the sensitivity of transformer block components to low-rank approximation (Sec. \ref{sec:MLPAttnDiffCompRatios}) as well as compression schedules (Sec. \ref{sec:CompressionSchedulingPixart}) are systematically analyzed. Finally, the found insights are used to train a final best model (Sec. \ref{sec:PixArtBestModel}).
+
+For evaluation of the experiments, the HPSv2 \ref{} and GenEval benchmarks are utilized as they serve different purposes and complement each other well. The HPSv2 measures overall image quality while the GenEval focuses on text-image alignment.
+
 
 \subsection{Experimental Default Setup}
 \label{sec:DefaultSetup}
-In the following section, individual components of the compression pipeline such as loss function, block selection algorithm, compression strategy, ..., are systematically investigated. To isolate the impact of each component, a default experimental setup is defined below. Unless stated otherwise, all subsequent experiments utilize the baseline configuration. It is important to note that this baseline configuration serves as consistent starting point for the experiments and does not necessarily represent the final, best setting which is derived later in this work. The following elements are constituents of the baseline configurations:
+This section defines the default configuration settings which are utilized in all experiments unless stated otherwise. It is important to note that this baseline configuration serves as consistent starting point for the experiments and does not necessarily represent the final, best setting which is derived later in this work. The following elements are constituents of the baseline configurations:
 
 \begin{itemize}
 	\item \textbf{Learning Objective}: Knowledge distillation is utilized for fine-tuning the pruned models. Therefore, the learning objectiv is the sum of the unormalized feature and output distillation loss $\mathcal{L_\text{OutKD}} + \mathcal{L_\text{FeatKD}}$.
@@ -16,12 +22,11 @@ In the following section, individual components of the compression pipeline such
 	\item \textbf{Training Datasets}: Training was performed sequentially starting on the LAION dataset followed by further training on the LAION-PixArt dataset. For each iteration, the models were trained for two epochs on each datasets.
 	\item  \textbf{Fine-tuning Protocol}: The recovery of the pruned model followed a structured three stage protocol. First, for local stabilization, optimization was restricted to the block $B_{l-1}$ immediately preceding the removed block $B_l$ for one epoch (38k steps) on the LAION dataset. In case where several blocks were removed simultanousely, all corresponding preceding blocks were updated while the rest of the network was frozen. Second, the complete model was optimized for an additional epoch on the LAION dataset. Third, for domain-specific refinement, the model was finetuned for two epochs (12.5k steps) on the LAION-PixArt dataset.  
 	\item \textbf{Evaluation} The pruned models are evaluated on the HPSv2 and the GenEval benchmark. The HPSv2 benchmark investigates the overall image quality by predicting a human preference score and the GenEval benchmark analyze text-image alignment.
-	\item \textbf{Training Hyperparameters}: All other training hyperparameters are summarized in tab. \ref{tab:hyperparameterTraining}.
+	\item \textbf{Training Hyperparameters}: All other training hyperparameters are summarized in Tab. \ref{tab:hyperparameterTraining}.
 
 \end{itemize}
 
-The implementation of all experiments build up on the official git repository for PixArt-$\Sigma$ \cite{pixartsigma_code}. For evaluation of the model, the HPSv2 and the GenEval benchmarks were utilized in this section.
-
+The implementation of all experiments build up on the official git repository for PixArt-$\Sigma$ \cite{pixartsigma_code}.
 
 \begin{table}[H]
 	\centering
@@ -57,7 +62,7 @@ The implementation of all experiments build up on the official git repository fo
 
 \subsection{Block Importance Analysis}
 \label{sec:ExpBlockImportanceAnalysis}
-In structural pruning, the selection of components to be removed or compressed is essential to ensure that the compressed model retains the highest possible image generation quality. Qualitatively, Fig. \ref{fig:PixArtBlockImportanceQualitatively} shows the effect of removing every transformer block from PixArt-$\Sigma$ individually on its image generation capabilities without subsequent fine-tuning. It is clearly visible that removing the first and last transformer blocks (blocks 1-4 and blocks 27-28) exerts the most significant influence on the image quality. This confirms the observation from previous work \cite{men2024shortgpt} that redundancies are primarily find in the middle part of transformer based models. To identify which blocks are best to prune meaning which blocks have a minimal contribution on the total image generation process, several different metrics can be employed. In the following section, different approaches are investigated to determine the importance of the individual transformer blocks. First, the traditional magnitude-based pruning and representational dissimilarity by computing the central kernal alignment score (\gls{CKA}) (see Sec. \ref{sec:CKA}) between the input and output of each transformer block are evaluated. Moreover, they are verified against to standard performance metrics such as the \gls{CLIP}-score and \gls{CMMD} (see Sec. \ref{sec:MetricBasedSelection}). \\
+In structural pruning, the selection of components to be removed or compressed is essential to ensure that the compressed model retains the highest possible image generation quality. Qualitatively, Fig. \ref{fig:PixArtBlockImportanceQualitatively} shows the effect of removing every transformer block from PixArt-$\Sigma$ individually on its image generation capabilities without subsequent fine-tuning. It is clearly visible that removing the first and last transformer blocks (blocks 1-4 and blocks 27-28) exerts the most significant influence on the image quality. This confirms the observation from previous work \cite{men2024shortgpt} that redundancies are primarily find in the middle part of transformer based models. To identify which blocks are best to prune meaning which blocks have a minimal contribution on the total image generation process, several different metrics can be employed. In the following section, different approaches are investigated to determine the importance of the individual transformer blocks. First, the traditional magnitude-based pruning and representational dissimilarity by computing the central kernal alignment score (\gls{CKA}) (Sec. \ref{sec:CKA}) between the input and output of each transformer block are evaluated. Moreover, they are verified against to standard performance metrics such as the \gls{CLIP}-score and \gls{CMMD} (Sec. \ref{sec:MetricBasedSelection}). \\
  Normally, several transformer blocks are removed or compressed simultaneously. Due to block interdependencies, two different options to identify the best grouping for blocks are investigated. First, a greedy-algorithm is applied, iteratively searching for the best next block to prune based on the already compressed model from previous iterations. Second, the block selection process is formulated as hyperparameter search leveraging the Optuna framework.
 
 
@@ -78,49 +83,48 @@ Fig. \ref{fig:PixArtBlockImportanceQualitatively} displays an example for the qu
 
 
 \subsubsection{Compression Criteria}
-In magnitude-based pruning strategies the model parts with the lowest averaged weight magnitude are considered to be less important for the overall model performance. Interestingly, in PixArt-$\Sigma$ the weight magnitudes of the initial layers, which have a substantial influence on the final image synthesis, have the lowest weight magnitudes across the architecture (see Fig. \ref{fig:PixArtBlockMagnitudeCLIP} and \ref{fig:PixArtBlockMagnitudeCMMD} which both show the weight magnitudes for every block compared to the \gls{CLIP}-score or \gls{CMMD}). This observation contradicts with the assumption of low impact by low weights magnitudes. It seems that despite the small weight magnitude the first layers act as important initial feature translator having a massive influence on model performance. Furthermore, the weight magnitudes of the final layers are only marginally higher than those of the middle layers, while the middle layers' weight magnitudes exhibit a high degree of similarity. This makes a precise selection of blocks for removal based solely on this heuristic difficult. Consequently, using the weight magnitude to identify redundant blocks within PixArt-$\Sigma$ is not a suitable criterion for strucural pruning in this context.
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.85\textwidth]{images/Experimente/PixArt_Block_Analysis/magnitude_vs_clip.png}
-	\caption[Magnitude-base pruning versus \gls{CLIP}-score]{The histogram shows the magnitudes of the weights of the individual transformer blocks (1-28). The blocks which have shown qualitatively (see fig. \ref{fig:PixArtBlockImportanceQualitatively}) to be very important for the image generation capabilities of PixArt-$\Sigma$ (see fig. \ref{fig:PixArtBlockImportanceQualitatively}) are marked with red. In addition, the \gls{CLIP}-scores for each block is displayed. The \gls{CLIP}-scores follow the qualitative observations in contrast to the magnitude-based analysis. }
-	\label{fig:magnitude_clip}
-	
-	\label{fig:PixArtBlockMagnitudeCLIP}
-\end{figure}
+In magnitude-based pruning strategies the model parts with the lowest averaged weight magnitude are considered to be less important for the overall model performance. Interestingly, in PixArt-$\Sigma$ the weight magnitudes of the initial layers, which have a substantial influence on the final image synthesis, have the lowest weight magnitudes across the architecture (Fig. \ref{fig:PixArtBlockImportanceMetrics}) which both show the weight magnitudes for every block compared to the \gls{CLIP}-score or \gls{CMMD}). This observation contradicts with the assumption of low impact by low weights magnitudes. It seems that despite the small weight magnitude the first layers act as important initial feature translator having a massive influence on model performance. Furthermore, the weight magnitudes of the final layers are only marginally higher than those of the middle layers, while the middle layers' weight magnitudes exhibit a high degree of similarity. This makes a precise selection of blocks for removal based solely on this heuristic difficult. Consequently, using the weight magnitude to identify redundant blocks within PixArt-$\Sigma$ is not a suitable criterion for strucural pruning in this context.
 
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.85\textwidth]{images/Experimente/PixArt_Block_Analysis/magnitude_vs_cmmd.png}
-	\caption[Magnitude-base pruning versus \gls{CMMD}]{The histogram shows the magnitudes of the weights of the individual transformer blocks (1-28). The blocks which have shown qualitatively to be very important for the image generation capabilities of PixArt-$\Sigma$ (see fig. \ref{fig:PixArtBlockImportanceQualitatively}) are marked with red. In addition, the \gls{CMMD} for each block is displayed. The \gls{CMMD} follow the qualitative observations in contrast to the magnitude-based analysis. }
-	
-	\label{fig:PixArtBlockMagnitudeCMMD}
-\end{figure}
 
-The \gls{CKA} score is computed for every block and every sampling step across 100 example prompts taken from the LAION dataset. Subsequently, these scores are averaged across all samples and time steps resulting in a mean similarity score $\mu_{CKA,i}$ for each individual PixArt-$\Sigma$ block. Averaging over the time steps should provide an estimate of the general importance of the block. However, the importance of a block at different time steps can vary drastically (see Appendix A). A low value indicates that the input and output of a specific block differs significantly, suggesting higher importance of the block. \\
-Both Fig. \ref{fig:PixArtBlockImportanceCLIP} and \ref{fig:PixArtBlockImportanceCMMD} show the transformation intensity $1-\mu_{CKA,i}$ for every block compared with \gls{CMMD} or \gls{CLIP}-score, a greate value signifies a more substantial feature transformaton. While blocks 17 and 22 stand out with their high values, the implied importance of these blocks cannot be confirmed by qualitative analysis (see Fig. \ref{fig:PixArtBlockImportanceQualitatively}). Furthermore, blocks 1, 2, 4, 27, and 28 are not uniquely identified as critical blocks for the performance of the model, as the values for blocks 19, 20, and 21 are higher, which would mark them as more relevant. As this ranking also fails to align with the qualitative review of block influence on the final image, the use of representational similarity for block selection in PixArt-$\Sigma$ must be viewed critically too.
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.85\textwidth]{images/Experimente/PixArt_Block_Analysis/cka_vs_clip.png}  % adjust filename and width
-	\caption[\gls{CKA} transformation intensity versus \gls{CLIP}-score]{The histogram shows the transformation intensity based on \gls{CKA} comparing the input and output features of the individual transformer blocks (1-28). The blocks which have shown qualitatively (see fig. \ref{fig:PixArtBlockImportanceQualitatively}) to be very important for the image generation capabilities of PixArt-$\Sigma$ are marked with red. In addition, the \gls{CLIP}-scores for each block is displayed. The \gls{CLIP}-scores follow the qualitative observations in contrast to the transformation intensity analysis. }
+%\begin{figure}[H]
+%	\centering
+%	\includegraphics[width=0.85\textwidth]{images/Experimente/PixArt_Block_Analysis/magnitude_vs_cmmd.png}
+%	\caption[Magnitude-base pruning versus \gls{CMMD}]{The histogram shows the magnitudes of the weights of the individual transformer blocks (1-28). The blocks which have shown qualitatively to be very important for the image generation capabilities of PixArt-$\Sigma$ (Fig. \ref{fig:PixArtBlockImportanceQualitatively}) are marked with red. In addition, the \gls{CMMD} for each block is displayed. The \gls{CMMD} follow the qualitative observations in contrast to the magnitude-based analysis. }
+%	
+%	\label{fig:PixArtBlockMagnitudeCMMD}
+%\end{figure}
 
-	\label{fig:PixArtBlockImportanceCLIP}
-\end{figure}
+The \gls{CKA} score is computed for every block and every sampling step across 100 example prompts taken from the LAION dataset. Subsequently, these scores are averaged across all samples and time steps resulting in a mean similarity score $\mu_{CKA,i}$ for each individual PixArt-$\Sigma$ block. Averaging over the time steps should provide an estimate of the general importance of the block. However, the importance of a block at different time steps can vary drastically (Appx. A). A low value indicates that the input and output of a specific block differs significantly, suggesting higher importance of the block. \\
+Both Fig. \ref{fig:PixArtBlockImportanceMetrics} show the transformation intensity $1-\mu_{CKA,i}$ for every block compared with \gls{CMMD} or \gls{CLIP}-score, a greate value signifies a more substantial feature transformaton. While blocks 17 and 22 stand out with their high values, the implied importance of these blocks cannot be confirmed by qualitative analysis (Fig. \ref{fig:PixArtBlockImportanceQualitatively}). Furthermore, blocks 1, 2, 4, 27, and 28 are not uniquely identified as critical blocks for the performance of the model, as the values for blocks 19, 20, and 21 are higher, which would mark them as more relevant. As this ranking also fails to align with the qualitative review of block influence on the final image, the use of representational similarity for block selection in PixArt-$\Sigma$ must be viewed critically too.
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.85\textwidth]{images/Experimente/PixArt_Block_Analysis/cka_vs_cmmd.png}  adjust filename and width	\caption[\gls{CKA} transformation intensity versus \gls{CMMD}]{The histogram shows the transformation intensity based on \gls{CKA} comparing the input and output features of the individual transformer blocks (1-28). The blocks which have shown qualitatively (see fig. \ref{fig:PixArtBlockImportanceQualitatively}) to be very important for the image generation capabilities of PixArt-$\Sigma$ are marked with red. In addition, the \gls{CMMD} for each block is displayed. The \gls{CMMD} follow the qualitative observations in contrast to the transformation intensity analysis. }
+%\begin{figure}[H]
+%	\centering
+%	\includegraphics[width=0.85\textwidth]{images/Experimente/PixArt_Block_Analysis/cka_vs_clip.png}  % adjust filename and width
+%	\caption[\gls{CKA} transformation intensity versus \gls{CLIP}-score]{The histogram shows the transformation intensity based on \gls{CKA} comparing the input and output features of the individual transformer blocks (1-28). The blocks which have shown qualitatively (Fig. \ref{fig:PixArtBlockImportanceQualitatively}) to be very important for the image generation capabilities of PixArt-$\Sigma$ are marked with red. In addition, the \gls{CLIP}-scores for each block is displayed. The \gls{CLIP}-scores follow the qualitative observations in contrast to the transformation intensity analysis. }
+%
+%	\label{fig:PixArtBlockImportanceCLIP}
+%\end{figure}
+%
+%\begin{figure}[H]
+%	\centering
+%	\includegraphics[width=0.85\textwidth]{images/Experimente/PixArt_Block_Analysis/cka_vs_cmmd.png}	\caption[\gls{CKA} transformation intensity versus \gls{CMMD}]{The histogram shows the transformation intensity based on \gls{CKA} comparing the input and output features of the individual transformer blocks (1-28). The blocks which have shown qualitatively (Fig. \ref{fig:PixArtBlockImportanceQualitatively}) to be very important for the image generation capabilities of PixArt-$\Sigma$ are marked with red. In addition, the \gls{CMMD} for each block is displayed. The \gls{CMMD} follow the qualitative observations in contrast to the transformation intensity analysis. }
+%
+%	\label{fig:PixArtBlockImportanceCMMD}
+%\end{figure}
 
-	\label{fig:PixArtBlockImportanceCMMD}
-\end{figure}
-
-Due to the contradictory results of magnitude-based pruning and \gls{CKA}-scores when compared with the qualitative observations, a third methodology was investigated, namely quantifying the importance of individual blocks based on standard performance metrics \cite{FastFlux}. Specifically, the \gls{CLIP}-score and \gls{CMMD} are computed on a small reference dataset consisting of 100 images from the LAION dataset. It should be noted that the standard protocols for computing statistically robust \gls{CMMD} and \gls{CLIP}-scores typically require larger datasets, e.g. upwards of 1,000. However, given the iterative nature of the greedy search (see Sec. \ref{sec:GreedyBlockSelection}) and the high computational overhead associated with repeated evaluations, using such a large reference set was prohibitively expensive. Therefore, a sample size of 100 images serves as a sufficient proxy to capture the relative importance ranking of the transformer blocks, providing the necessary directional guidance for the pruning process. As illustrated in the Fig. \ref{fig:PixArtBlockImportanceCLIP} and \ref{fig:PixArtBlockImportanceCMMD} (and likewise in Fig. \ref{fig:PixArtBlockMagnitudeCLIP} and \ref{fig:PixArtBlockMagnitudeCMMD}) both metrics closely align with the qualitative evaluation, confirming that the first four and the last two blocks exert the greatest impact on the final image quality. Consequently, these metrics are selected as primary criteria for identifying redundant blocks in PixArt-$\Sigma$.
+Due to the contradictory results of magnitude-based pruning and \gls{CKA}-scores when compared with the qualitative observations, a third methodology was investigated, namely quantifying the importance of individual blocks based on standard performance metrics \cite{FastFlux}. Specifically, the \gls{CLIP}-score and \gls{CMMD} are computed on a small reference dataset consisting of 100 images from the LAION dataset. It should be noted that the standard protocols for computing statistically robust \gls{CMMD} and \gls{CLIP}-scores typically require larger datasets, e.g. upwards of 1,000. However, given the iterative nature of the greedy search (Sec. \ref{sec:GreedyBlockSelection}) and the high computational overhead associated with repeated evaluations, using such a large reference set was prohibitively expensive. Therefore, a sample size of 100 images serves as a sufficient proxy to capture the relative importance ranking of the transformer blocks, providing the necessary directional guidance for the pruning process. As illustrated in the Fig. \ref{fig:PixArtBlockImportanceMetrics} both metrics closely align with the qualitative evaluation, confirming that the first four and the last two blocks exert the greatest impact on the final image quality. Consequently, these metrics are selected as primary criteria for identifying redundant blocks in PixArt-$\Sigma$.
 This ranking serves as foundation for the subsequent, more sophisticated block selection algorithm.\\
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{images/Experimente/PixArt_Block_Analysis/Block_Importance_Metrics.png}
+	\caption[Block Importance Metrics]{The figure presents the results of utilizing different metrics to determine the importance of the transformer blocks within PixArt-$\Sigma$. The first and last blocks which were identified as essential for image generation (Fig. \ref{fig:PixArtBlockImportanceQualitatively}) are shaded in every plot. (a) shows the transformation intensity between the input and output features of one block based on \gls{CKA}. (b) analyzis the weight magnitude of the individual transformer blocks. (c) presents the CLIP score obtained by removing every block individually on a small reference dataset. (d) investigates the \gls{CMMD} value on same small reference dataset.}
+	\label{fig:PixArtBlockImportanceMetrics}
+\end{figure}
 \subsubsection{Qualitative Block Analysis for SVD Compression}
-In the experiments in which the blocks were compressed via \gls{SVD}, the scores for block selection were computed based on compressed blocks. In Fig. \ref{fig:PixArtBlockImportanceCompressionQualitatively} the results of compressing every transformer block individually by $60\%$ are displayed. One important point to note is that compressing the first blocks (1-4) which have a large impact when the blocks are completely removed (see Fig. \ref{fig:PixArtBlockImportanceQualitatively}) resulting only in minimal image changes compared to the original image generated with the uncompressed model. Also the compression of block 28 results in less severe image quality degeneration than completely removing it. This demonstrates that these blocks are critical for the overall performans but also contain high degree of redundancies. Notably, the compression of block 27 also exhibits a strong smoothing of details like it was already observed by removing it indicating its importance. Compressing the middle blocks does not lead to a big drop of image quality but they differ even more from the original image compared to the first blocks. A possible explanation is that for setting the global structure which is done by the first blocks a low rank structure is sufficient. The middle blocks which are responsible for the details, e.g. direction in which the eagle looks, are more sensitive for compression.
+In the experiments in which the blocks were compressed via \gls{SVD}, the scores for block selection were computed based on compressed blocks. In Fig. \ref{fig:PixArtBlockImportanceCompressionQualitatively} the results of compressing every transformer block individually by $60\%$ are displayed. One important point to note is that compressing the first blocks (1-4) which have a large impact when the blocks are completely removed (Fig. \ref{fig:PixArtBlockImportanceQualitatively}) resulting only in minimal image changes compared to the original image generated with the uncompressed model. Also the compression of block 28 results in less severe image quality degeneration than completely removing it. This demonstrates that these blocks are critical for the overall performans but also contain high degree of redundancies. Notably, the compression of block 27 also exhibits a strong smoothing of details like it was already observed by removing it indicating its importance. Compressing the middle blocks does not lead to a big drop of image quality but they differ even more from the original image compared to the first blocks. A possible explanation is that for setting the global structure which is done by the first blocks a low rank structure is sufficient. The middle blocks which are responsible for the details, e.g. direction in which the eagle looks, are more sensitive for compression. However, 
 
 \begin{figure}[H]
 	\centering
@@ -131,6 +135,7 @@ In the experiments in which the blocks were compressed via \gls{SVD}, the scores
 \end{figure}
 
 \subsection{Block Selection Algorithms}
+\label{sec:PixartBlockSelectionAlgorithms}
 A further key challenge after establishing the pruning criteria as the combination of \gls{CLIP}-score and \gls{CMMD} in model pruning is identifying the optimal combinations of blocks to remove simultaneously. When removing only a single block, there are merely 28 possibilities for PixArt-$\Sigma$. However, if the goal is to reduce the model size by $50\%$ necessitating the removal of 14 blocks, the number of possible block combinations escalates to $\binom{28}{14}$. Therefore, it is computationally infeasible to evaluate the \gls{CLIP}-score and \gls{CMMD} for every possible combination.\\
 
 \subsubsection{Greedy}
@@ -155,7 +160,7 @@ Above, it is observed that in each iteration, the Optuna framework was able to i
 
 To finally evaluate both, Greedy and Optuna, approaches, the final post-fine-tuning performance was compared. In this step, PixArt-$\Sigma$ is compressed twice, once based on the greedy algorithm and once based on the Optuna algorithm as described above, each time targeting the same number of parameters (same compression rates $\pi_i = 0.6$ and same number of blocks in each iteration). Fig. \ref{fig:AdvantageOfOPtunaPostTraining} shows the corresponding distribution of blocks being compressed in each iteration. Please note that here "Greedy" specifies the compression scheme where the greedy algorithm is strictly utilized as the block selection algorithm, in contrast to the previous section, where "Greedy" just represented the prior for the Optuna algorithm.
   Looking at the block distribution, one observes that the early layers are compressed heavily in both schemes first, indicating a consensus on the high redundancy of these initial blocks. In the later layers, no clear structure is visible and the selections diverge. This lack of a consistent pattern suggests that the deeper blocks are largely interchangeable regarding their impact on the model's capacity. 
- The evaluation of the fine-tuned compressed models (see Fig. \ref{fig:BenchmarksOptuna}) does not provide clear evidence that the Optuna block selection algorithm led to better performing models post-fine-tuning. One observes that for the smallest model, the HPSv2 score is even better for the greedy algorithm, and a similar trend is observed for the second and third iteration regarding the GenEval score. This demonstrates that the fine-tuning process acts as an equalizer, effectively eliminating the small primary advantage of the Optuna algorithm. 
+ The evaluation of the fine-tuned compressed models (Fig. \ref{fig:BenchmarksOptuna}) does not provide clear evidence that the Optuna block selection algorithm led to better performing models post-fine-tuning. One observes that for the smallest model, the HPSv2 score is even better for the greedy algorithm, and a similar trend is observed for the second and third iteration regarding the GenEval score. This demonstrates that the fine-tuning process acts as an equalizer, effectively eliminating the small primary advantage of the Optuna algorithm. 
 
 
 
@@ -238,7 +243,7 @@ To finally evaluate both, Greedy and Optuna, approaches, the final post-fine-tun
 \label{sec:OneShot_vs_Progrosseve_Pruning}
 One-shot model pruning compresses the model to its target size in a single step, while progressive pruning employs an iterative scheme of incrementally removing parameters, followed by recovery fine-tuning phases. Both frameworks are tested using the complete block removal approach. The number of blocks removed per model and the corresponding number of fine-tuning steps are summarized in Tab. \ref{tab:SettingOneShotvsProgressive}. 
 
-%The exact blocks which are removed for each model can be found in the appendix \ref{sec:OneShotvsProgressiveBlockDistribution} (see Fig. \ref{fig:OneShotvsProgressiveBlockDistribution}). 
+%The exact blocks which are removed for each model can be found in the appendix \ref{sec:OneShotvsProgressiveBlockDistribution} (Fig. \ref{fig:OneShotvsProgressiveBlockDistribution}). 
 
 Fig. \ref{fig:OneShotvsProgressive} displays the performance of the one-shot versus progressive pruning on the HPSv2 and GenEval benchmarks across various compression ratios. To ensure a fair comparison, the models for both methods are fine-tuned for the same number of steps and on exactly the same data. Both benchmarks demonstrate that one-shot compression is a viable strategy in the low-compression regime (10\% to 20\% parameter reduction). However, as the compression ratio increases, the progressive approache becomes advantageous because the incremental removal of parameters allows the model to recover its generative capabilities more effectively compared to the abrupt removal of a large amount of parameters at once. Fig. \ref{fig:Example_OneShot_vs_Progressive} presents visual evidence that the model progressively pruned by 50\% generates images of higher quality than those obtained using the one-shot approach. Nevertheless, both approaches exhibit noticeable visual degradation at a compression ratio of 50 \%.
 
@@ -301,7 +306,7 @@ In this section, the effectiveness of the individual components of the knowledge
  	\item \textbf{Output-Only Distillation} ($\bm{\mathcal{L_\textbf{OutKD}}}$): \\ The \gls{MSE} between the final output of the student and the teacher serves as the sole learning signal.
  	\item \textbf{Standard Distillation} ($\bm{\mathcal{L_\textbf{OutKD}}} + \bm{\mathcal{L_\textbf{FeatKD}}}$): \\ The unweighted sum of the final output loss and the  intermediate feature loss is leveraged as the learning objective.
  	\item   \textbf{Hybrid Distillation} ($\bm{\mathcal{L_\textbf{OutKD}}} + \bm{\mathcal{L_\textbf{FeatKD}}} + \bm{\mathcal{L_\textbf{Task}}}$): \\ The original diffusion loss is added to the standard distillation loss. 
- 	\item \textbf{Normalized Distillation} ($\bm{\mathcal{L_\textbf{OutKD,norm}}} + \bm{\mathcal{L_\textbf{FeatKD,norm}}}$): \\ The final output and the intermediate feature loss are normalized (see Sec. \ref{sec:KDLNormalization}) before being summed together to ensure that individual layers do not dominate the total loss. 
+ 	\item \textbf{Normalized Distillation} ($\bm{\mathcal{L_\textbf{OutKD,norm}}} + \bm{\mathcal{L_\textbf{FeatKD,norm}}}$): \\ The final output and the intermediate feature loss are normalized (Sec. \ref{sec:KDLNormalization}) before being summed together to ensure that individual layers do not dominate the total loss. 
  	\item  \textbf{Normalized Hybrid Distillation} ($\bm{\mathcal{L_\textbf{OutKD,norm}}} + \bm{\mathcal{L_\textbf{FeatKD,norm}}}+ \bm{\mathcal{L_\textbf{Task}}}$): \\ This configuration extends the normalized distillation objective by incorporating the original diffusion task loss.
  \end{itemize}
  
@@ -429,17 +434,16 @@ In this section, the effectiveness of the individual components of the knowledge
  
  
  \subsection{Compression Strategy}
- As an alternative to the pruning strategy of removing entire transformer blocks from PixArt-$\Sigma$, a compression strategy utilizing \gls{SVD} compression is investigated. \gls{SVD} compression is applied to the \gls{MLP}, self-attention and cross-attention matrices within a transformer block. To evaluate the efficiency of the \gls{SVD} compression method against the structural block removal method, a representative operating point is chosen. The rank for the \gls{MLP} is set to $r_\text{MLP} = 512$ corresponding to a compression of approximately $44\%$ of its parameters and the ranks for the self- and cross-attention matrices are fixed to $r_\text{self-attn} = r_\text{cross-attn} = 128$ representing a parameter reduction of approximately $78\%$. This serves as a starting point. Later, the choice of compressing attention matrices more aggressively than the \gls{MLP} matrices is further investigated (see Sec. \ref{sec:MLPAttnDiffCompRatios}). 
+ \label{sec:CompressionStrategyPixart}
+ As an alternative to the pruning strategy of removing entire transformer blocks from PixArt-$\Sigma$, a compression strategy utilizing \gls{SVD} compression is investigated. \gls{SVD} compression is applied to the \gls{MLP}, self-attention and cross-attention matrices within a transformer block. To evaluate the efficiency of the \gls{SVD} compression method against the structural block removal method, a representative operating point is chosen. The rank for the \gls{MLP} is set to $r_\text{MLP} = 512$ corresponding to a compression of approximately $44\%$ of its parameters and the ranks for the self- and cross-attention matrices are fixed to $r_\text{self-attn} = r_\text{cross-attn} = 128$ representing a parameter reduction of approximately $78\%$. This serves as a starting point. Later, the choice of compressing attention matrices more aggressively than the \gls{MLP} matrices is further investigated (Sec. \ref{sec:MLPAttnDiffCompRatios}). 
  
-  Tab. \ref{tab:SVDCompressionFirstExp} compares the configurations of both methods, specifically the number of blocks removed or compressed and corresponding training duration for each model. Note that the number of training steps differs significantly, as the default criterion - a \gls{CMMD} value exceeding 0.1 - was employed to the pruning rate per iteration, consistent with the default settings (see Sec. \ref{sec:DefaultSetup}) . The observation that the \gls{SVD} allows for more parameters to be removed with a less severe impact on the \gls{CMMD} value on the small reference dataset is an initial indication that compression is a more nuanced method than block removal. 
+  Tab. \ref{tab:SVDCompressionFirstExp} compares the configurations of both methods, specifically the number of blocks removed or compressed and corresponding training duration for each model. Note that the number of training steps differs significantly, as the default criterion - a \gls{CMMD} value exceeding 0.1 - was employed to the pruning rate per iteration, consistent with the default settings (Sec. \ref{sec:DefaultSetup}) . The observation that the \gls{SVD} allows for more parameters to be removed with a less severe impact on the \gls{CMMD} value on the small reference dataset is an initial indication that compression is a more nuanced method than block removal. 
   
-  Fig. \ref{fig:SVD_vs_Removal} presents the performance for both methods on the HPSv2 and GenEval benchmarks. For both benchmarks, the \gls{SVD} compression method outperforms the complete block removal method in low and high compression regimes. This suggests that distributing the parameter reduction across multiple blocks via compression is less adverse to model performance compared to removing individual blocks completely. 
+  Fig. \ref{fig:SVD_vs_Removal} presents the performance for both methods on the HPSv2 and GenEval benchmarks. For both benchmarks, the \gls{SVD} compression method outperforms the complete block removal method in low- and high-compression regimes. This suggests that distributing the parameter reduction across multiple blocks via compression is less adverse to model performance compared to removing individual blocks completely. 
   
-  For a qualitative comparison of both methods, Fig. \ref{fig:Example_Images_SVD_vs_Removal} provides a set of example images for compressions ranging from 90\% to 50\% of the original model size. The advantage of the \gls{SVD} compression method becomes particularly evident in the high-compression regimes (60\% and 50\%). Its images contain more details, exhibit fewer artefacts and are more closely resembel to the original image. Specifically, column two demonstrates that the woman's face is accurately preserved up to 60\% model when applying the \gls{SVD} compression technique. Moreover, column one shows that in high-compression regimes, complete block removal can lead to severe deviations compared to the original image, in contrast to the \gls{SVD} compression technique. Additionally, column five reveals that the images generated via complete block removal exhibit reduced sharpness and the plants seem to be blurry compared to those produced by \gls{SVD} compression.
-  
-   Interestingly, at a 90\% and 80\% compression ratio, the \gls{SVD} compression technique leads to a valid but semantically altered image in column one, where the man's head is replaced by that of an alien. However, at higher compression stages the model recovers and correctly generates a human head again. 
+  For a qualitative comparison of both methods, Fig. \ref{fig:Example_Images_SVD_vs_Removal} provides a set of example images for models ranging from 90\% to 50\% of the original model size. The advantage of the \gls{SVD} compression method becomes particularly evident in the high-compression regimes (60\% and 50\%). Its images contain more details, exhibit fewer artefacts and are more closely resembel to the original image. Specifically, column two demonstrates that the woman's face is accurately preserved up to 60\% model when applying the \gls{SVD} compression technique. Moreover, column one shows that in high-compression regimes, complete block removal can lead to severe deviations compared to the original image, in contrast to the \gls{SVD} compression technique. 
    
-  In conclusion, the qualitative results confirm the quantitative results of the benchmarks and demonstrate a clear advantage of \gls{SVD} compression over entire block removal.
+  In conclusion, the qualitative results confirm the quantitative results of the benchmarks and demonstrate a clear advantage of \gls{SVD} compression over entire block removal indicating that most blocks have an independent functional task being difficult to fully recover by neighbouring blocks, but there are redundancies within the blocks which can be effectively reduced by \gls{SVD} compression.
  
  \begin{table}[htbp]
  	\centering
@@ -497,26 +501,26 @@ In this section, the effectiveness of the individual components of the knowledge
  
  \subsection{Sensitivity Analysis of MLP and Attention Layers under \gls{SVD} Compression}
  \label{sec:MLPAttnDiffCompRatios}
- In this section the \gls{SVD} compression strategy is applied but otherwise the default settings remains. The goal is to investigate how to distribute the parameter removal of the individual components of one transformer blocks best. Therefore, individual compression ratios are applied to the \gls{MLP} matrix and the attention matrices whereby both self- and cross-attention matrices are prunded by the same amount. In total three different scenarios are explored:
+ In this section the \gls{SVD} compression strategy is applied but otherwise the default settings remain. The goal is to investigate how to best distribute the parameter removal within each transformer block. Therefore, individual compression ratios are applied to the \gls{MLP} matrix and the attention matrices whereby both self- and cross-attention matrices are pruned by the same amount. In total three different scenarios are explored:
  
  \begin{itemize}
  	\item \textbf{Equal Compression}: \\
- 	Both \gls{MLP} and attention matrices are compressed by the same percentage $p_\text{MLP} = p_\text{Attn} = 60\%$. 
+ 	Both \gls{MLP} and attention matrices are compressed by the same percentage $c_\text{MLP} = c_\text{Attn} = 60\%$. 
  	\item \textbf{Attention-Dominant Compression}: \\
- 	The attention matrices are more strongly compressed $p_\text{Attn} = 80\%$ compared to the \gls{MLP} matrix $p_\text{MLP} = 40\%$.
+ 	The attention matrices are more strongly compressed $c_\text{Attn} = 80\%$ compared to the \gls{MLP} matrix $c_\text{MLP} = 40\%$.
  	 	\item \textbf{\gls{MLP}-Dominant Compression}: \\
- 	The \gls{MLP} matrix are more strongly compressed $p_\text{Attn} = 80\%$ compared to the attention matrices $p_\text{MLP} = 40\%$.
+ 	The \gls{MLP} matrix is more strongly compressed $c_\text{Attn} = 40\%$ compared to the attention matrices $c_\text{MLP} = 80\%$.
  \end{itemize}
  Note that the combined parameter count of self- and cross-attention is approximately equal to the parameter count of the \gls{MLP}. Therefore, all configurations remove a similar amount of total parameters of one transformer block. \\
 The scores in Fig. \ref{fig:DistributionCompressionRatios} reveal two distinct trends. The HPSv2 score demonstrates that prioritizing the compression of the attention matrices consistently yields higher image quality than the method focused on compressing the MLP matrices. The GenEval benchmark, however, shows that although the attention-dominant approach is advantageous in the low-compression regime, it declines sharply under heavier compression, eventually falling below the MLP-dominant approach for models with approximately 400 million parameters. 
 
  One possible explanation for the divergence between the two benchmarks is the distribution of tasks among the different components of a transformer block. A recent study suggests \cite{dong2025attention} that MLPs are crucial for knowledge storage and the processing of visual features. Consequently, strong compression of these layers leads to a significant decrease in image quality (see HPSv2 benchmark yellow line).
-  Fig. \ref{fig:ImagesAttnVsMLP} visually supports the result of the HPSv2 benchmark. The images clearly demonstrate that the \gls{MLP}-dominant approach lacks detail, texture, and structural integrity in the high compression regime. At model sizes below 71\%, the \gls{MLP}-dominant approch hallucinates an unprompted headband in the samurai image (column four) and the facial features become distorted at the highest compression ratio. Moreover, for the 60\% model, the burger (column two) is hovering in the air instead of being placed on the table, and the humanoid (column six) is completly distorted. In contrast, the models of the attention-dominant approach, despite being approximately of the same size, do not indicate such severe structural errors, although a general degeneration of image quality at higher compression rate is also visible. 
+  Fig. \ref{fig:ImagesAttnVsMLP} visually supports the result of the HPSv2 benchmark. The images clearly demonstrate that the \gls{MLP}-dominant approach lacks detail, texture, and structural integrity in the high compression regime. At model sizes below 71\%, the \gls{MLP}-dominant approach hallucinates an unprompted headband in the samurai image (column four) and the facial features become distorted at the highest compression ratio. Moreover, for the 60\% model, the burger (column two) is hovering in the air instead of being placed on the table, and the humanoid (column six) is completely distorted. In contrast, the models of the attention-dominant approach, despite being approximately of the same size, do not indicate such severe structural errors, although a general degeneration of image quality at higher compression rate is also visible. 
   
   
- In contrast, the GenEval benchmark measures text-image alignment. Since the cross-attention mechanism is responsible for integrating the text prompts into the visual latents its compression in many transformer blocks severily compromise this linking. While the image quality suffers less than with the strong MLP compression, the model's text comprehension deteriorates disproportionately. This explains why the attention-dominant approach loses its advantage for heavy compression, and is in some cases even worse than the MLP-dominant approach in the GenEval benchmark. 
+ In contrast, the GenEval benchmark measures text-image alignment. Since the cross-attention mechanism is responsible for integrating the text prompts into the visual latents its compression in many transformer blocks severely compromises this linking. While the image quality suffers less than with the strong MLP compression, the model's text comprehension deteriorates disproportionately. This explains why the attention-dominant approach loses its advantage for heavy compression, and is in some cases even worse than the MLP-dominant approach in the GenEval benchmark. 
  
- The equal compression strategy exhibits results similar to the attention-dominant compression approach in the high-compression regimes but is slightly worse in the low-compression regime. 
+ The equal compression strategy serves as baseline compromise between the \gls{MLP}- and attention-dominant approach. It exhibits results similar to the attention-dominant compression approach in the high-compression regimes but is slightly worse in the low-compression regime. 
  
     \begin{figure}[H]
  	\centering
@@ -550,15 +554,40 @@ The scores in Fig. \ref{fig:DistributionCompressionRatios} reveal two distinct t
 
  
  \subsection{SVD Compression Scheduling}
-In previous experiments, SVD compression was applied to each block at most once. However, restricting compression to untouched blocks may be suboptimal. Incrementally reducing the size of an already compressed block could potentially preserve model performance better than pruning a dense block. For this reason, the linear progressive compression scheme defined in Sec. \ref{sec:LinearProgressiveCompression} is investigated. Assuming that a fixed number of parameters should be removed per iteration, a desgin choice is how to distribute them across the model. One can either compress many blocks slightly or compress a few blocks heavily. To investigate which works better, the linear progressive compression scheme is performed for four different cases where the number of compressed blocks per iteration differs:
+ \label{sec:CompressionSchedulingPixart}
+In previous experiments, SVD compression was applied to each block at most once. However, restricting compression to untouched blocks may be suboptimal. Incrementally reducing the size of an already compressed block could potentially preserve model performance better than pruning a new dense block. For this reason, the linear progressive compression scheme defined in Sec. \ref{sec:LinearProgressiveCompression} is investigated. Assuming that a fixed number of parameters should be removed per iteration, a design choice is how to distribute them across the model. One can either compress many blocks slightly or compress a few blocks heavily. To investigate which works better, the linear progressive compression scheme is performed for four different cases where the number of compressed blocks per iteration differs:
 \begin{itemize}
 	\item \textbf{SVD\_7}: Seven blocks are compressed per iteration.
 	\item \textbf{SVD\_14}: Fourteen blocks are compressed per iteration.
 	\item \textbf{SVD\_21}: Twenty-one blocks are compressed per iteration.
-	\item \textbf{SVD\_28}: All blocks are compressed per iteration.
+%	\item \textbf{SVD\_28}: All blocks are compressed per iteration.
 \end{itemize}
-As block selection criteria the parameter-weighted \gls{CMMD} value is utilized as in previous experiments in this Master's thesis to \gls{SVD} compression technique and within each iteration 10\% of the original number of parameters are removed.  \\
+Following the methodology of previous experiments using the \gls{SVD} compression technique, the parameter-weighted \gls{CMMD} value is utilized s block selection criteria and within each iteration 10\% of the original number of parameters are removed.  
 
+Fig. \ref{fig:CompressionSchedule} presents the performance of the three different compression schedules on the HPSv2 and GenEval benchmarks. The differences in HPSv2 scores are negligible and no clear trend of a superiority of one schedule over another can be observed. In contrast, a significant drop of the \textbf{SVD\_7} schedule from 70\% to 60\% model size is observed while \textbf{SVD\_14}'s and \textbf{SVD\_21}'s performance remain comparable. This suggests that to follow text prompt closely during the generation process, it is advantageous to distribute the removed parameters more evenly over the model.
+
+
+  \begin{figure}[H]
+	\centering
+	% --- First Image ---
+	\begin{subfigure}[b]{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{images/Experimente/Compression_Schedul/SVD_param_distribution_hpsv2.png}
+		\caption{HPSv2 Benchmark}
+		\label{fig:image1}
+	\end{subfigure}% <--- WICHTIG: Dieses % verhindert ein ungewolltes Leerzeichen!
+	\hfill
+	% --- Second Image ---
+	\begin{subfigure}[b]{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{images/Experimente/Compression_Schedul/SVD_param_distribution_geneval.png}
+		\caption{GenEval Benchmark}
+		\label{fig:image2}
+	\end{subfigure}
+	
+	\caption[Benchmark Performance: SVD Compression Schedules]{Impact of distributing the compressed parameters over different numbers of blocks.}
+	\label{fig:CompressionSchedule}
+\end{figure}
 
 
  \textbf{Untersuche ob immer neue Blöcke gepruned werden oder eher dieselbenr mehrfach}
@@ -571,6 +600,7 @@ As block selection criteria the parameter-weighted \gls{CMMD} value is utilized 
  Evaluiere Bildqualität, Text-Generierungsfähigkeiten, Bilder auf Mappillary und Cityscapes
  
  \subsection{Summary of Best Settings for Structural Model Pruning}
+ \label{sec:PixArtBestModel}
  Considering the results of all experiments, they lead to the following best configuration for structural model pruning:
  
  \begin{itemize}
@@ -584,14 +614,14 @@ As block selection criteria the parameter-weighted \gls{CMMD} value is utilized 
  	\item \textbf{Knowledge Distillation Loss} \\
  	The results indicates that the combination of the original diffusion loss together with the normalized feature and output loss leads to the strongest performance in all pruning regimes (sec. \ref{sec:ExpKDLoss}). 
  	
- 	\item \textbf{fine-tuning Protocol} \\
- 	The finding suggests that incorporating the LAION-PixArt dataset into the training procedure is critical as it contains images of higher quality demonstrated in the higher HPSv2 and GenEval scores for the three and two stage fine-tuning protocols. However, the results regarding the superiority of three stage protocal over the two stage protocal are inconclusive. It is not clear if local fine-tuning is beneficial or not for high compression regimes (sec. \ref{sec:fine-tuningProtocol}). Therefore, the two stage approach is chosen for the final setting.
+ 	\item \textbf{Fine-Tuning Protocol} \\
+ 	The finding suggests that incorporating the LAION-PixArt dataset into the training procedure is critical as it contains images of higher quality demonstrated in the higher HPSv2 and GenEval scores for the three and two stage fine-tuning protocols. However, the results regarding the superiority of three stage protocal over the two stage protocal are inconclusive. Based on the benchmark performance it is not clear if local fine-tuning is beneficial or not for high compression regimes (sec. \ref{sec:fine-tuningProtocol}). However, due to the visual more compelling images from the three-stage approach, it is chosen as the best setting.
  	
  	\item \textbf{Structural Compressin Strategy} \\
  	The experiments demonstrated that leveraging \gls{SVD} compression over complete block removal leads to superior performance even for less training steps (sec. \ref{sec:StructuralCompressionStrategy}).
  	
  	\item \textbf{Sensitivity Analysis of MLP and Attention Layers under \gls{SVD} Compression} \\
- 	The sensitivity analysis for \gls{MLP} and attention layers revealed that strong compression of \gls{MLP}s led to more severe deterioration than heavy compression of attention layers. However, compressing both \gls{MLP} and attention layers equally yielded performance comparable to the strong attention compression experiment. Consequently, the equal compression scheme was adopted for the final configuration.
+ 	The sensitivity analysis for \gls{MLP} and attention layers revealed that strong compression of \gls{MLP}s led to more severe deterioration than heavy compression of attention layers. However, compressing both \gls{MLP} and attention layers equally yielded performance comparable to the strong attention compression experiment but was slightly worse in the low-compression regime. Consequently, the attention-based compression scheme was adopted for the final configuration.
  	
  	\item \textbf{\gls{SVD} Compression Scheduling} \\
  	

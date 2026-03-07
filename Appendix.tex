@@ -299,3 +299,147 @@ For this experiment the importance of blocks determined in \cite{FastFlux} was l
 	\end{tabular}
 \end{table}
 
+\section{Block Importance Analysis}
+\label{appx:FluxBlockImportanceAnalysis}
+Fig. \ref{fig:AppxBlockAnalysisRemovalDouble} and Fig. \ref{fig:AppxBlockAnalysisRemovalSingle} present qualitative example of a generated images when one complete double- or single-stream block is removed. 
+
+Fig. \ref{fig:AppxBlockAnalysisCompressionDouble} and Fig. \ref{fig:AppxBlockAnalysisCompressionSingle} present qualitative example of a generated images when one complete double- or single-stream block is compressed via truncated \gls{SVD}. 
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{images/Experimente/Flux/Block_Analysis/BlockRemovalDouble.pdf}
+	\caption[Flux.1-dev Qualitative Analysis Block Removal - Double-Stream Blocks]{Qualitative analysis of the impact of removing individual double-stream blocks from the Flux.1-dev architecture.}
+	\label{fig:AppxBlockAnalysisRemovalDouble}
+\end{figure}
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{images/Experimente/Flux/Block_Analysis/BlockRemovalSingle.pdf}
+	\caption[Flux.1-dev Analysis Block Removal - Single-Stream Blocks]{Qualitative analysis of the impact of removing individual single-stream blocks from the Flux.1-dev architecture.}
+	\label{fig:AppxBlockAnalysisRemovalSingle}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{images/Experimente/Flux/Block_Analysis/BlockCompressionDouble.pdf}
+	\caption[Flux.1-dev Qualitative Analysis Block Compression - Double-Stream Blocks]{Qualitative analysis of the impact of compressing individual double-stream blocks from the Flux.1-dev architecture by 60\%.}
+	\label{fig:AppxBlockAnalysisCompressionDouble}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{images/Experimente/Flux/Block_Analysis/BlockCompressionSingle.pdf}
+	\caption[Flux.1-dev Qualitative Analysis Block Compression - Single-Stream Blocks]{Qualitative analysis of the impact of compressing individual single-stream blocks from the Flux.1-dev architecture by 60\%.}
+	\label{fig:AppxBlockAnalysisCompressionSingle}
+\end{figure}
+
+\section{Block Selection}
+\label{sec:FluxBlockImportanceAnalysisAppendix}
+Example images for various compressed models (68\%, 57\% and 43\%) are presented here obtained with the random and importance-aware block selection for Flux.1-dev as described in Sec. \ref{sec:FluxBlockImportanceAnalysis}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{images/Experimente/Flux/BlockSelection/Random_vs_Importance_Block_Selection_Appendix_model_68.pdf}
+	\caption{Qualitative examples for random and importance-aware block selection for pruning Flux.1-dev to 68\% of the original size.}
+	\label{fig:FinetuningProtocol_80}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{images/Experimente/Flux/BlockSelection/Random_vs_Importance_Block_Selection_Appendix_model_57.pdf}
+	\caption{Qualitative examples for random and importance-aware block selection for pruning Flux.1-dev to 57\% of the original size.}
+	\label{fig:FinetuningProtocol_80}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{images/Experimente/Flux/BlockSelection/Random_vs_Importance_Block_Selection_Appendix_model_43.pdf}
+	\caption{Qualitative examples for random and importance-aware block selection for pruning Flux.1-dev to 43\% of the original size.}
+	\label{fig:FinetuningProtocol_80}
+\end{figure}
+
+
+\section{Training-Free Compression}
+
+	\begin{table}[H]
+	\centering
+	\caption[Training-Free Compression: \gls{SVD} Compression Details]{Details about linear compression scheme applied for \gls{SVD} based-compression in training-free setting.}
+	\label{tab:TrainingFreeMethodsSVD}
+	\begin{tabular}{@{}lccc@{}}
+		\toprule
+		\textbf{Model Size} & \textbf{Modified Blocks} & \textbf{Base Compression Ratio}  & \textbf{Slope $x$}  \\ \midrule
+		90\% & 30 & 25\% & 0.0083 \\
+		80\% & 30 & 50\% & 0.0166\\
+		70\% & 30 & 75\% & 0.0249\\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+	\begin{table}[H]
+	\centering
+	\caption[Training-Free Compression: Complete Block Removal Details]{Details about complete block removal scheme in training-free setting.}
+	\label{tab:TrainingFreeMethodsRemoval}
+	\begin{tabular}{@{}lccc@{}}
+		\toprule
+		\textbf{Model Size} & \textbf{No. Removed Blocks} & \textbf{Removed Double Blocks}   \\ \midrule
+		90\% & 3 & 13,16,5\\
+		80\% & 7 & 13, 16, 5, 3, 17, 8, 15\\
+		70\% & 10 & 13, 16, 5, 3, 17, 8, 15, 6,14, 18\\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{images/Experimente/Flux/TrainingFree_paper/TrainingFreeAppendix_model90.pdf}
+	\caption[Qualitative Examples Training-Free approaches for 90\% Model]{Example images of the 90\% models obtained by EcoDiff, complete block removal and truncated \gls{SVD} compression.}
+	\label{fig:Examples_TrainingFree90}
+\end{figure}
+
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{images/Experimente/Flux/TrainingFree_paper/TrainingFreeAppendix_model70.pdf}
+	\caption[Qualitative Examples Training-Free approaches for 70\% Model]{Example images of the 70\% models obtained by EcoDiff, complete block removal and truncated \gls{SVD} compression.}
+	\label{fig:Examples_TrainingFree70}
+\end{figure}
+
+\section{Linear Progressive SVD Compression - Preliminary Experiments}
+
+\begin{table}[H]
+	\centering
+	\caption{Overview of compression metrics per iteration.}
+	\label{tab:compression_iterations}
+	\begin{tabular}{ccccc}
+		\toprule
+		\textbf{Iteration} &\textbf{Model Size} & \textbf{\# Blocks Modified} & \textbf{Base Compression Ratio} \\
+		\midrule
+		\multirow{3}{*}{1} 
+		& \multirow{3}{*}{90\%}  & 20 & 0.3  \\
+		&  &   30 & 0.25  \\
+		&  & 40  & 0.2  \\
+		\midrule
+		\multirow{3}{*}{2} 
+		& \multirow{3}{*}{80\%}  & 20 & 0.3  \\
+		&  &   30 & 0.25  \\
+		&  & 40  & 0.2  \\
+		\midrule
+		\multirow{3}{*}{3} 
+		& \multirow{3}{*}{70\%}  & 20 & 0.3  \\
+		&  &   30 & 0.3  \\
+		&  & 40  & 0.2  \\
+		\midrule
+		\multirow{3}{*}{4} 
+		& \multirow{3}{*}{60\%}  & 20 & 0.35  \\
+		&  &   30 & 0.35  \\
+		&  & 40  & 0.25  \\
+		\midrule
+		\multirow{3}{*}{5} 
+		& \multirow{3}{*}{50\%}  & 20 & 0.6  \\
+		&  &   30 & 0.4  \\
+		&  & 40  & 0.35  \\
+	\end{tabular}
+\end{table}
+
+
+

@@ -1,5 +1,10 @@
 \section{Flux.1-dev Pruning}
-Flux.1-dev is a 11.9 billion parameter rectified flow model capable of generating detailed, high-quality, and high-aesthetic images. Due to its high parameter count, it is one primary target for model reduction techniques in the literature and should be used to demonstrate the effectiveness of the best settings found for PixArt-$\Sigma$ by comparing it to various competitors. Furthermore, the method is also applied to Flux.1-schnell to demonstrate that it works for step-distilled models. In addition, as training of Flux.1-dev is extremely computationally intensive, it is investigated how well \gls{SVD} compression works without any subsequent fine-tuning. Furthermore, the training-free GRASP method (see Sec. \ref{sec:GRASP}) originally developped for \gls{LLM} compression is transfered to Flux1.dev.
+Flux.1-dev is an 11.9 billion parameter rectified flow model capable of generating detailed, high-quality, and high-aesthetic images. Due to its high parameter count, it is a primary target for model reduction techniques in the literature. In this section, the compression of Flux.1-dev via low-rank approximation of projection matrices within transformer blocks is investigated. To this end, the insights obtained by previous experiments on PixAr-$\Sigma$ (Sec. \ref{sec:PixArtExp}) are leveraged and tested to determine if they hold for models in the high-parameter regime. Notably, certain experiments are re-evaluated specifically for Flux.1-dev to account for its distinct architectural characteristics and significantly larger scale compared to PixArt-$\Sigma$.
+
+First, Sec. \ref{sec:flux_training_details} summarizes the fine-tuning and default compression settings for Flux.1-dev applied after compression.
+Second, as for PixArt-$\Sigma$ the qualitative block importance within Flux.1-dev is analyzed (Sec. \ref{sec:QualitativeBlockAnalysisFlux}). Third, the training-free performance of \gls{SVD}-based compression is evaluated and compared to complete block removal and EcoDiff \cite{EcoDiff} (Sec. \ref{sec:trainingFreeCompression}). In Sec. \ref{label} the main results and the comparison with competitors are reported, followed by the application of the method to a step-distilled \gls{DiT}, namely Flux.schnell (Sec. \ref{}). In addition, Sec. \ref{label} investigates the distribution of removed parameters over a varying number of blocks, whereas Sec. \ref{label} demonstrates the effectiveness of importance-aware block selection over random or uniform selection. Finally, Sec. \ref{label} provides an additional learning-free approach, GRASP (Sec. \ref{sec:GRASP}) which is transfgered from \gls{LLM}s to \gls{DiT} for potential future research.
+
+
 
 \subsection{Training Details}
 \label{sec:flux_training_details}
@@ -20,13 +25,13 @@ All experiments are built upon the training and inference code for Flux.1-dev pu
 	with $\lambda_\text{OutKD}  = 10$, $\lambda_\text{SingleFeatKD}=0.01$ and $\lambda_\text{DoubleFeatKD}=0.1$.
 	
 	\item \textbf{Fine-Tuning Protocol} \\
-	The complete model is directly retrained on the LAION-Flux.1-dev dataset with image resolution of $1024 \times 1024$.
+	The complete model is directly fine-tuned on the LAION-Flux.1-dev dataset with image resolution of $1024 \times 1024$ containing in total 190 000 images. In contrast to PixArt-$\Sigma$, the original LAION dataset was not used as its quality is much lower than for the Flux.1-dev LAION dataset.
 	
 	\item \textbf{Structural Compression Strategy} \\
 	The \gls{SVD} is leveraged for compressing Flux.1-dev blocks. The individual components of double-stream and single-stream blocks and their corresponding parameter counts can be found in Tab. \ref{tab:Flux_parameter_count}.
 	
 	\item \textbf{\gls{SVD} Compression Scheduling} \\
-	The linear progressive pruning scheme is utilized to compress Flux.1-dev
+	The linear progressive pruning scheme is utilized to compress Flux.1-dev. 
 	
 \end{itemize} 
 
@@ -72,6 +77,8 @@ All experiments are built upon the training and inference code for Flux.1-dev pu
 		Apply T5 Attn Mask & True \\
 		Data Loader Workers & 6 \\
 		Seed & 42 \\
+		Training Dataset & LAION-Flux.1-dev\\
+		Size Training Dataset & 190 000 \\
 		\bottomrule
 	\end{tabular}
 \end{table}
@@ -79,174 +86,105 @@ All experiments are built upon the training and inference code for Flux.1-dev pu
 
 \subsection{Qualitative Block Analysis}
 \label{sec:QualitativeBlockAnalysisFlux}
-To identify blocks of lower importance in the Flux.1-dev architecture, the \gls{CMMD} values weighted by the removed parameters are calculated, as previously discussed in Sec. \ref{sec:MetricBasedSelection}. To obtain a better understanding of the impact of the individual blocks, a qualitative block analysis is performed for Flux.1-dev as in Sec. \ref{sec:ExpBlockImportanceAnalysis} for PixArt-$\Sigma$. \\
-Fig. \ref{fig:BlockAnalysisRemovalSingle} presents images generated after removing a single-stream block comprising approximately 142 million parameters. In most cases, removing a single block does not lead to observable artifacts. The direction in which the tiger head points may change, but visible artifacts or severe changes are only observed when removing single-stream block 35, which results in vertical stripes, or block 38, which leads to overly smoothed details.\\
-Similarly, only the removal of a few double-stream blocks, containing approximately 340 million parameters, leads to severe degradation of the generated images (see Fig. \ref{fig:BlockAnalysisRemovalDouble}). In particular, double-stream blocks 1, 2 and 3 seem to be critical, because the image generation capabilities of Flux.1-dev completely collapse after their removal. A possible reason is that early blocks are essential for the text-image alignment and the global layout structure. In addition, the removal of the last double-stream block leads to a notable lighting change, while the content of the image remains intact. \\
-Overall, the double-stream blocks seem to have a greater impact on the image generation quality, which may be explained by their higher parameter count. Interestingly, for the double-stream blocks, a similar U-shaped importance ranking emerges, as previously noted for PixArt-$\Sigma$ indicating that the transformer blocks at the very beginning and end are the most critical. \\\\
-Fig. \ref{fig:BlockAnalysisCompressionSingle} and Fig. \ref{fig:BlockAnalysisCompressionDouble} present visual results for compressing individual blocks by 60\% rather than removing them entirely. Similar to PixArt-$\Sigma$, blocks whose removal leads to severe degradation in image quality, can be compressed without creating artifacts, e.g. single-stream blocks 35 and 38 or double-stream blocks 1, 2 and 19. The only double-stream block which appears to be highly critical and even compression exerts a substantial impact on the generated image quality is double-stream block number 3, whose compression results in visible stripes. \\\\
-Ultimately, the visual robustness of the compressed double-stream blocks strongly aligns with the parameter-weighted \gls{CMMD} predictions displayed in Fig. \ref{fig:flux_cmmd_broken_axis_scaled}. It shows that all double-stream blocks except block number 3 are the first choice for compression. However, no clear importance structure within the double- or single-stream blocks can be identified.
+To identify blocks of lower importance in the Flux.1-dev architecture, the \gls{CMMD} values weighted by the number of removed parameters are calculated, as previously discussed in Sec. \ref{sec:MetricBasedSelection}. To obtain a better understanding of the impact of the individual blocks, a qualitative block analysis is performed for Flux.1-dev as in Sec. \ref{sec:ExpBlockImportanceAnalysis} for PixArt-$\Sigma$. 
+
+Overall, the double-stream blocks, each containing approximately 340 million parameters, seem to have a greater impact on the image generation capabilities, which may be explained by their higher parameter count. 
+Fig. \ref{fig:OverviewCompressionRemovalDouble} presents visual examples for removing (upper row) or compressing these blocks by 60\% (lower row). In particular, removing double-stream blocks 1, 2, and 3 proves to be critical, because the image generation capabilities of Flux.1-dev completely collapse after their removal. A possible reason is that early blocks are essential for text-image alignment and establishing the global layout structure. In addition, the removal of the last double-stream block leads to a notable shift in lighting, while the content of the image remains intact. In contrast, compressing double-stream blocks seems less critical. Only compressing double-stream block number three leads to visible artifacts.
+
+Fig. \ref{fig:OverviewCompressionRemovalSingle} presents images generated after removing (upper row) or compressing (lower row) a single-stream block comprising approximately 142 million parameters. In most cases, removing a single block does not introduce observable artifacts. The composition of the images changes slightly, but visible artifacts or severe degradations are only observed when removing single-stream block 35, which results in vertical stripes, or block 38, which leads to overly smoothed details. The compression of single-stream blocks by 60\% does not yield to any observable artifacts.
+
+For a complete overview of all removed or compressed blocks please refere to Appx. \ref{appx:FluxBlockImportanceAnalysis}
+
+
+%Ultimately, the visual robustness of the compressed double-stream blocks strongly aligns with the parameter-weighted \gls{CMMD} predictions displayed in Fig. \ref{fig:flux_cmmd_broken_axis_scaled}. It shows that all double-stream blocks except block number 3 are the first choice for compression. However, no clear importance structure within the double- or single-stream blocks can be identified.
 
 	\begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\textwidth]{images/Experimente/Flux/Block_Analysis/BlockRemovalSingle.pdf}
+	\includegraphics[width=\textwidth]{images/Experimente/Flux/Block_Analysis/OverviewCompressionRemoval.pdf}
 	\caption[Flux.1-dev Analysis Block Removal - Single-Stream Blocks]{Qualitative analysis of the impact of removing individual single-stream blocks from the Flux.1-dev architecture.}
-	\label{fig:BlockAnalysisRemovalSingle}
+	\label{fig:OverviewCompressionRemovalDouble}
 \end{figure}
-	\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.7\textwidth]{images/Experimente/Flux/Block_Analysis/BlockRemovalDouble.pdf}
-	\caption[Flux.1-dev Qualitative Analysis Block Removal - Double-Stream Blocks]{Qualitative analysis of the impact of removing individual double-stream blocks from the Flux.1-dev architecture.}
-	\label{fig:BlockAnalysisRemovalDouble}
-\end{figure}
-
 
 	\begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\textwidth]{images/Experimente/Flux/Block_Analysis/BlockCompressionSingle.pdf}
-	\caption[Flux.1-dev Qualitative Analysis Block Compression - Single-Stream Blocks]{Qualitative analysis of the impact of compressing individual single-stream blocks from the Flux.1-dev architecture by 60\%.}
-	\label{fig:BlockAnalysisCompressionSingle}
-\end{figure}
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.9\textwidth]{images/Experimente/Flux/Block_Analysis/BlockCompressionDouble.pdf}
-	\caption[Flux.1-dev Qualitative Analysis Block Compression - Double-Stream Blocks]{Qualitative analysis of the impact of compressing individual double-stream blocks from the Flux.1-dev architecture by 60\%.}
-	\label{fig:BlockAnalysisCompressionDouble}
-\end{figure}
-
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.7\textwidth]{images/Experimente/Flux/Block_Analysis/flux_cmmd_broken_axis_scaled.png}
-	\caption[Flux.1-dev Parameter Scaled CMMD Values]{\gls{CMMD} values scaled by the number of removed parameters for double- and single-stream blocks compressed by 60\% of Flux.1-dev .}
-	\label{fig:flux_cmmd_broken_axis_scaled}
-\end{figure}
-
-
-\subsection{Training-Free Pruning}
-In this section, \gls{GRASP} (see Sec. \ref{sec:GRASP}) is transfered from \gls{LLM}s to Flux.1-dev. The goal is to compress Flux.1-dev via \gls{SVD} but identify singular values based on their importance for the image generation task rather than solely based on their magnitude as is standard practise in ordinary \gls{SVD} compression. The performance of \gls{GRASP} is compared to Eco-Diff \cite{EcoDiff}  another recently proposed training-free method to prune Flux.1-dev and to the simple application of \gls{SVD} without retraining. \\
-First, the extent to which the gradient-based method GRASP selects different singular values than the standard magnitude-based \gls{SVD} selection is examined. This experiment focuses exclusively on the compression of the Flux.1-dev double-stream blocks, as they represent the model's most parameter-intensive components. Exclusively for this setup a pre-existing importance ranking for the Flux.1-dev transformer blocks from \cite{FastFlux} is utilized. In total, four different compression levels are tested. The compression rate for the double-stream blocks is fixed to 76\% meaning the levels vary solely in the number of blocks subject to compression. For the exact ranks used during \gls{SVD} for the individual components please refer to Tab. \ref{tab:GRASPSVD_ranks}. \\
-Fig. \ref{fig:MagnitudeVsImportanceSVD} illustrates exemplarily the magnitude and the importance estimated by \gls{GRASP} for each singular value of the image modulation matrix from double-stream block number four. The total view (Fig. \ref{fig:MagnitudeVsImportanceSVDa}) reveals a few significant outliers with very high magnitude and importance. Therefore, to investigate the correlation between magnitude and importance for the majority of singulare values Fig. \ref{fig:MagnitudeVsImportanceSVDb} provides a zoomed-in version. Here, one can observe a general positive trend where higher magnitude correlates with higher importance. However, there are numerous singular values with low magnitude but high importance and high magnitude values with negligible important values. This discrepancy indicates that \gls{GRASP} might effectively identify important features that magnitude-based methods would miss, potentially leading to an improvement over ordinary \gls{SVD}.
-
-
-
-
-    \begin{figure}[H]
-	\centering
-	% --- First Image ---
-	\begin{subfigure}[b]{0.48\textwidth}
-		\centering
-		\includegraphics[width=\textwidth]{images/Experimente/Flux/Training_Free/double_blocks_4_img_mod_lin_grasp.png}
-		\caption{Total view}
-		\label{fig:MagnitudeVsImportanceSVDa}
-	\end{subfigure}% <--- WICHTIG: Dieses % verhindert ein ungewolltes Leerzeichen!
-	\hfill
-	% --- Second Image ---
-	\begin{subfigure}[b]{0.48\textwidth}
-		\centering
-		\includegraphics[width=\textwidth]{images/Experimente/Flux/Training_Free/double_blocks_4_img_mod_lin_grasp_zoom.png}
-		\caption{Zoomed in visualization}
-		\label{fig:MagnitudeVsImportanceSVDb}
-	\end{subfigure}
-	
-	\caption[Magnitude versus Importance Analysis of Singular Values]{Comparing the magnitude (x-axis) with the gradient-based importance (y-axis) of singular values from \gls{SVD}. The visualization is from the $4^\text{th}$ block of the image modulation matrix. }
-	\label{fig:MagnitudeVsImportanceSVD}
-\end{figure}
-
-
-The potential for improvements over \gls{SVD} implied by the analysis of the correlation between magnitude and importance is confirmed by the evaluation of both methods on the HPSv2 and GenEval benchmarks (see Fig. \ref{fig:GRASPvsSVDBenchmarks}). The results show that models obtained using the most important singular values (\gls{GRASP}) instead of those with the highest magnitude outperform standard \gls{SVD} across all compression ratios on both benchmarks. Fig. \ref{fig:ImagesGRASPvsSVD} displays example images, demonstrating that especially for high compression ratios (68\% and 60\%) the divergence between both methods is pronounced. \gls{SVD} based models exhibit significant degradation in image quality and detail at these compression stages. Furthermore, their text-generation capabilities degrades more severely than those of \gls{GRASP} based models as the kangaroo image still correctly displays "Welcome Friends" at the strongest compression for \gls{GRASP} but not for \gls{SVD} (see second column in Fig. \ref{fig:ImagesGRASPvsSVD}). However, models compressed with \gls{GRASP} also struggles to generate text consistently correctly at high compression (see fourth columns) and for the highest compression rate some severe artifacts (see third column) can be observed.  Nevertheless, both image quality and text generation capabilities are superior with the \gls{GRASP} method. As image details are typically high-frequency information the results suggest that the high-magnitude singular values primarily encode low-frequency information and the low-magnitude singular values often discarded by ordinary \gls{SVD} store the high-frequency information. By prioritizing gradients, \gls{GRASP} better preserves these subtle but important singular values and, thereby mainiting superior text-image alignment and preserving finer details. 
-
-
-    \begin{figure}[H]
-	\centering
-	% --- First Image ---
-	\begin{subfigure}[b]{0.48\textwidth}
-		\centering
-		\includegraphics[width=\textwidth]{images/Experimente/Flux/Training_Free/GRASP_vs_SVD_hpsv2.png}
-		\caption{HPSv2 Benchmark}
-		\label{fig:image1}
-	\end{subfigure}% <--- WICHTIG: Dieses % verhindert ein ungewolltes Leerzeichen!
-	\hfill
-	% --- Second Image ---
-	\begin{subfigure}[b]{0.48\textwidth}
-		\centering
-		\includegraphics[width=\textwidth]{images/Experimente/Flux/Training_Free/GRASP_vs_SVD_geneval.png}
-		\caption{GenEval Benchmark}
-		\label{fig:image2}
-	\end{subfigure}
-	
-	\caption[Benchmark Performance: \gls{SVD} versus \gls{GRASP} Compression Method]{Impact of singular value selection based on magnitude (\gls{SVD}) or importance (\gls{GRASP}) on performance across varying compression ratios.}
-	\label{fig:GRASPvsSVDBenchmarks}
+	\includegraphics[width=\textwidth]{images/Experimente/Flux/Block_Analysis/OvervieCompressionRemovalSingel.pdf}
+	\caption[Flux.1-dev Analysis Block Removal - Single-Stream Blocks]{Qualitative analysis of the impact of removing individual single-stream blocks from the Flux.1-dev architecture.}
+	\label{fig:OverviewCompressionRemovalSingle}
 \end{figure}
 
 
 
-    \begin{figure}[H]
-	\centering
-	\includegraphics[width=\textwidth]{images/Experimente/Flux/Training_Free/SVD_vs_GRASP_Images.pdf}
-	\caption[Flux.1-dev Images: \gls{SVD} versus \gls{GRASP} Compression]{Images from compression Flux.1-dev with \gls{SVD} or \gls{GRASP} respectively.}
-	\label{fig:ImagesGRASPvsSVD}
-\end{figure}
+%
+%\begin{figure}[H]
+%	\centering
+%	\includegraphics[width=0.7\textwidth]{images/Experimente/Flux/Block_Analysis/flux_cmmd_broken_axis_scaled.png}
+%	\caption[Flux.1-dev Parameter Scaled CMMD Values]{\gls{CMMD} values scaled by the number of removed parameters for double- and single-stream blocks compressed by 60\% of Flux.1-dev .}
+%	\label{fig:flux_cmmd_broken_axis_scaled}
+%\end{figure}
 
 
+\subsection{Training-Free Compression}
+\label{sec:trainingFreeCompression}
+Fine-tuning Flux.1-dev and current \gls{DiT}s is computationally demanding and requires the latest hardware. For this reason, this section investigates to what extent compression via a low-rank approximation of matrices within transformer blocks can be applied without subsequent fine-tuning. To this end, the performance of \gls{SVD}-based compression is compared to complete block removal and EcoDiff \cite{EcoDiff} which is a recently proposed training-free method that masks out neurons within the weight matrices of Flux.1-dev. 
 
-Finally, \gls{GRASP} and \gls{SVD} are compared to EcoDiff (see Tab. \ref{tab:TrainingFreeMethods}) demonstrating that these approaches are significantly superior in maintaining image quality for the same degree of parameter reduction. For a parameter reduction of 20\%, the \gls{SVD}-based methods obtain a GenEval score of 0.58 and 0.62 wheras EcoDiff drops to 0.18 indicating a loss of text-alignment. Fig. \ref{fig:GRASP_SVD_EcoDiff} presents example images from the GenEval Benchmark providing visual proof of the strong degeneration and poor text-alignment for the compressed Flux.1-dev model when reduced to less than 90\% of its original size using EcoDiff. In addition, Fig. \ref{fig:GRASP_SDPG} presents images testing the text-generation capabilities of models compressed by 20\% leveraging EcoDiff, SVD, or GRASP as the compression methods. It clearly demonstrates that EcoDiff-compressed models completely fail to generate text and visually appealing images. Overall, \gls{GRASP}-compressed models are slightly superior to simple SVD-compressed models in the text generation task (columns 2 and 4) as the generated text contains fewer errors. However, column 4 also indicates that the GRASP-compressed model also exhibits minor flaws. Similarly, the HPSv2 score of EcoDiff measuring human preferences is only 23.6 while \gls{SVD} and \gls{GRASP} reach 30.45 and 30.82.  Notably, when compressing Flux.1-dev by 30\% utilizing the EcoDiff method, the model completely collapses. Visual inspection shows that the model ceases to generate meaningful images, producing grey images with undefined texture, in contrast to the performance observed with \gls{GRASP}. This performance gap indicates that strucutrally removing entire neurons breaks the Markovian generation trajectory of Flux.1-dev and validates the effectiveness of the general concept of \gls{SVD} that approximates the original information flow instead of relying on the hard removal of neurons as in EcoDiff. \\
-Nevertheless, while all methods effectively reduce the \gls{VRAM} consumption during inference, standard implementations of \gls{SVD} and \gls{GRASP} do not inherently reduce the inference time as EcoDiff. This is because low-rank decomposition replaces one large matrix by two smaller matrices which doubles the number of matrix multiplications and only leads to runtime savings after stronger compression (see Sec. \ref{label}).
+The performance of all three approaches is tested for models compressed to 90\%, 80\% and 70\% of their original size. For \gls{SVD}-based compression, 30 blocks, ranked by importance, are modified using the linear schedule for compression ratios. Details regarding the base compression ratio and linear decay factor $x$ can be found in the appendix (Tab. \ref{tab:TrainingFreeMethodsSVD}) as well as the details for the complete block removal approach (Tab. \ref{tab:TrainingFreeMethodsRemoval}).
+
+Tab. \ref{tab:TrainingFreeMethodsBenchmarks} summarizes the performance of all three methods on the HPSv2, GenEval and DPG benchmarks. For slight compression (retaining 90\% of the model) complete block removal proves to be most effective, outperforming \gls{SVD}trunc and EcoDiff on all three benchmarks. For instance, it reaches 31.02 on the HPSv2 compared to 29.97 (EcoDiff) and 29.03 (SVDtrunc). At higher compression rates (80\% and 70\% models), \gls{SVD}-based compression demonstrates clear superiority. Especially at a 70\% parameter ratio, EcoDiff and block removal completely collapse, while \gls{SVD}-based compression leads by a large margin across all benchmarks.
+
+Fig. \ref{fig:ExamplesTrainingFree} displays example images generated by the 80\% models, demonstrating the superiority of \gls{SVD}trunc, as its images exhibit finer details and greater aesthetic appeal. Furthermore, its generated content is more closely aligned with the outputs of the original model. For instance, the image in column 5, which shows a horse and an astronaut, depicts a composition that is only successfully reproduced by \gls{SVD}trunc. For further examples of the 90\% and 70\% models, the reader is referred to the appendix (Fig. \ref{fig:Examples_TrainingFree90} and Fig. \ref{fig:Examples_TrainingFree70}). 
+
 
 	
 	\begin{table}[H]
 		\centering
-		\caption[Benchmark Performance: Training-Free Compression Methods]{Performance Comparison of Compression Methods across HPSv2, GenEval, and DPG Benchmarks.}
-		\label{tab:TrainingFreeMethods}
+		\caption[Benchmark Performance: Training-Free Compression Methods]{Performance comparison of training-free compression methods across HPSv2, GenEval, and DPG Benchmarks.}
+		\label{tab:TrainingFreeMethodsBenchmarks}
 		\begin{tabular}{@{}lcccc@{}}
 			\toprule
 			\textbf{Ratio} & \textbf{Method} & \textbf{HPSv2} $\uparrow$ & \textbf{GenEval} $\uparrow$ & \textbf{DPG} $\uparrow$ \\ \midrule
 			
 			\multirow{3}{*}{90\%}  
 			& EcoDiff & 29.67 & 0.452 & 77.98 \\
-			& SVD & 30.86 & 0.653 & 82.77 \\
-			& GRASP  & \textbf{31.08} & \textbf{0.659} & \textbf{} \\ \midrule
+			& Removal & \textbf{31.02} & \textbf{0.646} & \textbf{83.28} \\
+			& \textbf{SVDtrunc}  &29.03 & 0.638 & 78.90 \\ \midrule
 			
 			\multirow{3}{*}{80\%}  
 			& EcoDiff & 23.633 & 0.187 &  49.12 \\
-			& SVD & 30.45 & 0.585 & 79.84 \\
-			& GRASP  & \textbf{30.82} & \textbf{0.623} & \textbf{81.19} \\ \midrule
+			& Removal & 24.88 & 0.381 & 79.84 \\
+			& \textbf{SVDtrunc}  & \textbf{28.86} & \textbf{0.617} & \textbf{78.42} \\ \midrule
 			
-			 
-			70\% & EcoDiff & 7.26 & 0.002 & 17.02  \\
-			68\% & SVD & 28.87 & 0.455 & 73.13 \\
-			68\% & GRASP  & \textbf{30.08} & \textbf{0.490
-			} & \textbf{75.50} \\ \bottomrule
+			 \multirow{3}{*}{70\%}  
+			 & EcoDiff & 7.26 & 0.002 & 17.02  \\
+			 & Removal & 4.37 & 0.000 & 2.236 \\
+			 & \textbf{SVDtrunc}  & \textbf{28.48} & \textbf{0.579
+			} & \textbf{76.26} \\ \bottomrule
 		\end{tabular}
 	\end{table}
 
 
-
-\begin{figure}[H]
+	\begin{figure}[H]
 	\centering
-	\includegraphics[width=0.6\textwidth]{images/Experimente/Flux/Training_Free/GRASP_DPG.pdf}
-	\caption[Flux.1-dev Text Generation Capabilities: \gls{SVD} versus \gls{GRASP} versus EcoDiff Compression]{The images provide examples for text generation capabilities of models compressed to 80\% of the original parameters using EcoDiff, SVD or GRASP as compression method.}
-	\label{fig:GRASP_SDPG}
+	\includegraphics[width=\textwidth]{images/Experimente/Flux/TrainingFree_paper/TrainingFree.pdf}
+	\caption[Qualitative Examples Training-Free approaches for Flux.1-dev]{Example images of the 80\% models obtained by EcoDiff, complete block removal and truncated \gls{SVD} compression.}
+	\label{fig:ExamplesTrainingFree}
 \end{figure}
 
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.6\textwidth]{images/Experimente/Flux/Training_Free/GRASP_SVD_EcoDiff.pdf}
-\caption[Flux.1-dev Images: \gls{SVD} versus \gls{GRASP} versus EcoDiff Compression]{Examples from GenEval benchmark for Flux.1-dev compressed by 10\%, 20\% and 30\% using EcoDiff, \gls{SVD} and \gls{GRASP}.}
-	\label{fig:GRASP_SVD_EcoDiff}
-\end{figure}
+
+\subsection{Linear Progressive SVD Compression - Preliminary Experiments}
+This section applies the optimal pruning strategies identified for PixArt-$\Sigma$ to Flux.1-dev. Prior to presenting the final results, two preliminary experiments are conducted. First, it is demonstrated that block importance computation on a reference dataset comprising only 100 images proves advantageous over randomly block selection. Second, following the methodology in Sec. \ref{sec:LinearProgressiveCompression} the optimal distribution of removed parameters across the Flux.1-dev transformer blocks is analyzed. 
 
 
-\subsection{Linear Progressive SVD Compression}
-This section applies the optimal pruning strategies identified for PixArt-$\Sigma$ to Flux.1-dev and Flux.1-schnell. Prior to presenting the final results, two preliminary experiments are conducted. First, it is demonstrated that block importance computation on a reference dataset comprising only 100 images proves advantageous over randomly block selection. Second, following the methodology in Sec. \ref{sec:LinearProgressiveCompression} the optimal distribution of removed parameters across the Flux.1-dev transformer blocks is analyzed. 
 
 \subsubsection{Block Importance Analysis}
-The image generation process using Flux.1-dev is computationally demanding and time-consuming. Consequently, the reference dataset utilized for block importance determination is limited to 100 images. Furthermore, block importance is only computed once per iteration, rather than being re-evaluated iteratively as in the experiments of PixArt-$\Sigma$. Typically, image quality metrics are computed on several thousands of images to ensure high diversity and statistical reliability. However, \cite{cmmd} demonstrated that \gls{CMMD} is effective even with small sample sizes and is considerably more reliable than \gls{FID}. Thus, the following experiment demonstrates that despite the constrained reference dataset and the one-time calculation of the block importance per iteration, the analysis remains robust and yields superior results compared to random block selection. 
+\label{sec:FluxBlockImportanceAnalysis}
+The image generation process using Flux.1-dev is computationally demanding and time-consuming. Consequently, the reference dataset utilized for determining block importance is limited to 100 images. Furthermore, block importance is evaluated only once per iteration, rather than being re-evaluated iteratively as in the experiments on PixArt-$\Sigma$. Typically, image quality metrics are computed on several thousand images to ensure high diversity and statistical reliability. However, \cite{cmmd} demonstrated that \gls{CMMD} is effective even with small sample sizes and is considerably more reliable than \gls{FID}. Thus, the following experiment demonstrates that despite the constrained reference dataset and the single-pass calculation of block importance per iteration, the analysis remains robust and yields superior results compared to random block selection. 
 
-In both experiments, the default training settings (see Sec. \ref{sec:flux_training_details}) are used applying four subsequent iterations within the linear progressive pruning framework. Details regarding the model sizes and number of training steps are provided in Tab. \ref{tab:Random_vs_metric_Selection}.
+In both experiments, the default training settings (Sec. \ref{sec:flux_training_details}) are applied for four subsequent iterations within the linear progressive pruning framework. Details regarding model sizes and the number of training steps are provided in Tab. \ref{tab:Random_vs_metric_Selection}.
 
-The performance over various benchmarks (see Fig. \ref{fig:RandomVsMetricBlockSelection}) demonstrates that importance-based block selection, even with a small calibration dataset, leads to superior results compared to random block selection. A possible reason is that the \gls{CMMD} score based on 100 images already effectively indicates whether a block is in general suitable for compression or if it should be maintained. For example, as shown in Sec. \ref{sec:QualitativeBlockAnalysisFlux}, the third double-stream block is highly important and therefore is preserved by the metric-based approach, whereas random selection risks pruning it, potentially leading to a significant performance drop. 
-Qualitatively, the performance difference between models obtained by random versus importance-based block selection can be observed in Fig. \ref{fig:Examples_Random_vs_Importance_Selection} and aligns with the quantitative benchmark results. The images generated by the model (5.83B parameters) based on random block selection exhibit artifacts, such as a bear with two heads or a chainsaw with two chain blades,  while the importance-based approaches preserves the correct semantic structures much better. In addition, its text-generation capabilities are inferior (see the fifth column).
+The performance over various benchmarks (Fig. \ref{fig:RandomVsMetricBlockSelection}) demonstrates that importance-based block selection, even with a small calibration dataset, leads to superior results compared to a random baseline. A possible reason is that the \gls{CMMD} score based on 100 images already effectively indicates whether a block is generally suitable for compression or if it should be retained. For example, as shown in Sec. \ref{sec:QualitativeBlockAnalysisFlux}, the third double-stream block is highly important and is therefore preserved by the metric-based approach, whereas random selection risks pruning it, potentially leading to a significant performance drop. 
+
+Qualitatively, the performance difference between models obtained by random versus importance-based block selection is illustrated in Fig. \ref{fig:Examples_Random_vs_Importance_Selection} and aligns with the quantitative benchmark results. The images generated by the model (5.83B parameters) based on random block selection exhibit artifacts, such as a bear with two heads or a chainsaw with two chains,  while the importance-based approaches preserves the correct semantic structures much better. In addition, the random selection model's text-generation capabilities are inferior (fifth column).
 
 
 \begin{figure}[H]
@@ -283,7 +221,7 @@ Qualitatively, the performance difference between models obtained by random vers
 	\begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{images/Experimente/Flux/BlockSelection/Examples_Random_vs_Importance_Block_Selection.pdf}
-	\caption{Example images of the 49\% models (5.8B parameters) obtained by random and importance-based block selection.}
+	\caption[Qualitative Examples Importance and Random Block Selection Flux.1-dev]{Example images of the 49\% models (5.8B parameters) obtained by random and importance-based block selection.}
 	\label{fig:Examples_Random_vs_Importance_Selection}
 \end{figure}
 
@@ -310,23 +248,25 @@ Qualitatively, the performance difference between models obtained by random vers
 
 
 \subsubsection{Sensitivity Analysis: The Role of Parameter Removal Distribution}
-The goal of this experiment is to investigate how the parameters to be removed should be optimally distributed across the model. Three different scenarios are examined where Flux.1-dev is pruned by 10\% in each iteration with a varying number of modified blocks and consequently, varying base compression ratios: 
+The goal of this experiment is to investigate how the removed parameters should be optimally distributed across the model. Three different scenarios are examined where Flux.1-dev is pruned by 10\% in each iteration with a varying number of modified blocks and consequently, varying base compression ratios: 
 
 \begin{itemize}
 	\item \textbf{20 Blocks}: In each iteration 20 transformer blocks are modified.
 	\item \textbf{30 Blocks}: In each iteration 30 transformer blocks are modified.
 	\item \textbf{40 Blocks}: In each iteration 40 transformer blocks are modified.
 \end{itemize}
-Note that the number of blocks does not specify whether double- or single-stream blocks are compressed. This depends entirely on the importance ranking of the blocks. The base compression ratio, defined as the compression ratio of the least important block, may need to be adapted across different iterations depending on which blocks are ranked as least important. For example if in the fifth iteration of the experimental setting \textbf{20 Blocks}, single-stream blocks and already heavily compressed double-stream blocks are further compressed, a higher base compression ratio is needed to remove the same number of parameters as in the first iteration. An overview of which value was chosen in each iteration can be found in Tab. \ref{tab:compression_iterations}. For all experiments, the models are retrained for 20k steps in each iteration.
+Note that the number of blocks does not specify whether double- or single-stream blocks are compressed. This depends entirely on the importance ranking of the blocks. The base compression ratio, defined as the compression ratio of the least important block, must be adapted across different iterations depending on which blocks are ranked as the least important. For example if in the fifth iteration of the experimental setting \textbf{20 Blocks}, single-stream blocks and already heavily compressed double-stream blocks are further compressed, a higher base compression ratio is needed to remove the same number of parameters as in the first iteration. An overview of the values chosen for each iteration can be found in Tab. \ref{tab:compression_iterations}. For all experiments, the models are retrained for 20k steps in each iteration.
 
-Fig. \ref{fig:FluxParamDistribution} presents the benchmark performance of all three experiments.  For all experiments, significant performance drop is observed when reducing the model size from 60\% (7.14B parameters) to 50\% (5.95B parameters) of the original model size across all benchmarks. Notably, according to the HPSv2 benchmark, the \textbf{20 Blocks} experiment performs worse at each compression stage than the other two settings. In contrast, its performance on the GenEval benchmark is superior at the 80\% (9.52B parameters) and the 70\% (8.33B parameters) pruning stage. Furthermore, on the DPG benchmark this setting shows superior performance in low-compression regime but drops below the other experiments in high-compression regime. Overall, there appears to be a slight tendency suggesting that in highly compressed models, it might be beneficial to distribute the removed parameters more uniformly. However,a definitive conclusion cannot be drawn. 
+Fig. \ref{fig:FluxParamDistribution} presents the benchmark performance of all three experiments.  For all settings, a significant performance drop is observed when reducing the model size from 60\% (7.14B parameters) to 50\% (5.95B parameters) of the original model size across all benchmarks. Notably, according to the HPSv2 benchmark, the \textbf{20 Blocks} experiment performs worse at each compression stage than the other two settings. In contrast, its performance on the GenEval benchmark is superior at the 80\% (9.52B parameters) and the 70\% (8.33B parameters) pruning stages. Furthermore, on the DPG benchmark this setting shows superior performance in the low-compression regime but drops below the other experiments in the high-compression regime. Overall, there appears to be a slight tendency suggesting that in highly compressed models, it might be beneficial to distribute the removed parameters more uniformly. However,a definitive conclusion cannot be drawn at this point.
 
-Furthermore, when comparing the \textbf{30 Blocks} and \textbf{40 Blocks} experiments, the results are very similar on the HPSv2 benchmark. For the GenEval and DPG benchmark the \textbf{30 Blocks} setting seems to be slightly superior in the low-compression regime and the \textbf{40 Blocks} setting performs better in the high-compression regime. However, a clearly superior setting cannot be determined.
+Furthermore, when comparing the \textbf{30 Blocks} and \textbf{40 Blocks} experiments, the results are very similar on the HPSv2 benchmark. For the GenEval and DPG benchmarks, the \textbf{30 Blocks} setting seems to be slightly superior in the low-compression regime and the \textbf{40 Blocks} setting performs better in the high-compression regime. However, a clearly superior setting cannot be determined. However, no single setting is clearly superior across all metrics.
 
-To conclude, GenEval and DPG benchmark measure the text-image coherence while HPSv2 investigates human preference. It is notable that the \textbf{20 Blocks} and \textbf{30 Blocks} settings are performing better in the low-compression regime for GenEval (exception 90\% \textbf{20 Blocks}) and DPG than the \textbf{40 Blocks} setting. This suggests that for prompt adherence it is advantageous when the removal of parameters is concentrated on less blocks. In contrast, the results suggest for the high-compression regime that the more uniform distribution of removed parameters is beneficial.
+To conclude, the GenEval and DPG benchmarks measure text-to-image alignment, while HPSv2 investigates human preference. It is notable that the \textbf{20 Blocks} and \textbf{30 Blocks} settings perform better in the low-compression regime for GenEval (with the exception of 90\% for \textbf{20 Blocks}) and DPG than the \textbf{40 Blocks} setting. This suggests that for prompt adherence, it is advantageous to concentrate the parameter removal on fewer blocks. In contrast, the results sugges that for the high-compression regime, amore uniform distribution of removed parameters is beneficial.
 
-Regarding the HPSv2, the \textbf{40 Blocks} settings seems to perform for nearly all compression stages best which indicates that for overall image quality are uniform distirbution is beneficial. In contrast, for the overall image quality a more uniform distribution of removed parameters seems beneficial.
+Regarding HPSv2, the \textbf{40 Blocks} setting seems to perform best for nearly all compression stages which indicates that for overall image quality, a uniform distribution is beneficial.
 
+
+%Considering the trade-off between prompt adherence in low-compression regimes and aesthtic stability in high-compression regimes, the \textbf{20 Blocks} setting serves as a robist compromise and is used in further experiments.
 \begin{figure}[H]
 	\centering
 	% --- First Image ---
@@ -358,43 +298,7 @@ Regarding the HPSv2, the \textbf{40 Blocks} settings seems to perform for nearly
 \end{figure}
 
 
-\begin{table}[htbp]
-	\centering
-	\caption{Overview of compression metrics per iteration.}
-	\label{tab:compression_iterations}
-	\begin{tabular}{ccccc}
-		\toprule
-		\textbf{Iteration} &\textbf{Model Size} & \textbf{\# Blocks Modified} & \textbf{Base Compression Ratio} \\
-		\midrule
-		\multirow{3}{*}{1} 
-		& \multirow{3}{*}{90\%}  & 20 & 0.3  \\
-		&  &   30 & 0.25  \\
-		&  & 40  & 0.2  \\
-		\midrule
-			\multirow{3}{*}{2} 
-		& \multirow{3}{*}{80\%}  & 20 & 0.3  \\
-		&  &   30 & 0.25  \\
-		&  & 40  & 0.2  \\
-		\midrule
-		\multirow{3}{*}{3} 
-		& \multirow{3}{*}{70\%}  & 20 & 0.3  \\
-		&  &   30 & 0.3  \\
-		&  & 40  & 0.2  \\
-		\midrule
-					\multirow{3}{*}{4} 
-		& \multirow{3}{*}{60\%}  & 20 & 0.35  \\
-		&  &   30 & 0.35  \\
-		&  & 40  & 0.25  \\
-		\midrule
-		\multirow{3}{*}{5} 
-		& \multirow{3}{*}{50\%}  & 20 & 0.6  \\
-		&  &   30 & 0.4  \\
-		&  & 40  & 0.35  \\
-	\end{tabular}
-\end{table}
-
-
-
+\subsection{Importance-Aware Low-Rank Model Compression}
 
 
 \begin{table}[H]
@@ -402,26 +306,284 @@ Regarding the HPSv2, the \textbf{40 Blocks} settings seems to perform for nearly
 	\begin{threeparttable}
 		\caption[Benchmark Performance: Training-Free Compression Methods]{Performance Comparison of Compression Methods across HPSv2, GenEval, and DPG Benchmarks.}
 		\label{tab:TrainingFreeMethods}
-		\begin{tabular}{@{}lccccc@{}}
+		\begin{tabular}{@{}lccccccc@{}}
 			\toprule
-			\textbf{Ratio} & \textbf{Method} & \textbf{HPSv2} $\uparrow$ & \textbf{GenEval} $\uparrow$ & \textbf{DPG} $\uparrow$ & \textbf{GPU Memory (\%)} $\downarrow$ \\ \midrule
-			100 \% & Flux.1-dev & 31.70 & 0.647 & 83.86 & 100 \\  \midrule
-			\multirow{6}{*}{68\%}  
-			& FluxLite \cite{flux1-lite} & \textbf{31.31} & 0.523 & 79.31 & - \\
-			& PPCL\tnote{1} \cite{PPCL} & - & 0.605 & 80.0 & - \\
-			& EcoDiff-Lora \cite{EcoDiff}  & 25.99 & 0.399 & - & - \\
-			& TinyFusion\tnote{1} \cite{TinyFusion}  & - & 0.511 & 77.2 & - \\
-			& HierarchicalPrune\tnote{1} \cite{HierarchicalPrune}  & - & 0.503 & 75.7 & - \\ 
-			 & \textbf{Our} & \textbf{31.31} & \textbf{0.650} & \textbf{83.13} & \textbf{78} \\\midrule
-			57\% & \textbf{Our} & {31.31} & {0.650} & {83.13} & 70 \\
-			49\% & \textbf{Our} & {31.01} & {0.587} & {81.69} & \textbf{} \\ \midrule
-			\multirow{2}{*}{43\%}  
-			& MoE \cite{Dense2MoE}\tnote{2} & - & \textbf{0.570} & \textbf{81.63} \\
-		    & \textbf{Our} & {30.02} & {0.545} & {79.70} & \textbf{} \\ \bottomrule
+			  \textbf{Method}
+			  & \textbf{Ratio [\%]}
+			  & \textbf{VRAM [\%]} $\downarrow$
+			  & \textbf{HPSv2} $\uparrow$
+			  & \textbf{GenEval} $\uparrow$ 
+			  & \textbf{DPG} $\uparrow$  
+			  & \textbf{R [\%]} $\downarrow$
+			  & \textbf{Rank} $\downarrow$
+			  \\ \midrule
+			    
+			    
+			Flux.1-dev 
+			& 100  
+			& 100 
+			& 31.70 
+			& 0.647 
+			& 83.86 
+			& 0.00
+			& -
+			\\  \midrule
+			
+			
+			FastFlux \cite{FastFlux} 
+			& 80
+			& -
+			&  27.26 
+			& 0.530 
+			& - 
+			& 16.04
+			& 8
+			 \\
+			
+			
+			Dense2MoE\tnote{1} \cite{Dense2MoE} 
+			& 75
+			& - 
+			&  - 
+			& 0.403 
+			& 76.6 
+			& 24.97
+			& 9
+			\\
+			
+			
+			Chroma1-HD\tnote{1} \cite{}
+			& 75
+			& 82.5
+			& - 
+			& 0.593 
+			& \textbf{84.0} 
+			& 4.09
+			& 3
+			 \\
+			
+			
+			EcoDiff-Lora \cite{EcoDiff}  
+			& 70
+			& - 
+			& 25.99 
+			& 0.399 
+			& - 
+			& 28.17
+			& 10
+			\\
+			
+			
+			FluxLite \cite{flux1-lite} 
+			& 68 
+			& 78.8
+			& \textbf{31.31} 
+			& 0.523 
+			& 79.31 
+			& 8.61
+			& 5
+			\\
+			
+			
+			PPCL\tnote{1} \cite{PPCL} 
+			& 68
+			& 74.4
+			& - 
+			& 0.605 
+			& 80.0 
+			& 5.55
+			& 4
+			 \\
+			
+			
+			TinyFusion\tnote{1} \cite{TinyFusion}  
+			& 68
+			& 74.4 
+			& - 
+			& 0.511
+			& 77.2 
+			& 14.48
+			& 6
+			\\
+			
+			
+			HierarchicalPrune\tnote{1} \cite{HierarchicalPrune}  
+			& 68
+			& 74.4 
+			& - 
+			& 0.503 
+			& 75.7 
+			& 15.99
+			& 7
+			\\ 
+			
+			
+			\textbf{SVDtrunc-m} 
+			& 68
+			& 77.8 
+			& 31.27 
+			& \textbf{0.645} 
+			& 83.365 
+			& \textbf{0.75}
+			& \textbf{1}
+			\\
+			
+			
+			\textbf{SVDtrunc-s} 
+			& 57
+			& \textbf{66.9}
+			& {31.22} 
+			& {0.616} 
+			& {82.61} 
+			& 2.60
+			& 2
+			 \\ \bottomrule
+			
+			
+%			49\% & \textbf{Our} & {31.01} & {0.587} & {81.69} & \textbf{} \\ 
+%			43\% & \textbf{Our} & {30.02} & {0.545} & {79.70} & \textbf{} \\ \bottomrule
 		\end{tabular}
 		\begin{tablenotes}
 			\item[1] \small The numbers are taken from \cite{PPCL} and are not self computed.
-			\item[2] \small The numbers are taken from \cite{Dense2MoE} and are not self computed.
+%			\item[2] \small The numbers are taken from \cite{Dense2MoE} and are not self computed.
 		\end{tablenotes}
 	\end{threeparttable}
 \end{table}
+
+
+
+
+
+
+\subsection{Importance-Aware Low-Rank Step-Distilled Model Compression}
+
+	\begin{table}[H]
+	\centering
+	\caption[Benchmark Performance: Flux.1-schnell]{Performance of step-distilled Flux.1-schnell model across HPSv2, GenEval, and DPG Benchmarks.}
+	\label{tab:TrainingFreeMethodsBenchmarks}
+	\begin{tabular}{@{}lcccc@{}}
+		\toprule
+		\textbf{Ratio [\%]} & \textbf{HPSv2} $\uparrow$ & \textbf{GenEval} $\uparrow$ & \textbf{DPG} $\uparrow$ \\ \midrule
+		
+		100
+		& 30.85
+		& 0.667
+		& 85.00
+		\\ \midrule
+		
+		& 90 
+		& 29.59 
+		& 0.666 
+		& 85.20
+		 \\
+		 
+		& 80 
+		& 29.48 
+		& 668 
+		& 84.87
+		 \\
+		 
+		& 70 
+		& 29.30 
+		& 0.648 
+		& 84.77 
+		\\ 
+		
+		& 60
+		& 29.05
+		& 0.621
+		& 84.28
+		\\
+		
+		& 50
+		& 27.62
+		& 55.11
+		& 81.42
+		 \\ \bottomrule
+	\end{tabular}
+\end{table}
+
+
+\subsection{GRASP for DiTs}
+\label{sec:GRASPForDiTs}
+In this section, \gls{GRASP} (Sec. \ref{sec:GRASP}) is transfered from \gls{LLM}s to Flux.1-dev. The goal is to compress Flux.1-dev via truncated \gls{SVD} but identify singular values based on their importance for the image generation task rather than solely based on their magnitude as is standard practise in ordinary \gls{SVD} compression. The performance of \gls{GRASP} is compared to Eco-Diff \cite{EcoDiff}  another recently proposed training-free method to prune Flux.1-dev and to the simple application of \gls{SVD} without retraining. \\
+First, the extent to which the gradient-based method GRASP selects different singular values than the standard magnitude-based \gls{SVD} selection is examined. This experiment focuses exclusively on the compression of the Flux.1-dev double-stream blocks, as they represent the model's most parameter-intensive components. Exclusively for this setup a pre-existing importance ranking for the Flux.1-dev transformer blocks from \cite{FastFlux} is utilized. In total, four different compression levels are tested. The compression rate for the double-stream blocks is fixed to 76\% meaning the levels vary solely in the number of blocks subject to compression. For the exact ranks used during \gls{SVD} for the individual components please refer to Tab. \ref{tab:GRASPSVD_ranks}. \\
+Fig. \ref{fig:MagnitudeVsImportanceSVD} illustrates exemplarily the magnitude and the importance estimated by \gls{GRASP} for each singular value of the image modulation matrix from double-stream block number four. The total view (Fig. \ref{fig:MagnitudeVsImportanceSVDa}) reveals a few significant outliers with very high magnitude and importance. Therefore, to investigate the correlation between magnitude and importance for the majority of singulare values Fig. \ref{fig:MagnitudeVsImportanceSVDb} provides a zoomed-in version. Here, one can observe a general positive trend where higher magnitude correlates with higher importance. However, there are numerous singular values with low magnitude but high importance and high magnitude values with negligible importance values. This discrepancy indicates that \gls{GRASP} might effectively identify important features that magnitude-based methods would miss, potentially leading to an improvement over ordinary \gls{SVD}.
+
+
+
+
+\begin{figure}[H]
+	\centering
+	% --- First Image ---
+	\begin{subfigure}[b]{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{images/Experimente/Flux/Training_Free/double_blocks_4_img_mod_lin_grasp.png}
+		\caption{Total view}
+		\label{fig:MagnitudeVsImportanceSVDa}
+	\end{subfigure}% <--- WICHTIG: Dieses % verhindert ein ungewolltes Leerzeichen!
+	\hfill
+	% --- Second Image ---
+	\begin{subfigure}[b]{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{images/Experimente/Flux/Training_Free/double_blocks_4_img_mod_lin_grasp_zoom.png}
+		\caption{Zoomed in visualization}
+		\label{fig:MagnitudeVsImportanceSVDb}
+	\end{subfigure}
+	
+	\caption[Magnitude versus Importance Analysis of Singular Values]{Comparing the magnitude (x-axis) with the gradient-based importance (y-axis) of singular values from \gls{SVD}. The visualization is from the $4^\text{th}$ block of the image modulation matrix. }
+	\label{fig:MagnitudeVsImportanceSVD}
+\end{figure}
+
+
+The potential for improvements over ordinary \gls{SVD} compression implied by the analysis of the correlation between magnitude and importance is confirmed by the evaluation of both methods on the HPSv2 and GenEval benchmarks (Fig. \ref{fig:GRASPvsSVDBenchmarks}). The results show that models obtained using the most important singular values (\gls{GRASP}) instead of those with the highest magnitude outperform standard \gls{SVD} across all compression ratios on both benchmarks. Fig. \ref{fig:ImagesGRASPvsSVD} displays example images, demonstrating that especially for high compression ratios (68\% and 60\%) the divergence between both methods is pronounced. \gls{SVD}-based models exhibit significant degradation in image quality and detail at these compression stages. Furthermore, their text-generation capabilities degrades more severely than those of \gls{GRASP}-based models as the kangaroo image still correctly displays "Welcome Friends" at the strongest compression for \gls{GRASP} but not for \gls{SVD} (second column in Fig. \ref{fig:ImagesGRASPvsSVD}). However, models compressed with \gls{GRASP} also struggles to generate text consistently correctly at high compression (fourth columns) and for the highest compression rate some severe artifacts (third column) can be observed.  Nevertheless, both image quality and text generation capabilities are superior with the \gls{GRASP} method. As image details are typically high-frequency information the results suggest that the high-magnitude singular values primarily encode low-frequency information and the low-magnitude singular values often discarded by ordinary \gls{SVD} store the high-frequency information. By prioritizing gradients, \gls{GRASP} better preserves these subtle but important singular values and, thereby mainiting superior text-image alignment and preserving finer details. 
+
+
+\begin{figure}[H]
+	\centering
+	% --- First Image ---
+	\begin{subfigure}[b]{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{images/Experimente/Flux/Training_Free/GRASP_vs_SVD_hpsv2.png}
+		\caption{HPSv2 Benchmark}
+		\label{fig:image1}
+	\end{subfigure}% <--- WICHTIG: Dieses % verhindert ein ungewolltes Leerzeichen!
+	\hfill
+	% --- Second Image ---
+	\begin{subfigure}[b]{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{images/Experimente/Flux/Training_Free/GRASP_vs_SVD_geneval.png}
+		\caption{GenEval Benchmark}
+		\label{fig:image2}
+	\end{subfigure}
+	
+	\caption[Benchmark Performance: \gls{SVD} versus \gls{GRASP} Compression Method]{Impact of singular value selection based on magnitude (\gls{SVD}) or importance (\gls{GRASP}) on performance across varying compression ratios.}
+	\label{fig:GRASPvsSVDBenchmarks}
+\end{figure}
+
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{images/Experimente/Flux/Training_Free/SVD_vs_GRASP_Images.pdf}
+	\caption[Flux.1-dev Images: \gls{SVD} versus \gls{GRASP} Compression]{Images from compression Flux.1-dev with \gls{SVD} or \gls{GRASP} respectively.}
+	\label{fig:ImagesGRASPvsSVD}
+\end{figure}
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{images/Experimente/Flux/Training_Free/GRASP_DPG.pdf}
+	\caption[Flux.1-dev Text Generation Capabilities: \gls{SVD} versus \gls{GRASP} versus EcoDiff Compression]{The images provide examples for text generation capabilities of models compressed to 80\% of the original parameters using EcoDiff, SVD or GRASP as compression method.}
+	\label{fig:GRASP_SDPG}
+\end{figure}
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{images/Experimente/Flux/Training_Free/GRASP_SVD_EcoDiff.pdf}
+	\caption[Flux.1-dev Images: \gls{SVD} versus \gls{GRASP} versus EcoDiff Compression]{Examples from GenEval benchmark for Flux.1-dev compressed by 10\%, 20\% and 30\% using EcoDiff, \gls{SVD} and \gls{GRASP}.}
+	\label{fig:GRASP_SVD_EcoDiff}
+\end{figure}
+
+
