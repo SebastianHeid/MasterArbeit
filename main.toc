@@ -103,29 +103,30 @@
 \contentsline {subsection}{\numberline {5.1.7}Compression Strategy}{68}{subsection.5.1.7}%
 \contentsline {subsection}{\numberline {5.1.8}Sensitivity Analysis of MLP and Attention Layers under \gls {SVD} Compression}{71}{subsection.5.1.8}%
 \contentsline {subsection}{\numberline {5.1.9}SVD Compression Scheduling}{74}{subsection.5.1.9}%
-\contentsline {subsection}{\numberline {5.1.10}Summary of Best Settings for Structural Model Pruning}{74}{subsection.5.1.10}%
-\contentsline {section}{\numberline {5.2}Flux.1-dev Pruning}{76}{section.5.2}%
-\contentsline {subsection}{\numberline {5.2.1}Training Details}{76}{subsection.5.2.1}%
-\contentsline {subsection}{\numberline {5.2.2}Qualitative Block Analysis}{77}{subsection.5.2.2}%
-\contentsline {subsection}{\numberline {5.2.3}Training-Free Compression}{79}{subsection.5.2.3}%
-\contentsline {subsection}{\numberline {5.2.4}Linear Progressive SVD Compression - Preliminary Experiments}{80}{subsection.5.2.4}%
-\contentsline {subsubsection}{Block Importance Analysis}{81}{section*.44}%
-\contentsline {subsubsection}{Sensitivity Analysis: The Role of Parameter Removal Distribution}{82}{section*.45}%
-\contentsline {subsection}{\numberline {5.2.5}Importance-Aware Low-Rank Model Compression}{83}{subsection.5.2.5}%
-\contentsline {subsection}{\numberline {5.2.6}Importance-Aware Low-Rank Step-Distilled Model Compression}{84}{subsection.5.2.6}%
-\contentsline {subsection}{\numberline {5.2.7}GRASP for DiTs}{84}{subsection.5.2.7}%
-\contentsline {chapter}{\numberline {A}PixArt-$\Sigma $ Experiments}{88}{appendix.A}%
-\contentsline {section}{\numberline {A.1}Block Analysis}{88}{section.A.1}%
-\contentsline {section}{\numberline {A.2}Knowledge Distillation Loss}{88}{section.A.2}%
-\contentsline {section}{\numberline {A.3}Fine-Tuning Protocol}{91}{section.A.3}%
-\contentsline {section}{\numberline {A.4}One-Shot versus Progressive Pruning}{92}{section.A.4}%
-\contentsline {section}{\numberline {A.5}Detailed Overview of Selected Blocks Experiments PixArt-$\Sigma $}{94}{section.A.5}%
-\contentsline {chapter}{\numberline {B}Experimen Flux.1-dev}{95}{appendix.B}%
-\contentsline {section}{\numberline {B.1}GRASP}{95}{section.B.1}%
-\contentsline {subsection}{\numberline {B.1.1}Block Importance Ranking}{95}{subsection.B.1.1}%
-\contentsline {subsubsection}{Compression Details}{95}{section*.46}%
-\contentsline {section}{\numberline {B.2}Block Importance Analysis}{96}{section.B.2}%
-\contentsline {section}{\numberline {B.3}Block Selection}{99}{section.B.3}%
-\contentsline {section}{\numberline {B.4}Training-Free Compression}{101}{section.B.4}%
-\contentsline {section}{\numberline {B.5}Linear Progressive SVD Compression - Preliminary Experiments}{103}{section.B.5}%
-\contentsline {chapter}{Bibliography}{104}{appendix*.47}%
+\contentsline {subsection}{\numberline {5.1.10}Summary of Best Settings for Structural Model Pruning}{75}{subsection.5.1.10}%
+\contentsline {section}{\numberline {5.2}Flux.1-dev Pruning}{77}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Training Details}{77}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Qualitative Block Analysis}{78}{subsection.5.2.2}%
+\contentsline {subsection}{\numberline {5.2.3}Training-Free Compression}{80}{subsection.5.2.3}%
+\contentsline {subsection}{\numberline {5.2.4}Linear Progressive SVD Compression - Preliminary Experiments}{81}{subsection.5.2.4}%
+\contentsline {subsubsection}{Block Importance Analysis}{82}{section*.44}%
+\contentsline {subsubsection}{Sensitivity Analysis: The Role of Parameter Removal Distribution}{83}{section*.45}%
+\contentsline {subsection}{\numberline {5.2.5}Importance-Aware Low-Rank Model Compression}{85}{subsection.5.2.5}%
+\contentsline {subsection}{\numberline {5.2.6}Importance-Aware Low-Rank Step-Distilled Model Compression}{87}{subsection.5.2.6}%
+\contentsline {subsection}{\numberline {5.2.7}Proof of Concept: GRASP for DiTs}{88}{subsection.5.2.7}%
+\contentsline {chapter}{\numberline {A}PixArt-$\Sigma $ Experiments}{92}{appendix.A}%
+\contentsline {section}{\numberline {A.1}Block Analysis}{92}{section.A.1}%
+\contentsline {section}{\numberline {A.2}Knowledge Distillation Loss}{92}{section.A.2}%
+\contentsline {section}{\numberline {A.3}Fine-Tuning Protocol}{95}{section.A.3}%
+\contentsline {section}{\numberline {A.4}One-Shot versus Progressive Pruning}{96}{section.A.4}%
+\contentsline {section}{\numberline {A.5}SVD Compression Schedule}{98}{section.A.5}%
+\contentsline {section}{\numberline {A.6}Detailed Overview of Selected Blocks Experiments PixArt-$\Sigma $}{100}{section.A.6}%
+\contentsline {chapter}{\numberline {B}Experimen Flux.1-dev}{101}{appendix.B}%
+\contentsline {section}{\numberline {B.1}GRASP}{101}{section.B.1}%
+\contentsline {subsection}{\numberline {B.1.1}Block Importance Ranking}{101}{subsection.B.1.1}%
+\contentsline {subsubsection}{Compression Details}{101}{section*.46}%
+\contentsline {section}{\numberline {B.2}Block Importance Analysis}{102}{section.B.2}%
+\contentsline {section}{\numberline {B.3}Block Selection}{105}{section.B.3}%
+\contentsline {section}{\numberline {B.4}Training-Free Compression}{107}{section.B.4}%
+\contentsline {section}{\numberline {B.5}Linear Progressive SVD Compression - Preliminary Experiments}{109}{section.B.5}%
+\contentsline {chapter}{Bibliography}{110}{appendix*.47}%
