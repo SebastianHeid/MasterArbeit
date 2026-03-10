@@ -432,6 +432,11 @@ Jonathan Ho and Tim Salimans.
 \newblock Classifier-free diffusion guidance.
 \newblock {\em arXiv preprint arXiv:2207.12598}, 2022.
 
+\bibitem{hsu2022language}
+Yen-Chang Hsu, Ting Hua, Sungen Chang, Qian Lou, Yilin Shen, and Hongxia Jin.
+\newblock Language model compression with weighted low-rank factorization.
+\newblock {\em arXiv preprint arXiv:2207.00112}, 2022.
+
 \bibitem{DPG}
 Xiwei Hu, Rui Wang, Yixiao Fang, Bin Fu, Pei Cheng, and Gang Yu.
 \newblock Ella: Equip diffusion models with llm for enhanced semantic
@@ -722,6 +727,12 @@ Cheng Lu, Yuhao Zhou, Fan Bao, Jianfei Chen, Chongxuan Li, and Jun Zhu.
   sampling in around 10 steps.
 \newblock {\em Advances in Neural Information Processing Systems},
   35:5775--5787, 2022.
+
+\bibitem{lu2025dpm}
+Cheng Lu, Yuhao Zhou, Fan Bao, Jianfei Chen, Chongxuan Li, and Jun Zhu.
+\newblock Dpm-solver++: Fast solver for guided sampling of diffusion
+  probabilistic models.
+\newblock {\em Machine Intelligence Research}, 22(4):730--751, 2025.
 
 \bibitem{LatentConsistencyModel}
 Simian Luo, Yiqin Tan, Longbo Huang, Jian Li, and Hang Zhao.
@@ -1130,6 +1141,19 @@ Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones,
 \newblock Attention is all you need.
 \newblock {\em Advances in neural information processing systems}, 30, 2017.
 
+\bibitem{wang2025dobi}
+Qinsi Wang, Jinghan Ke, Masayoshi Tomizuka, Yiran Chen, Kurt Keutzer, and
+  Chenfeng Xu.
+\newblock Dobi-svd: Differentiable svd for llm compression and some new
+  perspectives.
+\newblock {\em arXiv preprint arXiv:2502.02723}, 2025.
+
+\bibitem{SVD_LLM_V2}
+Xin Wang, Samiul Alam, Zhongwei Wan, Hui Shen, and Mi~Zhang.
+\newblock Svd-llm v2: Optimizing singular value truncation for large language
+  model compression.
+\newblock {\em arXiv preprint arXiv:2503.12340}, 2025.
+
 \bibitem{wang2025svd}
 Xin Wang, Samiul Alam, Zhongwei Wan, Hui Shen, and Mi~Zhang.
 \newblock {SVD-LLM} v2: Optimizing singular value truncation for large language
@@ -1138,11 +1162,11 @@ Xin Wang, Samiul Alam, Zhongwei Wan, Hui Shen, and Mi~Zhang.
   Americas Chapter of the Association for Computational Linguistics: Human
   Language Technologies (Volume 1: Long Papers)}, pages 4287--4296, 2025.
 
-\bibitem{SVD_LLM_V2}
-Xin Wang, Samiul Alam, Zhongwei Wan, Hui Shen, and Mi~Zhang.
-\newblock Svd-llm v2: Optimizing singular value truncation for large language
-  model compression.
-\newblock {\em arXiv preprint arXiv:2503.12340}, 2025.
+\bibitem{wang2024svd}
+Xin Wang, Yu~Zheng, Zhongwei Wan, and Mi~Zhang.
+\newblock Svd-llm: Truncation-aware singular value decomposition for large
+  language model compression.
+\newblock {\em arXiv preprint arXiv:2403.07378}, 2024.
 
 \bibitem{DiffusionDB}
 Zijie~J Wang, Evan Montoya, David Munechika, Haoyang Yang, Benjamin Hoover, and

@@ -19,7 +19,7 @@
 \contentsline {subsubsection}{DDPM Sampler}{12}{section*.11}%
 \contentsline {subsection}{\numberline {2.2.2}Denoising Diffusion Implicit Models}{13}{subsection.2.2.2}%
 \contentsline {subsection}{\numberline {2.2.3}Score-Based Generative Models}{14}{subsection.2.2.3}%
-\contentsline {subsection}{\numberline {2.2.4}Stochastic Differential Equations}{15}{subsection.2.2.4}%
+\contentsline {subsection}{\numberline {2.2.4}Stochastic Differential Equations}{14}{subsection.2.2.4}%
 \contentsline {subsection}{\numberline {2.2.5}Flow Matching}{15}{subsection.2.2.5}%
 \contentsline {subsubsection}{Rectified Flow}{16}{section*.12}%
 \contentsline {subsection}{\numberline {2.2.6}Latent Diffusion Models}{17}{subsection.2.2.6}%
