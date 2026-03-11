@@ -1,4 +1,5 @@
 \section{Flux.1-dev Pruning}
+\label{sec:ExpFlux}
 Flux.1-dev is an 11.9 billion parameter rectified flow model capable of generating detailed, high-quality, and high-aesthetic images. Due to its high parameter count, it is a primary target for model reduction techniques in the literature. In this section, the compression of Flux.1-dev via low-rank approximation of projection matrices within transformer blocks is investigated. To this end, the insights obtained by previous experiments on PixAr-$\Sigma$ (Sec. \ref{sec:PixArtExp}) are leveraged and tested to determine if they hold for models in the high-parameter regime. Notably, certain experiments are re-evaluated specifically for Flux.1-dev to account for its distinct architectural characteristics and significantly larger scale compared to PixArt-$\Sigma$.
 
 First, Sec. \ref{sec:flux_training_details} summarizes the fine-tuning and default compression settings for Flux.1-dev applied after compression.

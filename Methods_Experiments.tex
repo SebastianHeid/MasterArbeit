@@ -1,72 +1,18 @@
 %\section{PixArt-$\Sigma$ Distillation}
 %This master thesis investigate structural model distillation techniques, specifically focusing on the removal and compression of transformer blocks within the PixArt-$\Sigma$ and Flux.1-dev architectures. PixArt-$\Sigma$ is employed as an experimental baseline to evaluate various design choices in the distillation frameworks due to its relatively low parameter count enabling rapid iteration and extensive ablation studies. Subsequently, the most effective strategies are applied to Flux.1-dev to assess their efficacy in high-parameter regimes. 
 
-
-\section{Block Importance Analysis}
-Identifying the least important parts of the model which, can be compressed or removed with minimal impact on the final model performance, is crucial for effective structural model pruning. In the following, various block selection criterias are first presented, followed by selection algorithms tackling the challenge of identifying subsets of blocks for simultaneous compression.
-\label{sec:BlockImportanceAnalyses}
-\subsection{Block Selction Criterias}
-\subsubsection{Magnitude-Pruning}
-\label{sec:MagnitudePruning}
-In magnitude pruning \cite{han2015learning,filters2016pruning,lee2020layer}, the magnitudes of the weights within individual model components are computed to serve as a proxy for their relative importance. The underlying assumption is that small weight magnitudes correspond to a low overall impact on the model performance, implying that architectural components with lower weight magnitudes should be prioritized for compression. The aggregated magnitude $M_i$ of a transformer block $B_i$ is defined as the total Frobenius norm of its constituent weight matrices $W \in B_i$. To account for the multiple sub-layers within a block, we compute the block-wise magnitude as
- \begin{equation} 
- 	M_i = \sqrt{\sum_{W \in B_i} |W|_F^2} \quad \text{with} \quad \|W\|_F = \sqrt{\sum_j \sum_k |w_{jk}|^2} \quad.
- \end{equation} Consequently, the block with the smallest magnitude $M_s = \min_i(M_i)$ is identified as the primary candidate for compression.
-
-\subsubsection{Representational Similarity Analysis}
-\label{sec:CKA}
-Another approach to identify redundant model components is to compare their input representations with their corresponding output representations \cite{men2024shortgpt}. If the transformation between the input and output is marginal, indicating that the specific component performs an approximate identity mapping, the model part is considered a candidate for removal. To quantify the similarity between the input and output features of a transformer block, the Central Kernel Alignment (\gls{CKA}) metric \cite{kornblith2019similarity, pons2024effective} is employed. Let $X \in \mathbb{R}^{n\times d}$ denote the input and $Y \in \mathbb{R}^{n\times d}$ the output features to be compared. First, the kernels $K$ and $L$ need to be chosen which are the inner products of the input $K=XX^T$ and the output $L=YY^T$ in the linear case. To ensure invariance to mean shifts, the centering matrix $H=I - \frac{1}{n} 11^T$ is applied. The final \gls{CKA} score is then given by 
-\begin{equation}
-	\text{CKA}(K,L) = \frac{\text{HSIC}(K,L)}{\sqrt{\text{HSIC}(K,K) \text{HSIC}(L,L)}} \quad.
-\end{equation}
-This calculation utilizes the Hilbert-Schmidt Independence Criterion (\gls{HSIC}) \cite{gretton2005measuring} $\text{HSIC}(K,L) = \frac{1}{(n-1)^2}\text{tr}(KHLH)$ \cite{davari2022reliability}.
-
-\subsubsection{Metric Based Selection}
-\label{sec:MetricBasedSelection}
-A third approach for identifying the least important model components involves compressing all components, such as each transformer block, independently and evaluating the resulting configurations using image quality metrics on a small reference dataset. Specifically, let $\{B_1, \dots, B_L\}$ denote the individual blocks of a transformer-based model architecture. Each block is modified seperately resulting in $L$ distinct model configurations $\{\{\hat{B}_1, \dots, B_L\}$, $\dots$, $\{B_1, \dots, \hat{B}_i, \dots,  B_L\}$, $\dots$,$\{B_1, \dots, \hat{B}_L\}\}$ where $\hat{B}_i$ indicates that the $i^\text{th}$ block is modified. For each model configuration, the metrics are computed. In this work, the \gls{CMMD} and/or \gls{CLIP}-score are employed to rank the importance of the individual model components. While the \gls{CLIP}-score is used to evaluate semantic prompt-image coherence, \gls{CMMD} serves as a measure of general image quality and distributional fidelity. Since \gls{CMMD} and the \gls{CLIP}-score produce values in different ranges and have opposing optimization direction (minimization versus maximization), for both metrics a separate ranking of the blocks is created where $r_{\text{CMMD},i}$ and  $r_{\text{CLIP},i}$ are the corresponding ranks of block $B_i$. The final importance score is obtained by computing the aggregated rank $r_{\text{final},i}$ as
-\begin{equation}
-	r_{\text{final},i} = r_{\text{CMMD},i} + r_{\text{CLIP},i} \quad.
-	\label{eq:combined_importance}
-\end{equation}
-In the linear progressive compression approach (Sec. \ref{sec:LinearProgressiveCompression}) the compression strategy of the individual model parts leads to different numbers of removed parameters due to repeated compression and different compression ratios per block. Therefore, the \gls{CMMD} value normalized by the number of removed parameters $\frac{\text{CMMD}_i}{\text{Removed Parameters}}$ is leveraged to quantify the degradation of image quality per removed parameter and to rank the blocks to ensure a fair comparison.
-\subsection{Block Selection Algorithms}
-The necessity of block selection algorithms arises from a specific challenge in metric-based structural pruning. Specifically, the importance of individual model components, e.g. transformer blocks, is typically determined in isolation, meaning only one block is modified, while the remaing parts of the model are held fixed during evaluation.  However, in practical applications, several components are compressed simultaneously. It cannot necessarily be assumed that the simultaneous removal of components with the lowest individual impact will yield the optimal combination for preserving image quality. In the following, methods to select the best subset of model components for compression are described, and subsequently evaluated in Sec. \ref{sec:ExpBlockImportanceAnalysis}.
-\label{sec:BlockSelectionAlgo}
-\subsubsection{Greedy Block Selection}
-\label{sec:GreedyBlockSelection}
-The greedy algorithm is applied in conjunction with the metric-based selection criterion. It is an iterative procedure in which the importance of all currently uncompressed blocks is determined to identify and compress the least critical one. Following this step, the block importance is re-evaluated for all remaining uncompressed blocks. Concretely, let the model consist of $L$ transformer blocks $B=\{B_1, \dots, B_L\}$. 
-In the first iteration, the metrics are computed for all $L$ possibel model configurations $\mathcal{M}^{(1)} = \{ (B \setminus \{B_i\}) \cup \{\hat{B}_i\} \mid 1 \leq i \leq L \}$ and the optimal block $B_j$ is selected according to the ranking. Let $\bar{B}_j$ denote the compressed version of block $B_j$.
- In the second iteration, the metrics are re-computed for all $L-1$ remaining blocks
- $\mathcal{M}^{(2)} = \{ (B \setminus \{B_i, B_j\}) \cup \{\hat{B}_i, \bar{B}_j\} \mid 1 \leq i \leq L, i \neq j \}$.  For the $n^\text{th}$ iteration $L-(n-1)$ uncompressed blocks remain. Let $B_\text{comp}$ denote the set of all previously compressed blocks then the potential candidates for compression are given by  $\mathcal{M}^{(n)} = \{ (B \setminus (B_\text{comp} \cup  \{B_i\})) \cup \bar{B}_\text{comp} \cup \{\hat{B}_i\} \mid B_i \in B \setminus B_\text{comp} \}$.
- This process is repeated until the desired number of blocks to be compressed has been identified.
-%  $\{\{\hat{B}_1, \dots, \bar{B}_j, \dots, B_L\}$, $\dots$, $\{B_1, \dots, \hat{B}_{j-1}, \bar{B}_j, \dots,  B_L\}$, $\{B_1, \dots, \bar{B}_j, \hat{B}_{j+1}, \dots,  B_L\}$, $\dots$$\{B_1, \dots, \bar{B}_j, \dots, \hat{B}_L\}\}$. 
-%  
-  % $\{\{\hat{B}_1, \dots, B_L\}$, $\dots$, $\{B_1, \dots, \hat{B}_i, \dots,  B_L\}$, $\dots$,$\{B_1, \dots, \hat{B}_L\}\}$ 
-  
-\subsubsection{Black-Box Optimization with Optuna}
-\label{sec:Optuna}
-Optuna \cite{akiba2019optuna} is an open-source hyperparameter optimization framework that primarily leverages a Tree-structured Parzen Estimator \cite{bergstra2011algorithms}, a Bayesian optimization algorithm, to search the space of all possible hyperparameter settings which in this work corresponds to the discrete combinatorial space of block pruning configurations. It partitions the observed hyperparameter configurations into promising and non-promising candidates based on a user-defined objective function. By modeling these two groups using probability density functions, it draws a new set of hyperparameters that belongs to the promising group  with high probability. Through this informed search, the global optimum can be located much faster than with non-adaptive methods such as random or grid search. For an in-depth description of the Optuna algorithm the reader is referred to the original paper \cite{akiba2019optuna} as a more detailed explanation would go beyond the scope of this work. \\
-
-
-%\subsubsection{Learnable Block Selection Algorithm}
-%\label{sec:TinyFusion}
-%The authors of TinyFusion \cite{fang2025tinyfusion} propose a learning based block selection method for pruning transformer based image generation models. They hypothesize that instead of focusing on the error/loss in image quality resulting from the model compression it is advantageous to focus on the recoverability capabilities of the compressed model meaning on the post-finetuning performance. Initially, the model is divided into $K$ subparts $\mathbf{\phi} = [\mathbf{\phi}_1,\dots, \mathbf{\phi}_K]$.  Each subpart consists of $M$ transformer blocks $\mathbf{\phi}_k = [\phi_{k1}, \dots, \phi_{kM}]$. Specifying the number $N$ of blocks retained in each subpart a local binary mask $\mathbf{m}_k \in \{0,1\}^M$ is introduced to determine the inclusion or exclusion of the individual blocks. A categorical distribution $p(\mathbf{m}_k)$ is assigned to each mask to model the probability for a specific combination of blocks to be removed. The goal is to jointly optimize the model and the categorical mask distributions.  To ensure that the sampling process of the mask remains differentiable during training the Gumbel-Softmax \cite{jang2016categorical} is utilized. The objective function for jointly optimizing weights and masks is given by
-%\begin{equation}
-%	\min_{\{p(\mathbf{m}_k)\}} \underbrace{\min_{\Delta \Phi} \mathbb{E}_{x, \{\mathbf{m}_k \sim p(\mathbf{m}_k)\}} \left[ \mathcal{L}(x, \Phi + \Delta \Phi, \{\mathbf{m}_k\}) \right]}_{\text{\textit{Recoverability: Post-Fine-Tuning Performance}}} 
-%\end{equation}
-%where $\Delta \Phi$ represents the updates for the model parameters $\Phi$. The learned mask provides the infromation which transformer blocks are essential for the recoverability of the network.
-%Due to the potential high computational effort of a complete finetuning of a large model, the authors showed that low-rank adaptation (\gls{LoRA}) \cite{hu2022lora} finetuning is sufficient. The joint optimization results in a mask distribution taking into account how removing blocks would influence the post-finetuned model.
 \section{Training Data and Image Synthesis}
+\label{sec:Datasets}
 \subsection{Training Datasets}
-In this section, the datasets leveraged for retraining PixArt-$\Sigma$ and Flux.1-dev after pruning are briefly described. Both synthetic, self-generated data sets and pre-existing data sets were used.
+In this section, the datasets utilized for fine-tuning PixArt-$\Sigma$ and Flux.1-dev after pruning are briefly described. Both synthetic, self-generated data sets and pre-existing data sets were used.
 \subsubsection{LAION Aesthetic}
-LAION-5B \cite{schuhmann2022laion} is a dataset containing 5.85 billion web images of varying sizes, of which 2.32 billion have English captions. All images are filtered using \gls{CLIP} embeddings to prevent that harmful and inappropriate images appear in the dataset. LAION-5B is partitioned into several subsets. Specifically, an aesthetic subset \cite{schuhmann2022laionaesthetic} comprising 120 million images was created by training a linear model on top of the \gls{CLIP} embeddings to predict an aesthetic score. Only images exceeding a certain threshold were added to this subset. In this work, 608k images from the aesthtic subset are utilized as the training dataset. Due to poor quality of the web-scrabed captions which come along with the LAION-5B dataset, new synthetic prompts were generated using the visual language model JoyCaption \cite{fpgaminer2024joycaption}. Five example images of the dataset are displayed in Fig. \ref{fig:LaionDataset}.\\
+LAION-5B \cite{schuhmann2022laion} is a dataset containing 5.85 billion web images of varying sizes, of which 2.32 billion have English captions. All images are filtered using \gls{CLIP} embeddings to prevent that harmful and inappropriate images appear in the dataset. LAION-5B is partitioned into several subsets. Specifically, an aesthetic subset \cite{schuhmann2022laionaesthetic} comprising 120 million images was created by training a linear model on top of the \gls{CLIP} embeddings to predict an aesthetic score. Only images exceeding a certain threshold were added to this subset. In this work, 608k images from the aesthtic subset are utilized as training dataset. Due to poor quality of the web-scrabed captions which come along with the LAION-5B dataset, new synthetic prompts were generated using the visual language model JoyCaption \cite{fpgaminer2024joycaption}. Five example images of the dataset are displayed in Fig. \ref{fig:LaionDataset}.\\
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.85\textwidth]{images/Methoden/Original_Laion_Dataset.pdf}
 	\caption[LAION Dataset]{Examples of LAION dataset.}
-
+	
 	
 	\label{fig:LaionDataset}
 \end{figure}
@@ -100,7 +46,7 @@ The pre-trained Pixart-$\Sigma$ model is utilized to generate a synthetic datase
 \end{figure}
 
 \subsubsection{LAION-Flux.1-dev Dataset}
-Following the same methodology as for the LAION-PixArt-$\Sigma$ dataset a LAION-Flux.1-dev dataset was created. Specifically, 190k prompts generated with JoyCaptions based on the aesthetic subset of LAION-5B were utilized to generate synthetic images using the Flux.1-dev model. The configuration used during the image generation process is detailed in Tab. \ref{tab:FluxLaionDataset}. In addition, example images based on the same prompts as those used for the LAION- PixArt dataset are presented in Fig. \ref{fig:FluxLaionDataset}.
+Following the same methodology as for the LAION-PixArt-$\Sigma$ dataset a LAION-Flux.1-dev dataset was created. Specifically, 190k prompts generated with JoyCaptions based on the aesthetic subset of LAION-5B were utilized to generate synthetic images using the Flux.1-dev model. The configuration used during the image generation process is detailed in Tab. \ref{tab:FluxLaionDataset}. In addition, example images based on the same prompts as those used for the LAION-PixArt dataset are presented in Fig. \ref{fig:FluxLaionDataset}.
 \begin{table}[ht]
 	\centering
 	\caption[Parameter LAION-Flux.1-dev Dataset]{Generation Parameters for LAION-Flux.1-dev dataset.}
@@ -127,60 +73,126 @@ Following the same methodology as for the LAION-PixArt-$\Sigma$ dataset a LAION-
 	
 	\label{fig:PixArtBlockMagnitudeCLIP}
 \end{figure}
-\subsection{Evaluation Datasets}
-This section presents data sets on which the compressed models were evaluated.
-\subsubsection{Mapillary}
-The Mapillary \cite{neuhold2017mapillary} dataset consists of 25,000 street level images. Additionally, it contains fine-grained semantic masks for 66 different object classes. In order to achieve high diversity, the images originate from various geographical regions, e.g., Europe, North and South America, Africa, Wider Geographic Oceania, Asia, and were captured during different seasons and at varying times of day with diverse lighting conditions. In addition, no image sequences, which are often recorded by car cameras, were integrated, only individual and unique images to avoid redundancy. Most of the images were taken from the street or sidewalk. These were supplemented by images taken on highways, in rural areas, and off-road environments. The use of different camera sensors and perspectives contribute to the diversity of the dataset. For quality assurance, only images with at least full HD resolution ($1920 \times 1080$) that contain only a small amount of motion blurr were selected. Due to privacy protection, faces and number plates are blurred.
+%\subsection{Evaluation Datasets}
+%This section presents data sets on which the compressed models were evaluated.
+%\subsubsection{Mapillary}
+%The Mapillary \cite{neuhold2017mapillary} dataset consists of 25,000 street level images. Additionally, it contains fine-grained semantic masks for 66 different object classes. In order to achieve high diversity, the images originate from various geographical regions, e.g., Europe, North and South America, Africa, Wider Geographic Oceania, Asia, and were captured during different seasons and at varying times of day with diverse lighting conditions. In addition, no image sequences, which are often recorded by car cameras, were integrated, only individual and unique images to avoid redundancy. Most of the images were taken from the street or sidewalk. These were supplemented by images taken on highways, in rural areas, and off-road environments. The use of different camera sensors and perspectives contribute to the diversity of the dataset. For quality assurance, only images with at least full HD resolution ($1920 \times 1080$) that contain only a small amount of motion blurr were selected. Due to privacy protection, faces and number plates are blurred.
+%
+%\begin{figure}[H]
+%	\centering
+%	\includegraphics[width=0.85\textwidth]{images/Methoden/Mapillary_Dataset.pdf}
+%	\caption[Mapillary Dataset]{Example images of Mapillary dataset. }
+%	\label{fig:MapillaryDataset}
+%\end{figure}
+%
+%\subsubsection{Cityscapes}
+%The Cityscapes \cite{cordts2016cityscapes} dataset contains a total of 25,000 images ($1024 \times 2048$) extracted from stereo-video-sequences of urban street scenes. The images were captured at 50 different cities, in spring, summer or fall. However, there are only images taken during daylight hours and in good to moderate weather conditions. While 20,000 images provide coarse annotations, 5,000 images of the dataset are densely annotated at pixel level covering 30 different object classes.  The dataset is highly relevant, e.g., for the automotive sector, because of autonomous driving. However, due to its high degree of standardization it is less diverse than the Mapillary dataset.
+%\begin{figure}[H]
+%	\centering
+%	\includegraphics[width=0.85\textwidth]{images/Methoden/Cityscapes_Dataset.pdf}
+%	\caption[Cityscapes Dataset]{Example images of Cityscapes dataset. }
+%	\label{fig:CityscapesDataset}
+%\end{figure}
+%\subsubsection{MJHQ-30k}
+%The MJHQ-30k \cite{li2024playground} dataset consists of 30,000 synthetic images from ten different categories (animals, art, fashion, food, indoor, landscape, logo, people, plants, vehicles) each containing 3,000 images to ensure a balanced distribution. These images were generated using Midjourney 5.2 \cite{li2024playground} and selected based on their text-alignmen (\gls{CLIP}) and their aesthetic \cite{kirstain2023pick} scores. 
+%
+%\begin{figure}[H]
+%	\centering
+%	\includegraphics[width=0.85\textwidth]{images/Methoden/MHJQ_30k_Dataset.pdf}
+%	\caption[MHJQ-30k Dataset]{Example images of MHJQ-30k dataset. }
+%	\label{fig:CMHJQDataset}
+%\end{figure}
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.85\textwidth]{images/Methoden/Mapillary_Dataset.pdf}
-	\caption[Mapillary Dataset]{Example images of Mapillary dataset. }
-	\label{fig:MapillaryDataset}
-\end{figure}
 
-\subsubsection{Cityscapes}
-The Cityscapes \cite{cordts2016cityscapes} dataset contains a total of 25,000 images ($1024 \times 2048$) extracted from stereo-video-sequences of urban street scenes. The images were captured at 50 different cities, in spring, summer or fall. However, there are only images taken during daylight hours and in good to moderate weather conditions. While 20,000 images provide coarse annotations, 5,000 images of the dataset are densely annotated at pixel level covering 30 different object classes.  The dataset is highly relevant, e.g., for the automotive sector, because of autonomous driving. However, due to its high degree of standardization it is less diverse than the Mapillary dataset.
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.85\textwidth]{images/Methoden/Cityscapes_Dataset.pdf}
-	\caption[Cityscapes Dataset]{Example images of Cityscapes dataset. }
-	\label{fig:CityscapesDataset}
-\end{figure}
-\subsubsection{MJHQ-30k}
-The MJHQ-30k \cite{li2024playground} dataset consists of 30,000 synthetic images from ten different categories (animals, art, fashion, food, indoor, landscape, logo, people, plants, vehicles) each containing 3,000 images to ensure a balanced distribution. These images were generated using Midjourney 5.2 \cite{li2024playground} and selected based on their text-alignmen (\gls{CLIP}) and their aesthetic \cite{kirstain2023pick} scores. 
+\section{Block Importance Analysis}
+\label{sec:MethodsBlockImportanceAnalysis}
+Identifying the least important parts of the model which, can be compressed with minimal impact on the final model performance, is crucial for effective structural model pruning. In the following, various block selection criterias are first presented, followed by selection algorithms tackling the challenge of identifying subsets of blocks for simultaneous compression.
+\label{sec:BlockImportanceAnalyses}
+\subsection{Block Selection Criteria}
+Three different block selection criteria, namely magnitude-based, similarity-based, and metric-based selection, are presented. They are investigated in Sec. \ref{sec:ExpPixArtBlockSelectionCriterias} for PixArt-$\Sigma$.
+\subsubsection{Magnitude-Based Selection}
+\label{sec:MagnitudePruning}
+In magnitude pruning \cite{han2015learning,filters2016pruning,lee2020layer}, the magnitudes of the weights within individual model components are computed to serve as a proxy for their relative importance. The underlying assumption is that small weight magnitudes correspond to a low overall impact on the model performance, implying that architectural components with lower weight magnitudes should be prioritized for compression. The aggregated magnitude $M_i$ of a transformer block $B_i$ is defined as the total Frobenius norm of its constituent weight matrices $W \in B_i$. To account for the multiple sub-layers within a block, we compute the block-wise magnitude as
+ \begin{equation} 
+ 	M_i = \sqrt{\sum_{W \in B_i} |W|_F^2} \quad \text{with} \quad \|W\|_F = \sqrt{\sum_j \sum_k |w_{jk}|^2} \quad.
+ \end{equation} Consequently, the block with the smallest magnitude $M_s = \min_i(M_i)$ is identified as the primary candidate for compression.
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.85\textwidth]{images/Methoden/MHJQ_30k_Dataset.pdf}
-	\caption[MHJQ-30k Dataset]{Example images of MHJQ-30k dataset. }
-	\label{fig:CMHJQDataset}
-\end{figure}
+\subsubsection{Similarity-Based Selection}
+\label{sec:CKA}
+Another approach for identifying redundant model components is to compare their input representations with their corresponding output representations \cite{men2024shortgpt}. If the transformation between the input and output is marginal, indicating that the specific component performs an approximate identity mapping, the model part is considered a candidate for removal. To quantify the similarity between the input and output features of a transformer block, the Central Kernel Alignment (\gls{CKA}) metric \cite{kornblith2019similarity, pons2024effective} is employed. Let $X \in \mathbb{R}^{n\times d}$ denote the input and $Y \in \mathbb{R}^{n\times d}$ the output features to be compared. First, the kernels $K$ and $L$ need to be chosen, which, in the linear case, correspond to the inner products of the input  $K=XX^T$ and the output $L=YY^T$. The final \gls{CKA} score is then given by 
+\begin{equation}
+	\text{CKA}(K,L) = \frac{\text{HSIC}(K,L)}{\sqrt{\text{HSIC}(K,K) \text{HSIC}(L,L)}} \quad.
+\end{equation}
+This calculation utilizes the Hilbert-Schmidt Independence Criterion (\gls{HSIC}) \cite{gretton2005measuring} defined as $\text{HSIC}(K,L) = \frac{1}{(n-1)^2}\text{tr}(KHLH)$ \cite{davari2022reliability}, where $H=I - \frac{1}{n} 11^T$ is the centering matrix to ensure invariance to mean shifts.
 
-\section{Model Compression Strategies}
+\subsubsection{Metric-Based Selection}
+\label{sec:MetricBasedSelection}
+A third approach for identifying the least important model components involves compressing all components, such as each transformer block, independently and evaluating the resulting configurations using image quality metrics on a small reference dataset. Specifically, let $\{B_1, \dots, B_L\}$ denote the individual blocks of a transformer-based model architecture. Each block is modified separately resulting in $L$ distinct model configurations $\{\{\hat{B}_1, \dots, B_L\}$, $\dots$, $\{B_1, \dots, \hat{B}_i, \dots,  B_L\}$, $\dots$,$\{B_1, \dots, \hat{B}_L\}\}$ where $\hat{B}_i$ indicates that the $i^\text{th}$ block is modified. For each model configuration, the metrics are computed. In this work, the \gls{CMMD} and/or \gls{CLIP}-score are employed to rank the importance of the individual model components. While the \gls{CLIP}-score is used to evaluate semantic prompt-image coherence, \gls{CMMD} serves as a measure of general image quality and distributional fidelity. Since \gls{CMMD} and the \gls{CLIP}-score produce values in different ranges and have opposing optimization directions (minimization versus maximization), a separate ranking of the blocks is created for each metric, where $r_{\text{CMMD},i}$ and  $r_{\text{CLIP},i}$ are the corresponding ranks of block $B_i$. The final importance score is obtained by computing the aggregated rank $r_{\text{final},i}$ as
+\begin{equation}
+	r_{\text{final},i} = r_{\text{CMMD},i} + r_{\text{CLIP},i} \quad.
+	\label{eq:combined_importance}
+\end{equation}
+In the linear progressive compression approach (Sec. \ref{sec:LinearProgressiveCompression}) the compression strategy of the individual model parts leads to different numbers of removed parameters due to repeated compression and different compression ratios per block. Therefore, the \gls{CMMD} value normalized by the number of removed parameters, $\frac{\text{CMMD}_i}{\text{Removed Parameters}}$, is leveraged to quantify the degradation of image quality per removed parameter and to rank the blocks to ensure a fair comparison. This approach is also used for all experiments with Flux.1-dev in Sec. \ref{sec:ExpFlux}.
+
+
+
+\subsection{Block Selection Algorithms}
+The necessity of block selection algorithms arises from a specific challenge in metric-based structural pruning. Specifically, the importance of individual model components, e.g. transformer blocks, is typically determined in isolation, meaning only one block is modified, while the remaining parts of the model are held fixed during evaluation.  However, in practical applications, several components are compressed simultaneously. It cannot necessarily be assumed that the simultaneous removal of components with the lowest individual impact will yield the optimal combination for preserving image quality. In the following, methods to select the best subset of model components for compression are described, and subsequently evaluated in Sec. \ref{sec:ExpBlockImportanceAnalysis}.
+\label{sec:BlockSelectionAlgo}
+\subsubsection{Greedy Block Selection}
+\label{sec:GreedyBlockSelection}
+The greedy algorithm is applied in conjunction with the metric-based selection criterion. It is an iterative procedure in which the importance of all currently uncompressed blocks is determined to identify and compress the least critical one. Following this step, the block importance is re-evaluated for all remaining uncompressed blocks. Concretely, let the model consist of $L$ transformer blocks $B=\{B_1, \dots, B_L\}$. 
+In the first iteration, the metrics are computed for all $L$ possibel model configurations $\mathcal{M}^{(1)} = \{ (B \setminus \{B_i\}) \cup \{\hat{B}_i\} \mid 1 \leq i \leq L \}$ and the optimal block $B_j$ is selected according to the ranking. Let $\bar{B}_j$ denote the compressed version of block $B_j$.
+ In the second iteration, the metrics are re-computed for all $L-1$ remaining blocks
+ $\mathcal{M}^{(2)} = \{ (B \setminus \{B_i, B_j\}) \cup \{\hat{B}_i, \bar{B}_j\} \mid 1 \leq i \leq L, i \neq j \}$.  For the $n^\text{th}$ iteration $L-(n-1)$ uncompressed blocks remain. Let $B_\text{comp}$ denote the set of all previously compressed blocks then the potential candidates for compression are given by  $\mathcal{M}^{(n)} = \{ (B \setminus (B_\text{comp} \cup  \{B_i\})) \cup \bar{B}_\text{comp} \cup \{\hat{B}_i\} \mid B_i \in B \setminus B_\text{comp} \}$.
+ This process is repeated until the desired number of blocks to be compressed has been identified.
+%  $\{\{\hat{B}_1, \dots, \bar{B}_j, \dots, B_L\}$, $\dots$, $\{B_1, \dots, \hat{B}_{j-1}, \bar{B}_j, \dots,  B_L\}$, $\{B_1, \dots, \bar{B}_j, \hat{B}_{j+1}, \dots,  B_L\}$, $\dots$$\{B_1, \dots, \bar{B}_j, \dots, \hat{B}_L\}\}$. 
+%  
+  % $\{\{\hat{B}_1, \dots, B_L\}$, $\dots$, $\{B_1, \dots, \hat{B}_i, \dots,  B_L\}$, $\dots$,$\{B_1, \dots, \hat{B}_L\}\}$ 
+  
+\subsubsection{Black-Box Optimization with Optuna}
+\label{sec:Optuna}
+Optuna \cite{akiba2019optuna} is an open-source hyperparameter optimization framework that primarily leverages a Tree-structured Parzen Estimator \cite{bergstra2011algorithms}, a Bayesian optimization algorithm, to search the space of all possible parameter settings, which in this work corresponds to the discrete combinatorial space of block pruning configurations. It partitions the observed hyperparameter configurations into promising and non-promising candidates based on a user-defined objective function. By modeling these two groups using probability density functions, it draws a new set of hyperparameters that belongs to the promising group  with high probability. Through this informed search, the global optimum is theoretically expected to be located much faster than with non-adaptive methods such as random or grid search. For an in-depth description of the Optuna algorithm the reader is referred to the original paper \cite{akiba2019optuna} as a more detailed explanation would go beyond the scope of this work. 
+
+
+%\subsubsection{Learnable Block Selection Algorithm}
+%\label{sec:TinyFusion}
+%The authors of TinyFusion \cite{fang2025tinyfusion} propose a learning based block selection method for pruning transformer based image generation models. They hypothesize that instead of focusing on the error/loss in image quality resulting from the model compression it is advantageous to focus on the recoverability capabilities of the compressed model meaning on the post-finetuning performance. Initially, the model is divided into $K$ subparts $\mathbf{\phi} = [\mathbf{\phi}_1,\dots, \mathbf{\phi}_K]$.  Each subpart consists of $M$ transformer blocks $\mathbf{\phi}_k = [\phi_{k1}, \dots, \phi_{kM}]$. Specifying the number $N$ of blocks retained in each subpart a local binary mask $\mathbf{m}_k \in \{0,1\}^M$ is introduced to determine the inclusion or exclusion of the individual blocks. A categorical distribution $p(\mathbf{m}_k)$ is assigned to each mask to model the probability for a specific combination of blocks to be removed. The goal is to jointly optimize the model and the categorical mask distributions.  To ensure that the sampling process of the mask remains differentiable during training the Gumbel-Softmax \cite{jang2016categorical} is utilized. The objective function for jointly optimizing weights and masks is given by
+%\begin{equation}
+%	\min_{\{p(\mathbf{m}_k)\}} \underbrace{\min_{\Delta \Phi} \mathbb{E}_{x, \{\mathbf{m}_k \sim p(\mathbf{m}_k)\}} \left[ \mathcal{L}(x, \Phi + \Delta \Phi, \{\mathbf{m}_k\}) \right]}_{\text{\textit{Recoverability: Post-Fine-Tuning Performance}}} 
+%\end{equation}
+%where $\Delta \Phi$ represents the updates for the model parameters $\Phi$. The learned mask provides the infromation which transformer blocks are essential for the recoverability of the network.
+%Due to the potential high computational effort of a complete finetuning of a large model, the authors showed that low-rank adaptation (\gls{LoRA}) \cite{hu2022lora} finetuning is sufficient. The joint optimization results in a mask distribution taking into account how removing blocks would influence the post-finetuned model.
+
+\section{Model Pruning Strategies}
 \label{sec:StructuralCompressionStrategy}
-There are two primary strategies in model pruning. On the one hand, individual model components can be removed entirely, or, on the other hand, they can be compressed, e.g. via low-rank approximation. In transformer-based architectures like PixArt-$\Sigma$ and Flux.1-dev, a natural choice is to partition the model according to individual transformer blocks. Therefore, any reference to "model parts" in the following sections specifically denotes these individual transformer blocks. Both strategies and their respective variants are described in the section below. 
+In the literature, two dominant approaches are utilized for pruning \gls{DiT}s. One approach involves the complete removal of individual model parts \cite{flux1-lite,flux_mini_2024}, while the other replaces model parts by smaller modules such as linear layers \cite{FastFlux,PPCL}. In this Master's Thesis, the complete removal of transformer blocks (Sec. \ref{sec:MethodBlockRemoval}) is investigated as a baseline. Furthermore, instead of replacing model parts, the application of low-rank approximations of projection matrices within the transformer blocks is investigated realized via truncated \gls{SVD}. For \gls{SVD}-based compression, a distinction is made between compressing blocks only once (Sec. \ref{sec:SVDCompression}) or iteratively compressing them multiple times (Sec. \ref{sec:IterativeRepeatedSVDCompression}). Finally, \gls{GRASP} \cite{GRASP}, a more advanced \gls{SVD}-based compression, technique is investigated as a proof-of-concept for its transferability from \gls{LLM}s to \gls{DiT}s.
+
+
+%There are two primary strategies in model pruning. On the one hand, individual model components can be removed entirely, or, on the other hand, they can be compressed, e.g. via low-rank approximation. In transformer-based architectures like PixArt-$\Sigma$ and Flux.1-dev, a natural choice is to partition the model according to individual transformer blocks. Therefore, any reference to "model parts" in the following sections specifically denotes these individual transformer blocks. Both strategies and their respective variants are described in the section below. 
 \subsection{Block Removal}
-In structural model pruning, entire functional components of a model are eliminated \cite{Bksdm, Laptop, Koala} while others that are considered as highly relevant for the models performance are maintained. Concretely, if a transformer block $B_i$ is removed, the output features of block $B_{i-1}$ (denoted as $x_{i-1}$) are directly passed to block $B_{i+1}$
+\label{sec:MethodBlockRemoval}
+In structural model pruning, entire functional components of a model are eliminated \cite{Bksdm, Laptop, Koala} while others that are considered highly relevant for the model's performance are maintained. Concretely, if a transformer block $B_i$ is removed, the output features of block $B_{i-1}$ (denoted as $x_{i-1}$) are directly passed to block $B_{i+1}$
 
 \begin{equation}
 x_{i+1} = B_{i+1}(x_{i-1}) \quad.
 \end{equation}
-Due to consistent dimensionality of the hidden features across the model's depth no additional dimension adaption needs to be done. A schematic sketch of this procedure is included in Fig. \ref{fig:CompRemScheme}.
-\subsection{SVD Compression}
+Due to the consistent dimensionality of the hidden features across the model's depth, no additional dimension adaptation is required. A schematic sketch of this procedure is provided in Fig. \ref{fig:CompRemScheme}.
+
+\subsection{SVD-Based Compression}
 \label{sec:SVDCompression}
-Singular Value Decomposition (\gls{SVD}) \cite{zhang2015singular} factorizes a matrix $W \in \mathbb{R}^{n \times m}$ into three matrices $U, \Sigma, V$ such that 
+Singular value decomposition (\gls{SVD}) \cite{zhang2015singular} factorizes a matrix $W \in \mathbb{R}^{n \times m}$ into three matrices $U, \Sigma, V$ such that 
 \begin{equation}
 W = U \Sigma V^T
 \end{equation}
 where $U \in \mathbb{R}^{n \times n}$ and $V \in \mathbb{R}^{m \times m}$ are orthonormal matrices and $\Sigma \in \mathbb{R}^{n \times m}$ is a diagonal matrix. The entries of $\Sigma$ are referred to as singular values and are sorted in descending order $\sigma_1 \geq \sigma_2 \geq \sigma_3 \dots \geq \sigma_p$ with $p = \min(n,m)$. The magnitude of each singular value serves as a proxy for the importance of the corresponding rows and columns of $U$ and $V$.
 
- In model compression \cite{SVD_LLM_V2,ASVD}, \gls{SVD} is utilized to approximate weight matrices by retaining only the $k <p$ largest singular values, such that $U_\text{red} \in \mathbb{R}^{n \times k}$, $V_\text{red} \in \mathbb{R}^{m \times k}$ and $\Sigma_\text{red} \in \mathbb{R}^{k \times k}$, thereby reducing the total parameter count depending on the choice of $k$. Specifically, the matrix $W$ is approximated by two matrices $A=U_\text{red}\sqrt{\Sigma_\text{red}}$ and $B=\sqrt{\Sigma_\text{red}}V_\text{red}^T$. Given a feature vector $\mathbf{x}$, the standard transformation $\mathbf{x}_\text{next} = W\mathbf{x} + \mathbf{b} $ is replaced by
+ In model compression, truncated \gls{SVD} is utilized to approximate weight matrices by retaining only the $k<p$ largest singular values, such that $U_\text{red} \in \mathbb{R}^{n \times k}$, $V_\text{red} \in \mathbb{R}^{m \times k}$ and $\Sigma_\text{red} \in \mathbb{R}^{k \times k}$, thereby reducing the total parameter count depending on the choice of $k$. Specifically, the matrix $W$ is approximated by two matrices $A=U_\text{red}\sqrt{\Sigma_\text{red}}$ and $B=\sqrt{\Sigma_\text{red}}V_\text{red}^T$. Given a feature vector $\mathbf{x}$, the standard transformation $\mathbf{x}_\text{next} = W\mathbf{x} + \mathbf{b} $ is replaced by
 \begin{equation}
 	\mathbf{x}_\text{next} =AB \mathbf{x} +  \mathbf{b}
 \end{equation}
 where $ \mathbf{b}$ is the bias term, which remains unchanged.
-Rather than defining a fixed rank k, it is more practical to specify the percentage c of parameters to be removed. For a weight matrix $W \in \mathbb{R}^{n \times m}$, the initial number of parameters is given by $P_\text{orig} = n \times m$. The target number of parameters is then given by $P_{\text{targ}} = P_{\text{orig}} \times (1.0 - c)$. Consequently, the target rank is determined as 
+Rather than defining a fixed rank $k$, it is more practical to specify the percentage $c$ of parameters to be removed, referred to as the compression ratio. For a weight matrix $W \in \mathbb{R}^{n \times m}$, the initial number of parameters is given by $P_\text{orig} = n \times m$. The target number of parameters is then given by $P_{\text{targ}} = P_{\text{orig}} \times (1.0 - c)$. Consequently, the target rank is determined as 
 \begin{equation}
 	k_{\text{targ}} = \max\left(1, \text{int}\left(\frac{P_{\text{targ}}}{n+m}\right)\right) \quad.
 \end{equation}
@@ -189,22 +201,22 @@ Rather than defining a fixed rank k, it is more practical to specify the percent
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=\textwidth]{images/Methoden/CompressionRemovalScheme.pdf}
-		\caption[Model Compression Strategies]{Example of removal (left) and compression (right) strategy based on a simplified representation of PixArt-$\Sigma$ architecture. The depictions show the case that the blocks 8,11,15,17 and 20 are removed or compressed. }
+		\caption[Model Compression Strategies]{Example of the removal (left) and compression (right) strategies based on a simplified representation of PixArt-$\Sigma$ architecture. The depictions illustrates a scenario where blocks 8,11,15,17 and 20 are either removed or compressed. }
 		\label{fig:CompRemScheme}
 \end{figure}
 
 
 
-\subsection{Iteratively Repeated SVD Compression}
+\subsection{Iterative SVD-Based Compression}
 \label{sec:IterativeRepeatedSVDCompression}
-In the final compression setup (Sec. \ref{sec:LinearProgressiveCompression}), individual transformer blocks are compressed and subsequently retrained multiple times using \gls{SVD}. Initially, an original weight matrix $W$ is decomposed into matrices $A$ and $B$ such that $W \approx AB$. During the subsequent retraining, the matrices $A$ and $B$ are updated to $A_t$ and $B_t$. Therefore, the relation $W \approx A_tB_t$ does not necessarily need to hold with respect to the initial matrix $W$, as the model adapts to the low rank constraint during training. Therefore, if the transformer block containing the weight matrix $W$ is to be compressed again, the current effective weight matrix $W_t = A_t B_t$ is first reconstructed, followed by the application of the \gls{SVD} algorithm $W_t = U^{(2)} \Sigma^{(2)} V^{(2)^T}$. Similar to the initial step, after choosing a further reduced rank, the new smaller matrices $A^{(2)}$ and $B^{(2)}$ are constructed via $A^{(2)} = U^{(2)}_\text{red} \sqrt{\Sigma_\text{red}^{(2)}}$  and $B^{(2)} =  \sqrt{\Sigma_\text{red}^{(2)}}V_\text{red}^{(2)^T}$.  By following this procedure, reconstrucing $W^{(j)}_t = A^{(j)}_t B^{(j)}_t$, choosing a new, smaller rank and obtaining the new $A^{(j+1)} = U^{(j+1)}_\text{red} \sqrt{\Sigma_\text{red}^{(j+1)}}$  and $B^{(j+1)} =  \sqrt{\Sigma_\text{red}^{(j+1)}}V_\text{red}^{(j+1)^T}$, a transformer block can be gradually compressed across multiple iterations.
+In the final compression setup (Sec. \ref{sec:LinearProgressiveCompression}), individual transformer blocks are compressed and subsequently fine-tuned multiple times using truncated \gls{SVD}. Initially, an original weight matrix $W$ is decomposed into matrices $A$ and $B$ such that $W \approx AB$. During the subsequent fine-tuning, the matrices $A$ and $B$ are updated to $A_t$ and $B_t$. Consequently, the relation $W \approx A_tB_t$ does not necessarily hold with respect to the initial matrix $W$, as the model adapts to the low-rank constraint during training. Therefore, if the transformer block is to be compressed further, the current effective weight matrix $W_t = A_t B_t$ is first reconstructed, followed by the application of the \gls{SVD} algorithm to obtain $W_t = U^{(2)} \Sigma^{(2)} V^{(2)^T}$. Similar to the initial step, after choosing a further reduced rank, the new smaller matrices $A^{(2)}$ and $B^{(2)}$ are constructed via $A^{(2)} = U^{(2)}_\text{red} \sqrt{\Sigma_\text{red}^{(2)}}$  and $B^{(2)} =  \sqrt{\Sigma_\text{red}^{(2)}}V_\text{red}^{(2)^T}$.  By repeating this procedure, reconstructing $W^{(j)}_t = A^{(j)}_t B^{(j)}_t$, choosing a new, smaller rank and obtaining the new $A^{(j+1)} = U^{(j+1)}_\text{red} \sqrt{\Sigma_\text{red}^{(j+1)}}$  and $B^{(j+1)} =  \sqrt{\Sigma_\text{red}^{(j+1)}}V_\text{red}^{(j+1)^T}$, a transformer block can be gradually compressed across multiple iterations.
 
 
 \subsection{GRASP}
 \label{sec:GRASP}
 The method named Gradient-Based Retention of Adaptive Singular Parameters \gls{GRASP} was originally proposed for compressing \gls{LLM}s \cite{liu2025grasp}. It is based on the idea of exploiting the inherent low-rank structure of weight matrices within \gls{LLM}s. Crucially, the authors hypothesized that the standard \gls{SVD} approach where the singular values are selected solely based on their magnitude is suboptimal. They argue that even small singular values may be vital for the model's performance and should be preserved. Consequently, they proposed a gradient-based criterion instead of a magnitude-based selection for the singular values.
 
- In this work, the \gls{GRASP} method is transfered to image generation models demonstrating its application on Flux.1-dev. First, the candidate blocks for pruning are identified using the method described in Sec. \ref{sec:BlockImportanceAnalyses}. Next, these blocks are compressed via \gls{SVD}. Afterwards, all parameters are frozen and only the singular values are treated as trainable parameters for gradient computation. For computing the gradients, a calibration dataset is utilized consisting of 200 images. For each image, the gradients with respect to each singular value are computed and accumulated over all timesteps $t \in \{1,\dots,1000\}$ whereby the normal flow matching loss is utilized. Finally, the gradients are averaged over the calibration dataset to obtain a final estimate of the importance of each singular value. Note that gradients are accumulated for scoring but the singular values themselves are not updated via optimization. Ultimately, instead of retaining the $k$ largest singular values by magnitude, the $k$ singular values with the largest accumulated gradients are selected for the low-rank approximation of the original weight matrix. 
+ In this work, the \gls{GRASP} method is transfered to image generation models demonstrating its application on Flux.1-dev. First, the candidate blocks for pruning are identified using the method described in Sec. \ref{sec:BlockImportanceAnalyses}. Next, these blocks are compressed via \gls{SVD}. Afterwards, all parameters are frozen and only the singular values are treated as trainable parameters for gradient computation. For computing the gradients, a calibration dataset is utilized consisting of 200 images. For each image, the gradients with respect to each singular value are computed and accumulated over all timesteps $t \in \{1,\dots,1000\}$ whereby the normal flow matching loss is utilized. Finally, the gradients are averaged over the calibration dataset to obtain a final estimate of the importance of each singular value. Note that gradients are accumulated for scoring but the singular values themselves are not updated. Ultimately, instead of retaining the $k$ largest singular values by magnitude, the $k$ singular values with the largest accumulated gradients are selected for the low-rank approximation of the original weight matrix. 
 %Assuming the original weight matrix $W$ is already compressed $j^\text{th}$ times such that it is replaced with the two matrices $A^{(j)}$ and $B^{(j)}$. Note, that $A^{(j)}$ and $B^{(j)}$ were finetuned during the compression process which means   and it should be reduced once again. During retraining  $W \approx AB$
 %
 %
@@ -213,22 +225,23 @@ The method named Gradient-Based Retention of Adaptive Singular Parameters \gls{G
 %we adopt an iterative \gls{SVD} approach, which involves an iterative compression and finetuning scheme. In this approach, the original weight matrix $W$ is gradually compressed. Let $j$ denote the number of compressions already performed for the corresponding weight matrix. To compress it a $(j+1)^\text{th}$ time, first the full matrix based on the finetuned matrices $A^{(j)}$ and $B^{(j)}$, namely $W^{(j)} = A^{(j)}B^{(j)}$ is constructed. Then, \gls{SVD} is performed to obtain $W^{(j)} = U^{(j+1)} \Sigma^{(j+1)} V^{(j+1)^T}$. Assuming $k^{(j)}$ is the rank of the $j^{\text{th}}$ compression, a new smaller rank $k^{(j+1)} < k^{(j)} $ is used to obtain $A^{(j+1)} = U^{(j+1)}_\text{red} \sqrt{\Sigma_\text{red}^{(j+1)}}$  and $B^{(j+1)} =  \sqrt{\Sigma_\text{red}^{(j+1)}}V_\text{red}^{(j+1)^T}  $ which are then leveraged as the new approximation for the weight matrix. This strategy allows the compression of individual blocks multiple times less intensely. 
 
 \section{Knowledge Distillation Loss Functions}
-The general learning objective for knowledge distillation as described in Eq. \ref{eq:KnowledgeDistillationLoss} is
+\label{sec:MethodKDLoss}
+The general learning objective for knowledge distillation, as described in Eq. \ref{eq:KnowledgeDistillationLoss}, is given by
 \begin{equation}
 	\mathcal{L} = \mathcal{L_\text{Task}} + \lambda_\text{OutKD} \mathcal{L_\text{OutKD}} + \lambda_\text{FeatKD} \mathcal{L_\text{FeatKD}} \quad.
 \end{equation}
-In the experiment Sec. \ref{sec:ExpKDLoss} the importance of the individual components of this loss function is investigated
-.
-\subsection{Normalization}
+Sec. \ref{sec:ExpKDLoss} investigates the importance of the individual components of this loss function. It has been proven beneficial to normalize the loss of the individual features due to differences in their magnitude. The normalization details are discussed in Sec.  \ref{sec:KDLNormalization}. Furthermore, to compute the feature loss, Sec. \ref{sec:FeatureMappingForLossComputation} provides an overview of the feature mapping between the student and teacher models.
+
+\subsection{Feature Loss Normalization}
 \label{sec:KDLNormalization}
-It is important to note that the features of different blocks may have varying magnitudes. Consequently, \cite{Laptop} demonstrated that applying a normalization to the features is beneficial. Therefore, after computing the difference between the teacher and the student features a normalization is applied to ensure that the individual blocks contribute equally to $\mathcal{L_\text{FeatKD}}$. The normalization scheme adopted in this work is taken from \cite{Dense2MoE}.
+It is important to note that the features of different blocks may have varying magnitudes. Consequently, previous research \cite{Laptop} demonstrated that applying a normalization to these features is beneficial. Therefore, after computing the difference between the teacher and student features, a normalization is applied to ensure that the individual blocks contribute equally to $\mathcal{L_\text{FeatKD}}$. The normalization scheme adopted in this work is taken from \cite{Dense2MoE}.
 
   Let $T_l$ and $S_l$ denote the features of the teacher and the student corresponding to transformer block $l \in \{1,\dots,L\}$. For a batch size of $B$, each feature tensor has the dimensions $(B,D_l)$ where $D_l$ is the total number of flattened features. The $i$-th sample in the batch for layer $l$ is denoted as $T_{i,l}$ and $S_{i,l}$, respectively.  
 First, the \gls{MSE} is computed between the teacher and the student features 
 \begin{equation}
 \mathcal{L}_{i,l} = \frac{1}{D_l} \| T_{i,l} - S_{i,l}\|_2^2 \quad.
 \end{equation}
-Next, the \gls{RMS} of the teacher features is computed serving as a measure of feature magnitude
+Next, the \gls{RMS} of the teacher features is computed, serving as a measure of feature magnitude
 \begin{equation}
  \eta_{i,l} = \sqrt{\frac{1}{D_l} \|T_{i,l}\|^2_2} \quad.
 \end{equation}
@@ -237,7 +250,7 @@ Additionally, the loss is scaled by the magnitude of the task loss $\mathcal{L}_
 \begin{equation}
 	w_{i,l} = \underbrace{\left( \frac{\mathcal{L}_{i,\text{Task}}}{\mathcal{L}_{i,l} + \epsilon} \right)}_{\text{Loss Balancing}} \cdot \underbrace{\left( \frac{\sum_{k=1}^{L} \eta_{i,k}}{L \cdot \eta_{i,l} + \epsilon} \right)}_{\text{Norm Normalization}}
 \end{equation}
-where a small $\epsilon$ is added to the denominator to prevent division by zero. The final feature loss is computed by
+where a small $\epsilon$ is added to the denominators to prevent division by zero. The final feature loss is computed as follows
 \begin{equation}
 	\mathcal{L}_\text{FeatKD} = \frac{1}{B}\sum_{i=1}^{B} \left(\frac{1}{L} \sum_{l=1}^{L} w_{i,l} \cdot \mathcal{L}_{i,l}\right) \quad.
 \end{equation}
@@ -245,25 +258,26 @@ Note that this normalization applies not only to $\mathcal{L}_\text{FeatKD}$ but
 
 
 \subsection{Feature Mapping for Loss Computation}
-The assignment of learning signals based on intermediate features differs significantly between the complete block removal and the \gls{SVD} block compression approach (Fig. \ref{fig:LossRemovalCompression}). In the \gls{SVD} compression approach, the intermediate features of every student block $S_l$ are directly compared with the features of the corresponding teacher block $T_l$, for all $l \in \{1,\dots,L\}$ assuming the model consists of $L$ transformer blocks. 
+\label{sec:FeatureMappingForLossComputation}
+The assignment of learning signals based on intermediate features differs significantly between the complete block removal and the \gls{SVD} block compression approach (Fig. \ref{fig:LossRemovalCompression}). In the \gls{SVD}-based compression approaches, the intermediate features of every student block $S_l$ are directly compared with the features of the corresponding teacher block $T_l$, for all $l \in \{1,\dots,L\}$ assuming the model consists of $L$ transformer blocks. 
 
-In contrast, the block removal approach necessitates a dynamic mapping strategy for selecting the correct intermediate features. If a block $B_l$ is removed, the features of the preceding student block $S_{l-1}$ are compared with the features of the teacher's block $T_l$. This effectively forces block $B_{l-1}$ to approximate the removed block $B_l$. Consequently, if several consecutive blocks $B_{l-i}$ to $B_l$ (where $i\geq1$) are removed, the student features $S_{l-(i+1)}$ are compared to $T_l$.
+In contrast, the block removal approach necessitates a dynamic mapping strategy for selecting the correct intermediate features. If a block $B_l$ is removed, the features of the preceding student block $S_{l-1}$ are compared with the features of the teacher block $T_l$. This effectively forces block $B_{l-1}$ to approximate the removed block $B_l$. Consequently, if several consecutive blocks $B_{l-i}$ to $B_l$ (where $i\geq1$) are removed, the student features $S_{l-(i+1)}$ are compared to $T_l$.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{images/Methoden/LossRemovalCompression.pdf}
-	\caption[Feature Mapping Strategy]{Visualization of the feature mapping between student and teacher model for loss computation. }
+	\caption[Feature Mapping Strategy]{Visualization of the feature mapping between the student and teacher models for loss computation. }
 	\label{fig:LossRemovalCompression}
 \end{figure}
 
 
-\
-
 \section{Pruning Schedule}
-The pruning schedule for models dictates when and to what extent the compression of individual model components is performed. There are mainly two options for the temporal progression of parameter removal. Concretely, all parameters can be removed at once or iteratively. Regarding the structural distribution of removed parameters, one needs to decide how they are allocated across the model and whether model components can only be compressed once or multiple times. To explore these aspects,
-three distinct pruning schedules, namely one-shot, progressive, and linear progressive pruning, are investigated in this Master's thesis and presented in the following subsections.
-\label{sec:distillationAlgos}
+\label{sec:MethodPruningSchedule}
+The pruning schedule dictates when and to what extent the compression of individual model components is performed. The design of a pruning schedule includes two dimensions. First, a temporal dimension determines whether all parameters are removed at once or progressively over the course of several iterations. Second, a structural dimension specifies how the removed parameters are distributed across the model and whether model components can be compressed multiple times in the case of an iterative approach. To explore these aspects,
+three distinct pruning schedules, namely one-shot (Sec. \ref{sec:MethodOneShotPruning}), progressive (Sec. \ref{sec:MethodProgressiveModelPruning}), and importance-aware rank-adaptive progressive pruning (Sec. \ref{sec:LinearProgressiveCompression}), are investigated in this Master's thesis and presented in the following subsections.
+
 \subsection{One-Shot Model Pruning}
-The standard approach for compressing transformer-based diffusion and flow models \cite{Laptop, Koala, flux1-lite, flux_mini_2024} involves three main steps. First, the transformer blocks $\{B_1, \dots, B_L\}$ are sorted according to their importance, e.g. using \gls{CLIP}-score and \gls{CMMD} as importance proxies (Sec. \ref{sec:MetricBasedSelection}). Let $\{B^*_1, \dots, B^*_L\}$ denote the sorted blocks, where $B^*_1$ represents the least important one. Second, based on the target compression ratio of the total model, the number of blocks $k \leq L$ to be pruned is determined and the blocks $\{B^*_1, \dots, B^*_k\}$ are modified based on the chosen compression strategy (Sec. \ref{sec:StructuralCompressionStrategy}). Third, the compressed model is retrained, e.g. using knowledge distillation (Sec. \ref{sec:BackgroundKnowledgeDistillation}), to recover the generative capabilities. This approach introduces a significant, abrupt structural alteration of the model, leading to a severe drop in performance. A scheme of this schedule is depicted in Fig. \ref{fig:OneShotCompressionScheme}.
+\label{sec:MethodOneShotPruning}
+The standard approach for compressing transformer-based diffusion and flow models \cite{Laptop, Koala, flux1-lite, flux_mini_2024} involves three main steps. First, the transformer blocks $\{B_1, \dots, B_L\}$ are sorted according to their importance, e.g., using the \gls{CLIP}-score and \gls{CMMD} as importance proxies (Sec. \ref{sec:MetricBasedSelection}). Let $\{B^*_1, \dots, B^*_L\}$ denote the sorted blocks, where $B^*_1$ represents the least important one. Second, based on the target compression ratio of the total model, the number of blocks $k \leq L$ to be removed or compressed is determined, and the blocks $\{B^*_1, \dots, B^*_k\}$ are modified based on the chosen compression strategy (Sec. \ref{sec:StructuralCompressionStrategy}) with every block being compressed by the same amount. Third, the compressed model is fine-tuned, e.g., using knowledge distillation (Sec. \ref{sec:BackgroundKnowledgeDistillation}), to recover its generative capabilities. This approach introduces a significant, abrupt structural alteration to the model, leading to a severe drop in initial performance. A schematic representation of this schedule is depicted in Fig. \ref{fig:OneShotCompressionScheme}.
 
 
 \begin{figure}[H]
@@ -274,36 +288,37 @@ The standard approach for compressing transformer-based diffusion and flow model
 \end{figure}
 
 \subsection{Progressive Model Pruning}
-In contrast to one-shot model compression, progressive model compression, e.g. \cite{ProgressiveDistillation}, iteratively applies the three-step procedure described above. In each iteration, the importance of previously unmodified blocks is evaluated, the number of blocks need to be modified is determined, and the compressed model is retrained. The crucial difference is that the number of parameters removed in a single iteration is significantly smaller than in one-shot model pruning. This leads to a gradual and less severe performance degradation in each iteration, which is easier to recover from. Note that each transformer block is only compressed once and in a subsequent iteration, the block importance is re-assessed only for all remaining unmodified blocks, as the relative block ranking may have changed as a result of the retraining. A scheme of this schedule is depicted in Fig. \ref{fig:ProgressiveCompressionScheme}.
+\label{sec:MethodProgressiveModelPruning}
+In contrast to one-shot model compression, progressive model compression, e.g., \cite{ProgressiveDistillation}, iteratively applies the three-step procedure described above. Importantly, this progressive schedule can be applied seamlessly to both complete block removal (Sec. \ref{sec:MethodBlockRemoval}) and \gls{SVD}-based block compression (Sec. \ref{sec:SVDCompression}). In each iteration, the importance of previously unmodified blocks is evaluated, the number of blocks that need to be modified is determined, and the compressed model is re-trained. The crucial difference is that the number of parameters removed in a single iteration is significantly smaller than in one-shot model pruning. This leads to a gradual and less severe performance degradation in each iteration, which is easier to recover from. Note that each transformer block is compressed only once by the same amount and in any subsequent iteration, the block importance is re-assessed only for the remaining unmodified blocks, as the relative block ranking may have changed as a result of the fine-tuning. A schematic representation of this schedule is depicted in Fig. \ref{fig:ProgressiveCompressionScheme}.
 
- A design choice of the progressive model compression concerns the number of parameters that are removed per iteration. Either, the number of parameters can be set to a fixed value, or it could be chosen dynamically based on the importance metrics, e.g., by defining a threshold $\text{CMMD}=0.1$ and initiating retraining as soon as it is exceeded by compressing an additional transformer block. The latter is utilized as standard setting for all experiments. This typically implies that in early iterations more parameters are removed than in later iterations.  
+ A key design choice in progressive model compression concerns the number of parameters removed per iteration. The number of parameters can either be set to a fixed value, or it can be chosen dynamically based on importance metrics, for example by defining a threshold $\text{CMMD}=0.1$ and initiating re-training as soon as this threshold is exceeded by compressing an additional transformer block. The latter approach is utilized as standard setting (Sec. \ref{sec:DefaultSetup}) for all experiments. This typically implies that in early iterations more parameters are removed than in later iterations.  
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\textwidth]{images/Methoden/ProgressiveCompressionScheme.pdf}
-	\caption[One-Shot Compression Scheme]{Visualization of the progressive compression procedure which iteratively compresses the model.}
+	\caption[Progressive Compression Scheme]{Visualization of the progressive compression procedure which iteratively compresses the model.}
 	\label{fig:ProgressiveCompressionScheme}
 \end{figure}
 
-\subsection{Linear Progressive Model Pruning}
+\subsection{Importance-Aware Rank-Adaptive Progressive Model Pruning}
 \label{sec:LinearProgressiveCompression}
-In this work, a new linear progressive compression schedule is proposed, acting as an advancement of progressive model compression, which introduces a fourth step, namely determining individual compression ratios of each block during each iteration. Instead of compressing all blocks uniformly and each block only once, as it was done in standard progressive pruning, the compression ratio of each block is determined only based on its importance, allowing blocks to be modified across multiple iterations. Specifically, the assigned compression ratio linearly decreases with increasing block importance. 
+In this work, a new importance-aware rank-adaptive progressive compression schedule specifically designed for \gls{SVD}-based compression is proposed, acting as an advancement of progressive model compression by introducing a fourth step, namely determining individual compression ratios for each block during each iteration. Instead of compressing all blocks uniformly and each block only once, as in standard progressive pruning, the compression ratio of each block is determined based on its importance, allowing blocks to be modified across multiple iterations. Specifically, the assigned compression ratio linearly decreases with increasing block importance during an iteration. 
 
- The first step of linear progressive model pruning is similar to standard progressive pruning. The block importance is determined by leveraging the \gls{CMMD}. However, as multiple compressions of the same transformer block are possible, the \gls{CMMD} value is normalized by the number of removed parameters to ensure fair compairison, as reducing an already compressed block by $c_\text{fixed} = 60\%$ removes less parameters than compressing a full transformer block by the same percentage. Let $P_i$ $(i \in \{1, \dots, L\})$ denote the current number of parameters of block $B_i$. Then, the final importance score for each block $B_i$ is given by 
+ The first step of this new progressive model pruning schedule is similar to standard progressive pruning. The block importance is determined by leveraging the \gls{CMMD}. However, as multiple compressions of the same transformer block are possible, the \gls{CMMD} value is normalized by the number of removed parameters to ensure a fair comparison, as reducing an already compressed block by $c_\text{fixed} = 60\%$ removes fewer parameters than compressing a full transformer block by the same percentage. Let $P_i$ $(i \in \{1, \dots, L\})$ denote the current number of parameters of block $B_i$. Then, the final importance score for each block $B_i$ is given by 
  \begin{equation}
  	s_i = \frac{\text{CMMD}_i}{P_i \cdot c_\text{fixed}}
  \end{equation}
 where $\text{CMMD}_i$ is the metric obtained from the dataset generated by the current model with the newly compressed block $B_i$. Based on these scores, the blocks are sorted into an order $\{B^*_1, \dots, B^*_L\}$ where $B_1^*$ has the smallest importance score. 
 
-Second, in a crucial departure from standard progressive pruning, to determine the compression ratio for each block a linear compression schedule is applied where the least important block is compressed most, and blocks of higher importance less. Specifically, three parameters need to be specified by the user to compute the individual compression ratios $c_i$, namely the total number of parameters to be removed $N$, the number of blocks to be compressed during the current iteration $k$ and the compression ratio of the least important block $c_1 = S$ to which is referred to as base compression ratio. To determine the compression ratios $c_i$ of the remaining blocks $B_i^* \in \{B^*_1, \dots, B^*_k\}$, the base compression ratio $S$ is decreased linearly by $x$ according to the block's rank in the importance-sorted list. Therefore, the compression ratio for every block $B_i^*$ is given by
+Second, in a crucial departure from standard progressive pruning, a linear compression schedule is applied to determine the individual compression ratios, wherein the least important block is compressed most, and blocks of higher importance less. Specifically, three parameters need to be specified by the user to compute the individual compression ratios $c_i$, namely the total number of parameters to be removed $N$, the number of blocks to be compressed during the current iteration $k$ and the compression ratio of the least important block $c_1 = S$ which is referred to as base the compression ratio. To determine the compression ratios $c_i$ of the remaining blocks $B_i^* \in \{B^*_1, \dots, B^*_k\}$, the base compression ratio $S$ is decreased linearly by $x$ according to the block's rank in the importance-sorted list. Therefore, the compression ratio for every block $B_i^*$ is given by
 \begin{equation}
 	\label{eq:CompressionRatio}
 	c_i = S - ((i-1) \cdot x)
 \end{equation}
-with $i \in \{1, \dots, k\}$. The goal is to identify $x$ based on the parameters $S, N, k$. The total number of parameters to be removed is computed by
+with $i \in \{1, \dots, k\}$. The goal is to identify $x$ based on the parameters $S, N,$ and $k$. The total number of parameters to be removed is computed by
 \begin{equation}
 	\label{eq:TotalParam}
-	P_\text{total} = \sum_{i=1}^{k} P^*_i \cdot c_i
+	N = \sum_{i=1}^{k} P^*_i \cdot c_i
 \end{equation}
 where $P^*_i$ is the current parameter count of block $B_i^*$. To solve for $x$, Eq. \ref{eq:CompressionRatio} and Eq. \ref{eq:TotalParam} are combined
 
@@ -321,7 +336,7 @@ resulting in the final equation for the slope
 \begin{equation}
 	x = \frac{\sum_{i=1}^{k}\left(P^*_i \cdot S \right) - N}{ \sum_{i=1}^{k}\left(P^*_i \cdot (i-1)  \right)} \quad.
 \end{equation}
-The input parameters $S,N,k$ specified by the user have to meet two conditions. First, $N \leq S \cdot \sum_{i=1}^{k} P^*_i$ meaning the total number of parameters to be removed must not exceed the amount removed if all blocks were compressed by the base ratio $S$. Otherwise, the slope x would become negative, causing the compression ratio to increase for more important blocks which would contradict the ranking strategy. Second, the compression ratio of the last block $c_k$ must not be negative which leads to the following condition
+The input parameters $S,N$, and $k$ specified by the user have to meet two conditions. First, $N \leq S \cdot \sum_{i=1}^{k} P^*_i$ meaning the total number of parameters to be removed must not exceed the amount removed if all blocks were compressed by the base ratio $S$. Otherwise, the slope $x$ would become negative, causing the compression ratio to increase for more important blocks, which would contradict the ranking strategy. Second, the compression ratio of the last block $c_k$ must not be negative which leads to the following condition
 \begin{equation}
 	\begin{split}
 		& 0 \leq c_k = S - (k-1) \cdot x \\
@@ -330,21 +345,21 @@ The input parameters $S,N,k$ specified by the user have to meet two conditions. 
 	\end{split}
 \end{equation}
 
-Combining these constraints, a valid range for the total number of parameters to remove in one iteration based on the choice of $S$ and $k$ is obtained by
+Combining these constraints, a valid range for the total number of parameters to remove in one iteration based on the choice of $S$ and $k$ is obtained as
 \begin{equation}
-	\ S \sum_{i=1}^{k} P^*_i - \frac{S \sum_{i=1}^{k}(P^*_i \cdot (i-1)) }{k-1}  \leq N \leq S \cdot \sum_{i=1}^{k} P^*_i \quad.
+	S \sum_{i=1}^{k} P^*_i - \frac{S \sum_{i=1}^{k}(P^*_i \cdot (i-1)) }{k-1}  \leq N \leq S \cdot \sum_{i=1}^{k} P^*_i \quad.
 \end{equation}
 
-Third, after computing the compression ratios $c_i$, the model can be compressed based on the \gls{SVD} compression scheme as described in Sec. \ref{sec:IterativeRepeatedSVDCompression} and is subsequently retrained. Finally, this procedure is repeated until the desired model size is reached.
+The third step, after computing the compression ratios $c_i$, is to compress the model using the \gls{SVD}-based compression scheme as described in Sec. \ref{sec:IterativeRepeatedSVDCompression} and subsequently fine-tune it. Finally, this procedure is repeated until the desired model size is reached.
 
- A scheme of the whole procedure is depicted in Fig. \ref{fig:LinearCompressionScheme}. where step three and four, model compression and retraining, are summarized in the last element of the graphic.
-
+ A schematic representation of the whole procedure is depicted in Fig. \ref{fig:LinearCompressionScheme}, where steps three and four, model compression and fine-tuning, are summarized in the last element of the graphic.
+In the subsequent experimental evaluation (see Chap. \ref{sec:Experiments}), models compressed utilizing this specific pruning schedule are denoted as \gls{SVD}trunc.
 
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{images/Methoden/LinearCompressionScheme.pdf}
-	\caption[Linear Progressive Compression Scheme]{Visualization of the linear progressive compression procedure which iteratively compresses the model.}
+	\caption[Importance-Aware Rank-Adaptive Progressive Compression Scheme]{Visualization of the importance-aware rank-adaptive progressive compression procedure which iteratively compresses the model.}
 	\label{fig:LinearCompressionScheme}
 \end{figure}
 

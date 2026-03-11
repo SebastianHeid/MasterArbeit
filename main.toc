@@ -43,7 +43,7 @@
 \contentsline {subsection}{\numberline {2.5.3}Human Preference Score v2 Benchmark}{28}{subsection.2.5.3}%
 \contentsline {subsection}{\numberline {2.5.4}GenEval Benchmark}{28}{subsection.2.5.4}%
 \contentsline {subsection}{\numberline {2.5.5}Dense Prompt Graph Benchmark}{29}{subsection.2.5.5}%
-\contentsline {chapter}{\numberline {3}Related Work}{30}{chapter.3}%
+\contentsline {chapter}{\numberline {3}Related Works}{30}{chapter.3}%
 \contentsline {subsubsection}{Step Distillation}{30}{section*.18}%
 \contentsline {subsubsection}{Quantization}{31}{section*.19}%
 \contentsline {subsubsection}{Non-Architectural VRAM Reduction}{31}{section*.20}%
@@ -58,45 +58,41 @@
 \contentsline {subsubsection}{Architecture}{37}{section*.25}%
 \contentsline {subsubsection}{Double-Stream Blocks}{39}{section*.26}%
 \contentsline {subsubsection}{Single-Stream Blocks}{40}{section*.27}%
-\contentsline {section}{\numberline {4.2}Block Importance Analysis}{42}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}Block Selction Criterias}{42}{subsection.4.2.1}%
-\contentsline {subsubsection}{Magnitude-Pruning}{42}{section*.28}%
-\contentsline {subsubsection}{Representational Similarity Analysis}{42}{section*.29}%
-\contentsline {subsubsection}{Metric Based Selection}{42}{section*.30}%
-\contentsline {subsection}{\numberline {4.2.2}Block Selection Algorithms}{43}{subsection.4.2.2}%
-\contentsline {subsubsection}{Greedy Block Selection}{43}{section*.31}%
-\contentsline {subsubsection}{Black-Box Optimization with Optuna}{43}{section*.32}%
-\contentsline {section}{\numberline {4.3}Training Data and Image Synthesis}{44}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}Training Datasets}{44}{subsection.4.3.1}%
-\contentsline {subsubsection}{LAION Aesthetic}{44}{section*.33}%
-\contentsline {subsubsection}{LAION-Pixart-$\Sigma $ Dataset}{44}{section*.34}%
-\contentsline {subsubsection}{LAION-Flux.1-dev Dataset}{45}{section*.35}%
-\contentsline {subsection}{\numberline {4.3.2}Evaluation Datasets}{45}{subsection.4.3.2}%
-\contentsline {subsubsection}{Mapillary}{45}{section*.36}%
-\contentsline {subsubsection}{Cityscapes}{46}{section*.37}%
-\contentsline {subsubsection}{MJHQ-30k}{46}{section*.38}%
-\contentsline {section}{\numberline {4.4}Model Compression Strategies}{47}{section.4.4}%
-\contentsline {subsection}{\numberline {4.4.1}Block Removal}{47}{subsection.4.4.1}%
-\contentsline {subsection}{\numberline {4.4.2}SVD Compression}{47}{subsection.4.4.2}%
-\contentsline {subsection}{\numberline {4.4.3}Iteratively Repeated SVD Compression}{48}{subsection.4.4.3}%
-\contentsline {subsection}{\numberline {4.4.4}GRASP}{48}{subsection.4.4.4}%
-\contentsline {section}{\numberline {4.5}Knowledge Distillation Loss Functions}{49}{section.4.5}%
-\contentsline {subsection}{\numberline {4.5.1}Normalization}{49}{subsection.4.5.1}%
-\contentsline {subsection}{\numberline {4.5.2}Feature Mapping for Loss Computation}{49}{subsection.4.5.2}%
-\contentsline {section}{\numberline {4.6}Pruning Schedule}{50}{section.4.6}%
-\contentsline {subsection}{\numberline {4.6.1}One-Shot Model Pruning}{50}{subsection.4.6.1}%
-\contentsline {subsection}{\numberline {4.6.2}Progressive Model Pruning}{51}{subsection.4.6.2}%
-\contentsline {subsection}{\numberline {4.6.3}Linear Progressive Model Pruning}{51}{subsection.4.6.3}%
+\contentsline {section}{\numberline {4.2}Training Data and Image Synthesis}{42}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Training Datasets}{42}{subsection.4.2.1}%
+\contentsline {subsubsection}{LAION Aesthetic}{42}{section*.28}%
+\contentsline {subsubsection}{LAION-Pixart-$\Sigma $ Dataset}{42}{section*.29}%
+\contentsline {subsubsection}{LAION-Flux.1-dev Dataset}{43}{section*.30}%
+\contentsline {section}{\numberline {4.3}Block Importance Analysis}{43}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Block Selection Criteria}{43}{subsection.4.3.1}%
+\contentsline {subsubsection}{Magnitude-Based Selection}{44}{section*.31}%
+\contentsline {subsubsection}{Similarity-Based Selection}{44}{section*.32}%
+\contentsline {subsubsection}{Metric-Based Selection}{44}{section*.33}%
+\contentsline {subsection}{\numberline {4.3.2}Block Selection Algorithms}{45}{subsection.4.3.2}%
+\contentsline {subsubsection}{Greedy Block Selection}{45}{section*.34}%
+\contentsline {subsubsection}{Black-Box Optimization with Optuna}{45}{section*.35}%
+\contentsline {section}{\numberline {4.4}Model Pruning Strategies}{45}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Block Removal}{46}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}SVD-Based Compression}{46}{subsection.4.4.2}%
+\contentsline {subsection}{\numberline {4.4.3}Iterative SVD-Based Compression}{47}{subsection.4.4.3}%
+\contentsline {subsection}{\numberline {4.4.4}GRASP}{47}{subsection.4.4.4}%
+\contentsline {section}{\numberline {4.5}Knowledge Distillation Loss Functions}{47}{section.4.5}%
+\contentsline {subsection}{\numberline {4.5.1}Feature Loss Normalization}{48}{subsection.4.5.1}%
+\contentsline {subsection}{\numberline {4.5.2}Feature Mapping for Loss Computation}{48}{subsection.4.5.2}%
+\contentsline {section}{\numberline {4.6}Pruning Schedule}{49}{section.4.6}%
+\contentsline {subsection}{\numberline {4.6.1}One-Shot Model Pruning}{49}{subsection.4.6.1}%
+\contentsline {subsection}{\numberline {4.6.2}Progressive Model Pruning}{50}{subsection.4.6.2}%
+\contentsline {subsection}{\numberline {4.6.3}Importance-Aware Rank-Adaptive Progressive Model Pruning}{51}{subsection.4.6.3}%
 \contentsline {chapter}{\numberline {5}Experiments}{54}{chapter.5}%
 \contentsline {section}{\numberline {5.1}PixArt-$\Sigma $ Pruning}{54}{section.5.1}%
 \contentsline {subsection}{\numberline {5.1.1}Experimental Default Setup}{54}{subsection.5.1.1}%
 \contentsline {subsection}{\numberline {5.1.2}Block Importance Analysis}{55}{subsection.5.1.2}%
-\contentsline {subsubsection}{Qualitative Block Analysis}{56}{section*.39}%
-\contentsline {subsubsection}{Compression Criteria}{57}{section*.40}%
-\contentsline {subsubsection}{Qualitative Block Analysis for SVD Compression}{58}{section*.41}%
+\contentsline {subsubsection}{Qualitative Block Analysis}{56}{section*.36}%
+\contentsline {subsubsection}{Block Selection Criteria}{57}{section*.37}%
+\contentsline {subsubsection}{Qualitative Block Analysis for SVD Compression}{58}{section*.38}%
 \contentsline {subsection}{\numberline {5.1.3}Block Selection Algorithms}{59}{subsection.5.1.3}%
-\contentsline {subsubsection}{Greedy}{59}{section*.42}%
-\contentsline {subsubsection}{Optuna}{59}{section*.43}%
+\contentsline {subsubsection}{Greedy}{59}{section*.39}%
+\contentsline {subsubsection}{Optuna}{59}{section*.40}%
 \contentsline {subsection}{\numberline {5.1.4}One-Shot vs Progressive Model Pruning}{61}{subsection.5.1.4}%
 \contentsline {subsection}{\numberline {5.1.5}Knowledge Distillation Loss}{63}{subsection.5.1.5}%
 \contentsline {subsection}{\numberline {5.1.6}Fine-Tuning Protocol}{66}{subsection.5.1.6}%
@@ -109,8 +105,8 @@
 \contentsline {subsection}{\numberline {5.2.2}Qualitative Block Analysis}{78}{subsection.5.2.2}%
 \contentsline {subsection}{\numberline {5.2.3}Training-Free Compression}{80}{subsection.5.2.3}%
 \contentsline {subsection}{\numberline {5.2.4}Linear Progressive SVD Compression - Preliminary Experiments}{81}{subsection.5.2.4}%
-\contentsline {subsubsection}{Block Importance Analysis}{82}{section*.44}%
-\contentsline {subsubsection}{Sensitivity Analysis: The Role of Parameter Removal Distribution}{83}{section*.45}%
+\contentsline {subsubsection}{Block Importance Analysis}{82}{section*.41}%
+\contentsline {subsubsection}{Sensitivity Analysis: The Role of Parameter Removal Distribution}{83}{section*.42}%
 \contentsline {subsection}{\numberline {5.2.5}Importance-Aware Low-Rank Model Compression}{85}{subsection.5.2.5}%
 \contentsline {subsection}{\numberline {5.2.6}Importance-Aware Low-Rank Step-Distilled Model Compression}{87}{subsection.5.2.6}%
 \contentsline {subsection}{\numberline {5.2.7}Proof of Concept: GRASP for DiTs}{88}{subsection.5.2.7}%
@@ -124,9 +120,9 @@
 \contentsline {chapter}{\numberline {B}Experimen Flux.1-dev}{101}{appendix.B}%
 \contentsline {section}{\numberline {B.1}GRASP}{101}{section.B.1}%
 \contentsline {subsection}{\numberline {B.1.1}Block Importance Ranking}{101}{subsection.B.1.1}%
-\contentsline {subsubsection}{Compression Details}{101}{section*.46}%
+\contentsline {subsubsection}{Compression Details}{101}{section*.43}%
 \contentsline {section}{\numberline {B.2}Block Importance Analysis}{102}{section.B.2}%
 \contentsline {section}{\numberline {B.3}Block Selection}{105}{section.B.3}%
 \contentsline {section}{\numberline {B.4}Training-Free Compression}{107}{section.B.4}%
 \contentsline {section}{\numberline {B.5}Linear Progressive SVD Compression - Preliminary Experiments}{109}{section.B.5}%
-\contentsline {chapter}{Bibliography}{110}{appendix*.47}%
+\contentsline {chapter}{Bibliography}{110}{appendix*.44}%

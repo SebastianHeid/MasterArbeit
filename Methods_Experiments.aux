@@ -1,103 +1,97 @@
 \relax 
 \providecommand\hyper@newdestlabel[2]{}
+\citation{schuhmann2022laion}
+\citation{schuhmann2022laionaesthetic}
+\citation{fpgaminer2024joycaption}
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}Training Data and Image Synthesis}{42}{section.4.2}\protected@file@percent }
+\newlabel{sec:Datasets}{{4.2}{42}{Training Data and Image Synthesis}{section.4.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.1}Training Datasets}{42}{subsection.4.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{LAION Aesthetic}{42}{section*.28}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4.5}{\ignorespaces LAION Dataset}}{42}{figure.4.5}\protected@file@percent }
+\newlabel{fig:LaionDataset}{{4.5}{42}{LAION Dataset}{figure.4.5}{}}
+\@writefile{toc}{\contentsline {subsubsection}{LAION-Pixart-$\Sigma $ Dataset}{42}{section*.29}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4.3}{\ignorespaces Parameter LAION-PixArt-$\Sigma $ Dataset}}{42}{table.4.3}\protected@file@percent }
+\newlabel{tab:PixartGeneratedDataset}{{4.3}{42}{Parameter LAION-PixArt-$\Sigma $ Dataset}{table.4.3}{}}
 \citation{han2015learning,filters2016pruning,lee2020layer}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.6}{\ignorespaces LAION-PixArt-$\Sigma $ dataset}}{43}{figure.4.6}\protected@file@percent }
+\newlabel{fig:PixartGeneratedDataset}{{4.6}{43}{LAION-PixArt-$\Sigma $ dataset}{figure.4.6}{}}
+\@writefile{toc}{\contentsline {subsubsection}{LAION-Flux.1-dev Dataset}{43}{section*.30}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4.4}{\ignorespaces Parameter LAION-Flux.1-dev Dataset}}{43}{table.4.4}\protected@file@percent }
+\newlabel{tab:FluxLaionDataset}{{4.4}{43}{Parameter LAION-Flux.1-dev Dataset}{table.4.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.7}{\ignorespaces LAION-Flux.1-dev dataset}}{43}{figure.4.7}\protected@file@percent }
+\newlabel{fig:FluxLaionDataset}{{4.7}{43}{LAION-Flux.1-dev dataset}{figure.4.7}{}}
+\newlabel{fig:PixArtBlockMagnitudeCLIP}{{4.7}{43}{LAION-Flux.1-dev dataset}{figure.4.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.3}Block Importance Analysis}{43}{section.4.3}\protected@file@percent }
+\newlabel{sec:MethodsBlockImportanceAnalysis}{{4.3}{43}{Block Importance Analysis}{section.4.3}{}}
+\newlabel{sec:BlockImportanceAnalyses}{{4.3}{43}{Block Importance Analysis}{section.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.1}Block Selection Criteria}{43}{subsection.4.3.1}\protected@file@percent }
 \citation{men2024shortgpt}
 \citation{kornblith2019similarity,pons2024effective}
 \citation{gretton2005measuring}
 \citation{davari2022reliability}
-\@writefile{toc}{\contentsline {section}{\numberline {4.2}Block Importance Analysis}{42}{section.4.2}\protected@file@percent }
-\newlabel{sec:BlockImportanceAnalyses}{{4.2}{42}{Block Importance Analysis}{section.4.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.1}Block Selction Criterias}{42}{subsection.4.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{Magnitude-Pruning}{42}{section*.28}\protected@file@percent }
-\newlabel{sec:MagnitudePruning}{{4.2.1}{42}{Magnitude-Pruning}{section*.28}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Representational Similarity Analysis}{42}{section*.29}\protected@file@percent }
-\newlabel{sec:CKA}{{4.2.1}{42}{Representational Similarity Analysis}{section*.29}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Metric Based Selection}{42}{section*.30}\protected@file@percent }
-\newlabel{sec:MetricBasedSelection}{{4.2.1}{42}{Metric Based Selection}{section*.30}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Magnitude-Based Selection}{44}{section*.31}\protected@file@percent }
+\newlabel{sec:MagnitudePruning}{{4.3.1}{44}{Magnitude-Based Selection}{section*.31}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Similarity-Based Selection}{44}{section*.32}\protected@file@percent }
+\newlabel{sec:CKA}{{4.3.1}{44}{Similarity-Based Selection}{section*.32}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Metric-Based Selection}{44}{section*.33}\protected@file@percent }
+\newlabel{sec:MetricBasedSelection}{{4.3.1}{44}{Metric-Based Selection}{section*.33}{}}
+\newlabel{eq:combined_importance}{{4.4}{44}{Metric-Based Selection}{equation.4.4}{}}
 \citation{akiba2019optuna}
 \citation{bergstra2011algorithms}
 \citation{akiba2019optuna}
-\newlabel{eq:combined_importance}{{4.4}{43}{Metric Based Selection}{equation.4.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.2}Block Selection Algorithms}{43}{subsection.4.2.2}\protected@file@percent }
-\newlabel{sec:BlockSelectionAlgo}{{4.2.2}{43}{Block Selection Algorithms}{subsection.4.2.2}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Greedy Block Selection}{43}{section*.31}\protected@file@percent }
-\newlabel{sec:GreedyBlockSelection}{{4.2.2}{43}{Greedy Block Selection}{section*.31}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Black-Box Optimization with Optuna}{43}{section*.32}\protected@file@percent }
-\newlabel{sec:Optuna}{{4.2.2}{43}{Black-Box Optimization with Optuna}{section*.32}{}}
-\citation{schuhmann2022laion}
-\citation{schuhmann2022laionaesthetic}
-\citation{fpgaminer2024joycaption}
-\@writefile{toc}{\contentsline {section}{\numberline {4.3}Training Data and Image Synthesis}{44}{section.4.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.1}Training Datasets}{44}{subsection.4.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{LAION Aesthetic}{44}{section*.33}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {4.5}{\ignorespaces LAION Dataset}}{44}{figure.4.5}\protected@file@percent }
-\newlabel{fig:LaionDataset}{{4.5}{44}{LAION Dataset}{figure.4.5}{}}
-\@writefile{toc}{\contentsline {subsubsection}{LAION-Pixart-$\Sigma $ Dataset}{44}{section*.34}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {4.3}{\ignorespaces Parameter LAION-PixArt-$\Sigma $ Dataset}}{44}{table.4.3}\protected@file@percent }
-\newlabel{tab:PixartGeneratedDataset}{{4.3}{44}{Parameter LAION-PixArt-$\Sigma $ Dataset}{table.4.3}{}}
-\citation{neuhold2017mapillary}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.6}{\ignorespaces LAION-PixArt-$\Sigma $ dataset}}{45}{figure.4.6}\protected@file@percent }
-\newlabel{fig:PixartGeneratedDataset}{{4.6}{45}{LAION-PixArt-$\Sigma $ dataset}{figure.4.6}{}}
-\@writefile{toc}{\contentsline {subsubsection}{LAION-Flux.1-dev Dataset}{45}{section*.35}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {4.4}{\ignorespaces Parameter LAION-Flux.1-dev Dataset}}{45}{table.4.4}\protected@file@percent }
-\newlabel{tab:FluxLaionDataset}{{4.4}{45}{Parameter LAION-Flux.1-dev Dataset}{table.4.4}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.7}{\ignorespaces LAION-Flux.1-dev dataset}}{45}{figure.4.7}\protected@file@percent }
-\newlabel{fig:FluxLaionDataset}{{4.7}{45}{LAION-Flux.1-dev dataset}{figure.4.7}{}}
-\newlabel{fig:PixArtBlockMagnitudeCLIP}{{4.7}{45}{LAION-Flux.1-dev dataset}{figure.4.7}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.2}Evaluation Datasets}{45}{subsection.4.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{Mapillary}{45}{section*.36}\protected@file@percent }
-\citation{cordts2016cityscapes}
-\citation{li2024playground}
-\citation{li2024playground}
-\citation{kirstain2023pick}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.8}{\ignorespaces Mapillary Dataset}}{46}{figure.4.8}\protected@file@percent }
-\newlabel{fig:MapillaryDataset}{{4.8}{46}{Mapillary Dataset}{figure.4.8}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Cityscapes}{46}{section*.37}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {4.9}{\ignorespaces Cityscapes Dataset}}{46}{figure.4.9}\protected@file@percent }
-\newlabel{fig:CityscapesDataset}{{4.9}{46}{Cityscapes Dataset}{figure.4.9}{}}
-\@writefile{toc}{\contentsline {subsubsection}{MJHQ-30k}{46}{section*.38}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {4.10}{\ignorespaces MHJQ-30k Dataset}}{46}{figure.4.10}\protected@file@percent }
-\newlabel{fig:CMHJQDataset}{{4.10}{46}{MHJQ-30k Dataset}{figure.4.10}{}}
+\citation{flux1-lite,flux_mini_2024}
+\citation{FastFlux,PPCL}
+\citation{GRASP}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.2}Block Selection Algorithms}{45}{subsection.4.3.2}\protected@file@percent }
+\newlabel{sec:BlockSelectionAlgo}{{4.3.2}{45}{Block Selection Algorithms}{subsection.4.3.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Greedy Block Selection}{45}{section*.34}\protected@file@percent }
+\newlabel{sec:GreedyBlockSelection}{{4.3.2}{45}{Greedy Block Selection}{section*.34}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Black-Box Optimization with Optuna}{45}{section*.35}\protected@file@percent }
+\newlabel{sec:Optuna}{{4.3.2}{45}{Black-Box Optimization with Optuna}{section*.35}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.4}Model Pruning Strategies}{45}{section.4.4}\protected@file@percent }
+\newlabel{sec:StructuralCompressionStrategy}{{4.4}{45}{Model Pruning Strategies}{section.4.4}{}}
 \citation{Bksdm,Laptop,Koala}
 \citation{zhang2015singular}
-\citation{SVD_LLM_V2,ASVD}
-\@writefile{toc}{\contentsline {section}{\numberline {4.4}Model Compression Strategies}{47}{section.4.4}\protected@file@percent }
-\newlabel{sec:StructuralCompressionStrategy}{{4.4}{47}{Model Compression Strategies}{section.4.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.1}Block Removal}{47}{subsection.4.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.2}SVD Compression}{47}{subsection.4.4.2}\protected@file@percent }
-\newlabel{sec:SVDCompression}{{4.4.2}{47}{SVD Compression}{subsection.4.4.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.1}Block Removal}{46}{subsection.4.4.1}\protected@file@percent }
+\newlabel{sec:MethodBlockRemoval}{{4.4.1}{46}{Block Removal}{subsection.4.4.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.2}SVD-Based Compression}{46}{subsection.4.4.2}\protected@file@percent }
+\newlabel{sec:SVDCompression}{{4.4.2}{46}{SVD-Based Compression}{subsection.4.4.2}{}}
 \citation{liu2025grasp}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.11}{\ignorespaces Model Compression Strategies}}{48}{figure.4.11}\protected@file@percent }
-\newlabel{fig:CompRemScheme}{{4.11}{48}{Model Compression Strategies}{figure.4.11}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.3}Iteratively Repeated SVD Compression}{48}{subsection.4.4.3}\protected@file@percent }
-\newlabel{sec:IterativeRepeatedSVDCompression}{{4.4.3}{48}{Iteratively Repeated SVD Compression}{subsection.4.4.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.4}GRASP}{48}{subsection.4.4.4}\protected@file@percent }
-\newlabel{sec:GRASP}{{4.4.4}{48}{GRASP}{subsection.4.4.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.8}{\ignorespaces Model Compression Strategies}}{47}{figure.4.8}\protected@file@percent }
+\newlabel{fig:CompRemScheme}{{4.8}{47}{Model Compression Strategies}{figure.4.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.3}Iterative SVD-Based Compression}{47}{subsection.4.4.3}\protected@file@percent }
+\newlabel{sec:IterativeRepeatedSVDCompression}{{4.4.3}{47}{Iterative SVD-Based Compression}{subsection.4.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.4}GRASP}{47}{subsection.4.4.4}\protected@file@percent }
+\newlabel{sec:GRASP}{{4.4.4}{47}{GRASP}{subsection.4.4.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.5}Knowledge Distillation Loss Functions}{47}{section.4.5}\protected@file@percent }
+\newlabel{sec:MethodKDLoss}{{4.5}{47}{Knowledge Distillation Loss Functions}{section.4.5}{}}
 \citation{Laptop}
 \citation{Dense2MoE}
-\@writefile{toc}{\contentsline {section}{\numberline {4.5}Knowledge Distillation Loss Functions}{49}{section.4.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.5.1}Normalization}{49}{subsection.4.5.1}\protected@file@percent }
-\newlabel{sec:KDLNormalization}{{4.5.1}{49}{Normalization}{subsection.4.5.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.5.2}Feature Mapping for Loss Computation}{49}{subsection.4.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5.1}Feature Loss Normalization}{48}{subsection.4.5.1}\protected@file@percent }
+\newlabel{sec:KDLNormalization}{{4.5.1}{48}{Feature Loss Normalization}{subsection.4.5.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5.2}Feature Mapping for Loss Computation}{48}{subsection.4.5.2}\protected@file@percent }
+\newlabel{sec:FeatureMappingForLossComputation}{{4.5.2}{48}{Feature Mapping for Loss Computation}{subsection.4.5.2}{}}
 \citation{Laptop,Koala,flux1-lite,flux_mini_2024}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.12}{\ignorespaces Feature Mapping Strategy}}{50}{figure.4.12}\protected@file@percent }
-\newlabel{fig:LossRemovalCompression}{{4.12}{50}{Feature Mapping Strategy}{figure.4.12}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.6}Pruning Schedule}{50}{section.4.6}\protected@file@percent }
-\newlabel{sec:distillationAlgos}{{4.6}{50}{Pruning Schedule}{section.4.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.6.1}One-Shot Model Pruning}{50}{subsection.4.6.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4.9}{\ignorespaces Feature Mapping Strategy}}{49}{figure.4.9}\protected@file@percent }
+\newlabel{fig:LossRemovalCompression}{{4.9}{49}{Feature Mapping Strategy}{figure.4.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.6}Pruning Schedule}{49}{section.4.6}\protected@file@percent }
+\newlabel{sec:MethodPruningSchedule}{{4.6}{49}{Pruning Schedule}{section.4.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6.1}One-Shot Model Pruning}{49}{subsection.4.6.1}\protected@file@percent }
+\newlabel{sec:MethodOneShotPruning}{{4.6.1}{49}{One-Shot Model Pruning}{subsection.4.6.1}{}}
 \citation{ProgressiveDistillation}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.13}{\ignorespaces One-Shot Compression Scheme}}{51}{figure.4.13}\protected@file@percent }
-\newlabel{fig:OneShotCompressionScheme}{{4.13}{51}{One-Shot Compression Scheme}{figure.4.13}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.6.2}Progressive Model Pruning}{51}{subsection.4.6.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {4.14}{\ignorespaces One-Shot Compression Scheme}}{51}{figure.4.14}\protected@file@percent }
-\newlabel{fig:ProgressiveCompressionScheme}{{4.14}{51}{One-Shot Compression Scheme}{figure.4.14}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.6.3}Linear Progressive Model Pruning}{51}{subsection.4.6.3}\protected@file@percent }
-\newlabel{sec:LinearProgressiveCompression}{{4.6.3}{51}{Linear Progressive Model Pruning}{subsection.4.6.3}{}}
-\newlabel{eq:CompressionRatio}{{4.15}{52}{Linear Progressive Model Pruning}{equation.4.15}{}}
-\newlabel{eq:TotalParam}{{4.16}{52}{Linear Progressive Model Pruning}{equation.4.16}{}}
-\newlabel{eq:linear_compression_derivation}{{4.17}{52}{Linear Progressive Model Pruning}{equation.4.17}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.15}{\ignorespaces Linear Progressive Compression Scheme}}{53}{figure.4.15}\protected@file@percent }
-\newlabel{fig:LinearCompressionScheme}{{4.15}{53}{Linear Progressive Compression Scheme}{figure.4.15}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.10}{\ignorespaces One-Shot Compression Scheme}}{50}{figure.4.10}\protected@file@percent }
+\newlabel{fig:OneShotCompressionScheme}{{4.10}{50}{One-Shot Compression Scheme}{figure.4.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6.2}Progressive Model Pruning}{50}{subsection.4.6.2}\protected@file@percent }
+\newlabel{sec:MethodProgressiveModelPruning}{{4.6.2}{50}{Progressive Model Pruning}{subsection.4.6.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.11}{\ignorespaces Progressive Compression Scheme}}{51}{figure.4.11}\protected@file@percent }
+\newlabel{fig:ProgressiveCompressionScheme}{{4.11}{51}{Progressive Compression Scheme}{figure.4.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6.3}Importance-Aware Rank-Adaptive Progressive Model Pruning}{51}{subsection.4.6.3}\protected@file@percent }
+\newlabel{sec:LinearProgressiveCompression}{{4.6.3}{51}{Importance-Aware Rank-Adaptive Progressive Model Pruning}{subsection.4.6.3}{}}
+\newlabel{eq:CompressionRatio}{{4.15}{52}{Importance-Aware Rank-Adaptive Progressive Model Pruning}{equation.4.15}{}}
+\newlabel{eq:TotalParam}{{4.16}{52}{Importance-Aware Rank-Adaptive Progressive Model Pruning}{equation.4.16}{}}
+\newlabel{eq:linear_compression_derivation}{{4.17}{52}{Importance-Aware Rank-Adaptive Progressive Model Pruning}{equation.4.17}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.12}{\ignorespaces Importance-Aware Rank-Adaptive Progressive Compression Scheme}}{53}{figure.4.12}\protected@file@percent }
+\newlabel{fig:LinearCompressionScheme}{{4.12}{53}{Importance-Aware Rank-Adaptive Progressive Compression Scheme}{figure.4.12}{}}
 \@setckpt{Methods_Experiments}{
 \setcounter{page}{54}
 \setcounter{equation}{20}
@@ -114,7 +108,7 @@
 \setcounter{subsubsection}{0}
 \setcounter{paragraph}{0}
 \setcounter{subparagraph}{0}
-\setcounter{figure}{15}
+\setcounter{figure}{12}
 \setcounter{table}{4}
 \setcounter{parentequation}{0}
 \setcounter{caption@flags}{2}
@@ -126,7 +120,7 @@
 \setcounter{section@level}{2}
 \setcounter{Item}{6}
 \setcounter{Hfootnote}{0}
-\setcounter{bookmark@seq@number}{55}
+\setcounter{bookmark@seq@number}{54}
 \setcounter{algorithm}{3}
 \setcounter{ALG@line}{8}
 \setcounter{ALG@rem}{8}
