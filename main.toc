@@ -58,8 +58,7 @@
 \contentsline {subsubsection}{Architecture}{37}{section*.25}%
 \contentsline {subsubsection}{Double-Stream Blocks}{39}{section*.26}%
 \contentsline {subsubsection}{Single-Stream Blocks}{40}{section*.27}%
-\contentsline {section}{\numberline {4.2}Training Data and Image Synthesis}{42}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}Training Datasets}{42}{subsection.4.2.1}%
+\contentsline {section}{\numberline {4.2}Training Datasets}{42}{section.4.2}%
 \contentsline {subsubsection}{LAION Aesthetic}{42}{section*.28}%
 \contentsline {subsubsection}{LAION-Pixart-$\Sigma $ Dataset}{42}{section*.29}%
 \contentsline {subsubsection}{LAION-Flux.1-dev Dataset}{43}{section*.30}%
