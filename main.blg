@@ -21,7 +21,7 @@ Reallocated global_strs (elt_size=200001) to 20 items from 10.
 Reallocated glb_str_end (elt_size=4) to 20 items from 10.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
-Reallocated field_info (elt_size=4) to 10712 items from 5000.
+Reallocated field_info (elt_size=4) to 10628 items from 5000.
 Database file #1: bibliography.bib
 Repeated entry---line 253 of file bibliography.bib
  : @article{han2015deep
@@ -45,8 +45,10 @@ Repeated entry---line 1430 of file bibliography.bib
  : @article{KnowledgeDistillation
  :                               ,
 I'm skipping whatever remains of this entry
-Warning--I didn't find a database entry for "bibid"
 Warning--I didn't find a database entry for ""
+Warning--I didn't find a database entry for "pixart_sigma"
+Warning--I didn't find a database entry for "flux2024"
+Warning--I didn't find a database entry for "GenEval"
 Warning--empty journal in HiDream
 Warning--empty journal in Claude
 Warning--empty year in WGAN
@@ -78,45 +80,45 @@ Warning--empty journal in ConsistencyModel
 Warning--empty year in SlicedScoreMatching
 Warning--empty year in ModeCollapse1
 Warning--empty year in DistillationMatching
-You've used 202 entries,
+You've used 197 entries,
             2943 wiz_defined-function locations,
-            1678 strings with 44733 characters,
-and the built_in function-call counts, 108674 in all, are:
-= -- 10545
-> -- 6140
-< -- 62
-+ -- 2302
-- -- 2090
-* -- 6538
-:= -- 15996
-add.period$ -- 641
-call.type$ -- 202
-change.case$ -- 1639
+            1661 strings with 43736 characters,
+and the built_in function-call counts, 105615 in all, are:
+= -- 10251
+> -- 5958
+< -- 60
++ -- 2231
+- -- 2026
+* -- 6338
+:= -- 15554
+add.period$ -- 626
+call.type$ -- 197
+change.case$ -- 1592
 chr.to.int$ -- 0
-cite$ -- 233
-duplicate$ -- 2902
-empty$ -- 8686
-format.name$ -- 2090
-if$ -- 26977
+cite$ -- 228
+duplicate$ -- 2824
+empty$ -- 8450
+format.name$ -- 2026
+if$ -- 26235
 int.to.chr$ -- 0
-int.to.str$ -- 202
-missing$ -- 186
-newline$ -- 1021
-num.names$ -- 404
-pop$ -- 2842
+int.to.str$ -- 197
+missing$ -- 182
+newline$ -- 996
+num.names$ -- 394
+pop$ -- 2762
 preamble$ -- 1
-purify$ -- 1436
+purify$ -- 1394
 quote$ -- 0
-skip$ -- 6648
+skip$ -- 6475
 stack$ -- 0
-substring$ -- 4116
-swap$ -- 892
-text.length$ -- 68
+substring$ -- 3972
+swap$ -- 861
+text.length$ -- 66
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 808
+type$ -- 788
 warning$ -- 31
-while$ -- 614
-width$ -- 205
-write$ -- 2157
+while$ -- 596
+width$ -- 200
+write$ -- 2104
 (There were 5 error messages)

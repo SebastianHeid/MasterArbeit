@@ -28,62 +28,66 @@
 \contentsline {figure}{\numberline {4.12}{\ignorespaces Importance-Aware Rank-Adaptive Progressive Compression Scheme}}{53}{figure.4.12}%
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {5.1}{\ignorespaces Qualitative analyse of the block sensitivity of PixArt-$\Sigma $ for block removal}}{56}{figure.5.1}%
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Block Importance Metrics}}{58}{figure.5.2}%
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Qualitative analyse of the block sensitivity of PixArt-$\Sigma $ of block compression}}{59}{figure.5.3}%
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Distribution of Selected Blocks: Optuna versus Greedy Algorithm}}{60}{figure.5.4}%
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Benchmark Performance: Optuna versus Greedy Algorithm}}{61}{figure.5.5}%
-\contentsline {figure}{\numberline {5.6}{\ignorespaces Comparison of Pruning Strategies: Optuna versus Greedy Algorithm}}{61}{figure.5.6}%
-\contentsline {figure}{\numberline {5.7}{\ignorespaces Benchmark Performance: Progessive versus One-Shot Model Pruning}}{62}{figure.5.7}%
-\contentsline {figure}{\numberline {5.8}{\ignorespaces Example images for one-shot versus progressive pruned models by 50\%.}}{62}{figure.5.8}%
-\contentsline {figure}{\numberline {5.9}{\ignorespaces Benchmark Performance: Different Knowledge Distialltion Loss Configurations}}{64}{figure.5.9}%
-\contentsline {figure}{\numberline {5.10}{\ignorespaces Qualitative examples for different loss functions used to compress PixArt-$\Sigma $ to 60\% of the original size.}}{65}{figure.5.10}%
-\contentsline {figure}{\numberline {5.11}{\ignorespaces Magnitude of Intermediate Features in PixArt-$\Sigma $}}{66}{figure.5.11}%
-\contentsline {figure}{\numberline {5.12}{\ignorespaces Qualitative examples for three stage versus two stage LAION only fine-tuning protocol based on model pruned models by 60\%.}}{67}{figure.5.12}%
-\contentsline {figure}{\numberline {5.13}{\ignorespaces Benchmark Performance: fine-tuning Protocols}}{68}{figure.5.13}%
-\contentsline {figure}{\numberline {5.14}{\ignorespaces Benchmark Performance: Compression Strategies}}{69}{figure.5.14}%
-\contentsline {figure}{\numberline {5.15}{\ignorespaces Qualitative Comparison of Compression Strategies}}{70}{figure.5.15}%
-\contentsline {figure}{\numberline {5.16}{\ignorespaces Benchmark Performance: Compression of Individual Transformer Block Components}}{72}{figure.5.16}%
-\contentsline {figure}{\numberline {5.17}{\ignorespaces Example Images Sensitivity Analysis of MLP and Attention Layers}}{73}{figure.5.17}%
-\contentsline {figure}{\numberline {5.18}{\ignorespaces Benchmark Performance: SVD Compression Schedules}}{74}{figure.5.18}%
-\contentsline {figure}{\numberline {5.19}{\ignorespaces Example Images SVD Compression Schedule}}{75}{figure.5.19}%
-\contentsline {figure}{\numberline {5.20}{\ignorespaces Flux.1-dev Analysis Block Removal - Single-Stream Blocks}}{79}{figure.5.20}%
-\contentsline {figure}{\numberline {5.21}{\ignorespaces Flux.1-dev Analysis Block Removal - Single-Stream Blocks}}{80}{figure.5.21}%
-\contentsline {figure}{\numberline {5.22}{\ignorespaces Qualitative Examples Training-Free approaches for Flux.1-dev}}{80}{figure.5.22}%
-\contentsline {figure}{\numberline {5.23}{\ignorespaces Qualitative Examples Importance and Random Block Selection Flux.1-dev}}{82}{figure.5.23}%
-\contentsline {figure}{\numberline {5.24}{\ignorespaces Benchmark Performance: Random versus Metric-based Block Selection}}{83}{figure.5.24}%
-\contentsline {figure}{\numberline {5.25}{\ignorespaces Benchmark Performance: Random versus Metric-based Block Selection}}{84}{figure.5.25}%
-\contentsline {figure}{\numberline {5.26}{\ignorespaces Qualitative Examples for SVDtrunc}}{85}{figure.5.26}%
-\contentsline {figure}{\numberline {5.27}{\ignorespaces Qualitative Examples for SVDtrunc}}{86}{figure.5.27}%
-\contentsline {figure}{\numberline {5.28}{\ignorespaces Qualitative Examples for SVDtrunc}}{87}{figure.5.28}%
-\contentsline {figure}{\numberline {5.29}{\ignorespaces Qualitative Examples for SVDtrunc on Flux.1-Schnell}}{87}{figure.5.29}%
-\contentsline {figure}{\numberline {5.30}{\ignorespaces Magnitude versus Importance Analysis of Singular Values}}{89}{figure.5.30}%
-\contentsline {figure}{\numberline {5.31}{\ignorespaces Benchmark Performance: \gls {SVD} versus \gls {GRASP} Compression Method}}{90}{figure.5.31}%
-\contentsline {figure}{\numberline {5.32}{\ignorespaces Flux.1-dev Images: \gls {SVD} versus \gls {GRASP} Compression}}{91}{figure.5.32}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Block Importance Metrics}}{57}{figure.5.2}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Qualitative analysis of the block sensitivity of PixArt-$\Sigma $ of block compression}}{58}{figure.5.3}%
+\contentsline {figure}{\numberline {5.4}{\ignorespaces CMMD analysis of the block sensitivity of PixArt-$\Sigma $ of block compression}}{58}{figure.5.4}%
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Distribution of Selected Blocks: Optuna versus Greedy Algorithm}}{60}{figure.5.5}%
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Benchmark Performance: Optuna versus Greedy Algorithm}}{60}{figure.5.6}%
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Comparison of Pruning Strategies: Optuna versus Greedy Algorithm}}{61}{figure.5.7}%
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Example images for one-shot versus progressively pruned models by 50\%.}}{61}{figure.5.8}%
+\contentsline {figure}{\numberline {5.9}{\ignorespaces Benchmark Performance: Progessive versus One-Shot Model Pruning}}{62}{figure.5.9}%
+\contentsline {figure}{\numberline {5.10}{\ignorespaces Benchmark Performance: Different Knowledge Distialltion Loss Configurations}}{63}{figure.5.10}%
+\contentsline {figure}{\numberline {5.11}{\ignorespaces Qualitative examples for different loss functions used to compress PixArt-$\Sigma $ to 60\% of the original size.}}{64}{figure.5.11}%
+\contentsline {figure}{\numberline {5.12}{\ignorespaces Qualitative examples for three stage versus two stage LAION only fine-tuning protocol based on model pruned models by 60\%.}}{65}{figure.5.12}%
+\contentsline {figure}{\numberline {5.13}{\ignorespaces Benchmark Performance: fine-tuning Protocols}}{66}{figure.5.13}%
+\contentsline {figure}{\numberline {5.14}{\ignorespaces Benchmark Performance: Compression Strategies}}{67}{figure.5.14}%
+\contentsline {figure}{\numberline {5.15}{\ignorespaces Qualitative Comparison of Compression Strategies}}{68}{figure.5.15}%
+\contentsline {figure}{\numberline {5.16}{\ignorespaces Benchmark Performance: Compression of Individual Transformer Block Components}}{70}{figure.5.16}%
+\contentsline {figure}{\numberline {5.17}{\ignorespaces Example Images Sensitivity Analysis of MLP and Attention Layers}}{71}{figure.5.17}%
+\contentsline {figure}{\numberline {5.18}{\ignorespaces Benchmark Performance: SVD Compression Schedules}}{72}{figure.5.18}%
+\contentsline {figure}{\numberline {5.19}{\ignorespaces Example Images SVD Compression Schedule}}{73}{figure.5.19}%
+\contentsline {figure}{\numberline {5.20}{\ignorespaces Modules from Double- and Single-Stream Transformer SVD Compressed}}{76}{figure.5.20}%
+\contentsline {figure}{\numberline {5.21}{\ignorespaces Flux.1-dev Analysis Block Removal - Single-Stream Blocks}}{77}{figure.5.21}%
+\contentsline {figure}{\numberline {5.22}{\ignorespaces Flux.1-dev Analysis Block Removal - Single-Stream Blocks}}{77}{figure.5.22}%
+\contentsline {figure}{\numberline {5.23}{\ignorespaces Qualitative Examples Training-Free approaches for Flux.1-dev}}{78}{figure.5.23}%
+\contentsline {figure}{\numberline {5.24}{\ignorespaces Qualitative Examples Importance and Random Block Selection Flux.1-dev}}{79}{figure.5.24}%
+\contentsline {figure}{\numberline {5.25}{\ignorespaces Benchmark Performance: Random versus Metric-based Block Selection}}{80}{figure.5.25}%
+\contentsline {figure}{\numberline {5.26}{\ignorespaces Benchmark Performance: Random versus Metric-based Block Selection}}{82}{figure.5.26}%
+\contentsline {figure}{\numberline {5.27}{\ignorespaces Qualitative Examples for SVDtrunc}}{82}{figure.5.27}%
+\contentsline {figure}{\numberline {5.28}{\ignorespaces Qualitative-Parameter Frontier}}{83}{figure.5.28}%
+\contentsline {figure}{\numberline {5.29}{\ignorespaces Qualitative Examples for SVDtrunc}}{84}{figure.5.29}%
+\contentsline {figure}{\numberline {5.30}{\ignorespaces Qualitative Examples for SVDtrunc}}{84}{figure.5.30}%
+\contentsline {figure}{\numberline {5.31}{\ignorespaces Qualitative Examples for SVDtrunc on Flux.1-Schnell}}{85}{figure.5.31}%
+\contentsline {figure}{\numberline {5.32}{\ignorespaces Magnitude versus Importance Analysis of Singular Values}}{86}{figure.5.32}%
+\contentsline {figure}{\numberline {5.33}{\ignorespaces Benchmark Performance: \gls {SVD} versus \gls {GRASP} Compression Method}}{87}{figure.5.33}%
+\contentsline {figure}{\numberline {5.34}{\ignorespaces Flux.1-dev Images: \gls {SVD} versus \gls {GRASP} Compression}}{88}{figure.5.34}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {A.2}{\ignorespaces Qualitative examples for different loss functions used to compress PixArt-$\Sigma $ to 90\% of the original size.}}{93}{figure.A.2}%
-\contentsline {figure}{\numberline {A.3}{\ignorespaces Qualitative examples for different loss functions used to compress PixArt-$\Sigma $ to 80\% of the original size.}}{93}{figure.A.3}%
-\contentsline {figure}{\numberline {A.4}{\ignorespaces Qualitative examples for different loss functions used to compress PixArt-$\Sigma $ to 70\% of the original size.}}{94}{figure.A.4}%
-\contentsline {figure}{\numberline {A.5}{\ignorespaces Qualitative examples for different loss functions used to compress PixArt-$\Sigma $ to 50\% of the original size.}}{94}{figure.A.5}%
-\contentsline {figure}{\numberline {A.6}{\ignorespaces Qualitative examples for different loss functions used to compress PixArt-$\Sigma $ to 90\% of the original size.}}{95}{figure.A.6}%
-\contentsline {figure}{\numberline {A.7}{\ignorespaces Qualitative examples for different loss functions used to compress PixArt-$\Sigma $ to 80\% of the original size.}}{95}{figure.A.7}%
-\contentsline {figure}{\numberline {A.8}{\ignorespaces Qualitative examples for different loss functions used to compress PixArt-$\Sigma $ to 70\% of the original size.}}{96}{figure.A.8}%
-\contentsline {figure}{\numberline {A.9}{\ignorespaces Qualitative examples for different loss functions used to compress PixArt-$\Sigma $ to 50\% of the original size.}}{96}{figure.A.9}%
-\contentsline {figure}{\numberline {A.10}{\ignorespaces Qualitative examples for progressive and one-shot pruning used to compress PixArt-$\Sigma $ to 90\% of the original size.}}{97}{figure.A.10}%
-\contentsline {figure}{\numberline {A.11}{\ignorespaces Qualitative examples for progressive and one-shot pruning used to compress PixArt-$\Sigma $ to 80\% of the original size.}}{97}{figure.A.11}%
-\contentsline {figure}{\numberline {A.12}{\ignorespaces Qualitative examples for progressive and one-shot pruning used to compress PixArt-$\Sigma $ to 70\% of the original size.}}{97}{figure.A.12}%
-\contentsline {figure}{\numberline {A.13}{\ignorespaces Qualitative examples for progressive and one-shot pruning used to compress PixArt-$\Sigma $ to 60\% of the original size.}}{98}{figure.A.13}%
-\contentsline {figure}{\numberline {A.14}{\ignorespaces Example Images SVD Compression Schedule}}{98}{figure.A.14}%
-\contentsline {figure}{\numberline {A.15}{\ignorespaces Example Images SVD Compression Schedule}}{99}{figure.A.15}%
-\contentsline {figure}{\numberline {A.16}{\ignorespaces Example Images SVD Compression Schedule}}{99}{figure.A.16}%
-\contentsline {figure}{\numberline {A.17}{\ignorespaces Example Images SVD Compression Schedule}}{100}{figure.A.17}%
+\contentsline {figure}{\numberline {A.2}{\ignorespaces Qualitative analysis of the block sensitivity of PixArt-$\Sigma $ of block compression}}{90}{figure.A.2}%
+\contentsline {figure}{\numberline {A.3}{\ignorespaces Magnitude of Intermediate Features in PixArt-$\Sigma $}}{91}{figure.A.3}%
+\contentsline {figure}{\numberline {A.4}{\ignorespaces Qualitative examples for different loss functions used to compress PixArt-$\Sigma $ to 90\% of the original size.}}{92}{figure.A.4}%
+\contentsline {figure}{\numberline {A.5}{\ignorespaces Qualitative examples for different loss functions used to compress PixArt-$\Sigma $ to 80\% of the original size.}}{92}{figure.A.5}%
+\contentsline {figure}{\numberline {A.6}{\ignorespaces Qualitative examples for different loss functions used to compress PixArt-$\Sigma $ to 70\% of the original size.}}{93}{figure.A.6}%
+\contentsline {figure}{\numberline {A.7}{\ignorespaces Qualitative examples for different loss functions used to compress PixArt-$\Sigma $ to 50\% of the original size.}}{93}{figure.A.7}%
+\contentsline {figure}{\numberline {A.8}{\ignorespaces Qualitative examples for different loss functions used to compress PixArt-$\Sigma $ to 90\% of the original size.}}{94}{figure.A.8}%
+\contentsline {figure}{\numberline {A.9}{\ignorespaces Qualitative examples for different loss functions used to compress PixArt-$\Sigma $ to 80\% of the original size.}}{94}{figure.A.9}%
+\contentsline {figure}{\numberline {A.10}{\ignorespaces Qualitative examples for different loss functions used to compress PixArt-$\Sigma $ to 70\% of the original size.}}{95}{figure.A.10}%
+\contentsline {figure}{\numberline {A.11}{\ignorespaces Qualitative examples for different loss functions used to compress PixArt-$\Sigma $ to 50\% of the original size.}}{95}{figure.A.11}%
+\contentsline {figure}{\numberline {A.12}{\ignorespaces Qualitative examples for progressive and one-shot pruning used to compress PixArt-$\Sigma $ to 90\% of the original size.}}{96}{figure.A.12}%
+\contentsline {figure}{\numberline {A.13}{\ignorespaces Qualitative examples for progressive and one-shot pruning used to compress PixArt-$\Sigma $ to 80\% of the original size.}}{96}{figure.A.13}%
+\contentsline {figure}{\numberline {A.14}{\ignorespaces Qualitative examples for progressive and one-shot pruning used to compress PixArt-$\Sigma $ to 70\% of the original size.}}{96}{figure.A.14}%
+\contentsline {figure}{\numberline {A.15}{\ignorespaces Qualitative examples for progressive and one-shot pruning used to compress PixArt-$\Sigma $ to 60\% of the original size.}}{97}{figure.A.15}%
+\contentsline {figure}{\numberline {A.16}{\ignorespaces Example Images SVD Compression Schedule}}{98}{figure.A.16}%
+\contentsline {figure}{\numberline {A.17}{\ignorespaces Example Images SVD Compression Schedule}}{98}{figure.A.17}%
+\contentsline {figure}{\numberline {A.18}{\ignorespaces Example Images SVD Compression Schedule}}{99}{figure.A.18}%
+\contentsline {figure}{\numberline {A.19}{\ignorespaces Example Images SVD Compression Schedule}}{99}{figure.A.19}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {B.1}{\ignorespaces Training-Free: Flux.1-dev Block Importance Ranking}}{101}{figure.B.1}%
-\contentsline {figure}{\numberline {B.2}{\ignorespaces Flux.1-dev Qualitative Analysis Block Removal - Double-Stream Blocks}}{102}{figure.B.2}%
-\contentsline {figure}{\numberline {B.3}{\ignorespaces Flux.1-dev Analysis Block Removal - Single-Stream Blocks}}{103}{figure.B.3}%
-\contentsline {figure}{\numberline {B.4}{\ignorespaces Flux.1-dev Qualitative Analysis Block Compression - Double-Stream Blocks}}{104}{figure.B.4}%
-\contentsline {figure}{\numberline {B.5}{\ignorespaces Flux.1-dev Qualitative Analysis Block Compression - Single-Stream Blocks}}{105}{figure.B.5}%
-\contentsline {figure}{\numberline {B.6}{\ignorespaces Qualitative examples for random and importance-aware block selection for pruning Flux.1-dev to 68\% of the original size.}}{106}{figure.B.6}%
-\contentsline {figure}{\numberline {B.7}{\ignorespaces Qualitative examples for random and importance-aware block selection for pruning Flux.1-dev to 57\% of the original size.}}{106}{figure.B.7}%
-\contentsline {figure}{\numberline {B.8}{\ignorespaces Qualitative examples for random and importance-aware block selection for pruning Flux.1-dev to 43\% of the original size.}}{107}{figure.B.8}%
-\contentsline {figure}{\numberline {B.9}{\ignorespaces Qualitative Examples Training-Free approaches for 90\% Model}}{108}{figure.B.9}%
-\contentsline {figure}{\numberline {B.10}{\ignorespaces Qualitative Examples Training-Free approaches for 70\% Model}}{108}{figure.B.10}%
+\contentsline {figure}{\numberline {B.1}{\ignorespaces Flux.1-dev Qualitative Analysis Block Removal - Double-Stream Blocks}}{102}{figure.B.1}%
+\contentsline {figure}{\numberline {B.2}{\ignorespaces Flux.1-dev Analysis Block Removal - Single-Stream Blocks}}{103}{figure.B.2}%
+\contentsline {figure}{\numberline {B.3}{\ignorespaces Flux.1-dev Qualitative Analysis Block Compression - Double-Stream Blocks}}{104}{figure.B.3}%
+\contentsline {figure}{\numberline {B.4}{\ignorespaces Flux.1-dev Qualitative Analysis Block Compression - Single-Stream Blocks}}{105}{figure.B.4}%
+\contentsline {figure}{\numberline {B.5}{\ignorespaces Qualitative Examples Training-Free approaches for 90\% Model}}{106}{figure.B.5}%
+\contentsline {figure}{\numberline {B.6}{\ignorespaces Qualitative Examples Training-Free approaches for 70\% Model}}{107}{figure.B.6}%
+\contentsline {figure}{\numberline {B.7}{\ignorespaces Qualitative examples for random and importance-aware block selection for pruning Flux.1-dev to 68\% of the original size.}}{108}{figure.B.7}%
+\contentsline {figure}{\numberline {B.8}{\ignorespaces Qualitative examples for random and importance-aware block selection for pruning Flux.1-dev to 57\% of the original size.}}{108}{figure.B.8}%
+\contentsline {figure}{\numberline {B.9}{\ignorespaces Qualitative examples for random and importance-aware block selection for pruning Flux.1-dev to 43\% of the original size.}}{109}{figure.B.9}%
+\contentsline {figure}{\numberline {B.10}{\ignorespaces Training-Free: Flux.1-dev Block Importance Ranking}}{111}{figure.B.10}%
