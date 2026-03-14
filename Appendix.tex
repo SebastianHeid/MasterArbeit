@@ -39,7 +39,7 @@ Heatmap for cka: Block importance for different time steps
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.85\textwidth]{images/Experimente/Pixart_Block_Analysis/cka_heatmap_100_thesis.png}  % adjust filename and width
+	\includegraphics[width=0.65\textwidth]{images/Experimente/Pixart_Block_Analysis/cka_heatmap_100_thesis.png}  % adjust filename and width
 	\caption[]{CKA-Kernel Clip}
 	
 	\label{fig:PixArtBlockImportanceHeatmap}
@@ -155,7 +155,42 @@ Example images for various compressed models (90\%, 80\%, 70\% and 50\%) are pre
 \end{figure}
 
 
+\section{Compression Strategy}
 
+   	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{images/Experimente/SVD_VS_Removal/PixartArchitectureCompressedModules.pdf}
+	\caption[PixArt-$\Sigma$ compressed modules.]{PixArt-$\Sigma$ compressed modules.}
+	\label{fig:PixArt_Sigma_Compresseed_Modules_Architecutre}
+\end{figure}
+
+   	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{images/Experimente/SVD_VS_Removal/ImageExamples_model90.pdf}
+	\caption[Qualitative Comparison of Compression Strategies]{Qualitative examples for \gls{SVD}-based compression versus block removal used to compress PixArt-$\Sigma$ to 90\% of the original size.}
+	\label{fig:Example_Images_SVD_vs_Removal_Appx}
+\end{figure}
+
+   	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{images/Experimente/SVD_VS_Removal/ImageExamples_model80.pdf}
+	\caption[Qualitative Comparison of Compression Strategies]{Qualitative examples for \gls{SVD}-based compression versus block removal used to compress PixArt-$\Sigma$ to 80\% of the original size.}
+	\label{fig:Example_Images_SVD_vs_Removal_Appx}
+\end{figure}
+
+   	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{images/Experimente/SVD_VS_Removal/ImageExamples_model70.pdf}
+	\caption[Qualitative Comparison of Compression Strategies]{Qualitative examples for \gls{SVD}-based compression versus block removal used to compress PixArt-$\Sigma$ to 70\% of the original size.}
+	\label{fig:Example_Images_SVD_vs_Removal_Appx}
+\end{figure}
+
+   	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{images/Experimente/SVD_VS_Removal/ImageExamples_model60.pdf}
+	\caption[Qualitative Comparison of Compression Strategies]{Qualitative examples for \gls{SVD}-based compression versus block removal used to compress PixArt-$\Sigma$ to 60\% of the original size.}
+	\label{fig:Example_Images_SVD_vs_Removal_Appx}
+\end{figure}
 
 \section{One-Shot versus Progressive Pruning}
 \label{sec:OneShotVsProgressivePrunAppendix}
@@ -190,7 +225,7 @@ Example images for various compressed models (80\%, 70\% and 60\%) are presented
 	\label{fig:FinetuningProtocol_50}
 \end{figure}
 
-\section{SVD Compression Schedule}
+\section{Importance-Aware Rank-Adaptive Progressive Model Pruning}
 
 \begin{table}[H]
 	\centering
@@ -243,14 +278,14 @@ Example images for various compressed models (80\%, 70\% and 60\%) are presented
 	\centering
 	\includegraphics[width=0.7\textwidth]{images/Experimente/Compression_Schedul/ParameterDistribution_Appendix_model90.pdf}
 	\caption[Example Images SVD Compression Schedule]{Qualitative examples for different compression schedules used to compress PixArt-$\Sigma$ to 90\% of the original size.}
-	\label{fig:ImagesAttnVsMLP}
+	\label{fig:AppxCompressionSchedules}
 \end{figure}
 
 	\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\textwidth]{images/Experimente/Compression_Schedul/ParameterDistribution_Appendix_model80.pdf}
 	\caption[Example Images SVD Compression Schedule]{Qualitative examples for different compression schedules used to compress PixArt-$\Sigma$ to 80\% of the original size.}
-	\label{fig:ImagesAttnVsMLP}
+	\label{fig:AppxCompressionSchedules}
 \end{figure}
 
 
@@ -258,7 +293,7 @@ Example images for various compressed models (80\%, 70\% and 60\%) are presented
 	\centering
 	\includegraphics[width=0.7\textwidth]{images/Experimente/Compression_Schedul/ParameterDistribution_Appendix_model70.pdf}
 	\caption[Example Images SVD Compression Schedule]{Qualitative examples for different compression schedules used to compress PixArt-$\Sigma$ to 70\% of the original size.}
-	\label{fig:ImagesAttnVsMLP}
+	\label{fig:AppxCompressionSchedules}
 \end{figure}
 
 
@@ -266,7 +301,7 @@ Example images for various compressed models (80\%, 70\% and 60\%) are presented
 	\centering
 	\includegraphics[width=0.7\textwidth]{images/Experimente/Compression_Schedul/ParameterDistribution_Appendix_model60.pdf}
 	\caption[Example Images SVD Compression Schedule]{Qualitative examples for different compression schedules used to compress PixArt-$\Sigma$ to 60\% of the original size.}
-	\label{fig:ImagesAttnVsMLP}
+	\label{fig:AppxCompressionSchedules}
 \end{figure}
 
 

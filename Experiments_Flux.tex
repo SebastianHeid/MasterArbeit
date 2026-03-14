@@ -1,38 +1,41 @@
 \section{Flux.1-dev Pruning}
 \label{sec:ExpFlux}
-Flux.1-dev is an 11.9 billion parameter rectified flow model capable of generating detailed, high-quality, and high-aesthetic images. Due to its high parameter count, it is a primary target for model reduction techniques in the literature. In this section, the compression of Flux.1-dev via low-rank approximation of projection matrices within transformer blocks is investigated. To this end, the insights obtained by previous experiments on PixAr-$\Sigma$ (Sec. \ref{sec:PixArtExp}) are leveraged and tested to determine if they hold for models in the high-parameter regime. Notably, certain experiments are re-evaluated specifically for Flux.1-dev to account for its distinct architectural characteristics and significantly larger scale compared to PixArt-$\Sigma$.
+Flux.1-dev is an 11.9 billion parameter rectified flow model capable of generating detailed, high-quality, and highly aesthetic images. Due to its high parameter count, it is a primary target for model reduction techniques in the literature. In this section, the compression of Flux.1-dev via low-rank approximation of projection matrices within transformer blocks is investigated. To this end, the insights obtained from previous experiments on PixArt-$\Sigma$ (Sec. \ref{sec:PixArtExp}) are leveraged and tested to determine if they hold for models in the high-parameter regime. Notably, certain experiments are re-evaluated specifically for Flux.1-dev to account for its distinct architectural characteristics and significantly larger scale compared to PixArt-$\Sigma$.
 
-First, Sec. \ref{sec:flux_training_details} summarizes the fine-tuning and default compression settings for Flux.1-dev applied after compression.
-Second, as for PixArt-$\Sigma$ the qualitative block importance within Flux.1-dev is analyzed (Sec. \ref{sec:QualitativeBlockAnalysisFlux}). Third, the training-free performance of \gls{SVD}-based compression is evaluated and compared to complete block removal and EcoDiff \cite{EcoDiff} (Sec. \ref{sec:trainingFreeCompression}). In addition, Sec. \ref{sec:FluxParameterRemovalDistribution} investigates the distribution of removed parameters over a varying number of blocks and demonstrates the effectiveness of importance-aware block selection over random selection. In Sec. \ref{sec:FluxMainResults} the main results and the comparison with competitors are reported, followed by the application of the method to a step-distilled \gls{DiT}, namely Flux.schnell (Sec. \ref{sec:FluxSchnellMainResults}). Finally, Sec. \ref{sec:GRASPForDiTs} provides a proof of concept for an additional learning-free approach, GRASP (Sec. \ref{sec:GRASP}) which is transfgered from \gls{LLM}s to \gls{DiT} for potential future research.
+First, Sec. \ref{sec:flux_training_details} summarizes the fine-tuning and default compression settings for Flux.1-dev.
+Second, as with PixArt-$\Sigma$, the qualitative block importance within Flux.1-dev is analyzed (Sec. \ref{sec:QualitativeBlockAnalysisFlux}). Third, the training-free performance of \gls{SVD}-based compression is evaluated and compared to complete block removal and EcoDiff \cite{EcoDiff} (Sec. \ref{sec:trainingFreeCompression}). In addition, Sec. \ref{sec:FluxParameterRemovalDistribution} investigates the distribution of removed parameters over a varying number of blocks and demonstrates the effectiveness of importance-aware block selection over random selection. In Sec. \ref{sec:FluxMainResults}, the main results of the proposed compression protocol, \gls{SVD}trunc, and the comparison with competing methods are reported, followed by the application of \gls{SVD}trunc to a step-distilled \gls{DiT}, namely Flux.schnell (Sec. \ref{sec:FluxSchnellMainResults}). Finally, Sec. \ref{sec:GRASPForDiTs} provides a proof of concept for an additional learning-free approach, GRASP (Sec. \ref{sec:GRASP}), which is transferred from \gls{LLM}s to \gls{DiT}s for potential future research.
 
 
 
-\subsection{Training Details}
+\subsection{Experimental Default Setup}
 \label{sec:flux_training_details}
-All experiments are built upon the training and inference code for Flux.1-dev published in the following git repository \cite{kohya_ss_sd_scripts_2024}. The hyperparameters used for fine-tuning Flux.1-dev are specified in Tab. \ref{tab:flux_training_config}. For pruning Flux.1-dev the best settings found for PixArt-$\Sigma$ are leveraged and specified here again for completeness:
+All experiments are built upon the training and inference code for Flux.1-dev published in the following Git repository \cite{kohya_ss_sd_scripts_2024}. The hyperparameters used for fine-tuning Flux.1-dev are specified in Tab. \ref{tab:flux_training_config}. For compressing Flux.1-dev, the best settings found for PixArt-$\Sigma$ are leveraged and summarized here again for completeness:
 
 \begin{itemize}
 	\item \textbf{Block Importance Analysis} \\
-	To determine the importance of individual blocks in Flux.1-dev, every block is individually compressed by 60\% and a small reference dataset (100 JoyCaption prompts based on LAION datset) is utilized to compute the \gls{CMMD} score. Afterwards, the \gls{CMMD} score is weighted by the number of removed parameters, e.g. a single-stream block contains less parameters than a double-stream block. In contrast to the experiments with PixArt-$\Sigma$, the scoring is computed in a single initial pass for each iteration rather than leveraging a dynamic greedy algorithm that would iteratively reevaluate the remaining blocks after each sequential compression due to the high computational demands of Flux.1-dev.
+	To determine the blocks importance in Flux.1-dev, every block is individually compressed by 60\%, and a small reference dataset (100 JoyCaption prompts based on the LAION dataset) is utilized to compute the \gls{CMMD} score. Afterwards, the \gls{CMMD} score is weighted by the number of removed parameters (e.g. a single-stream block contains fewer parameters than a double-stream block). In contrast to the experiments with PixArt-$\Sigma$, due to the high computational demand of Flux.1-dev, the scoring is computed in a single initial pass for each iteration, rather than leveraging a dynamic greedy algorithm that would iteratively reevaluate the remaining blocks after each sequential compression.
 	
 	\item \textbf{Pruning Method} \\
-	Progressive structural model pruning is performed.
+	Progressive model pruning is performed.
 	
 	\item \textbf{Knowledge Distillation Loss} \\
-	The original flow matching loss as well as the normalized intermediate feature and output losses are utilized whereby the normalization is computed for features from double-stream and single-stream block seperately
+	The original flow matching loss as well as the normalized intermediate feature and output losses are utilized, whereby the normalization is computed for features from double-stream and single-stream blocks separately
 	\begin{equation}
 		\mathcal{L} = \mathcal{L_\text{Task}} + \lambda_\text{OutKD} \mathcal{L_\text{OutKD}} + \lambda_\text{SingleFeatKD} \mathcal{L_\text{SingleFeatKD}} + \lambda_\text{DoubleFeatKD} \mathcal{L_\text{DoubleFeatKD}} 
 	\end{equation}
-	with $\lambda_\text{OutKD}  = 10$, $\lambda_\text{SingleFeatKD}=0.01$ and $\lambda_\text{DoubleFeatKD}=0.1$.
+	with $\lambda_\text{OutKD}  = 10$, $\lambda_\text{SingleFeatKD}=0.01$, and $\lambda_\text{DoubleFeatKD}=0.1$.
 	
 	\item \textbf{Fine-Tuning Protocol} \\
-	The complete model is directly fine-tuned on the LAION-Flux.1-dev dataset with image resolution of $1024 \times 1024$ containing in total 190 000 images. In contrast to PixArt-$\Sigma$, the original LAION dataset was not used as its quality is much lower than for the Flux.1-dev LAION dataset.
+	The complete model is directly fine-tuned on the LAION-Flux.1-dev dataset with an image resolution of $1024 \times 1024$ containing a total of 190,000 images. In contrast to PixArt-$\Sigma$, the original LAION dataset was not used, as its quality is significantly lower than that of the LAION-Flux.1-dev dataset.
 	
 	\item \textbf{Structural Compression Strategy} \\
-	The \gls{SVD}-based compression approach is leveraged to prune Flux.1-dev blocks. The individual components of double-stream and single-stream blocks and their corresponding parameter counts can be found in Tab. \ref{tab:Flux_parameter_count}.
+	The \gls{SVD}-based compression approach is leveraged to prune the Flux.1-dev blocks. The individual components within the double-stream and single-stream blocks that are subject to \gls{SVD} compression are displayed in Fig. \ref{fig:SingleDoubleStreamCompressedModules}, and their corresponding parameter counts can be found in Tab. \ref{tab:Flux_parameter_count}.
 	
 	\item \textbf{\gls{SVD} Compression Scheduling} \\
-	The importance-aware rank-adaptive progressive pruning scheme is utilized to compress Flux.1-dev. If not mentioned otherwise in each iteration 30 blocks are compressed and subsequently fine-tuning is performed fro 20k steps.
+	The importance-aware rank-adaptive progressive pruning scheme is utilized to compress Flux.1-dev. Unless mentioned otherwise, 30 blocks are compressed in each iteration and subsequent fine-tuning is performed for 20,000 steps.
+	
+	\item \textbf{Evaluation} \\
+	The compressed models of Flux.1-dev are evaluated on the HPSv2, GenEval, and DPG benchmarks
 	
 \end{itemize} 
 
@@ -45,24 +48,27 @@ All experiments are built upon the training and inference code for Flux.1-dev pu
 
 \subsection{Qualitative Block Analysis}
 \label{sec:QualitativeBlockAnalysisFlux}
-To identify blocks of lower importance in the Flux.1-dev architecture, the \gls{CMMD} values weighted by the number of removed parameters are calculated, as previously discussed in Sec. \ref{sec:MetricBasedSelection}. To obtain a better understanding of the impact of the individual blocks, a qualitative block analysis is performed for Flux.1-dev as in Sec. \ref{sec:ExpBlockImportanceAnalysis} for PixArt-$\Sigma$. 
-
-Overall, the double-stream blocks, each containing approximately 340 million parameters, seem to have a greater impact on the image generation capabilities, which may be explained by their higher parameter count. 
-Fig. \ref{fig:OverviewCompressionRemovalDouble} presents visual examples for removing (upper row) or compressing these blocks by 60\% (lower row). In particular, removing double-stream blocks 1, 2, and 3 proves to be critical, because the image generation capabilities of Flux.1-dev completely collapse after their removal. A possible reason is that early blocks are essential for text-image alignment and establishing the global layout structure. In addition, the removal of the last double-stream block leads to a notable shift in lighting, while the content of the image remains intact. In contrast, compressing double-stream blocks seems less critical. Only compressing double-stream block number three leads to visible artifacts.
-
-Fig. \ref{fig:OverviewCompressionRemovalSingle} presents images generated after removing (upper row) or compressing (lower row) a single-stream block comprising approximately 142 million parameters. In most cases, removing a single block does not introduce observable artifacts. The composition of the images changes slightly, but visible artifacts or severe degradations are only observed when removing single-stream block 35, which results in vertical stripes, or block 38, which leads to overly smoothed details. The compression of single-stream blocks by 60\% does not yield to any observable artifacts.
-
-For a complete overview of all removed or compressed blocks please refere to Appx. \ref{appx:FluxBlockImportanceAnalysis}
-
-
-%Ultimately, the visual robustness of the compressed double-stream blocks strongly aligns with the parameter-weighted \gls{CMMD} predictions displayed in Fig. \ref{fig:flux_cmmd_broken_axis_scaled}. It shows that all double-stream blocks except block number 3 are the first choice for compression. However, no clear importance structure within the double- or single-stream blocks can be identified.
 
 	\begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{images/Experimente/Flux/Block_Analysis/OverviewCompressionRemoval.pdf}
-	\caption[Flux.1-dev Analysis Block Removal - Single-Stream Blocks]{Qualitative analysis of the impact of removing individual single-stream blocks from the Flux.1-dev architecture.}
+	\caption[Flux.1-dev Analysis Block Removal - Double-Stream Blocks]{Qualitative analysis of the impact of removing individual double-stream blocks from the Flux.1-dev architecture.}
 	\label{fig:OverviewCompressionRemovalDouble}
 \end{figure}
+
+
+To identify blocks of lower importance in the Flux.1-dev architecture, the \gls{CMMD} values weighted by the number of removed parameters are calculated, as previously discussed in Sec. \ref{sec:MetricBasedSelection}. To obtain a better understanding of the impact of the individual blocks, a qualitative block analysis is performed for Flux.1-dev, similar to the analysis conducted as in Sec. \ref{sec:ExpBlockImportanceAnalysis} for PixArt-$\Sigma$. 
+
+Overall, the double-stream blocks, each containing approximately 340 million parameters, seem to have a greater impact on the image generation capabilities, which may be explained by their higher parameter count. 
+Fig. \ref{fig:OverviewCompressionRemovalDouble} presents visual examples of removing (upper row) or compressing these blocks by 60\% (lower row). In particular, removing double-stream blocks 1, 2, and 3 proves to be critical, as the image generation capabilities of Flux.1-dev completely collapse after their removal. This collapse likely occurs because early blocks are essential for text-image alignment and establishing the global layout structure. Furthermore, the removal of the last double-stream block leads to a notable shift in lighting, while the content of the image remains intact. In contrast, compressing double-stream blocks seems less critical. Only compressing double-stream block number 3 leads to visible artifacts.
+
+Fig. \ref{fig:OverviewCompressionRemovalSingle} presents images generated after removing (upper row) or compressing (lower row) individual single-stream blocks, each comprising approximately 142 million parameters. In most cases, removing a single block does not introduce observable artifacts. The composition of the images changes slightly, but visible artifacts or severe degradations are only observed when removing single-stream block 35, which results in vertical stripes, or block 38, which leads to overly smoothed details. The compression of single-stream blocks by 60\% does not produce any observable artifacts.
+
+For a complete overview of all removed or compressed blocks, please refer to Appx. \ref{appx:FluxBlockImportanceAnalysis}
+
+
+%Ultimately, the visual robustness of the compressed double-stream blocks strongly aligns with the parameter-weighted \gls{CMMD} predictions displayed in Fig. \ref{fig:flux_cmmd_broken_axis_scaled}. It shows that all double-stream blocks except block number 3 are the first choice for compression. However, no clear importance structure within the double- or single-stream blocks can be identified.
+
 
 	\begin{figure}[H]
 	\centering
@@ -93,11 +99,11 @@ For a complete overview of all removed or compressed blocks please refere to App
 \end{figure}
 
 
-Fine-tuning Flux.1-dev and current \gls{DiT}s is computationally demanding and requires the latest hardware. For this reason, this section investigates to what extent compression via a low-rank approximation of matrices within transformer blocks can be applied without subsequent fine-tuning. To this end, the performance of \gls{SVD}-based compression is compared to complete block removal and EcoDiff \cite{EcoDiff} which is a recently proposed training-free method that masks out neurons within the weight matrices of Flux.1-dev. 
+Fine-tuning Flux.1-dev and current \gls{DiT}s is computationally demanding and requires high-end hardware. For this reason, the following section investigates the extent to which compression via low-rank approximation of matrices within transformer blocks can be applied without subsequent fine-tuning. To this end, the performance of \gls{SVD}-based compression is compared to complete block removal and EcoDiff \cite{EcoDiff}, a recently proposed training-free method that masks out neurons within the weight matrices of Flux.1-dev. 
 
-The performance of all three approaches is tested for models compressed to 90\%, 80\% and 70\% of their original size. For \gls{SVD}-based compression, 30 blocks, ranked by importance, are modified using the linear schedule for compression ratios. Details regarding the base compression ratio and linear decay factor $x$ can be found in the appendix (Tab. \ref{tab:TrainingFreeMethodsSVD}) as well as the details for the complete block removal approach (Tab. \ref{tab:TrainingFreeMethodsRemoval}).
+The performance of all three approaches was evaluated for models compressed to 90\%, 80\%, and 70\% of their original size. For \gls{SVD}-based compression, 30 blocks were modified using the importance-aware rank-adaptive model pruning schedule for determining the compression ratios. Details regarding the base compression ratio and linear decay factor $x$, as well as the specific configurations for the complete block removal approach, can be found in the appendix (Tab. \ref{tab:TrainingFreeMethodsSVD} and Tab. \ref{tab:TrainingFreeMethodsRemoval}).
 
-Tab. \ref{tab:TrainingFreeMethodsBenchmarks} summarizes the performance of all three methods on the HPSv2, GenEval and DPG benchmarks. For slight compression (retaining 90\% of the model) complete block removal proves to be most effective, outperforming \gls{SVD}trunc and EcoDiff on all three benchmarks. For instance, it reaches 31.02 on the HPSv2 compared to 29.97 (EcoDiff) and 29.03 (SVDtrunc). At higher compression rates (80\% and 70\% models), \gls{SVD}-based compression demonstrates clear superiority. Especially at a 70\% parameter ratio, EcoDiff and block removal completely collapse, while \gls{SVD}-based compression leads by a large margin across all benchmarks.
+Tab. \ref{tab:TrainingFreeMethodsBenchmarks} summarizes the performance of all three methods on the HPSv2, GenEval, and DPG benchmarks. For slight compression (retaining 90\% of the model) complete block removal proves to be the most effective, outperforming \gls{SVD}trunc and EcoDiff on all three benchmarks. For instance, it reaches 31.02 on the HPSv2 compared to 29.97 (EcoDiff) and 29.03 (\gls{SVD}trunc). At higher compression rates (80\% and 70\% models), \gls{SVD}trunc demonstrates clear superiority. Especially at a 70\% parameter ratio, the performance of EcoDiff and block removal completely collapses, while \gls{SVD}-based compression maintains a significant lead across all benchmarks.
 
 Fig. \ref{fig:ExamplesTrainingFree} displays example images generated by the 80\% models, demonstrating the superiority of \gls{SVD}trunc, as its images exhibit finer details and greater aesthetic appeal. Furthermore, its generated content is more closely aligned with the outputs of the original model. For instance, the image in column 5, which shows a horse and an astronaut, depicts a composition that is only successfully reproduced by \gls{SVD}trunc. For further examples of the 90\% and 70\% models, the reader is referred to the appendix (Fig. \ref{fig:Examples_TrainingFree90} and Fig. \ref{fig:Examples_TrainingFree70}). 
 

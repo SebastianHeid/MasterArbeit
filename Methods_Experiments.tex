@@ -133,6 +133,13 @@ A third approach for identifying the least important model components involves c
 \end{equation}
 In the linear progressive compression approach (Sec. \ref{sec:LinearProgressiveCompression}) the compression strategy of the individual model parts leads to different numbers of removed parameters due to repeated compression and different compression ratios per block. Therefore, the \gls{CMMD} value normalized by the number of removed parameters, $\frac{\text{CMMD}_i}{\text{Removed Parameters}}$, is leveraged to quantify the degradation of image quality per removed parameter and to rank the blocks to ensure a fair comparison. This approach is also used for all experiments with Flux.1-dev in Sec. \ref{sec:ExpFlux}.
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{images/Methoden/BlockImportance.pdf}
+	\caption[Model Compression Strategies]{...}
+	\label{fig:MethodBlockImportance}
+\end{figure}
+
 
 
 \subsection{Block Selection Algorithms}
@@ -206,7 +213,7 @@ Rather than defining a fixed rank $k$, it is more practical to specify the perce
 
 
 
-\subsection{Iterative SVD-Based Compression}
+\subsubsection{Iterative SVD-Based Compression}
 \label{sec:IterativeRepeatedSVDCompression}
 In the final compression setup (Sec. \ref{sec:LinearProgressiveCompression}), individual transformer blocks are compressed and subsequently fine-tuned multiple times using truncated \gls{SVD}. Initially, an original weight matrix $W$ is decomposed into matrices $A$ and $B$ such that $W \approx AB$. During the subsequent fine-tuning, the matrices $A$ and $B$ are updated to $A_t$ and $B_t$. Consequently, the relation $W \approx A_tB_t$ does not necessarily hold with respect to the initial matrix $W$, as the model adapts to the low-rank constraint during training. Therefore, if the transformer block is to be compressed further, the current effective weight matrix $W_t = A_t B_t$ is first reconstructed, followed by the application of the \gls{SVD} algorithm to obtain $W_t = U^{(2)} \Sigma^{(2)} V^{(2)^T}$. Similar to the initial step, after choosing a further reduced rank, the new smaller matrices $A^{(2)}$ and $B^{(2)}$ are constructed via $A^{(2)} = U^{(2)}_\text{red} \sqrt{\Sigma_\text{red}^{(2)}}$  and $B^{(2)} =  \sqrt{\Sigma_\text{red}^{(2)}}V_\text{red}^{(2)^T}$.  By repeating this procedure, reconstructing $W^{(j)}_t = A^{(j)}_t B^{(j)}_t$, choosing a new, smaller rank and obtaining the new $A^{(j+1)} = U^{(j+1)}_\text{red} \sqrt{\Sigma_\text{red}^{(j+1)}}$  and $B^{(j+1)} =  \sqrt{\Sigma_\text{red}^{(j+1)}}V_\text{red}^{(j+1)^T}$, a transformer block can be gradually compressed across multiple iterations.
 
@@ -352,7 +359,7 @@ Combining these constraints, a valid range for the total number of parameters to
 The third step, after computing the compression ratios $c_i$, is to compress the model using the \gls{SVD}-based compression scheme as described in Sec. \ref{sec:IterativeRepeatedSVDCompression} and subsequently fine-tune it. Finally, this procedure is repeated until the desired model size is reached.
 
  A schematic representation of the whole procedure is depicted in Fig. \ref{fig:LinearCompressionScheme}, where steps three and four, model compression and fine-tuning, are summarized in the last element of the graphic.
-In the subsequent experimental evaluation (see Chap. \ref{sec:Experiments}), models compressed utilizing this specific pruning schedule are denoted as \gls{SVD}trunc.
+%In the subsequent experimental evaluation (Chap. \ref{sec:Experiments}), models compressed utilizing this specific pruning schedule are denoted as \gls{SVD}trunc.
 
 
 \begin{figure}[H]

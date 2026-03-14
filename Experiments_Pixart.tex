@@ -301,9 +301,9 @@ In this section, the effectiveness of the individual components of the knowledge
  
   The benefit of the original diffusion loss is also confirmed by the unnormalized settings, where the hybrid distillation consistently achieves a higher HPSv2 score compared to the standard distillation approach.
   
-  Interestingly, the output-only approach outperforms both standard and hybrid distillation settings for shallow compressed models. This suggests that the unbalanced features prevent effective learning. However, for strongly compressed models, the output-only loss configuration leads to an abrupt drop in quality. This shows that the intermediate feature loss, despite being suboptimally distributed, serves as a critical stabilizer for the fine-tuning process.
+  Interestingly, the output-only approach outperforms both standard and hybrid distillation settings for lightly compressed models. This suggests that the unbalanced features prevent effective learning. However, for strongly compressed models, the output-only loss configuration leads to an abrupt drop in quality. This shows that the intermediate feature loss, despite being suboptimally distributed, serves as a critical stabilizer for the fine-tuning process.
   
-  The GenEval benchmark largely corroborates the observations from the HPSv2 benchmark, that the normalized hybrid distillation approach performs best overall and that adding the original diffusion loss boosts performance. Notably, the output-only configuration results are even more pronounced , performing comparably well or better than the normalized hybrid distillation approach in the low-compression regime (90\% to 70\%). This suggests that at low compression, removing the constraints of feature matching allows the student to optimize semantic alignment very effectively. However, performance drops severely for larger compression rates. 
+  The GenEval benchmark largely corroborates the observations from the HPSv2 benchmark, that the normalized hybrid distillation approach performs best overall and that adding the original diffusion loss boosts performance. Notably, the output-only configuration results are even more pronounced, performing comparably well or better than the normalized hybrid distillation approach in the low-compression regime (90\% to 70\%). This suggests that at low compression, removing the constraints of feature matching allows the student to optimize semantic alignment very effectively. However, performance drops severely for larger compression rates. 
   
   Furthermore, it is worth noting that for the high-compression regime of 60\% or 50\%, the unnormalized hybrid distillation approach slightly outperforms the normalized distillation approach. This indicates that in the high-compression regime, the original diffusion loss is critical for maintaining text-to-image alignment.  
   
@@ -343,47 +343,43 @@ In this section, the effectiveness of the individual components of the knowledge
  \subsection{Fine-Tuning Protocol}
  \label{sec:fine-tuningProtocol}
  
-
- 
- 
- 
- After removing blocks from the PixArt-$\Sigma$ architecture, the reduced model is fine-tuned to recover its image generation capabilities. In total, three different fine-tuning protocols are tested to identify the most effective one. In all protocols, the model was trained for 88.5k optimization steps per iteration of the progressive pruning schedule to enable a fair comparison.
+ After removing blocks from the PixArt-$\Sigma$ architecture, the reduced model was fine-tuned to recover its image generation capabilities. In total, three different fine-tuning protocols were tested to identify the most effective one. In all protocols, the model was trained for 88.5k optimization steps per iteration of the progressive pruning schedule to enable a fair comparison.
  \begin{itemize}
  	\item \textbf{Three-Stage Fine-Tuning Protocol} \\
  	This is the default fine-tuning protocol described in Sec. \ref{sec:DefaultSetup}. It is repeated here for the reader's convenience.
  	\begin{enumerate}
- 		\item Local Stabilization: The blocks immediately preceding the removed blocks are fine-tuned for 38k steps on the LAION dataset while all other parts of the model are frozen.
- 		\item Global Optimization: The complete model is optimized for one epoch (38k steps) on the LAION dataset.
- 		\item Domain Specific Refinement: The LAION-PixArt dataset is leveraged to fine-tune the pruned model for 12.5k steps on its teacher's domain.
+ 		\item Local Stabilization: The blocks immediately preceding the removed blocks were fine-tuned for 38k steps on the LAION dataset, while all other parts of the model were frozen.while all other parts of the model were frozen.
+ 		\item Global Optimization: The complete model was optimized for one epoch (38k steps) on the LAION dataset.
+ 		\item Domain-Specific Refinement: The LAION-PixArt dataset was leveraged to fine-tune the pruned model for 12.5k steps on its teacher's domain.
  	\end{enumerate}
  	
  	\item \textbf{Two-Stage Fine-Tuning Protocol} \\
- 	In the following protocol, instead of performing local fine-tuning, the entire model is directly fine-tuned for 2 epochs on the LAION dataset.
+ 	In the following protocol, instead of performing local fine-tuning, the entire model was directly fine-tuned for 2 epochs on the LAION dataset.
  	\begin{enumerate}
- 		 	\item Global Optimization: The complete model is optimized for two epochs (76k steps) on the LAION dataset.
- 		\item Domain Specific Refinement: The LAION-Pixart dataset is leveraged to finetune the pruned model for 12.5k steps on its teachers domain.
+ 		 	\item Global Optimization: The complete model was optimized for two epochs (76k steps) on the LAION dataset.
+ 		\item Domain-Specific Refinement: The LAION-PixArt dataset was leveraged to fine-tune the pruned model for 12.5k steps on its teacher's domain.
  	\end{enumerate}
 
  	\item \textbf{Two-Stage LAION only Fine-Tuning Protocol} \\
- 	The absence of the domain specific refinement is investigated in this protocol.
+ 	The absence of the domain-specific refinement was investigated in this protocol.
  	\begin{enumerate}
- 		\item Local Stabilization: The blocks immediately preceding the removed blocks are fine-tuned for 38k steps on the LAION dataset while all other parts of the model are frozen.
- 		\item Global Optimization: The complete model is optimized for 50.5k steps on the LAION dataset to ensure the same number of training steps as in the previous fine-tuning protocols.
+ 		\item Local Stabilization: The blocks immediately preceding the removed blocks were fine-tuned for 38k steps on the LAION dataset while all other parts of the model were frozen.
+ 		\item Global Optimization: The complete model was optimized for 50.5k steps on the LAION dataset to ensure the same number of training steps as in the previous fine-tuning protocols.
  	\end{enumerate}
  \end{itemize}
  
     		\begin{figure}[H]
  	\centering
  	\includegraphics[width=0.9\textwidth]{images/Experimente/It_shortcut_no_pix/Qualitative_Examples_Finetuning_Protocols.pdf}
- 	\caption{Qualitative examples for three stage versus two stage LAION only fine-tuning protocol based on model pruned models by 60\%.}
+ 	\caption{Qualitative examples comparing fine-tuning protocols based on models pruned by 60\%.}
  	\label{fig:QualitativeFinetuningProtocol}
  \end{figure}
  
  
- The evaluation of the performance obtained for models compressed to 90\% up to 50\% of their original size can be found in Fig. \ref{fig:fine-tuningProtocols}. For both the HPSv2 and GenEval benchmarks, fine-tuning solely on the LAION dataset (yellow line) leads to a sharp decline for strongly compressed models. This is a strong indication that the higher image quality in the LAION-PixArt dataset compared to the LAION dataset is highly relevant for the recovery of the generation capabilities of a pruned transformer-based diffusion model. Qualitatively, this can be observed in Fig. \ref{fig:QualitativeFinetuningProtocol} showcasing example images from models compressed to 60\% using the three-stage, two-stage and the two-stage LAION only fine-tuning protocol. Moreover, it could be observed that for shallowly compressed models (90\% to 80\%) the two stage fine-tuning protocol (green line) performs better than the three stage protocol (purple line). This indicates that in the low-compression regime, the model benefits from the extended global fine-tuning and no local repair is needed. For the moderately compressed models (70\%-60\%), the three-stage fine-tuning is consistently better or on par with the two-stage protocol. This performance gap suggests that the local stabilization step provides necessary structural regularization when the model capacity is reduced to a critical threshold. For strong compression, there are contradictory results. According to the HPSv2 benchmark, the three-stage approach is still marginally better than the two-stage approach. However, the GenEval benchmark suggests that the reverse is true. 
- As Fig. \ref{fig:QualitativeFinetuningProtocol} qualitatively shows images with fewer artifacts for the three stage approach, therefor, the three-stage approach is selected as the overall most effective method. 
+ The performance evaluation of models compressed to between 90\% and 50\% of their original size can be found in Fig. \ref{fig:fine-tuningProtocols}. For both the HPSv2 and GenEval benchmarks, fine-tuning solely on the LAION dataset (yellow line) leads to a sharp decline for strongly compressed models. This is a strong indication that the higher image quality in the LAION-PixArt dataset compared to the LAION dataset is highly relevant for the recovery of the generation capabilities of a pruned transformer-based diffusion model. Qualitatively, this can be observed in Fig. \ref{fig:QualitativeFinetuningProtocol}, showcasing example images from models compressed to 60\% using the three-stage, two-stage, and the two-stage LAION-only fine-tuning protocols. Moreover, it is observed that for lightly compressed models (90\% to 80\%), the two-stage fine-tuning protocol (green line) performs better than the three-stage protocol (purple line). This indicates that in the low-compression regime, the model benefits from the extended global fine-tuning, and no local repair is needed. For moderately compressed models (70\%-60\%), the three-stage fine-tuning is consistently better than or on par with the two-stage protocol. This performance gap suggests that the local stabilization step provides necessary structural regularization when the model capacity is reduced to a critical threshold. For strong compression (50\%), there are contradictory results. According to the HPSv2 benchmark, the three-stage approach is still marginally better than the two-stage approach. However, the GenEval benchmark suggests that the reverse is true. 
+ Because Fig. \ref{fig:QualitativeFinetuningProtocol} qualitatively shows images with fewer artifacts for the three-stage approach, it was selected as the overall most effective method. 
  
- Please find in Sec. \ref{sec:FinetuningProtocolAppendix} exaple images for the other compression ratios.
+ Example images for the other compression ratios are provided in Sec. \ref{sec:FinetuningProtocolAppendix}.
  
 %  Given the high degree of degradation in both models at this stage, these marginal differences may also reflect the inherent instability of training extremely pruned networks rather than a definitive superiority of one method over the other.
  
@@ -414,15 +410,24 @@ In this section, the effectiveness of the individual components of the knowledge
  
  \subsection{Compression Strategy}
  \label{sec:CompressionStrategyPixart}
- As an alternative to the pruning strategy of removing entire transformer blocks from PixArt-$\Sigma$, a compression strategy utilizing \gls{SVD} compression is investigated. \gls{SVD} compression is applied to the \gls{MLP}, self-attention and cross-attention matrices within a transformer block. To evaluate the efficiency of the \gls{SVD} compression method against the structural block removal method, a representative operating point is chosen. The rank for the \gls{MLP} is set to $r_\text{MLP} = 512$ corresponding to a compression of approximately $44\%$ of its parameters and the ranks for the self- and cross-attention matrices are fixed to $r_\text{self-attn} = r_\text{cross-attn} = 128$ representing a parameter reduction of approximately $78\%$. This serves as a starting point. Later, the choice of compressing attention matrices more aggressively than the \gls{MLP} matrices is further investigated (Sec. \ref{sec:MLPAttnDiffCompRatios}). 
  
-  Tab. \ref{tab:SVDCompressionFirstExp} compares the configurations of both methods, specifically the number of blocks removed or compressed and corresponding training duration for each model. Note that the number of training steps differs significantly, as the default criterion - a \gls{CMMD} value exceeding 0.1 - was employed to the pruning rate per iteration, consistent with the default settings (Sec. \ref{sec:DefaultSetup}) . The observation that the \gls{SVD} allows for more parameters to be removed with a less severe impact on the \gls{CMMD} value on the small reference dataset is an initial indication that compression is a more nuanced method than block removal. 
+   	\begin{figure}[H]
+ 	\centering
+ 	\includegraphics[width=0.9\textwidth]{images/Experimente/SVD_VS_Removal/ImageExamples.pdf}
+ 	\caption[Qualitative Comparison of Compression Strategies]{Qualitative comparison between both compression strategies: Complete block removal versus block compression with \gls{SVD}}
+ 	\label{fig:Example_Images_SVD_vs_Removal}
+ \end{figure}
+ 
+ 
+ As an alternative to the pruning strategy of removing entire transformer blocks from \gls{DiT}s, low-rank approximation via truncated \gls{SVD} can be utilized to reduce the size of projection matrices within transformer blocks. In PixArt-$\Sigma$, \gls{SVD} compression was applied to the \gls{MLP}, self-attention, and cross-attention matrices (Fig. \ref{fig:PixArt_Sigma_Compresseed_Modules_Architecutre}). To evaluate the efficiency of the \gls{SVD}-based compression against the structural block removal method, a representative operating point was chosen. The rank for the \gls{MLP} was set to $r_\text{MLP} = 512$, corresponding to a compression of approximately $44\%$ of its parameters, and the ranks for the self- and cross-attention matrices were fixed to $r_\text{self-attn} = r_\text{cross-attn} = 128$, representing a parameter reduction of approximately $78\%$. This served as a starting point. Later, the choice of compressing attention matrices more aggressively than the \gls{MLP} matrices is further investigated (Sec. \ref{sec:MLPAttnDiffCompRatios}). 
+ 
+  Tab. \ref{tab:SVDCompressionFirstExp} compares the configurations of both methods, specifically the number of blocks removed or compressed and the corresponding training duration for each model. Note that the number of training steps differed significantly, as the default criterion --- a \gls{CMMD} value exceeding 0.1 --- was employed to determine the pruning rate per iteration, consistent with the default settings (Sec. \ref{sec:DefaultSetup}). The observation that \gls{SVD} allows for more parameters to be removed with a less severe impact on the \gls{CMMD} value on the small reference dataset was an initial indication that compression is a more nuanced method than complete block removal. 
   
-  Fig. \ref{fig:SVD_vs_Removal} presents the performance for both methods on the HPSv2 and GenEval benchmarks. For both benchmarks, the \gls{SVD} compression method outperforms the complete block removal method in low- and high-compression regimes. This suggests that distributing the parameter reduction across multiple blocks via compression is less adverse to model performance compared to removing individual blocks completely. 
+  Fig. \ref{fig:SVD_vs_Removal} presents the performance of both methods on the HPSv2 and GenEval benchmarks. For both benchmarks, the \gls{SVD}-based compression method outperforms the complete block removal method in both the low- and high-compression regimes. This suggests that distributing the parameter reduction across multiple blocks via compression is less detrimental to model performance compared to removing individual blocks completely. 
   
-  For a qualitative comparison of both methods, Fig. \ref{fig:Example_Images_SVD_vs_Removal} provides a set of example images for models ranging from 90\% to 50\% of the original model size. The advantage of the \gls{SVD} compression method becomes particularly evident in the high-compression regimes (60\% and 50\%). Its images contain more details, exhibit fewer artefacts and are more closely resembel to the original image. Specifically, column two demonstrates that the woman's face is accurately preserved up to 60\% model when applying the \gls{SVD} compression technique. Moreover, column one shows that in high-compression regimes, complete block removal can lead to severe deviations compared to the original image, in contrast to the \gls{SVD} compression technique. 
+  For a qualitative comparison of both methods, Fig. \ref{fig:Example_Images_SVD_vs_Removal} provides a set of example images for models compressed to 50\% of their original size, which illustrates the advantage of truncated \gls{SVD} as a compression method. The resulting images contain more details, exhibit fewer artifacts, and more closely resemble the original image. Specifically, column four highlights that the fish is more accurately preserved when applying the \gls{SVD} compression technique. Moreover, column one shows that in high-compression regimes, complete block removal can lead to severe deviations from the original image, in contrast to the \gls{SVD} compression technique. 
    
-  In conclusion, the qualitative results confirm the quantitative results of the benchmarks and demonstrate a clear advantage of \gls{SVD} compression over entire block removal indicating that most blocks have an independent functional task being difficult to fully recover by neighbouring blocks, but there are redundancies within the blocks which can be effectively reduced by \gls{SVD} compression.
+  In conclusion, the qualitative results confirm the quantitative results of the benchmarks and reveal a clear advantage of \gls{SVD} compression over entire block removal, indicating that most blocks have an independent functional task that is difficult for neighboring blocks to fully recover, but that there are redundancies within the blocks which can be effectively reduced by \gls{SVD} compression.
  
  \begin{table}[htbp]
  	\centering
@@ -470,36 +475,33 @@ In this section, the effectiveness of the individual components of the knowledge
  	\label{fig:SVD_vs_Removal}
  \end{figure}
  
-  	\begin{figure}[H]
- 	\centering
- 	\includegraphics[width=0.9\textwidth]{images/Experimente/SVD_VS_Removal/ImageExamples.pdf}
- 	\caption[Qualitative Comparison of Compression Strategies]{Qualitative comparison between both compression strategies: Complete block removal versus block compression with \gls{SVD}}
- 	\label{fig:Example_Images_SVD_vs_Removal}
- \end{figure}
+
  
  
  \subsection{Sensitivity Analysis of MLP and Attention Layers under \gls{SVD} Compression}
  \label{sec:MLPAttnDiffCompRatios}
- In this section the \gls{SVD} compression strategy is applied but otherwise the default settings remain. The goal is to investigate how to best distribute the parameter removal within each transformer block. Therefore, individual compression ratios are applied to the \gls{MLP} matrix and the attention matrices whereby both self- and cross-attention matrices are pruned by the same amount. In total three different scenarios are explored:
+ In this section, the \gls{SVD}-based compression strategy was applied, but otherwise the default settings remained. The goal was to investigate how to best distribute the parameter removal within each transformer block. Therefore, individual compression ratios were applied to the \gls{MLP} and attention matrices, whereby both self- and cross-attention matrices were pruned by the same amount. In total, three different scenarios were explored:
  
  \begin{itemize}
  	\item \textbf{Equal Compression}: \\
- 	Both \gls{MLP} and attention matrices are compressed by the same percentage $c_\text{MLP} = c_\text{Attn} = 60\%$. 
+ 	Both \gls{MLP} and attention matrices were compressed by the same percentage, $c_\text{MLP} = c_\text{Attn} = 60\%$. 
  	\item \textbf{Attention-Dominant Compression}: \\
- 	The attention matrices are more strongly compressed $c_\text{Attn} = 80\%$ compared to the \gls{MLP} matrix $c_\text{MLP} = 40\%$.
+ 	The attention matrices were more strongly compressed ($c_\text{Attn} = 80\%$) compared to the \gls{MLP} matrix ($c_\text{MLP} = 40\%$).
  	 	\item \textbf{\gls{MLP}-Dominant Compression}: \\
- 	The \gls{MLP} matrix is more strongly compressed $c_\text{Attn} = 40\%$ compared to the attention matrices $c_\text{MLP} = 80\%$.
+ 	The \gls{MLP} matrix was more strongly compressed ($c_\text{MLP} = 80\%$) compared to the attention matrices ($c_\text{Attn} = 40\%$).
  \end{itemize}
- Note that the combined parameter count of self- and cross-attention is approximately equal to the parameter count of the \gls{MLP}. Therefore, all configurations remove a similar amount of total parameters of one transformer block. \\
-The scores in Fig. \ref{fig:DistributionCompressionRatios} reveal two distinct trends. The HPSv2 score demonstrates that prioritizing the compression of the attention matrices consistently yields higher image quality than the method focused on compressing the MLP matrices. The GenEval benchmark, however, shows that although the attention-dominant approach is advantageous in the low-compression regime, it declines sharply under heavier compression, eventually falling below the MLP-dominant approach for models with approximately 400 million parameters. 
-
- One possible explanation for the divergence between the two benchmarks is the distribution of tasks among the different components of a transformer block. A recent study suggests \cite{dong2025attention} that MLPs are crucial for knowledge storage and the processing of visual features. Consequently, strong compression of these layers leads to a significant decrease in image quality (see HPSv2 benchmark yellow line).
-  Fig. \ref{fig:ImagesAttnVsMLP} visually supports the result of the HPSv2 benchmark. The images clearly demonstrate that the \gls{MLP}-dominant approach lacks detail, texture, and structural integrity in the high compression regime. At model sizes below 71\%, the \gls{MLP}-dominant approach hallucinates an unprompted headband in the samurai image (column four) and the facial features become distorted at the highest compression ratio. Moreover, for the 60\% model, the burger (column two) is hovering in the air instead of being placed on the table, and the humanoid (column six) is completely distorted. In contrast, the models of the attention-dominant approach, despite being approximately of the same size, do not indicate such severe structural errors, although a general degeneration of image quality at higher compression rate is also visible. 
-  
-  
- In contrast, the GenEval benchmark measures text-image alignment. Since the cross-attention mechanism is responsible for integrating the text prompts into the visual latents its compression in many transformer blocks severely compromises this linking. While the image quality suffers less than with the strong MLP compression, the model's text comprehension deteriorates disproportionately. This explains why the attention-dominant approach loses its advantage for heavy compression, and is in some cases even worse than the MLP-dominant approach in the GenEval benchmark. 
  
- The equal compression strategy serves as baseline compromise between the \gls{MLP}- and attention-dominant approach. It exhibits results similar to the attention-dominant compression approach in the high-compression regimes but is slightly worse in the low-compression regime. 
+ Note that the combined parameter count of self- and cross-attention was approximately equal to the parameter count of the \gls{MLP}. Therefore, all configurations removed a similar number of total parameters from one transformer block. 
+ 
+The scores in Fig. \ref{fig:DistributionCompressionRatios} reveal two distinct trends. The HPSv2 score demonstrates that prioritizing the compression of the attention matrices consistently yields higher image quality than the method focused on compressing the \gls{MLP} matrices. The GenEval benchmark, however, shows that although the attention-dominant approach is advantageous in the low-compression regime, it declines sharply under heavier compression, eventually falling below the \gls{MLP}-dominant approach for models with approximately 400 million parameters. 
+
+ One possible explanation for the divergence between the two benchmarks is the distribution of tasks among the different components of a transformer block. A recent study \cite{dong2025attention} suggests that \gls{MLP}s are crucial for knowledge storage and the processing of visual features. Consequently, strong compression of these layers leads to a significant decrease in image quality (HPSv2: yellow line).
+  Fig. \ref{fig:ImagesAttnVsMLP} visually supports the result of the HPSv2 benchmark. The images clearly demonstrate that the \gls{MLP}-dominant approach lacks detail, texture, and structural integrity in the high-compression regime. For instance, at model sizes below 71\%, the \gls{MLP}-dominant approach hallucinates an unprompted headband in the samurai image (column four), and the facial features become distorted at the highest compression ratio. Moreover, for the 60\% model, the burger (column two) is hovering in the air instead of being placed on the table, and the humanoid (column six) is severely deformed. In contrast, the models of the attention-dominant approach, despite being approximately of the same size, do not indicate such severe structural errors, although a general degeneration of image quality at higher compression rates is also visible. 
+  
+  
+ On the other hand, the GenEval benchmark measures text-image alignment. Since the cross-attention mechanism is responsible for integrating the text prompts into the visual latents, its compression in many transformer blocks severely compromises this linking. While the image quality suffers less than with the strong \gls{MLP} compression, the model's text comprehension deteriorates disproportionately. This explains why the attention-dominant approach loses its advantage for heavy compression and is in some cases even worse than the \gls{MLP}-dominant approach. 
+ 
+ The equal compression strategy serves as a baseline compromise between the \gls{MLP}- and attention-dominant approaches. It exhibits results similar to the attention-dominant approach in the high-compression regime, but is slightly worse in the low-compression regime. 
  
     \begin{figure}[H]
  	\centering
@@ -532,19 +534,34 @@ The scores in Fig. \ref{fig:DistributionCompressionRatios} reveal two distinct t
 	\end{figure}
 
  
- \subsection{SVD Compression Scheduling}
+ \subsection{Importance-Aware Rank-Adaptive Progressive Model Pruning}
  \label{sec:CompressionSchedulingPixart}
-In previous experiments, SVD compression was applied to each block at most once. However, restricting compression to untouched blocks may be suboptimal. Incrementally reducing the size of an already compressed block could potentially preserve model performance better than pruning a new dense block. For this reason, the linear progressive compression scheme defined in Sec. \ref{sec:LinearProgressiveCompression} is investigated. Assuming that a fixed number of parameters should be removed per iteration, a design choice is how to distribute them across the model. One can either compress many blocks slightly or compress a few blocks heavily. To investigate which works better, the linear progressive compression scheme is performed for four different cases where the number of compressed blocks per iteration differs:
+ 
+ 	\begin{figure}[H]
+ 	\centering
+ 	\includegraphics[width=0.75\textwidth]{images/Experimente/Compression_Schedul/PixartCompressedComponents.pdf}
+ 	\caption[Example Images SVD Compression Schedule]{50\% models.}
+ 	\label{fig:PruningSchedule}
+ \end{figure}
+ 
+ 
+In previous experiments, SVD compression was applied to each block at most once. However, restricting compression to untouched blocks may be suboptimal. Incrementally reducing the size of an already compressed block could potentially preserve model performance better than pruning a new dense block. For this reason, the importance-aware rank-adaptive progressive model pruning scheme defined in Sec. \ref{sec:LinearProgressiveCompression} was investigated. Assuming that a fixed number of parameters should be removed per iteration, a key design choice is how to distribute them across the model. Parameters can either be distributed across many blocks with light compression, or concentrated on a few blocks with heavy compression. To determine which strategy works better, three different configurations with varying numbers of compressed blocks per iteration were evaluated:
+
 \begin{itemize}
-	\item \textbf{SVD\_7}: Seven blocks are compressed per iteration.
-	\item \textbf{SVD\_14}: Fourteen blocks are compressed per iteration.
-	\item \textbf{SVD\_21}: Twenty-one blocks are compressed per iteration.
+	\item \textbf{SVD\_7}: Seven blocks were compressed per iteration.
+	\item \textbf{SVD\_14}: Fourteen blocks were compressed per iteration.
+	\item \textbf{SVD\_21}: Twenty-one blocks were compressed per iteration.
 %	\item \textbf{SVD\_28}: All blocks are compressed per iteration.
 \end{itemize}
+ During this pruning schedule, to determine the importance of blocks of different sizes, the parameter-weighted \gls{CMMD} value was utilized as the block selection criterion.  Within each iteration, 10\% of the original number of parameters were removed. Tab. \ref{tab:PixArtAppendixCompression_iterations} provides detailed information about the base compression ratio and the slope for all three configurations.
 
-Following the methodology of previous experiments using the \gls{SVD} compression technique, the parameter-weighted \gls{CMMD} value is utilized s block selection criteria and within each iteration 10\% of the original number of parameters are removed.  
+For comparison, the \textbf{SVD\_Standard} baseline, where truncated \gls{SVD} was applied at most once per block, was utilized.
 
-Fig. \ref{fig:CompressionSchedule} presents the performance of the four different compression schedules on the HPSv2 and GenEval benchmarks. The differences in HPSv2 scores are negligible and no clear trend of a superiority of one schedule over another can be observed. In contrast, a significant drop of the \textbf{SVD\_7} schedule from 60\% to 50\% model size is observed while \textbf{SVD\_14}'s and \textbf{SVD\_21}'s performance remain comparable. This suggests that to follow text prompt closely during the generation process, it is advantageous to distribute the removed parameters more evenly over the model.
+Fig. \ref{fig:CompressionSchedule} presents the performance of the evaluated compression schedules on the HPSv2 and GenEval benchmarks.
+According to the HPSv2 score, the differences in the low-compression regime are negligible, but they become more pronounced for higher compression ratios. 
+ A significant drop for the \textbf{SVD\_7} schedule at a 50\% model size is observed, while the performance of \textbf{SVD\_14} and \textbf{SVD\_21} remains comparable. Furthermore, the \textbf{SVD\_Standard} baseline performs only slightly worse than these two configurations. This suggests that in order to maintain high image quality, it is advantageous to distribute the removed parameters across the model.
+ The GenEval benchmark demonstrates that in the high-compression regime, the advantages of \textbf{SVD\_14} and \textbf{SVD\_21} are more pronounced compared to \textbf{SVD\_Standard} and \textbf{SVD\_7}.
+ Therefore, it also seems beneficial for text-image alignment to distribute the removed parameters more uniformly across the model. This observation is also qualitatively supported by the example images in Fig. \ref{fig:PruningSchedule}.
 
 
   \begin{figure}[H]
@@ -569,40 +586,36 @@ Fig. \ref{fig:CompressionSchedule} presents the performance of the four differen
 	\label{fig:CompressionSchedule}
 \end{figure}
 
-	\begin{figure}[H]
-	\centering
-	\includegraphics[width=\textwidth]{images/Experimente/Compression_Schedul/Examples_SVD_param_distribution.pdf}
-	\caption[Example Images SVD Compression Schedule]{Example images for differently strong compression of \gls{MLP}  and Attention matrices. Note that due to the slightly different matrix sizes of \gls{MLP} and attnetion there is a different in model size by 1\% between both methods.}
-	\label{fig:ImagesAttnVsMLP}
-\end{figure}
- \textbf{Untersuche ob immer neue Blöcke gepruned werden oder eher dieselbenr mehrfach}
- 
+
  
  \subsection{Summary of Best Settings for Structural Model Pruning}
  \label{sec:PixArtBestModel}
- Considering the results of all experiments, they lead to the following best configuration for structural model pruning:
+The results of all experiments establish the following best configuration for structural model pruning:
  
  \begin{itemize}
  	\item \textbf{Block Importance Analysis} \\
- 	The experiments (Sec. \ref{sec:BlockImportanceAnalyses}) showed that using the \gls{CMMD} value as primary block selection criteria is working well. Particularly in linear \gls{SVD} compression scheduling, where the number of compressed parameters varies per block, the \gls{CMMD} can be weighted by the number of removed parameters to ensure a fair comparison. \\
- 	As block selection method, we found that the greedy algorithm already performs well enough such that more advanced methods like Optuna do not provide substantial benefits that would justify the additional compute.
+ 	Sec. \ref{sec:ExpBlockImportanceAnalysis} demonstrates that using the \gls{CMMD} value as the primary block selection criterion is highly effective. Particularly in the importance-aware rank-adaptive progressive model pruning scheme, where the number of compressed parameters varies per block, the \gls{CMMD} can be weighted by the number of removed parameters to ensure a fair comparison. 
+ 	
+ 	The greedy algorithm performed well enough as a block selection method, such that more advanced methods like Optuna do not provide substantial benefits that would justify the additional compute (Sec. \ref{sec:PixartBlockSelectionAlgorithms}).
  	
  	\item \textbf{Pruning Method} \\
- 	The progressive model pruning has proven advantageous over the one-shot model pruning in the high-compression regime where models are compressed more than 70\% of the original size (Sec. \ref{sec:OneShot_vs_Progrosseve_Pruning}). Therefore, this is the first choice.
+ 	Progressive model pruning proves advantageous over one-shot model pruning in the high-compression regime, where models are compressed to below 70\% of their original size (Sec. \ref{sec:OneShot_vs_Progrosseve_Pruning}).
  	
  	\item \textbf{Knowledge Distillation Loss} \\
- 	The results indicates that the combination of the original diffusion loss together with the normalized feature and output loss leads to the strongest performance in all pruning regimes (Sec. \ref{sec:ExpKDLoss}). 
+ 	The results indicate that the combination of the original diffusion loss with the normalized feature and output loss leads to the strongest performance in all pruning regimes (Sec. \ref{sec:ExpKDLoss}). 
  	
  	\item \textbf{Fine-Tuning Protocol} \\
- 	The finding suggests that incorporating the LAION-PixArt dataset into the training procedure is critical as it contains images of higher quality demonstrated in the higher HPSv2 and GenEval scores for the three and two stage fine-tuning protocols. However, the results regarding the superiority of three stage protocal over the two stage protocal are inconclusive. Based on the benchmark performance it is not clear if local fine-tuning is beneficial or not for high compression regimes (Sec. \ref{sec:fine-tuningProtocol}). However, due to the visual more compelling images from the three-stage approach, it is chosen as the best setting.
+ 	The findings suggest that incorporating the LAION-PixArt dataset into the training procedure is critical, as it contains images of higher quality, demonstrated by the higher HPSv2 and GenEval scores for the three- and two-stage fine-tuning protocols. However, the results regarding the superiority of the three-stage protocol over the two-stage protocol are inconclusive. Based on the benchmark performance, it is not clear if local fine-tuning is beneficial for high-compression regimes (Sec. \ref{sec:fine-tuningProtocol}). However, due to the visually more compelling images from the three-stage approach, it was chosen as the best setting.
  	
- 	\item \textbf{Structural Compressin Strategy} \\
- 	The experiments demonstrated that leveraging \gls{SVD} compression over complete block removal leads to superior performance even for less training steps (Sec. \ref{sec:StructuralCompressionStrategy}).
+ 	\item \textbf{Structural Compression Strategy} \\
+ 	The experiments demonstrate that leveraging truncated \gls{SVD} compression over complete block removal leads to superior performance, even with fewer training steps (Sec. \ref{sec:StructuralCompressionStrategy}).
  	
  	\item \textbf{Sensitivity Analysis of MLP and Attention Layers under \gls{SVD} Compression} \\
- 	The sensitivity analysis for \gls{MLP} and attention layers revealed that strong compression of \gls{MLP}s led to more severe deterioration than heavy compression of attention layers. However, compressing both \gls{MLP} and attention layers equally yielded performance comparable to the strong attention compression experiment but was slightly worse in the low-compression regime. Consequently, the attention-based compression scheme was adopted for the final configuration.
+ 	The sensitivity analysis for \gls{MLP} and attention layers reveals that strong compression of \gls{MLP}s leads to more severe deterioration than heavy compression of attention layers. However, compressing both \gls{MLP} and attention layers equally yields performance comparable to the strong attention compression experiment, but is slightly worse in the low-compression regime. (Sec. \ref{sec:MLPAttnDiffCompRatios}) Consequently, the attention-based compression scheme was adopted for the final configuration.
  	
  	\item \textbf{\gls{SVD} Compression Scheduling} \\
- 	The results from Sec. \ref{sec:CompressionSchedulingPixart} suggest that distributing the removed parameters over more blocks, e.g. 14 or 21, is more favorable than over less blocks which consequently need to be compressed stronger. As no clear superior approach between 14 or 21 could be found, 21 blocks are chosen as best configuration. 
+ 	The results from Sec. \ref{sec:CompressionSchedulingPixart} suggest that distributing the removed parameters over more blocks (e.g. 14 or 21) is more favorable than distributing them over fewer blocks, which consequently need to be compressed more heavily. As no clearly superior approach between 14 and 21 could be found, 21 blocks were chosen as the best configuration. 
  	
  \end{itemize}
+All models resulting from this core progressive \gls{SVD} pruning approach, including the adapted versions for Flux.1-dev in the upcoming section, will henceforth be referred to as \textit{SVDtrunc}.
+In the following section, these best practices are applied to Flux.1-dev. Note that due to the different architecture, and therefore potentially different behavior, the sensitivity analysis could not be directly transferred to Flux.1-dev. Additionally, due to the choice of a different dataset, the fine-tuning protocol is also slightly different. 
