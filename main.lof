@@ -54,11 +54,11 @@
 \contentsline {figure}{\numberline {5.24}{\ignorespaces Qualitative Examples Importance and Random Block Selection Flux.1-dev}}{79}{figure.5.24}%
 \contentsline {figure}{\numberline {5.25}{\ignorespaces Benchmark Performance: Random versus Metric-based Block Selection}}{80}{figure.5.25}%
 \contentsline {figure}{\numberline {5.26}{\ignorespaces Benchmark Performance: Random versus Metric-based Block Selection}}{81}{figure.5.26}%
-\contentsline {figure}{\numberline {5.27}{\ignorespaces Qualitative Examples for SVDtrunc}}{82}{figure.5.27}%
-\contentsline {figure}{\numberline {5.28}{\ignorespaces Qualitative-Parameter Frontier}}{83}{figure.5.28}%
-\contentsline {figure}{\numberline {5.29}{\ignorespaces Qualitative Examples for SVDtrunc}}{84}{figure.5.29}%
+\contentsline {figure}{\numberline {5.27}{\ignorespaces Qualitative Examples for SVDtrunc}}{81}{figure.5.27}%
+\contentsline {figure}{\numberline {5.28}{\ignorespaces Qualitative-Parameter Frontier}}{82}{figure.5.28}%
+\contentsline {figure}{\numberline {5.29}{\ignorespaces Qualitative Examples for SVDtrunc}}{83}{figure.5.29}%
 \contentsline {figure}{\numberline {5.30}{\ignorespaces Qualitative Examples for SVDtrunc}}{84}{figure.5.30}%
-\contentsline {figure}{\numberline {5.31}{\ignorespaces Qualitative Examples for SVDtrunc on Flux.1-Schnell}}{85}{figure.5.31}%
+\contentsline {figure}{\numberline {5.31}{\ignorespaces Qualitative Examples for SVDtrunc on Flux.1-Schnell}}{84}{figure.5.31}%
 \contentsline {figure}{\numberline {5.32}{\ignorespaces Magnitude versus Importance Analysis of Singular Values}}{86}{figure.5.32}%
 \contentsline {figure}{\numberline {5.33}{\ignorespaces Benchmark Performance: \gls {SVD} versus \gls {GRASP} Compression Method}}{87}{figure.5.33}%
 \contentsline {figure}{\numberline {5.34}{\ignorespaces Flux.1-dev Images: \gls {SVD} versus \gls {GRASP} Compression}}{88}{figure.5.34}%
@@ -96,4 +96,4 @@
 \contentsline {figure}{\numberline {B.7}{\ignorespaces Qualitative examples for random and importance-aware block selection for pruning Flux.1-dev to 68\% of the original size.}}{113}{figure.B.7}%
 \contentsline {figure}{\numberline {B.8}{\ignorespaces Qualitative examples for random and importance-aware block selection for pruning Flux.1-dev to 57\% of the original size.}}{113}{figure.B.8}%
 \contentsline {figure}{\numberline {B.9}{\ignorespaces Qualitative examples for random and importance-aware block selection for pruning Flux.1-dev to 43\% of the original size.}}{114}{figure.B.9}%
-\contentsline {figure}{\numberline {B.10}{\ignorespaces Training-Free: Flux.1-dev Block Importance Ranking}}{116}{figure.B.10}%
+\contentsline {figure}{\numberline {B.10}{\ignorespaces Training-Free: Flux.1-dev Block Importance Ranking}}{117}{figure.B.10}%

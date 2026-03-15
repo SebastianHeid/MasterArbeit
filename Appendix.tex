@@ -585,6 +585,26 @@ This section provides the technical settings for the training-free experiments u
 
 \subsection{Block Selection}
 \label{sec:FluxBlockImportanceAnalysisAppendix}
+
+\begin{table}[h]
+	\centering
+	\caption{Overview of training details similar for both experiments, random and metric-based block selection.}
+	\label{tab:Random_vs_metric_Selection}
+	\begin{tabular}{c c c c c}
+		\toprule
+		\textbf{Iteration} & \textbf{Model Size (\%)} & \textbf{Blocks} \footnotemark & \textbf{Training Steps} \\
+		& & & \textbf{per Iteration} \\
+		\midrule
+		1 & 68\% & 48   & 40k \\ % Beispielwerte
+		2 & 57\% & 30  & 20k \\
+		3 & 49\% & 30  & 20k \\
+		4 & 43\% & 30 & 20k \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+\footnotetext{The number of blocks are only relevant for the random and importance-based block selection experiments. For the uniform experiments all blocks were modified per iteration.}
+
+
 Example images for various compressed models (68\%, 57\% and 43\%) are presented here obtained with the random, uniform and importance-aware block selection for Flux.1-dev as described in Sec. \ref{sec:FluxBlockImportanceAnalysis}.
 
 \begin{figure}[H]
@@ -657,7 +677,78 @@ Example images for various compressed models (68\%, 57\% and 43\%) are presented
 
 \section{Importance-Aware Low-Rank Model Compression}
 
-
+\begin{table}[t]
+	\centering
+	%\resizebox{.45\textwidth}{!}
+	{%
+		\begin{tabular}{cccccc}
+			\toprule
+			\textbf{start $P$}&
+			\textbf{end $P$}&
+			\textbf{Steps}&
+			\textbf{$K$}&
+			\textbf{$c_m$}&
+			\textbf{$\alpha$}
+			\\
+			\midrule
+			\multicolumn{6}{c}{FLUX.dev\cite{Flux}}\\
+			\midrule
+			100 &      % start P
+			90 &    % end P
+			20000 &    % steps
+			30 &    % K
+			0.25 &    % cm
+			8.30    % slope
+			\\
+			90 &      % start P
+			80 &    % end P
+			20000 &    % steps
+			30 &    % K
+			0.25 &    % cm
+			5.94     % slope
+			\\
+			100 &      % start P
+			68 &    % end P
+			40000 &    % steps
+			48 &    % K
+			0.60 &    % cm
+			12.70     % slope
+			\\
+			68 &      % start P
+			57 &    % end P
+			20000 &    % steps
+			30 &    % K
+			0.35 &    % cm
+			4.58     % slope
+			\\
+			57 &      % start P
+			49 &    % end P
+			20000 &    % steps
+			30 &    % K
+			0.40 &    % cm
+			9.38     % slope
+			\\
+			49 &      % start P
+			43 &    % end P
+			20000 &    % steps
+			30 &    % K
+			0.40 &    % cm
+			12.20     % slope
+			\\
+			43 &      % start P
+			39 &    % end P
+			20000 &    % steps
+			30 &    % K
+			0.30 &    % cm
+			8.79     % slope
+			\\
+			\bottomrule
+		\end{tabular}
+	}
+	\smallskip
+	\caption{\textbf{Training details.} For every training of from a start parameter budget to an end parameter budget $P_{start}\longrightarrow P_{end}$ we provide the number of compressed blocks $K$, with the maximum compression $c_m$, the compression slope $\alpha$, and the number of training steps. For readability, we provide $\alpha$ scaled by 1000.}
+	\label{tab:sup_training}
+\end{table}
 
 \begin{table}[H]
 	\centering

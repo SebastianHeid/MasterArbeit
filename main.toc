@@ -105,9 +105,11 @@
 \contentsline {subsection}{\numberline {5.2.4}Importance-Aware Low-Rank Model Compression - Preliminary Experiments}{78}{subsection.5.2.4}%
 \contentsline {subsubsection}{Block Importance Analysis}{79}{section*.41}%
 \contentsline {subsubsection}{Sensitivity Analysis: The Role of Parameter Removal Distribution}{80}{section*.42}%
-\contentsline {subsection}{\numberline {5.2.5}Importance-Aware Low-Rank Model Compression}{82}{subsection.5.2.5}%
-\contentsline {subsection}{\numberline {5.2.6}Importance-Aware Low-Rank Step-Distilled Model Compression}{85}{subsection.5.2.6}%
-\contentsline {subsection}{\numberline {5.2.7}Proof of Concept: GRASP for DiTs}{86}{subsection.5.2.7}%
+\contentsline {subsection}{\numberline {5.2.5}Importance-Aware Low-Rank Model Compression}{81}{subsection.5.2.5}%
+\contentsline {subsubsection}{Domain Shift}{83}{section*.43}%
+\contentsline {subsubsection}{Memorization Loss}{83}{section*.44}%
+\contentsline {subsection}{\numberline {5.2.6}Importance-Aware Low-Rank Step-Distilled Model Compression}{84}{subsection.5.2.6}%
+\contentsline {subsection}{\numberline {5.2.7}Proof of Concept: GRASP for DiTs}{85}{subsection.5.2.7}%
 \contentsline {chapter}{\numberline {A}PixArt-$\Sigma $ Experiments}{89}{appendix.A}%
 \contentsline {section}{\numberline {A.1}Experimental Default Setup}{89}{section.A.1}%
 \contentsline {section}{\numberline {A.2}Block Importance Analysis}{89}{section.A.2}%
@@ -128,5 +130,5 @@
 \contentsline {section}{\numberline {B.5}Importance-Aware Low-Rank Model Compression}{115}{section.B.5}%
 \contentsline {section}{\numberline {B.6}GRASP}{116}{section.B.6}%
 \contentsline {subsection}{\numberline {B.6.1}Block Importance Ranking}{116}{subsection.B.6.1}%
-\contentsline {subsubsection}{Compression Details}{116}{section*.43}%
-\contentsline {chapter}{Bibliography}{118}{appendix*.44}%
+\contentsline {subsubsection}{Compression Details}{116}{section*.45}%
+\contentsline {chapter}{Bibliography}{118}{appendix*.46}%
