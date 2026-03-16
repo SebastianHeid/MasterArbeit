@@ -21,34 +21,32 @@ Reallocated global_strs (elt_size=200001) to 20 items from 10.
 Reallocated glb_str_end (elt_size=4) to 20 items from 10.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
-Reallocated field_info (elt_size=4) to 10628 items from 5000.
+Reallocated field_info (elt_size=4) to 10600 items from 5000.
 Database file #1: bibliography.bib
-Repeated entry---line 253 of file bibliography.bib
+Repeated entry---line 263 of file bibliography.bib
  : @article{han2015deep
  :                     ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 458 of file bibliography.bib
+Repeated entry---line 468 of file bibliography.bib
  : @misc{EcoDiff
  :              ,
 I'm skipping whatever remains of this entry
 Warning--entry type for "kohya_ss_sd_scripts_2024" isn't style-file defined
---line 468 of file bibliography.bib
-I was expecting a `,' or a `}'---line 485 of file bibliography.bib
+--line 478 of file bibliography.bib
+I was expecting a `,' or a `}'---line 495 of file bibliography.bib
  :  commit = {INSERT_COMMIT_HASH_HERE} 
  :                                     % Optional: Falls Sie eine spezifische Version genutzt haben
 I'm skipping whatever remains of this entry
-Repeated entry---line 656 of file bibliography.bib
+Repeated entry---line 666 of file bibliography.bib
  : @article{han2015learning
  :                         ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 1430 of file bibliography.bib
+Repeated entry---line 1440 of file bibliography.bib
  : @article{KnowledgeDistillation
  :                               ,
 I'm skipping whatever remains of this entry
-Warning--I didn't find a database entry for ""
-Warning--I didn't find a database entry for "pixart_sigma"
-Warning--I didn't find a database entry for "flux2024"
 Warning--I didn't find a database entry for "GenEval"
+Warning--I didn't find a database entry for "pixart_sigma"
 Warning--empty journal in HiDream
 Warning--empty journal in Claude
 Warning--empty year in WGAN
@@ -80,45 +78,45 @@ Warning--empty journal in ConsistencyModel
 Warning--empty year in SlicedScoreMatching
 Warning--empty year in ModeCollapse1
 Warning--empty year in DistillationMatching
-You've used 197 entries,
+You've used 198 entries,
             2943 wiz_defined-function locations,
-            1661 strings with 43736 characters,
-and the built_in function-call counts, 105615 in all, are:
-= -- 10251
-> -- 5958
+            1665 strings with 43839 characters,
+and the built_in function-call counts, 105923 in all, are:
+= -- 10282
+> -- 5966
 < -- 60
-+ -- 2231
-- -- 2026
-* -- 6338
-:= -- 15554
-add.period$ -- 626
-call.type$ -- 197
-change.case$ -- 1592
++ -- 2234
+- -- 2028
+* -- 6344
+:= -- 15596
+add.period$ -- 629
+call.type$ -- 198
+change.case$ -- 1596
 chr.to.int$ -- 0
-cite$ -- 228
-duplicate$ -- 2824
-empty$ -- 8450
-format.name$ -- 2026
-if$ -- 26235
+cite$ -- 229
+duplicate$ -- 2831
+empty$ -- 8487
+format.name$ -- 2028
+if$ -- 26323
 int.to.chr$ -- 0
-int.to.str$ -- 197
+int.to.str$ -- 198
 missing$ -- 182
-newline$ -- 996
-num.names$ -- 394
-pop$ -- 2762
+newline$ -- 1001
+num.names$ -- 396
+pop$ -- 2775
 preamble$ -- 1
-purify$ -- 1394
+purify$ -- 1397
 quote$ -- 0
-skip$ -- 6475
+skip$ -- 6501
 stack$ -- 0
-substring$ -- 3972
-swap$ -- 861
+substring$ -- 3977
+swap$ -- 862
 text.length$ -- 66
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 788
+type$ -- 792
 warning$ -- 31
-while$ -- 596
-width$ -- 200
-write$ -- 2104
+while$ -- 598
+width$ -- 201
+write$ -- 2114
 (There were 5 error messages)

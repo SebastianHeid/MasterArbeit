@@ -884,6 +884,11 @@ Danilo Rezende and Shakir Mohamed.
 \newblock In {\em International conference on machine learning}, pages
   1530--1538. PMLR.
 
+\bibitem{rock2025chroma}
+Lodestone Rock.
+\newblock Chroma1-hd.
+\newblock \url{https://huggingface.co/lodestones/Chroma1-HD}, 2025.
+
 \bibitem{SD21}
 Robin Rombach, Andreas Blattmann, Dominik Lorenz, Patrick Esser, and Björn
   Ommer.

@@ -598,7 +598,7 @@ The results of all experiments establish the following best configuration for st
  	
  	The greedy algorithm performed well enough as a block selection method, such that more advanced methods like Optuna do not provide substantial benefits that would justify the additional compute (Sec. \ref{sec:PixartBlockSelectionAlgorithms}).
  	
- 	\item \textbf{Pruning Method} \\
+ 	\item \textbf{Pruning Schedule} \\
  	Progressive model pruning proves advantageous over one-shot model pruning in the high-compression regime, where models are compressed to below 70\% of their original size (Sec. \ref{sec:OneShot_vs_Progrosseve_Pruning}).
  	
  	\item \textbf{Knowledge Distillation Loss} \\
@@ -607,14 +607,14 @@ The results of all experiments establish the following best configuration for st
  	\item \textbf{Fine-Tuning Protocol} \\
  	The findings suggest that incorporating the LAION-PixArt dataset into the training procedure is critical, as it contains images of higher quality, demonstrated by the higher HPSv2 and GenEval scores for the three- and two-stage fine-tuning protocols. However, the results regarding the superiority of the three-stage protocol over the two-stage protocol are inconclusive. Based on the benchmark performance, it is not clear if local fine-tuning is beneficial for high-compression regimes (Sec. \ref{sec:fine-tuningProtocol}). However, due to the visually more compelling images from the three-stage approach, it was chosen as the best setting.
  	
- 	\item \textbf{Structural Compression Strategy} \\
+ 	\item \textbf{Model Pruning Strategy} \\
  	The experiments demonstrate that leveraging truncated \gls{SVD} compression over complete block removal leads to superior performance, even with fewer training steps (Sec. \ref{sec:StructuralCompressionStrategy}).
  	
  	\item \textbf{Sensitivity Analysis of MLP and Attention Layers under \gls{SVD} Compression} \\
  	The sensitivity analysis for \gls{MLP} and attention layers reveals that strong compression of \gls{MLP}s leads to more severe deterioration than heavy compression of attention layers. However, compressing both \gls{MLP} and attention layers equally yields performance comparable to the strong attention compression experiment, but is slightly worse in the low-compression regime. (Sec. \ref{sec:MLPAttnDiffCompRatios}) Consequently, the attention-based compression scheme was adopted for the final configuration.
  	
- 	\item \textbf{\gls{SVD} Compression Scheduling} \\
- 	The results from Sec. \ref{sec:CompressionSchedulingPixart} suggest that distributing the removed parameters over more blocks (e.g. 14 or 21) is more favorable than distributing them over fewer blocks, which consequently need to be compressed more heavily. As no clearly superior approach between 14 and 21 could be found, 21 blocks were chosen as the best configuration. 
+ 	\item \textbf{\gls{SVD} Pruning Schedule} \\
+ 	The results from Sec. \ref{sec:CompressionSchedulingPixart} suggest that importance-aware, rank-adaptive progressive model pruning performs better than standard progressive pruning. Furthermore, distributing the removed parameters over more blocks (e.g. 14 or 21) is more favorable than distributing them over fewer blocks, which consequently need to be compressed more heavily. As no clearly superior approach between 14 and 21 could be found, 21 blocks were chosen as the best configuration. 
  	
  \end{itemize}
 All models resulting from this core progressive \gls{SVD} pruning approach, including the adapted versions for Flux.1-dev in the upcoming section, will henceforth be referred to as \textit{SVDtrunc}.
