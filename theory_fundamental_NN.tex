@@ -2,9 +2,9 @@
 In this section, the focus lies on the key fundamental building blocks of the neural networks. 
 
 \subsection{Transformer}
-The introduction of the transformer architecture \cite{AttentionIsAllYouNeed} was a decisive moment for the whole \gls{AI} community. It significantly pushed the development in natural language and image processing forward. Therefore, it is no surprise that the latest models are based on this architecture type \cite{Claude, Gemini, Flux, HiDream}. \\
-The transformer was introduced as an alternative to recurrent neural networks  \cite{RNN} for processing sequential data like text. In the original paper, the transformer architecture leverages an encoder-decoder structure, however, there are many variants like decoder-only \cite{GPT4, Lama} or encoder-only transformer \cite{BERT}. \\
-Transformers, as introduced in the original paper (Fig. \ref{transformer_architecture}), take text as input, which must first be converted into numerical form through a process called tokenization. This produces a sequence of tokens that are a numerical representation of words or subwords of the text. To provide the model with information about the position of each token in the sequence, positional encodings are added. These preprocessing steps occur before the input is fed into the transformer architecture. 
+The introduction of the Transformer architecture \cite{AttentionIsAllYouNeed} was a decisive moment for the whole \gls{AI} community. It significantly pushed the development in natural language and image processing forward. Therefore, it is no surprise that the latest models are based on this architecture type \cite{Claude, Gemini, Flux, HiDream}. \\
+The Transformer was introduced as an alternative to recurrent neural networks  \cite{RNN} for processing sequential data like text. In the original paper, the Transformer architecture leverages an encoder-decoder structure, however, there are many variants like decoder-only \cite{GPT4, Lama} or encoder-only Transformer \cite{BERT}. \\
+Transformers, as introduced in the original paper (Fig. \ref{transformer_architecture}), take text as input, which must first be converted into numerical form through a process called tokenization. This produces a sequence of tokens that are a numerical representation of words or subwords of the text. To provide the model with information about the position of each token in the sequence, positional encodings are added. These preprocessing steps occur before the input is fed into the Transformer architecture. 
 Each encoder block consists of two sub-layers. First, a multi-head self-attention mechanism is followed by a residual connection \cite{ResidualConnection} and layer normalization \cite{LayerNorm}. Second, a feedforward network processes the output further. The decoder blocks contain three sub-layers. First, a masked multi-head self-attention prevents the model from attending to future tokens during the training process, second, a cross-attention mechanism introduces the output of the encoder in the decoder and third an additional feedforward network processes the output of the cross-attention layer. All three sub-layers are followed by a residual connection and layer normalization. The final output is projected to vocabulary-sized logits representing a probability distribution over possible next tokens.
 
 
@@ -12,13 +12,13 @@ Each encoder block consists of two sub-layers. First, a multi-head self-attentio
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.4\textwidth]{images/Background/transformer.png}  % adjust filename and width
-    \caption[Transformer Architecture]{Visualization of the transformer architecture. Taken from \cite{AttentionIsAllYouNeed}.}
+    \caption[Transformer Architecture]{The architecture of the original Transformer model. Reproduced from \cite{AttentionIsAllYouNeed}.}
     \label{transformer_architecture}
 \end{figure}
 
 \subsection{Attention Mechanism}
 \label{AttentionMechanism}
-The attention mechanism is an integral part of the transformer architecture. It enables the model to focus on the input elements that are most important for the task at hand and ignore the less important ones. This mechanism was first introduced for \gls{RNN}s \cite{OrgAttention} to overcome the information bottleneck, as traditionally in RNNs only the last hidden state is given as input for the next prediction. In \cite{OrgAttention}, all previous hidden states were presented to the model as additional input, and the task of the attention mechanism was to filter out those that were relevant for the prediction of the next state. The authors of \cite{AttentionIsAllYouNeed} leveraged the formalism and reformulated it for the transformer architecture that will be discussed in the following. \\
+The attention mechanism is an integral part of the Transformer architecture. It enables the model to focus on the input elements that are most important for the task at hand and ignore the less important ones. This mechanism was first introduced for \gls{RNN}s \cite{OrgAttention} to overcome the information bottleneck, as traditionally in RNNs only the last hidden state is given as input for the next prediction. In \cite{OrgAttention}, all previous hidden states were presented to the model as additional input, and the task of the attention mechanism was to filter out those that were relevant for the prediction of the next state. The authors of \cite{AttentionIsAllYouNeed} leveraged the formalism and reformulated it for the Transformer architecture that will be discussed in the following. \\
 In the attention mechanism, so-called queries, keys and values are computed. The attention mechanism can be understood as a soft lookup table where queries search for relevant keys, and the corresponding values are retrieved and weighted by similarity.
  A distinction is made between self-attention (fig. \ref{SelfAttentionFigure}) and cross-attention (fig. \ref{CrossAttentionFigure}). In self-attention, the interaction of the tokens within a sequence is calculated. In contrast, in cross-attention you have two input sequences with the goal that the model aligns and relates information between the two different sequences.
 
@@ -49,23 +49,23 @@ One main challenge of the discussed attention mechanism is that it has quadratic
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{images/Background/SelfAttention.png}  % adjust filename and width
-    \caption[Self-Attention Mechanism]{Visualization of the self-attention mechanism. Based on \cite{SelfAttentionFigure}.}
+    \caption[Self-Attention Mechanism]{Illustration of the self-attention mechanism. Adapted from \cite{SelfAttentionFigure}.}
     \label{SelfAttentionFigure}
 \end{figure}
  
 \subsubsection{Cross-Attention}
-The goal of cross-attention is to relate two different sequences of tokens \textbf{$\mathbf{x}_1$} and \textbf{$\mathbf{x}_2$}. Commonly, the queries come from the target sequence ,e.g., the decoder of the transformer, while the keys and values come from the source sequence, e.g., encoder output of transformer. Apart from this difference, the computation is identical to self-attention.
+The goal of cross-attention is to relate two different sequences of tokens \textbf{$\mathbf{x}_1$} and \textbf{$\mathbf{x}_2$}. Commonly, the queries come from the target sequence ,e.g., the decoder of the Transformer, while the keys and values come from the source sequence, e.g., encoder output of Transformer. Apart from this difference, the computation is identical to self-attention.
 
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{images/Background/CrossAttention.png}  % adjust filename and width
-    \caption[Cross-Attention Mechanism]{Visualization of the cross-attention mechanism. Based on \cite{SelfAttentionFigure}.}
+    \caption[Cross-Attention Mechanism]{Illustration of the cross-attention mechanism. Adapted from \cite{SelfAttentionFigure}.}
     \label{CrossAttentionFigure}
 \end{figure}
 
 \subsubsection{Multi-Head Attention}
-Multi-head attention is another trick used in transformers to make the results of the attention operations even more expressive. Instead of only performing individual self- or cross-attentions in a transformer block, so-called multi-head attentions are used. Here, based on the input embeddings, not just one but N times keys, queries and values are calculated, each with different weight matrices $W_{q_i}^T \in \mathbb{R}^{d\times d_k}$, $W_{k_i}^T \in \mathbb{R}^{d\times d_k}$ and $W_{v_i}^T \in \mathbb{R}^{d\times d_v}$ with $i = 1,...,N$, and the attention mechanism is executed. Each attention that is carried out is designated as a $\text{head}_i$. The results of the N attentions are concatenated and combined with another linear projection $W^O \in \mathbb{R}^{Nd_v\times d}$.
+Multi-head attention is another trick used in Transformers to make the results of the attention operations even more expressive. Instead of only performing individual self- or cross-attentions in a Transformer block, so-called multi-head attentions are used. Here, based on the input embeddings, not just one but N times keys, queries and values are calculated, each with different weight matrices $W_{q_i}^T \in \mathbb{R}^{d\times d_k}$, $W_{k_i}^T \in \mathbb{R}^{d\times d_k}$ and $W_{v_i}^T \in \mathbb{R}^{d\times d_v}$ with $i = 1,...,N$, and the attention mechanism is executed. Each attention that is carried out is designated as a $\text{head}_i$. The results of the N attentions are concatenated and combined with another linear projection $W^O \in \mathbb{R}^{Nd_v\times d}$.
 \begin{align}
     &\text{MultiHead}\left( Q,K,V  \right) = \text{Concat}\left( \text{head}_1, ..., \text{head}_N   \right)W^O \\
     &\text{head}_i = \text{Attention}\left(XW_{q_i}^T,XW_{k_i}^T,XW_{v_i}^T \right)
@@ -75,16 +75,16 @@ This is advantageous because the individual heads can concentrate on different t
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.3\textwidth]{images/Background/multi-head-attention.png}  % adjust filename and width
-    \caption[Multi-Head Attention]{Visualization of the multi-head attention mechanism. Taken from \cite{AttentionIsAllYouNeed}.}
+    \caption[Multi-Head Attention]{Illustration of the multi-head attention mechanism. Reproduced from \cite{AttentionIsAllYouNeed}.}
     \label{MultiHeadAttention}
 \end{figure}
 
 \subsection{Positional Encoding}
 \label{PositionalEmbedding}
-Before the embedded token sequence is fed as input to the transformer, a positional information is added to each token to provide the network with information about the order of the tokens. There are different methods, which can be divided into the categories relative \cite{RoPE, ALiBi, FIRE} versus absolute \cite{AttentionIsAllYouNeed, Floater, Cape, Shape} positional embedding or deterministic \cite{AttentionIsAllYouNeed, Shape, Cape, ALiBi, RoPE} versus learnable \cite{Floater, FIRE} positional embedding. 
+Before the embedded token sequence is fed as input to the Transformer, a positional information is added to each token to provide the network with information about the order of the tokens. There are different methods, which can be divided into the categories relative \cite{RoPE, ALiBi, FIRE} versus absolute \cite{AttentionIsAllYouNeed, Floater, Cape, Shape} positional embedding or deterministic \cite{AttentionIsAllYouNeed, Shape, Cape, ALiBi, RoPE} versus learnable \cite{Floater, FIRE} positional embedding. 
 
 \subsubsection{Sinusoidal Positional Encoding}
-Sinusoidal positional encoding is used in the original transformer paper \cite{AttentionIsAllYouNeed} which leverages the sinus and cosine function  to inject positional information into the model. It belongs to the category of absolute and deterministic positional encoding.
+Sinusoidal positional encoding is used in the original Transformer paper \cite{AttentionIsAllYouNeed} which leverages the sinus and cosine function  to inject positional information into the model. It belongs to the category of absolute and deterministic positional encoding.
 \begin{align}
     &PE\left( pos, 2i  \right) = \sin \left(  \frac{pos}{10000^{\frac{2i}{d}}} \right) \\
     &PE \left( pos, 2i+1  \right) = \cos \left(  \frac{pos}{10000^{\frac{2i}{d}}} \right)
@@ -141,16 +141,16 @@ where $d$ is the embedding dimension, $pos$ is the position of the token in the 
 %\end{figure}
 
 \subsection{Vision Transformer}
-Original transformers were introduced for language processing tasks. There were some attempts to transfer the methodology of the transformer architecture to computer vision problems \cite{StandAloneAttentionVisonModels, Ccnet, ImageTransformer}, but for a long time, convolutional neural networks (\gls{CNN}s) \cite{CNN} remained the dominant architecture. \gls{CNN}s have an inherent advantage over transformers because they possess an image-related inductive bias. On the one hand, \gls{CNN}s are translationally equivariant by construction and, on the other hand, the concept of locality is embedded in the way they are built. In contrast, these two concepts must be learned by a transformer, as they are not predefined by its architecture, which makes a sufficiently large dataset essential to achieve competitive performance. \\
+Original Transformers were introduced for language processing tasks. There were some attempts to transfer the methodology of the Transformer architecture to computer vision problems \cite{StandAloneAttentionVisonModels, Ccnet, ImageTransformer}, but for a long time, convolutional neural networks (\gls{CNN}s) \cite{CNN} remained the dominant architecture. \gls{CNN}s have an inherent advantage over Transformers because they possess an image-related inductive bias. On the one hand, \gls{CNN}s are translationally equivariant by construction and, on the other hand, the concept of locality is embedded in the way they are built. In contrast, these two concepts must be learned by a Transformer, as they are not predefined by its architecture, which makes a sufficiently large dataset essential to achieve competitive performance. \\
 
 
-The introduction of vision transformer (\gls{ViT}) \cite{VisionTransformer} for a classification task showed that given a sufficiently large dataset transformers can match or even surpass \gls{CNN}s for vision tasks. The first key aspect in \gls{ViT} is that not every single pixel is related to all other pixels because this would be computationally infeasible due to the quadratic complexity of the attention mechanism. Instead, the image is split $\mathbf{x} \in \mathbb{}{R}^{H \times W \times C}$ into a sequence of smaller patches $\mathbf{x_p} \in \mathbb{}{R}^{N \times (P^2 \cdot C)}$ where $C$ is the number of channels, $H$ the height of the image, $W$ the width of the image, $(P,P)$ the resolution of a patch and $N=\frac{HW}{P^2}$ the number of patches. At the beginning of the token sequence an additional classification (\gls{CLS}) token is prepended. The patches are flattened and linearly projected to the encoder dimension. After that a learned positional encoding is added before they are fed into the encoder-only transformer architecture. On top of the transformer encoder a \gls{MLP} head processes the embedded version of the classification token and provides probability for the different classes from the classification problem. 
+The introduction of vision Transformer (\gls{ViT}) \cite{VisionTransformer} for a classification task showed that given a sufficiently large dataset Transformers can match or even surpass \gls{CNN}s for vision tasks. The first key aspect in \gls{ViT} is that not every single pixel is related to all other pixels because this would be computationally infeasible due to the quadratic complexity of the attention mechanism. Instead, the image is split $\mathbf{x} \in \mathbb{}{R}^{H \times W \times C}$ into a sequence of smaller patches $\mathbf{x_p} \in \mathbb{}{R}^{N \times (P^2 \cdot C)}$ where $C$ is the number of channels, $H$ the height of the image, $W$ the width of the image, $(P,P)$ the resolution of a patch and $N=\frac{HW}{P^2}$ the number of patches. At the beginning of the token sequence an additional classification (\gls{CLS}) token is prepended. The patches are flattened and linearly projected to the encoder dimension. After that a learned positional encoding is added before they are fed into the encoder-only Transformer architecture. On top of the Transformer encoder a \gls{MLP} head processes the embedded version of the classification token and provides probability for the different classes from the classification problem. 
 
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{images/Background/VisionTransformer.png}  % adjust filename and width
-    \caption[Vision Transformer Architecture]{Visualization of vision transformer architecture. Taken from \cite{VisionTransformer}.}
+    \caption[Vision Transformer Architecture]{Illustration of the Vision Transformer architecture. Reproduced from \cite{VisionTransformer}.}
     \label{VisionTransformer}
 \end{figure}
 
