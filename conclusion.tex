@@ -1,4 +1,4 @@
-\chapter{Discussion}
+\chapter{Discussion and Conclusion}
 This Master's thesis investigated structural model pruning for \gls{DiT}s to enable more efficient image generation and facilitate their deployment in resource-constrained environments, particularly as new models become increasingly large and computationally intensive. An in-depth analysis of a structural pruning framework was conducted on PixArt-$\Sigma$ (Sec. \ref{sec:PixArtExp}), evaluating several design choices and transferring the optimal settings to Flux.1-dev (Sec. \ref{sec:ExpFlux}). Surprisingly, the analysis revealed that low-rank approximation via truncated \gls{SVD} is a highly efficient method for compressing the projection matrices in individual transformer blocks while maintaining strong performance. This contrasts with earlier studies on \gls{LLM}s, which demonstrated that ordinary low-rank approximation led to significant quality loss and required more advanced methods. Therefore, an importance-aware, rank-adaptive progressive pruning approach, \textit{SVDtrunc}, was developed, establishing a new parameter-quality frontier for Flux.1-dev.
 
 
