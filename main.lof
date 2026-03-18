@@ -29,73 +29,76 @@
 \contentsline {figure}{\numberline {4.13}{\ignorespaces Importance-Aware Rank-Adaptive Progressive Compression Schedule}}{53}{figure.4.13}%
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {5.1}{\ignorespaces Qualitative Block Importance Analysis of PixArt-$\Sigma $: Block Removal}}{56}{figure.5.1}%
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Block Importance Criteria}}{57}{figure.5.2}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Block Importance Criteria}}{58}{figure.5.2}%
 \contentsline {figure}{\numberline {5.3}{\ignorespaces Qualitative Block Importance Analysis of PixArt-$\Sigma $: Block Compression}}{58}{figure.5.3}%
-\contentsline {figure}{\numberline {5.4}{\ignorespaces CMMD Analysis of PixArt-$\Sigma $: Block Compression}}{58}{figure.5.4}%
+\contentsline {figure}{\numberline {5.4}{\ignorespaces CMMD Analysis of PixArt-$\Sigma $: Block Compression}}{59}{figure.5.4}%
 \contentsline {figure}{\numberline {5.5}{\ignorespaces Distribution of Selected Blocks: Optuna vs. Greedy Prior}}{60}{figure.5.5}%
 \contentsline {figure}{\numberline {5.6}{\ignorespaces Benchmark Performance: Optuna vs. Greedy Algorithm}}{61}{figure.5.6}%
 \contentsline {figure}{\numberline {5.7}{\ignorespaces Comparison of Compression Strategies: Optuna vs. Greedy Algorithm}}{61}{figure.5.7}%
 \contentsline {figure}{\numberline {5.8}{\ignorespaces Qualitative Examples: One-Shot vs. Progressive Model Compression}}{62}{figure.5.8}%
 \contentsline {figure}{\numberline {5.9}{\ignorespaces Benchmark Performance: Progressive vs. One-Shot Model Compression}}{62}{figure.5.9}%
-\contentsline {figure}{\numberline {5.10}{\ignorespaces Benchmark Performance: Different Knowledge Distillation Loss Configurations}}{64}{figure.5.10}%
-\contentsline {figure}{\numberline {5.11}{\ignorespaces Qualitative Examples: Different Knowledge Distillation Loss Configurations}}{65}{figure.5.11}%
-\contentsline {figure}{\numberline {5.12}{\ignorespaces Qualitative Examples: Fine-Tuning Protocols}}{66}{figure.5.12}%
-\contentsline {figure}{\numberline {5.13}{\ignorespaces Benchmark Performance: Fine-Tuning Protocols}}{67}{figure.5.13}%
+\contentsline {figure}{\numberline {5.10}{\ignorespaces Qualitative Examples: Different Knowledge Distillation Loss Configurations}}{64}{figure.5.10}%
+\contentsline {figure}{\numberline {5.11}{\ignorespaces Benchmark Performance: Different Knowledge Distillation Loss Configurations}}{65}{figure.5.11}%
+\contentsline {figure}{\numberline {5.12}{\ignorespaces Qualitative Examples: Fine-Tuning Protocols}}{67}{figure.5.12}%
+\contentsline {figure}{\numberline {5.13}{\ignorespaces Benchmark Performance: Fine-Tuning Protocols}}{68}{figure.5.13}%
 \contentsline {figure}{\numberline {5.14}{\ignorespaces Qualitative Examples: Compression Strategies}}{68}{figure.5.14}%
 \contentsline {figure}{\numberline {5.15}{\ignorespaces Benchmark Performance: Compression Strategies}}{69}{figure.5.15}%
-\contentsline {figure}{\numberline {5.16}{\ignorespaces Benchmark Performance: Sensitivity Analysis of MLP and Attention Layers to Compression}}{70}{figure.5.16}%
-\contentsline {figure}{\numberline {5.17}{\ignorespaces Qualitative Examples: Sensitivity Analysis of MLP and Attention Layers to Compression}}{71}{figure.5.17}%
-\contentsline {figure}{\numberline {5.18}{\ignorespaces Qualitative Examples: Importance-Aware Rank-Adaptive Progressive Pruning}}{72}{figure.5.18}%
-\contentsline {figure}{\numberline {5.19}{\ignorespaces Benchmark Performance: Importance-Aware Rank-Adaptive Progressive Compression}}{73}{figure.5.19}%
-\contentsline {figure}{\numberline {5.20}{\ignorespaces SVD Compressed Modules within Single- and Double-Stream Blocks of Flux.1-dev}}{76}{figure.5.20}%
-\contentsline {figure}{\numberline {5.21}{\ignorespaces Exemplary Qualitative Double-Stream Block Importance Analysis of Flux.1-dev}}{77}{figure.5.21}%
-\contentsline {figure}{\numberline {5.22}{\ignorespaces Exemplary Qualitative Single-Stream Block Importance Analysis of Flux.1-dev}}{78}{figure.5.22}%
-\contentsline {figure}{\numberline {5.23}{\ignorespaces Qualitative Examples: Training-Free Model Compression}}{78}{figure.5.23}%
-\contentsline {figure}{\numberline {5.24}{\ignorespaces Qualitative Examples: Importance, Uniform, and Random Block Selection}}{80}{figure.5.24}%
-\contentsline {figure}{\numberline {5.25}{\ignorespaces Benchmark Performance: Random vs. Uniform vs. Metric-Based Block Selection}}{81}{figure.5.25}%
-\contentsline {figure}{\numberline {5.26}{\ignorespaces Benchmark Performance: Parameter Reduction Distribution}}{82}{figure.5.26}%
-\contentsline {figure}{\numberline {5.27}{\ignorespaces Qualitative Examples: SVDtrunc}}{83}{figure.5.27}%
-\contentsline {figure}{\numberline {5.28}{\ignorespaces Quality-Parameter Frontier: Flux.1-dev}}{83}{figure.5.28}%
-\contentsline {figure}{\numberline {5.29}{\ignorespaces Qualitative Examples: Domain Shift in SVDtrunc}}{85}{figure.5.29}%
-\contentsline {figure}{\numberline {5.30}{\ignorespaces Qualitative Examples: Memorization Loss in SVDtrunc}}{86}{figure.5.30}%
-\contentsline {figure}{\numberline {5.31}{\ignorespaces Qualitative Examples: SVDtrunc on Flux.1-Schnell}}{87}{figure.5.31}%
-\contentsline {figure}{\numberline {5.32}{\ignorespaces GRASP: Magnitude vs. Importance Analysis of Singular Values}}{89}{figure.5.32}%
-\contentsline {figure}{\numberline {5.33}{\ignorespaces Benchmark Performance: \gls {SVD} vs. \gls {GRASP}}}{90}{figure.5.33}%
-\contentsline {figure}{\numberline {5.34}{\ignorespaces Qualitative Examples: \gls {SVD} vs. \gls {GRASP}}}{91}{figure.5.34}%
+\contentsline {figure}{\numberline {5.16}{\ignorespaces Benchmark Performance: Sensitivity Analysis of MLP and Attention Layers to Compression}}{71}{figure.5.16}%
+\contentsline {figure}{\numberline {5.17}{\ignorespaces Qualitative Examples: Sensitivity Analysis of MLP and Attention Layers to Compression}}{72}{figure.5.17}%
+\contentsline {figure}{\numberline {5.18}{\ignorespaces Qualitative Examples: Importance-Aware Rank-Adaptive Progressive Pruning}}{73}{figure.5.18}%
+\contentsline {figure}{\numberline {5.19}{\ignorespaces Benchmark Performance: Importance-Aware Rank-Adaptive Progressive Compression}}{74}{figure.5.19}%
+\contentsline {figure}{\numberline {5.20}{\ignorespaces SVD Compressed Modules within Single- and Double-Stream Blocks of Flux.1-dev}}{77}{figure.5.20}%
+\contentsline {figure}{\numberline {5.21}{\ignorespaces Exemplary Qualitative Double-Stream Block Importance Analysis of Flux.1-dev}}{78}{figure.5.21}%
+\contentsline {figure}{\numberline {5.22}{\ignorespaces Exemplary Qualitative Single-Stream Block Importance Analysis of Flux.1-dev}}{79}{figure.5.22}%
+\contentsline {figure}{\numberline {5.23}{\ignorespaces Qualitative Examples: Training-Free Model Compression}}{79}{figure.5.23}%
+\contentsline {figure}{\numberline {5.24}{\ignorespaces Qualitative Examples: Importance, Uniform, and Random Block Selection}}{81}{figure.5.24}%
+\contentsline {figure}{\numberline {5.25}{\ignorespaces Benchmark Performance: Random vs. Uniform vs. Metric-Based Block Selection}}{82}{figure.5.25}%
+\contentsline {figure}{\numberline {5.26}{\ignorespaces Benchmark Performance: Parameter Reduction Distribution}}{83}{figure.5.26}%
+\contentsline {figure}{\numberline {5.27}{\ignorespaces Qualitative Examples: SVDtrunc}}{84}{figure.5.27}%
+\contentsline {figure}{\numberline {5.28}{\ignorespaces Quality-Parameter Frontier: Flux.1-dev}}{84}{figure.5.28}%
+\contentsline {figure}{\numberline {5.29}{\ignorespaces Qualitative Examples: Domain Shift in SVDtrunc}}{86}{figure.5.29}%
+\contentsline {figure}{\numberline {5.30}{\ignorespaces Qualitative Examples: Memorization Loss in SVDtrunc}}{87}{figure.5.30}%
+\contentsline {figure}{\numberline {5.31}{\ignorespaces Qualitative Examples: SVDtrunc on Flux.1-Schnell}}{88}{figure.5.31}%
+\contentsline {figure}{\numberline {5.32}{\ignorespaces GRASP: Magnitude vs. Importance Analysis of Singular Values}}{90}{figure.5.32}%
+\contentsline {figure}{\numberline {5.33}{\ignorespaces Benchmark Performance: \gls {SVD} vs. \gls {GRASP}}}{91}{figure.5.33}%
+\contentsline {figure}{\numberline {5.34}{\ignorespaces Qualitative Examples: \gls {SVD} vs. \gls {GRASP}}}{92}{figure.5.34}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {A.1}{\ignorespaces CKA-Score Heatmap}}{95}{figure.A.1}%
-\contentsline {figure}{\numberline {A.2}{\ignorespaces Qualitative Block Importance Analysis of PixArt-$\Sigma $: Block Compression}}{95}{figure.A.2}%
-\contentsline {figure}{\numberline {A.3}{\ignorespaces Qualitative Examples: One-Shot vs. Progressive Model Pruning (90\% Pruning)}}{96}{figure.A.3}%
-\contentsline {figure}{\numberline {A.4}{\ignorespaces Qualitative Examples: One-Shot vs. Progressive Model Pruning (80\% Pruning)}}{96}{figure.A.4}%
-\contentsline {figure}{\numberline {A.5}{\ignorespaces Qualitative Examples: One-Shot vs. Progressive Model Pruning (70\% Pruning)}}{97}{figure.A.5}%
-\contentsline {figure}{\numberline {A.6}{\ignorespaces Qualitative Examples: One-Shot vs. Progressive Model Pruning (60\% Pruning)}}{97}{figure.A.6}%
-\contentsline {figure}{\numberline {A.7}{\ignorespaces Magnitude of Intermediate Features in PixArt-$\Sigma $}}{98}{figure.A.7}%
-\contentsline {figure}{\numberline {A.8}{\ignorespaces Qualitative Examples: Different Knowledge Distillation Loss Configurations (90\% Pruning)}}{98}{figure.A.8}%
-\contentsline {figure}{\numberline {A.9}{\ignorespaces Qualitative Examples: Different Knowledge Distillation Loss Configurations (80\% Pruning)}}{99}{figure.A.9}%
-\contentsline {figure}{\numberline {A.10}{\ignorespaces Qualitative Examples: Different Knowledge Distillation Loss Configurations (70\% Pruning)}}{99}{figure.A.10}%
-\contentsline {figure}{\numberline {A.11}{\ignorespaces Qualitative Examples: Different Knowledge Distillation Loss Configurations (50\% Pruning)}}{100}{figure.A.11}%
-\contentsline {figure}{\numberline {A.12}{\ignorespaces Qualitative Examples: Fine-Tuning Protocols (90\% Pruning)}}{100}{figure.A.12}%
-\contentsline {figure}{\numberline {A.13}{\ignorespaces Qualitative Examples: Fine-Tuning Protocols (80\% Pruning)}}{101}{figure.A.13}%
-\contentsline {figure}{\numberline {A.14}{\ignorespaces Qualitative Examples: Fine-Tuning Protocols (70\% Pruning)}}{101}{figure.A.14}%
-\contentsline {figure}{\numberline {A.15}{\ignorespaces Qualitative Examples: Fine-Tuning Protocols (50\% Pruning)}}{102}{figure.A.15}%
-\contentsline {figure}{\numberline {A.16}{\ignorespaces PixArt-$\Sigma $ compressed modules.}}{102}{figure.A.16}%
-\contentsline {figure}{\numberline {A.17}{\ignorespaces Qualitative Examples: Compression Strategies (90\% Pruning)}}{103}{figure.A.17}%
-\contentsline {figure}{\numberline {A.18}{\ignorespaces Qualitative Examples: Compression Strategies (80\% Pruning)}}{103}{figure.A.18}%
-\contentsline {figure}{\numberline {A.19}{\ignorespaces Qualitative Examples: Compression Strategies (70\% Pruning)}}{104}{figure.A.19}%
-\contentsline {figure}{\numberline {A.20}{\ignorespaces Qualitative Examples: Compression Strategies (60\% Pruning)}}{104}{figure.A.20}%
-\contentsline {figure}{\numberline {A.21}{\ignorespaces Qualitative Examples: Importance-Aware Rank-Adaptive Progressive Pruning (90\% Pruning)}}{105}{figure.A.21}%
-\contentsline {figure}{\numberline {A.22}{\ignorespaces Qualitative Examples: Importance-Aware Rank-Adaptive Progressive Pruning (80\% Pruning)}}{106}{figure.A.22}%
-\contentsline {figure}{\numberline {A.23}{\ignorespaces Qualitative Examples: Importance-Aware Rank-Adaptive Progressive Pruning (70\% Pruning)}}{107}{figure.A.23}%
-\contentsline {figure}{\numberline {A.24}{\ignorespaces Qualitative Examples: Importance-Aware Rank-Adaptive Progressive Pruning (60\% Pruning)}}{108}{figure.A.24}%
+\contentsline {figure}{\numberline {A.1}{\ignorespaces CKA-Score Heatmap}}{96}{figure.A.1}%
+\contentsline {figure}{\numberline {A.2}{\ignorespaces Qualitative Block Importance Analysis of PixArt-$\Sigma $: Block Compression}}{96}{figure.A.2}%
+\contentsline {figure}{\numberline {A.3}{\ignorespaces Qualitative Examples: One-Shot vs. Progressive Model Pruning (90\% Pruning)}}{97}{figure.A.3}%
+\contentsline {figure}{\numberline {A.4}{\ignorespaces Qualitative Examples: One-Shot vs. Progressive Model Pruning (80\% Pruning)}}{97}{figure.A.4}%
+\contentsline {figure}{\numberline {A.5}{\ignorespaces Qualitative Examples: One-Shot vs. Progressive Model Pruning (70\% Pruning)}}{98}{figure.A.5}%
+\contentsline {figure}{\numberline {A.6}{\ignorespaces Qualitative Examples: One-Shot vs. Progressive Model Pruning (60\% Pruning)}}{98}{figure.A.6}%
+\contentsline {figure}{\numberline {A.7}{\ignorespaces Magnitude of Intermediate Features in PixArt-$\Sigma $}}{99}{figure.A.7}%
+\contentsline {figure}{\numberline {A.8}{\ignorespaces Qualitative Examples: Different Knowledge Distillation Loss Configurations (90\% Pruning)}}{99}{figure.A.8}%
+\contentsline {figure}{\numberline {A.9}{\ignorespaces Qualitative Examples: Different Knowledge Distillation Loss Configurations (80\% Pruning)}}{100}{figure.A.9}%
+\contentsline {figure}{\numberline {A.10}{\ignorespaces Qualitative Examples: Different Knowledge Distillation Loss Configurations (70\% Pruning)}}{100}{figure.A.10}%
+\contentsline {figure}{\numberline {A.11}{\ignorespaces Qualitative Examples: Different Knowledge Distillation Loss Configurations (50\% Pruning)}}{101}{figure.A.11}%
+\contentsline {figure}{\numberline {A.12}{\ignorespaces Qualitative Examples: Fine-Tuning Protocols (90\% Pruning)}}{101}{figure.A.12}%
+\contentsline {figure}{\numberline {A.13}{\ignorespaces Qualitative Examples: Fine-Tuning Protocols (80\% Pruning)}}{102}{figure.A.13}%
+\contentsline {figure}{\numberline {A.14}{\ignorespaces Qualitative Examples: Fine-Tuning Protocols (70\% Pruning)}}{102}{figure.A.14}%
+\contentsline {figure}{\numberline {A.15}{\ignorespaces Qualitative Examples: Fine-Tuning Protocols (50\% Pruning)}}{103}{figure.A.15}%
+\contentsline {figure}{\numberline {A.16}{\ignorespaces PixArt-$\Sigma $ compressed modules.}}{103}{figure.A.16}%
+\contentsline {figure}{\numberline {A.17}{\ignorespaces Qualitative Examples: Compression Strategies (90\% Pruning)}}{104}{figure.A.17}%
+\contentsline {figure}{\numberline {A.18}{\ignorespaces Qualitative Examples: Compression Strategies (80\% Pruning)}}{104}{figure.A.18}%
+\contentsline {figure}{\numberline {A.19}{\ignorespaces Qualitative Examples: Compression Strategies (70\% Pruning)}}{105}{figure.A.19}%
+\contentsline {figure}{\numberline {A.20}{\ignorespaces Qualitative Examples: Compression Strategies (60\% Pruning)}}{105}{figure.A.20}%
+\contentsline {figure}{\numberline {A.21}{\ignorespaces Qualitative Examples: Importance-Aware Rank-Adaptive Progressive Pruning (90\% Pruning)}}{106}{figure.A.21}%
+\contentsline {figure}{\numberline {A.22}{\ignorespaces Qualitative Examples: Importance-Aware Rank-Adaptive Progressive Pruning (80\% Pruning)}}{107}{figure.A.22}%
+\contentsline {figure}{\numberline {A.23}{\ignorespaces Qualitative Examples: Importance-Aware Rank-Adaptive Progressive Pruning (70\% Pruning)}}{108}{figure.A.23}%
+\contentsline {figure}{\numberline {A.24}{\ignorespaces Qualitative Examples: Importance-Aware Rank-Adaptive Progressive Pruning (60\% Pruning)}}{109}{figure.A.24}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {B.1}{\ignorespaces Qualitative Double-Stream Block Importance Analysis of Flux.1-dev: Block Removal}}{111}{figure.B.1}%
-\contentsline {figure}{\numberline {B.2}{\ignorespaces Qualitative Single-Stream Block Importance Analysis of Flux.1-dev: Block Removal}}{112}{figure.B.2}%
-\contentsline {figure}{\numberline {B.3}{\ignorespaces Qualitative Double-Stream Block Importance Analysis of Flux.1-dev: Block Compression}}{113}{figure.B.3}%
-\contentsline {figure}{\numberline {B.4}{\ignorespaces Qualitative Single-Stream Block Importance Analysis of Flux.1-dev: Block Compression}}{114}{figure.B.4}%
-\contentsline {figure}{\numberline {B.5}{\ignorespaces Qualitative Examples: Training-Free Model Compression (90\% Pruning)}}{115}{figure.B.5}%
-\contentsline {figure}{\numberline {B.6}{\ignorespaces Qualitative Examples: Training-Free Model Compression (70\% Pruning)}}{116}{figure.B.6}%
-\contentsline {figure}{\numberline {B.7}{\ignorespaces Qualitative Examples: Importance, Uniform, and Random Block Selection (68\% Pruning)}}{117}{figure.B.7}%
-\contentsline {figure}{\numberline {B.8}{\ignorespaces Qualitative Examples: Importance, Uniform, and Random Block Selection (57\% Pruning)}}{117}{figure.B.8}%
-\contentsline {figure}{\numberline {B.9}{\ignorespaces Qualitative Examples: Importance, Uniform, and Random Block Selection (43\% Pruning)}}{118}{figure.B.9}%
-\contentsline {figure}{\numberline {B.10}{\ignorespaces Training-Free: Flux.1-dev Block Importance Ranking}}{121}{figure.B.10}%
+\contentsline {figure}{\numberline {B.1}{\ignorespaces Qualitative Double-Stream Block Importance Analysis of Flux.1-dev: Block Removal}}{112}{figure.B.1}%
+\contentsline {figure}{\numberline {B.2}{\ignorespaces Qualitative Single-Stream Block Importance Analysis of Flux.1-dev: Block Removal}}{113}{figure.B.2}%
+\contentsline {figure}{\numberline {B.3}{\ignorespaces Qualitative Double-Stream Block Importance Analysis of Flux.1-dev: Block Compression}}{114}{figure.B.3}%
+\contentsline {figure}{\numberline {B.4}{\ignorespaces Qualitative Single-Stream Block Importance Analysis of Flux.1-dev: Block Compression}}{115}{figure.B.4}%
+\contentsline {figure}{\numberline {B.5}{\ignorespaces Qualitative Examples: Training-Free Model Compression (90\% Pruning)}}{116}{figure.B.5}%
+\contentsline {figure}{\numberline {B.6}{\ignorespaces Qualitative Examples: Training-Free Model Compression (70\% Pruning)}}{117}{figure.B.6}%
+\contentsline {figure}{\numberline {B.7}{\ignorespaces Qualitative Examples: Importance, Uniform, and Random Block Selection (68\% Pruning)}}{118}{figure.B.7}%
+\contentsline {figure}{\numberline {B.8}{\ignorespaces Qualitative Examples: Importance, Uniform, and Random Block Selection (57\% Pruning)}}{118}{figure.B.8}%
+\contentsline {figure}{\numberline {B.9}{\ignorespaces Qualitative Examples: Importance, Uniform, and Random Block Selection (43\% Pruning)}}{119}{figure.B.9}%
+\contentsline {figure}{\numberline {B.10}{\ignorespaces Qualitative Examples: SVDtrunc}}{121}{figure.B.10}%
+\contentsline {figure}{\numberline {B.11}{\ignorespaces Qualitative Examples: Domain Shift in SVDtrunc - Appendix}}{124}{figure.B.11}%
+\contentsline {figure}{\numberline {B.12}{\ignorespaces Qualitative Examples: Memorization Loss in SVDtrunc - Appendix}}{125}{figure.B.12}%
+\contentsline {figure}{\numberline {B.13}{\ignorespaces Training-Free: Flux.1-dev Block Importance Ranking}}{126}{figure.B.13}%

@@ -89,49 +89,50 @@
 \contentsline {subsection}{\numberline {5.1.2}Block Importance Analysis}{55}{subsection.5.1.2}%
 \contentsline {subsubsection}{Block Selection Criteria}{56}{section*.37}%
 \contentsline {subsubsection}{Qualitative Block Analysis for SVD-Based Compression}{58}{section*.38}%
-\contentsline {subsection}{\numberline {5.1.3}Block Selection Algorithms}{58}{subsection.5.1.3}%
+\contentsline {subsection}{\numberline {5.1.3}Block Selection Algorithms}{59}{subsection.5.1.3}%
 \contentsline {subsubsection}{Greedy}{59}{section*.39}%
 \contentsline {subsubsection}{Optuna}{59}{section*.40}%
 \contentsline {subsection}{\numberline {5.1.4}One-Shot versus Progressive Model Compression}{62}{subsection.5.1.4}%
 \contentsline {subsection}{\numberline {5.1.5}Knowledge Distillation Loss}{63}{subsection.5.1.5}%
-\contentsline {subsection}{\numberline {5.1.6}Fine-Tuning Protocol}{65}{subsection.5.1.6}%
+\contentsline {subsection}{\numberline {5.1.6}Fine-Tuning Protocol}{66}{subsection.5.1.6}%
 \contentsline {subsection}{\numberline {5.1.7}Compression Strategy}{68}{subsection.5.1.7}%
-\contentsline {subsection}{\numberline {5.1.8}Sensitivity Analysis of MLP and Attention Layers under \gls {SVD} Compression}{69}{subsection.5.1.8}%
-\contentsline {subsection}{\numberline {5.1.9}Importance-Aware Rank-Adaptive Progressive Model Compression}{72}{subsection.5.1.9}%
-\contentsline {subsection}{\numberline {5.1.10}Summary of Best Settings for Structural Model Compression}{73}{subsection.5.1.10}%
-\contentsline {section}{\numberline {5.2}Flux.1-dev Compression}{75}{section.5.2}%
-\contentsline {subsection}{\numberline {5.2.1}Experimental Default Setup}{75}{subsection.5.2.1}%
-\contentsline {subsection}{\numberline {5.2.2}Qualitative Block Analysis}{77}{subsection.5.2.2}%
-\contentsline {subsection}{\numberline {5.2.3}Training-Free Model Compression}{78}{subsection.5.2.3}%
-\contentsline {subsection}{\numberline {5.2.4}Importance-Aware Low-Rank Model Compression - Preliminary Experiments}{79}{subsection.5.2.4}%
-\contentsline {subsubsection}{Block Importance Analysis}{80}{section*.41}%
-\contentsline {subsubsection}{Sensitivity Analysis: Impact of Parameter Reduction Distribution}{81}{section*.42}%
-\contentsline {subsection}{\numberline {5.2.5}Importance-Aware Rank-Adaptive Low-Rank Model Compression}{83}{subsection.5.2.5}%
-\contentsline {subsubsection}{Domain Shift}{84}{section*.43}%
-\contentsline {subsubsection}{Memorization Loss}{85}{section*.44}%
-\contentsline {subsubsection}{Model Efficiency and Latency}{86}{section*.45}%
-\contentsline {subsection}{\numberline {5.2.6}Importance-Aware Low-Rank Step-Distilled Model Compression}{87}{subsection.5.2.6}%
-\contentsline {subsection}{\numberline {5.2.7}Proof of Concept: GRASP for DiTs}{88}{subsection.5.2.7}%
-\contentsline {chapter}{\numberline {6}Discussion and Conclusion}{92}{chapter.6}%
-\contentsline {chapter}{\numberline {A}Supplements PixArt-$\Sigma $ Experiments}{94}{appendix.A}%
-\contentsline {section}{\numberline {A.1}Experimental Default Setup}{94}{section.A.1}%
-\contentsline {section}{\numberline {A.2}Block Importance Analysis}{94}{section.A.2}%
-\contentsline {subsubsection}{CKA-Analysis of Transformer Blocks}{95}{section*.46}%
-\contentsline {subsubsection}{Qualitative Block Selection Analysis}{95}{section*.47}%
-\contentsline {section}{\numberline {A.3}One-Shot vs. Progressive Pruning}{95}{section.A.3}%
-\contentsline {section}{\numberline {A.4}Knowledge Distillation Loss}{97}{section.A.4}%
-\contentsline {section}{\numberline {A.5}Fine-Tuning Protocol}{100}{section.A.5}%
-\contentsline {section}{\numberline {A.6}Compression Strategy}{102}{section.A.6}%
-\contentsline {section}{\numberline {A.7}Importance-Aware Rank-Adaptive Progressive Model Pruning}{104}{section.A.7}%
-\contentsline {chapter}{\numberline {B}SupplementsFlux.1-dev Experiments}{109}{appendix.B}%
-\contentsline {section}{\numberline {B.1}Training Details}{110}{section.B.1}%
-\contentsline {section}{\numberline {B.2}Block Importance Analysis}{111}{section.B.2}%
-\contentsline {section}{\numberline {B.3}Training-Free Compression}{114}{section.B.3}%
-\contentsline {section}{\numberline {B.4}Importance-Aware Low-Rank Model Compression - Preliminary Experiments}{116}{section.B.4}%
-\contentsline {subsection}{\numberline {B.4.1}Block Selection}{116}{subsection.B.4.1}%
-\contentsline {subsection}{\numberline {B.4.2}Sensitivity Analysis: The Role of Parameter Removal Distribution}{118}{subsection.B.4.2}%
-\contentsline {section}{\numberline {B.5}Importance-Aware Low-Rank Model Compression}{119}{section.B.5}%
-\contentsline {section}{\numberline {B.6}GRASP}{120}{section.B.6}%
-\contentsline {subsubsection}{Block Importance Ranking}{121}{section*.48}%
-\contentsline {subsubsection}{Compression Details}{121}{section*.49}%
-\contentsline {chapter}{Bibliography}{122}{appendix*.50}%
+\contentsline {subsection}{\numberline {5.1.8}Sensitivity Analysis of MLP and Attention Layers under \gls {SVD} Compression}{70}{subsection.5.1.8}%
+\contentsline {subsection}{\numberline {5.1.9}Importance-Aware Rank-Adaptive Progressive Model Compression}{73}{subsection.5.1.9}%
+\contentsline {subsection}{\numberline {5.1.10}Summary of Best Settings for Structural Model Compression}{74}{subsection.5.1.10}%
+\contentsline {section}{\numberline {5.2}Flux.1-dev Compression}{76}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Experimental Default Setup}{76}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Qualitative Block Analysis}{78}{subsection.5.2.2}%
+\contentsline {subsection}{\numberline {5.2.3}Training-Free Model Compression}{79}{subsection.5.2.3}%
+\contentsline {subsection}{\numberline {5.2.4}Importance-Aware Low-Rank Model Compression - Preliminary Experiments}{80}{subsection.5.2.4}%
+\contentsline {subsubsection}{Block Importance Analysis}{81}{section*.41}%
+\contentsline {subsubsection}{Sensitivity Analysis: Impact of Parameter Reduction Distribution}{82}{section*.42}%
+\contentsline {subsection}{\numberline {5.2.5}Importance-Aware Rank-Adaptive Low-Rank Model Compression}{84}{subsection.5.2.5}%
+\contentsline {subsubsection}{Domain Shift}{85}{section*.43}%
+\contentsline {subsubsection}{Memorization Loss}{86}{section*.44}%
+\contentsline {subsubsection}{Model Efficiency and Latency}{87}{section*.45}%
+\contentsline {subsection}{\numberline {5.2.6}Importance-Aware Low-Rank Step-Distilled Model Compression}{88}{subsection.5.2.6}%
+\contentsline {subsection}{\numberline {5.2.7}Proof of Concept: GRASP for DiTs}{89}{subsection.5.2.7}%
+\contentsline {chapter}{\numberline {6}Discussion and Conclusion}{93}{chapter.6}%
+\contentsline {chapter}{\numberline {A}Supplements PixArt-$\Sigma $ Experiments}{95}{appendix.A}%
+\contentsline {section}{\numberline {A.1}Experimental Default Setup}{95}{section.A.1}%
+\contentsline {section}{\numberline {A.2}Block Importance Analysis}{95}{section.A.2}%
+\contentsline {subsubsection}{CKA-Analysis of Transformer Blocks}{96}{section*.46}%
+\contentsline {subsubsection}{Qualitative Block Selection Analysis}{96}{section*.47}%
+\contentsline {section}{\numberline {A.3}One-Shot vs. Progressive Pruning}{96}{section.A.3}%
+\contentsline {section}{\numberline {A.4}Knowledge Distillation Loss}{98}{section.A.4}%
+\contentsline {section}{\numberline {A.5}Fine-Tuning Protocol}{101}{section.A.5}%
+\contentsline {section}{\numberline {A.6}Compression Strategy}{103}{section.A.6}%
+\contentsline {section}{\numberline {A.7}Importance-Aware Rank-Adaptive Progressive Model Compression}{105}{section.A.7}%
+\contentsline {chapter}{\numberline {B}SupplementsFlux.1-dev Experiments}{110}{appendix.B}%
+\contentsline {section}{\numberline {B.1}Training Details}{111}{section.B.1}%
+\contentsline {section}{\numberline {B.2}Block Importance Analysis}{112}{section.B.2}%
+\contentsline {section}{\numberline {B.3}Training-Free Compression}{115}{section.B.3}%
+\contentsline {section}{\numberline {B.4}Importance-Aware Low-Rank Model Compression - Preliminary Experiments}{117}{section.B.4}%
+\contentsline {subsection}{\numberline {B.4.1}Block Selection}{117}{subsection.B.4.1}%
+\contentsline {subsection}{\numberline {B.4.2}Sensitivity Analysis: The Role of Parameter Removal Distribution}{119}{subsection.B.4.2}%
+\contentsline {section}{\numberline {B.5}Importance-Aware Rank-Adaptive Low-Rank Model Compression}{120}{section.B.5}%
+\contentsline {subsubsection}{Domain Shift}{124}{section*.48}%
+\contentsline {section}{\numberline {B.6}GRASP}{126}{section.B.6}%
+\contentsline {subsubsection}{Block Importance Ranking}{126}{section*.49}%
+\contentsline {subsubsection}{Compression Details}{126}{section*.50}%
+\contentsline {chapter}{Bibliography}{127}{appendix*.51}%
