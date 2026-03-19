@@ -89,16 +89,18 @@
 \contentsline {figure}{\numberline {A.23}{\ignorespaces Qualitative Examples: Importance-Aware Rank-Adaptive Progressive Pruning (70\% Pruning)}}{108}{figure.A.23}%
 \contentsline {figure}{\numberline {A.24}{\ignorespaces Qualitative Examples: Importance-Aware Rank-Adaptive Progressive Pruning (60\% Pruning)}}{109}{figure.A.24}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {B.1}{\ignorespaces Qualitative Double-Stream Block Importance Analysis of Flux.1-dev: Block Removal}}{112}{figure.B.1}%
-\contentsline {figure}{\numberline {B.2}{\ignorespaces Qualitative Single-Stream Block Importance Analysis of Flux.1-dev: Block Removal}}{113}{figure.B.2}%
-\contentsline {figure}{\numberline {B.3}{\ignorespaces Qualitative Double-Stream Block Importance Analysis of Flux.1-dev: Block Compression}}{114}{figure.B.3}%
-\contentsline {figure}{\numberline {B.4}{\ignorespaces Qualitative Single-Stream Block Importance Analysis of Flux.1-dev: Block Compression}}{115}{figure.B.4}%
-\contentsline {figure}{\numberline {B.5}{\ignorespaces Qualitative Examples: Training-Free Model Compression (90\% Pruning)}}{116}{figure.B.5}%
-\contentsline {figure}{\numberline {B.6}{\ignorespaces Qualitative Examples: Training-Free Model Compression (70\% Pruning)}}{117}{figure.B.6}%
-\contentsline {figure}{\numberline {B.7}{\ignorespaces Qualitative Examples: Importance, Uniform, and Random Block Selection (68\% Pruning)}}{118}{figure.B.7}%
-\contentsline {figure}{\numberline {B.8}{\ignorespaces Qualitative Examples: Importance, Uniform, and Random Block Selection (57\% Pruning)}}{118}{figure.B.8}%
-\contentsline {figure}{\numberline {B.9}{\ignorespaces Qualitative Examples: Importance, Uniform, and Random Block Selection (43\% Pruning)}}{119}{figure.B.9}%
-\contentsline {figure}{\numberline {B.10}{\ignorespaces Qualitative Examples: SVDtrunc}}{121}{figure.B.10}%
-\contentsline {figure}{\numberline {B.11}{\ignorespaces Qualitative Examples: Domain Shift in SVDtrunc - Appendix}}{124}{figure.B.11}%
-\contentsline {figure}{\numberline {B.12}{\ignorespaces Qualitative Examples: Memorization Loss in SVDtrunc - Appendix}}{125}{figure.B.12}%
-\contentsline {figure}{\numberline {B.13}{\ignorespaces Training-Free: Flux.1-dev Block Importance Ranking}}{126}{figure.B.13}%
+\contentsline {figure}{\numberline {B.1}{\ignorespaces Qualitative Double-Stream Block Importance Analysis of Flux.1-dev: Block Removal}}{110}{figure.B.1}%
+\contentsline {figure}{\numberline {B.2}{\ignorespaces Qualitative Single-Stream Block Importance Analysis of Flux.1-dev: Block Removal}}{112}{figure.B.2}%
+\contentsline {figure}{\numberline {B.3}{\ignorespaces Qualitative Double-Stream Block Importance Analysis of Flux.1-dev: Block Compression}}{113}{figure.B.3}%
+\contentsline {figure}{\numberline {B.4}{\ignorespaces Qualitative Single-Stream Block Importance Analysis of Flux.1-dev: Block Compression}}{114}{figure.B.4}%
+\contentsline {figure}{\numberline {B.5}{\ignorespaces Qualitative Examples: Training-Free Model Compression (90\% Pruning)}}{115}{figure.B.5}%
+\contentsline {figure}{\numberline {B.6}{\ignorespaces Qualitative Examples: Training-Free Model Compression (70\% Pruning)}}{116}{figure.B.6}%
+\contentsline {figure}{\numberline {B.7}{\ignorespaces Qualitative Examples: Importance, Uniform, and Random Block Selection (68\% Pruning)}}{117}{figure.B.7}%
+\contentsline {figure}{\numberline {B.8}{\ignorespaces Qualitative Examples: Importance, Uniform, and Random Block Selection (57\% Pruning)}}{117}{figure.B.8}%
+\contentsline {figure}{\numberline {B.9}{\ignorespaces Qualitative Examples: Importance, Uniform, and Random Block Selection (43\% Pruning)}}{118}{figure.B.9}%
+\contentsline {figure}{\numberline {B.10}{\ignorespaces Qualitative Examples: SVDtrunc}}{120}{figure.B.10}%
+\contentsline {figure}{\numberline {B.11}{\ignorespaces Qualitative Examples: Domain Shift in SVDtrunc - Appendix}}{123}{figure.B.11}%
+\contentsline {figure}{\numberline {B.12}{\ignorespaces Qualitative Examples: Memorization Loss in SVDtrunc - Appendix}}{124}{figure.B.12}%
+\contentsline {figure}{\numberline {B.13}{\ignorespaces Training-Free: Flux.1-dev Block Importance Ranking}}{125}{figure.B.13}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }

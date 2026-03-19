@@ -1,8 +1,8 @@
 \section{Diffusion and Flow Matching Models}
 \label{sec:diffModel}
-Diffusion models \cite{DiffusionModelIntroPaper, DDPM, DDIM, LDM, SGM, SDE} are probabilistic generative models  that have achieved remarkable success in image generation tasks \cite{Flux, HiDream}, demonstrating exceptional performance in terms of image quality and image diversity. While they require significant computational resources and have slower inference compared to some alternatives \cite{VAE, NormalizingFlow, GAN}, they have become the dominant generative modeling paradigm in the research community.
+Diffusion models \cite{DMBeginning, DDPM, DDIM, LDM, SGM, SDE} are probabilistic generative models  that have achieved remarkable success in image generation tasks \cite{Flux, HiDream}, demonstrating exceptional performance in terms of image quality and image diversity. While they require significant computational resources and have slower inference compared to some alternatives \cite{VAE, NormalizingFlow, GAN}, they have become the dominant generative modeling paradigm in the research community.
 The main principles of diffusion models are reflected in two processes motivated by non-equilibrium thermodynamics, namely the forward process and the reverse process. In the forward process, the original image is gradually perturbed by systematically adding Gaussian noise until only pure noise is left. The reverse process describes the iterative noise removal by the diffusion model until a clean image is obtained. During image generation with a diffusion model, the starting point is randomly sampled noise to which the diffusion model is applied iteratively. This repeated application gradually produces a clean, high-quality image. To reduce the computational load, instead of executing the diffusion process in image space, \cite{LDM} proposed to first convert the image/noise into a compressed latent space using an autoencoder, where the diffusion process then took place. This class of diffusion models is therefore called latent diffusion models and are widely applied used. \\
-Over time, several different formulations of diffusion models were proposed. However, there are three dominant formulations recognized in the literature \cite{SurveyDM}: Denoising diffusion probabilistic models (\gls{DDPM}s) \cite{DiffusionModelIntroPaper, DDPM} and its further development denoising diffusion implicit models (\gls{DDIM}s, score-based generative models (\gls{SGM}s) \cite{SGM} and stochastic differential equations (\gls{SDE}s) \cite{SDE}. \\
+Over time, several different formulations of diffusion models were proposed. However, there are three dominant formulations recognized in the literature \cite{SurveyDM}: Denoising diffusion probabilistic models (\gls{DDPM}s) \cite{DMBeginning, DDPM} and its further development denoising diffusion implicit models (\gls{DDIM}s, score-based generative models (\gls{SGM}s) \cite{SGM} and stochastic differential equations (\gls{SDE}s) \cite{SDE}. \\
 
  Recently, a generalization of DMs was proposed, known as flow matching or Flow-based models \cite{RectifiedFlowMatching, FlowMatching}. Unlike classical diffusion, flow  matching models directly learn a vector field that defines the path between the noise distribution and the data distribution. By enforcing a straight path trajectory, the sampling process becomes computationally more efficient. This formulation was successfully applied in several recent models like Flux-dev \cite{Flux} or Sana \cite{Sana}.\\
  In the following, the different formulations of diffusion models, DDPM, DDIM, SGM and SDE, are presented followed by an introduction to the concept of flow matching.
@@ -317,7 +317,7 @@ the \gls{DDIM} approach becomes Markovian again and here, the deep connection be
 
 \subsection{Score-Based Generative Models}
 This discussion is mainly based on \cite{Survey2, SurveyDM}.
-Score-Based Generative Models (\gls{SGM}s) \cite{IntroSGM, ImprovedSGMs} do not learn directly the data distribution $p_\text{data}(\mathbf{x})$ but the score of the probability function $\nabla_x \log p_\text{data}(\mathbf{x})$. The score represents a vector field that points to the steepest increase in log probability density, thereby, guiding the data generation process to regions of higher data density. There are several approaches on how the score function can be learned \cite{ScoreBasedODE, SteinDiscrepancy, SlicedScoreMatching}. Here, the one closest to the \gls{DDPM} approach is presented \cite{IntroSGM}. During training, the data is perturbed by Gaussian noise at different noise levels and a neural network is trained to estimate the score function based on the noise level $s_\theta(\mathbf{x}_t, t) \approx \nabla_{\mathbf{x}_t} \log q(x_t)$. Perturbing the data is necessary because the score estimation is inaccurate in low-density regions and to ensure the process does not get stuck. These networks are called Noise-Conditional Score Networks (\gls{NCSN}s). The learning objective boils down to 
+Score-Based Generative Models (\gls{SGM}s) \cite{SGM, ImprovedSGMs} do not learn directly the data distribution $p_\text{data}(\mathbf{x})$ but the score of the probability function $\nabla_x \log p_\text{data}(\mathbf{x})$. The score represents a vector field that points to the steepest increase in log probability density, thereby, guiding the data generation process to regions of higher data density. There are several approaches on how the score function can be learned \cite{SDE,SteinDiscrepancy,SlicedScoreMatching}. Here, the one closest to the \gls{DDPM} approach is presented \cite{SGM}. During training, the data is perturbed by Gaussian noise at different noise levels and a neural network is trained to estimate the score function based on the noise level $s_\theta(\mathbf{x}_t, t) \approx \nabla_{\mathbf{x}_t} \log q(x_t)$. Perturbing the data is necessary because the score estimation is inaccurate in low-density regions and to ensure the process does not get stuck. These networks are called Noise-Conditional Score Networks (\gls{NCSN}s). The learning objective boils down to 
 
 \begin{align}
    &\mathbb{E}_{T \sim \mathcal{U}[1,T], \mathbf{x}_0 \sim q(\mathbf{x}_0), \mathbf{x}_t \sim q(\mathbf{x}_t|\mathbf{x}_0)} \left[ \lambda(t) \sigma_t^2 \left\| \nabla_{\mathbf{x}_t} \log q(\mathbf{x}_t) - s_\theta(\mathbf{x}_t, t) \right\|^2 \right] 
@@ -328,7 +328,7 @@ Score-Based Generative Models (\gls{SGM}s) \cite{IntroSGM, ImprovedSGMs} do not 
  \label{SGMLoss} \quad.
 \end{align}
 In eq. \ref{SGMLoss} the relation to \gls{DDPM} loss becomes visible by identifying $\boldsymbol{\epsilon}(\mathbf{x}_t,t) = - \sigma_t s_\theta(\mathbf{x}_t,t)$ \cite{Survey2}, showing that learning to predict noise is equivalent to learning the score function. \\
-For sampling a new element from the data distribution \cite{IntroSGM} proposed Annealed Langevin Dynamics (\gls{ALD}) which produces samples by only using the score function being approximated by the learned neural network
+For sampling a new element from the data distribution \cite{SGM} proposed Annealed Langevin Dynamics (\gls{ALD}) which produces samples by only using the score function being approximated by the learned neural network
 \begin{equation}
     \mathbf{x}_t = \mathbf{x}_{t-1} + \alpha \nabla_{\mathbf{x}} \log p(\mathbf{x}_{t-1}) + \sqrt{2\alpha} \mathbf{z}_t, \quad 1 \leq t \leq T
     \label{SamplingSGM}
@@ -338,7 +338,7 @@ with $\mathbf{z}_t \sim \mathcal{N}(\mathbf{0}, \mathbf{I})$ and $\alpha$ regula
 
 \subsection{Stochastic Differential Equations}
 This discussion is mainly based on \cite{Survey2, SurveyDM}.
-Stochastic Differential Equations (\gls{SDE}s) \cite{ScoreBasedODE} are a generalization of \gls{SGM}s and \gls{DDPM}s to continuous time where the forward and the reverse process are modeled by the solution of stochastic differential equations. The forward process is described by the \gls{SDE}
+Stochastic Differential Equations (\gls{SDE}s) \cite{SDE} are a generalization of \gls{SGM}s and \gls{DDPM}s to continuous time where the forward and the reverse process are modeled by the solution of stochastic differential equations. The forward process is described by the \gls{SDE}
 \begin{equation}
     d\mathbf{x} = \mathbf{f}(\mathbf{x},t) dt + g(t) d\mathbf{w}
     \label{SDE}
@@ -352,11 +352,11 @@ with a standard Wiener process $\mathbf{\tilde{w}}$ where the time flies backwar
 \begin{equation}
     \mathbb{E}_{t \sim \mathcal{U}[0,T], \mathbf{x}_0 \sim q(\mathbf{x}_0), \mathbf{x}_t \sim q(\mathbf{x}_t|\mathbf{x}_0)} \left[ \lambda(t) \left\| s_\theta(\mathbf{x}_t, t) - \nabla_{\mathbf{x}_t} \log q_{t}(\mathbf{x}_t) \right\|^2 \right]
 \end{equation}
-such as $s_\theta(\mathbf{x},t) \approx \nabla_{\mathbf{x}_t} \log q_{t}(\mathbf{x}_t) $. For converting noise to data, a solution of eq. \ref{reverseSDE} has to be computed using the score neural network and a \gls{SDE} solver. Another finding of \cite{ScoreBasedODE} is that for eq. \ref{reverseSDE} an \gls{ODE} exists having the same marginal as the \gls{SDE} being known as probability flow \gls{ODE} in the literature. It's given by by the deterministic version of eq. \ref{reverseSDE}
+such as $s_\theta(\mathbf{x},t) \approx \nabla_{\mathbf{x}_t} \log q_{t}(\mathbf{x}_t) $. For converting noise to data, a solution of eq. \ref{reverseSDE} has to be computed using the score neural network and a \gls{SDE} solver. Another finding of \cite{SDE} is that for eq. \ref{reverseSDE} an \gls{ODE} exists having the same marginal as the \gls{SDE} being known as probability flow \gls{ODE} in the literature. It's given by by the deterministic version of eq. \ref{reverseSDE}
 \begin{equation}
     d\mathbf{x} = \left[ \mathbf{f}(\mathbf{x},t) - \frac{1}{2} g(t)^2 \nabla_\mathbf{x} \log q(\mathbf{x}_t) \right] dt
 \end{equation}
-Both reversed-\gls{SDE} or probability flow \gls{ODE} can be used to generate new samples using \gls{SDE} solvers \cite{ScoreBasedODE, FastSDE} or respectively \gls{ODE} solvers \cite{ScoreBasedODE, ODESolver1, ODESolver2, ODESolver3}.
+Both reversed-\gls{SDE} or probability flow \gls{ODE} can be used to generate new samples using \gls{SDE} solvers \cite{SDE, FastSDE} or respectively \gls{ODE} solvers \cite{SDE, ODESolver1, ODESolver2, ODESolver3}.
 
 
 

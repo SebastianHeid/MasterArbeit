@@ -41,3 +41,13 @@ and \\
 \begin{center}
     \textbf{Abstract}\\
 \end{center}
+    
+    Diffusion Transformers (\gls{DiT}s) are currently state-of-the-art (\gls{SOTA}) text-to-image generation models, capable of generating highly realistic and aesthetic images with exceptional detail. Despite these capabilities, their immense size makes them difficult to deploy in resource-constrained environments. Several structural pruning methods have been proposed to reduce the parameter count of \gls{DiT}s. Yet, the removal of individual components from the \gls{DiT} architecture severely disrupts the information flow. Truncated singular value decomposition (\gls{SVD}) provides an alternative approach by approximating components rather than removing them entirely. However, truncated \gls{SVD} has shown drastic performance degradation in large language models (\gls{LLM}s) even under moderate compression. In this work, truncated \gls{SVD} is revisited in the context of \gls{DiT}s, and its effectiveness is demonstrated in contrast to previous findings in \gls{LLM}s. To investigate an \gls{SVD}-based compression pipeline for \gls{DiT}s, several preliminary experiments were conducted on PixArt-$\Sigma$, as its relatively low parameter count allows for extensive ablations. These findings culminated in \gls{SVD}trunc, a new compression protocol leveraging truncated \gls{SVD}. It iteratively selects the Transformer blocks based on their task importance and compresses less critical ones more aggressively, followed by subsequent fine-tuning utilizing knowledge distillation. \gls{SVD}trunc was applied to Flux.1-dev, an 11.9 billion parameter model, compressing it to 68\% of its original size. The compressed model demonstrates near-original generation quality and outperforms all competitive methods across three benchmarks (HPSv2, GenEval, and DPG). Further compression shows that the model performance degrades gradually and predictably even under substantial parameter reduction, establishing a new quality-parameter frontier for Flux.1-dev. Furthermore, \gls{SVD}trunc even exhibits strong performance in a training-free setting, and its applicability to step-distilled \gls{DiT}s is successfully demonstrated.  
+    
+    \newpage
+    \thispagestyle{plain}
+    \begin{center}
+    	\textbf{Zusammenfassung}\\
+    \end{center}
+    
+    
