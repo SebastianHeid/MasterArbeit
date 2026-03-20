@@ -77,14 +77,14 @@ Fig. \ref{fig:AppxBlockAnalysisCompressionDouble} and Fig. \ref{fig:AppxBlockAna
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{images/Experimente/Flux/Block_Analysis/BlockCompressionDouble.pdf}
-	\caption[Qualitative Double-Stream Block Importance Analysis of Flux.1-dev: Block Compression]{Qualitative comparison of the impact of 60\% compression of individual double-stream blocks in Flux.1-dev.}
+	\caption[Qualitative Double-Stream Block Importance Analysis of Flux.1-dev: Block Compression]{Qualitative comparison of the impact of 60\% \gls{SVD}-based compression of individual double-stream blocks in Flux.1-dev.}
 	\label{fig:AppxBlockAnalysisCompressionDouble}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{images/Experimente/Flux/Block_Analysis/BlockCompressionSingle.pdf}
-	\caption[Qualitative Single-Stream Block Importance Analysis of Flux.1-dev: Block Compression]{Qualitative comparison of the impact of 60\% compression of individual single-stream blocks in Flux.1-dev.}
+	\caption[Qualitative Single-Stream Block Importance Analysis of Flux.1-dev: Block Compression]{Qualitative comparison of the impact of 60\% \gls{SVD}-based compression of individual single-stream blocks in Flux.1-dev.}
 	\label{fig:AppxBlockAnalysisCompressionSingle}
 \end{figure}
 
@@ -101,7 +101,7 @@ This section provides the technical settings for the training-free experiments (
 	\label{tab:TrainingFreeMethodsSVD}
 	\begin{tabular}{@{}lccc@{}}
 		\toprule
-		\textbf{Model Size} & \textbf{Modified Blocks} & \textbf{Base Compression Ratio}  & \textbf{Slope $x$}  \\ \midrule
+		\textbf{Model Size} & \textbf{Modified Blocks} & \textbf{Base Compression Ratio}  & \textbf{Linear Decay Rate $x$}  \\ \midrule
 		90\% & 30 & 25\% & 0.0083 \\
 		80\% & 30 & 50\% & 0.0166\\
 		70\% & 30 & 75\% & 0.0249\\
@@ -197,8 +197,8 @@ Tab. \ref{tab:compression_iterations} summarizes the experimental settings for t
 	\label{tab:compression_iterations}
 	\begin{tabular}{ccccc}
 		\toprule
-		\textbf{Iteration} &\textbf{Model Size} & \textbf{Number of} & \textbf{Base Compression} & \textbf{Slope} $x$\\
-		&&\textbf{Modified Blocks}&\textbf{Ratio}& \\
+		\textbf{Iteration} &\textbf{Model Size} & \textbf{Number of} & \textbf{Base Compression} & \textbf{Linear Decay}\\
+		&&\textbf{Modified Blocks}&\textbf{Ratio}& \textbf{Ratio} $x$\\
 		\midrule
 		\multicolumn{5}{c}{Flux.1.dev\cite{Flux}}\\
 		\midrule
@@ -269,9 +269,9 @@ In addition, further example images for \gls{SVD}trunc \ref{fig:SVDtrunc_Appx} a
 			\textbf{Steps}&
 			\textbf{Number of}&
 			\textbf{Base Compression}&
-			\textbf{Slope} $x$
+			\textbf{Linear Decay} 
 			\\
-			&&& \textbf{Modified Blocks} & \textbf{Ratio} & \\
+			&&& \textbf{Modified Blocks} & \textbf{Ratio} &  \textbf{Rate} $x$\\
 			\midrule
 			\multicolumn{6}{c}{Flux.1.dev\cite{Flux}}\\
 			\midrule
