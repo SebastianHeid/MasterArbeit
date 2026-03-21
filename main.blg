@@ -24,43 +24,40 @@ Reallocated global_strs (elt_size=200001) to 20 items from 10.
 Reallocated glb_str_end (elt_size=4) to 20 items from 10.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
-Reallocated field_info (elt_size=4) to 10376 items from 5000.
+Reallocated field_info (elt_size=4) to 10320 items from 5000.
 Database file #1: bibliography.bib
 Repeated entry---line 251 of file bibliography.bib
  : @article{han2015deep
  :                     ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 449 of file bibliography.bib
+Repeated entry---line 456 of file bibliography.bib
  : @misc{EcoDiff
  :              ,
 I'm skipping whatever remains of this entry
 Warning--entry type for "kohya_ss_sd_scripts_2024" isn't style-file defined
---line 459 of file bibliography.bib
-I was expecting a `,' or a `}'---line 476 of file bibliography.bib
+--line 466 of file bibliography.bib
+I was expecting a `,' or a `}'---line 483 of file bibliography.bib
  :  commit = {INSERT_COMMIT_HASH_HERE} 
  :                                     % Optional: Falls Sie eine spezifische Version genutzt haben
 I'm skipping whatever remains of this entry
-Repeated entry---line 641 of file bibliography.bib
+Repeated entry---line 648 of file bibliography.bib
  : @article{han2015learning
  :                         ,
 I'm skipping whatever remains of this entry
-I was expecting a `,' or a `}'---line 1040 of file bibliography.bib
+I was expecting a `,' or a `}'---line 1047 of file bibliography.bib
  :    
  :    pages = {1-10},
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
-Repeated entry---line 1407 of file bibliography.bib
+Repeated entry---line 1414 of file bibliography.bib
  : @article{KnowledgeDistillation
  :                               ,
 I'm skipping whatever remains of this entry
-I was expecting a `,' or a `}'---line 1421 of file bibliography.bib
+I was expecting a `,' or a `}'---line 1428 of file bibliography.bib
  :    
  :    pages = {234-241},
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
-Warning--I didn't find a database entry for "ScoreBasedODE"
-Warning--I didn't find a database entry for "CNN"
-Warning--I didn't find a database entry for "ma2025pluggable"
 Warning--empty journal in HiDream
 Warning--empty journal in Claude
 Warning--empty year in ResidualConnection
@@ -69,45 +66,45 @@ Warning--can't use both volume and number fields in adaLN
 Warning--empty journal in SelfAttentionFigure
 Warning--empty journal in ConsistencyModel
 Warning--empty journal in flux1-lite
-You've used 189 entries,
+You've used 190 entries,
             2943 wiz_defined-function locations,
-            1638 strings with 43272 characters,
-and the built_in function-call counts, 101572 in all, are:
-= -- 9918
-> -- 5742
+            1637 strings with 43461 characters,
+and the built_in function-call counts, 102193 in all, are:
+= -- 9970
+> -- 5802
 < -- 57
-+ -- 2151
-- -- 1954
-* -- 6021
-:= -- 14993
-add.period$ -- 601
-call.type$ -- 189
-change.case$ -- 1531
++ -- 2174
+- -- 1976
+* -- 6069
+:= -- 15099
+add.period$ -- 604
+call.type$ -- 190
+change.case$ -- 1544
 chr.to.int$ -- 0
-cite$ -- 197
-duplicate$ -- 2713
-empty$ -- 8104
-format.name$ -- 1954
-if$ -- 25222
+cite$ -- 198
+duplicate$ -- 2723
+empty$ -- 8136
+format.name$ -- 1976
+if$ -- 25359
 int.to.chr$ -- 0
-int.to.str$ -- 189
-missing$ -- 176
-newline$ -- 956
-num.names$ -- 378
-pop$ -- 2622
+int.to.str$ -- 190
+missing$ -- 177
+newline$ -- 961
+num.names$ -- 380
+pop$ -- 2640
 preamble$ -- 1
-purify$ -- 1341
+purify$ -- 1353
 quote$ -- 0
-skip$ -- 6257
+skip$ -- 6286
 stack$ -- 0
-substring$ -- 3847
-swap$ -- 825
+substring$ -- 3852
+swap$ -- 826
 text.length$ -- 61
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 756
+type$ -- 760
 warning$ -- 8
-while$ -- 582
-width$ -- 192
-write$ -- 2034
+while$ -- 584
+width$ -- 193
+write$ -- 2044
 (There were 7 error messages)

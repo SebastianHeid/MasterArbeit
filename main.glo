@@ -58,6 +58,7 @@
 \glossaryentry{NCSN?\glossentry{NCSN}|setentrycounter[]{page}"\glsnumberformat}{VII}
 \glossaryentry{ALD?\glossentry{ALD}|setentrycounter[]{page}"\glsnumberformat}{VII}
 \glossaryentry{ODE?\glossentry{ODE}|setentrycounter[]{page}"\glsnumberformat}{VII}
+\glossaryentry{CFM?\glossentry{CFM}|setentrycounter[]{page}"\glsnumberformat}{VII}
 \glossaryentry{SDE?\glossentry{SDE}|setentrycounter[]{page}"\glsnumberformat}{VII}
 \glossaryentry{SGM?\glossentry{SGM}|setentrycounter[]{page}"\glsnumberformat}{VII}
 \glossaryentry{DM?\glossentry{DM}|setentrycounter[]{page}"\glsnumberformat}{VII}
@@ -170,7 +171,7 @@
 \glossaryentry{DDPM?\glossentry{DDPM}|setentrycounter[]{page}"\glsnumberformat}{8}
 \glossaryentry{MC?\glossentry{MC}|setentrycounter[]{page}"\glsnumberformat}{9}
 \glossaryentry{MC?\glossentry{MC}|setentrycounter[]{page}"\glsnumberformat}{9}
-\glossaryentry{ELBO?\glossentry{ELBO}|setentrycounter[]{page}"\glsnumberformat}{10}
+\glossaryentry{DDPM?\glossentry{DDPM}|setentrycounter[]{page}"\glsnumberformat}{9}
 \glossaryentry{ELBO?\glossentry{ELBO}|setentrycounter[]{page}"\glsnumberformat}{10}
 \glossaryentry{KL?\glossentry{KL}|setentrycounter[]{page}"\glsnumberformat}{11}
 \glossaryentry{DDPM?\glossentry{DDPM}|setentrycounter[]{page}"\glsnumberformat}{12}
@@ -192,7 +193,7 @@
 \glossaryentry{SDE?\glossentry{SDE}|setentrycounter[]{page}"\glsnumberformat}{14}
 \glossaryentry{SGM?\glossentry{SGM}|setentrycounter[]{page}"\glsnumberformat}{14}
 \glossaryentry{DDPM?\glossentry{DDPM}|setentrycounter[]{page}"\glsnumberformat}{14}
-\glossaryentry{SDE?\glossentry{SDE}|setentrycounter[]{page}"\glsnumberformat}{14}
+\glossaryentry{SDE?\glossentry{SDE}|setentrycounter[]{page}"\glsnumberformat}{15}
 \glossaryentry{SDE?\glossentry{SDE}|setentrycounter[]{page}"\glsnumberformat}{15}
 \glossaryentry{SDE?\glossentry{SDE}|setentrycounter[]{page}"\glsnumberformat}{15}
 \glossaryentry{SGM?\glossentry{SGM}|setentrycounter[]{page}"\glsnumberformat}{15}
@@ -217,10 +218,11 @@
 \glossaryentry{DM?\glossentry{DM}|setentrycounter[]{page}"\glsnumberformat}{17}
 \glossaryentry{LDM?\glossentry{LDM}|setentrycounter[]{page}"\glsnumberformat}{17}
 \glossaryentry{DM?\glossentry{DM}|setentrycounter[]{page}"\glsnumberformat}{17}
+\glossaryentry{DDPM?\glossentry{DDPM}|setentrycounter[]{page}"\glsnumberformat}{17}
 \glossaryentry{LDM?\glossentry{LDM}|setentrycounter[]{page}"\glsnumberformat}{17}
-\glossaryentry{DM?\glossentry{DM}|setentrycounter[]{page}"\glsnumberformat}{17}
 \glossaryentry{LDM?\glossentry{LDM}|setentrycounter[]{page}"\glsnumberformat}{17}
 \glossaryentry{LDM?\glossentry{LDM}|setentrycounter[]{page}"\glsnumberformat}{17}
+\glossaryentry{DM?\glossentry{DM}|setentrycounter[]{page}"\glsnumberformat}{18}
 \glossaryentry{DM?\glossentry{DM}|setentrycounter[]{page}"\glsnumberformat}{18}
 \glossaryentry{CFG?\glossentry{CFG}|setentrycounter[]{page}"\glsnumberformat}{18}
 \glossaryentry{CFG?\glossentry{CFG}|setentrycounter[]{page}"\glsnumberformat}{18}
@@ -237,11 +239,15 @@
 \glossaryentry{CLS?\glossentry{CLS}|setentrycounter[]{page}"\glsnumberformat}{23}
 \glossaryentry{MLP?\glossentry{MLP}|setentrycounter[]{page}"\glsnumberformat}{23}
 \glossaryentry{adaLN?\glossentry{adaLN}|setentrycounter[]{page}"\glsnumberformat}{24}
+\glossaryentry{VRAM?\glossentry{VRAM}|setentrycounter[]{page}"\glsnumberformat}{25}
+\glossaryentry{DiT?\glossentry{DiT}|setentrycounter[]{page}"\glsnumberformat}{25}
 \glossaryentry{MSE?\glossentry{MSE}|setentrycounter[]{page}"\glsnumberformat}{25}
 \glossaryentry{DM?\glossentry{DM}|setentrycounter[]{page}"\glsnumberformat}{27}
 \glossaryentry{FID?\glossentry{FID}|setentrycounter[]{page}"\glsnumberformat}{27}
+\glossaryentry{CLIP?\glossentry{CLIP}|setentrycounter[]{page}"\glsnumberformat}{27}
 \glossaryentry{CMMD?\glossentry{CMMD}|setentrycounter[]{page}"\glsnumberformat}{27}
 \glossaryentry{HPSv2?\glossentry{HPSv2}|setentrycounter[]{page}"\glsnumberformat}{27}
+\glossaryentry{DPG?\glossentry{DPG}|setentrycounter[]{page}"\glsnumberformat}{27}
 \glossaryentry{FID?\glossentry{FID}|setentrycounter[]{page}"\glsnumberformat}{27}
 \glossaryentry{FID?\glossentry{FID}|setentrycounter[]{page}"\glsnumberformat}{27}
 \glossaryentry{FID?\glossentry{FID}|setentrycounter[]{page}"\glsnumberformat}{27}
@@ -252,7 +258,8 @@
 \glossaryentry{FID?\glossentry{FID}|setentrycounter[]{page}"\glsnumberformat}{27}
 \glossaryentry{CMMD?\glossentry{CMMD}|setentrycounter[]{page}"\glsnumberformat}{27}
 \glossaryentry{CLIP?\glossentry{CLIP}|setentrycounter[]{page}"\glsnumberformat}{27}
-\glossaryentry{MMD?\glossentry{MMD}|setentrycounter[]{page}"\glsnumberformat}{27}
+\glossaryentry{CLIP?\glossentry{CLIP}|setentrycounter[]{page}"\glsnumberformat}{27}
+\glossaryentry{MMD?\glossentry{MMD}|setentrycounter[]{page}"\glsnumberformat}{28}
 \glossaryentry{FID?\glossentry{FID}|setentrycounter[]{page}"\glsnumberformat}{28}
 \glossaryentry{CMMD?\glossentry{CMMD}|setentrycounter[]{page}"\glsnumberformat}{28}
 \glossaryentry{FID?\glossentry{FID}|setentrycounter[]{page}"\glsnumberformat}{28}

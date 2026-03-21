@@ -1045,7 +1045,7 @@ Luke Tierney.
 Hugo Touvron, Louis Martin, Kevin Stone, Peter Albert, Amjad Almahairi, Yasmine
   Babaei, Nikolay Bashlykov, Soumya Batra, Prajjwal Bhargava, Shruti Bhosale,
   et~al.
-\newblock Llama 2: Open foundation and fine-tuned chat models.
+\newblock {LLaMA} 2: Open foundation and fine-tuned chat models.
 \newblock {\em arXiv preprint arXiv:2307.09288}, 2023.
 
 \bibitem{VQVAE}
@@ -1096,6 +1096,12 @@ Zijie~J Wang, Evan Montoya, David Munechika, Haoyang Yang, Benjamin Hoover, and
 Wei Wen, Chunpeng Wu, Yandan Wang, Yiran Chen, and Hai Li.
 \newblock Learning structured sparsity in deep neural networks.
 \newblock {\em Advances in Neural Information Processing Systems}, 29, 2016.
+
+\bibitem{wu2025qwen}
+Chenfei Wu, Jiahao Li, Jingren Zhou, Junyang Lin, Kaiyuan Gao, Kun Yan,
+  Sheng-ming Yin, Shuai Bai, Xiao Xu, Yilei Chen, et~al.
+\newblock Qwen-image technical report.
+\newblock {\em arXiv preprint arXiv:2508.02324}, 2025.
 
 \bibitem{HPSv2}
 Xiaoshi Wu, Yiming Hao, Keqiang Sun, Yixiong Chen, Feng Zhu, Rui Zhao, and
