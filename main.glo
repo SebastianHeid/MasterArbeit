@@ -280,6 +280,7 @@
 \glossaryentry{CLIP?\glossentry{CLIP}|setentrycounter[]{page}"\glsnumberformat}{28}
 \glossaryentry{DPG?\glossentry{DPG}|setentrycounter[]{page}"\glsnumberformat}{29}
 \glossaryentry{DSG?\glossentry{DSG}|setentrycounter[]{page}"\glsnumberformat}{29}
+\glossaryentry{DiT?\glossentry{DiT}|setentrycounter[]{page}"\glsnumberformat}{30}
 \glossaryentry{LADD?\glossentry{LADD}|setentrycounter[]{page}"\glsnumberformat}{30}
 \glossaryentry{SVD?\glossentry{SVD}|setentrycounter[]{page}"\glsnumberformat}{30}
 \glossaryentry{PTQ?\glossentry{PTQ}|setentrycounter[]{page}"\glsnumberformat}{31}
@@ -292,7 +293,9 @@
 \glossaryentry{VRAM?\glossentry{VRAM}|setentrycounter[]{page}"\glsnumberformat}{32}
 \glossaryentry{VRAM?\glossentry{VRAM}|setentrycounter[]{page}"\glsnumberformat}{32}
 \glossaryentry{VRAM?\glossentry{VRAM}|setentrycounter[]{page}"\glsnumberformat}{32}
+\glossaryentry{DiT?\glossentry{DiT}|setentrycounter[]{page}"\glsnumberformat}{33}
 \glossaryentry{MLP?\glossentry{MLP}|setentrycounter[]{page}"\glsnumberformat}{33}
+\glossaryentry{MMDiT?\glossentry{MMDiT}|setentrycounter[]{page}"\glsnumberformat}{33}
 \glossaryentry{LoRA?\glossentry{LoRA}|setentrycounter[]{page}"\glsnumberformat}{33}
 \glossaryentry{MoE?\glossentry{MoE}|setentrycounter[]{page}"\glsnumberformat}{33}
 \glossaryentry{MLP?\glossentry{MLP}|setentrycounter[]{page}"\glsnumberformat}{33}
@@ -309,10 +312,6 @@
 \glossaryentry{LLM?\glossentry{LLM}|setentrycounter[]{page}"\glsnumberformat}{33}
 \glossaryentry{SVD?\glossentry{SVD}|setentrycounter[]{page}"\glsnumberformat}{33}
 \glossaryentry{SVD?\glossentry{SVD}|setentrycounter[]{page}"\glsnumberformat}{33}
-\glossaryentry{SVD?\glossentry{SVD}|setentrycounter[]{page}"\glsnumberformat}{33}
-\glossaryentry{SVD?\glossentry{SVD}|setentrycounter[]{page}"\glsnumberformat}{33}
-\glossaryentry{SVD?\glossentry{SVD}|setentrycounter[]{page}"\glsnumberformat}{33}
-\glossaryentry{LLM?\glossentry{LLM}|setentrycounter[]{page}"\glsnumberformat}{33}
 \glossaryentry{DiT?\glossentry{DiT}|setentrycounter[]{page}"\glsnumberformat}{34}
 \glossaryentry{MLP?\glossentry{MLP}|setentrycounter[]{page}"\glsnumberformat}{34}
 \glossaryentry{MLP?\glossentry{MLP}|setentrycounter[]{page}"\glsnumberformat}{35}
