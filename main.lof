@@ -101,6 +101,10 @@
 \contentsline {figure}{\numberline {B.10}{\ignorespaces Qualitative Examples: SVDtrunc}}{120}{figure.B.10}%
 \contentsline {figure}{\numberline {B.11}{\ignorespaces Qualitative Examples: Domain Shift in SVDtrunc - Appendix}}{123}{figure.B.11}%
 \contentsline {figure}{\numberline {B.12}{\ignorespaces Qualitative Examples: Memorization Loss in SVDtrunc - Appendix}}{124}{figure.B.12}%
-\contentsline {figure}{\numberline {B.13}{\ignorespaces Training-Free: Flux.1-dev Block Importance Ranking}}{125}{figure.B.13}%
+\contentsline {figure}{\numberline {B.13}{\ignorespaces Qualitative Examples: Failure Cases in SVDtrunc - Appendix}}{125}{figure.B.13}%
+\contentsline {figure}{\numberline {B.14}{\ignorespaces Qualitative Examples: SVDtrunc on Flux.1-Schnell - Appendix}}{126}{figure.B.14}%
+\contentsline {figure}{\numberline {B.15}{\ignorespaces Qualitative Examples: Domain Shift in SVDtrunc on Flux.1-Schnell - Appendix}}{127}{figure.B.15}%
+\contentsline {figure}{\numberline {B.16}{\ignorespaces Qualitative Examples: Domain Shift in SVDtrunc on Flux.1-Schnell - Appendix}}{127}{figure.B.16}%
+\contentsline {figure}{\numberline {B.17}{\ignorespaces Training-Free: Flux.1-dev Block Importance Ranking}}{128}{figure.B.17}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }

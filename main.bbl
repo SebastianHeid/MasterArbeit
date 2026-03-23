@@ -206,7 +206,7 @@ MohammadReza Davari, Stefan Horoi, Amine Natik, Guillaume Lajoie, Guy Wolf, and
 \bibitem{ImageNet}
 Jia Deng, Wei Dong, Richard Socher, Li-Jia Li, Kai Li, and Li~Fei-Fei.
 \newblock {ImageNet}: A large-scale hierarchical image database.
-\newblock In {\em 2009 IEEEConference on Computer Vision and Pattern
+\newblock In {\em 2009 IEEE Conference on Computer Vision and Pattern
   Recognition}, pages 248--255. IEEE, 2009.
 
 \bibitem{BERT}
@@ -261,6 +261,15 @@ Steven~K Esser, Jeffrey~L McKinstry, Deepika Bablani, Rathinakumar Appuswamy,
   and Dharmendra~S Modha.
 \newblock Learned step size quantization.
 \newblock {\em arXiv preprint arXiv:1902.08153}, 2019.
+
+\bibitem{eu_ai_act_2024}
+{European Parliament and Council of the European Union}.
+\newblock Regulation {(EU)} 2024/1689 of the {European Parliament} and of the
+  {Council} of 13 june 2024 laying down harmonised rules on artificial
+  intelligence {(Artificial Intelligence Act)}.
+\newblock Official Journal of the European Union, OJ L, 2024/1689, July 2024.
+\newblock Accessed: 23.03.2026.
+\newblock URL: \url{https://eur-lex.europa.eu/eli/reg/2024/1689/oj}.
 
 \bibitem{TinyFusion}
 Gongfan Fang, Kunjun Li, Xinyin Ma, and Xinchao Wang.
@@ -359,8 +368,8 @@ Song Han, Jeff Pool, John Tran, and William Dally.
 \bibitem{ResidualConnection}
 Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun.
 \newblock Deep residual learning for image recognition.
-\newblock In {\em Proceedings of the IEEEConference on Computer Vision and
-  Pattern Recognition}, pages 770--778.
+\newblock In {\em Proceedings of the IEEE Conference on Computer Vision and
+  Pattern Recognition}, pages 770--778, 2016.
 
 \bibitem{he2023efficientdm}
 Yefei He, Jing Liu, Weijia Wu, Hong Zhou, and Bohan Zhuang.
@@ -440,7 +449,7 @@ Benoit Jacob, Skirmantas Kligys, Bo~Chen, Menglong Zhu, Matthew Tang, Andrew
   Howard, Hartwig Adam, and Dmitry Kalenichenko.
 \newblock Quantization and training of neural networks for efficient
   integer-arithmetic-only inference.
-\newblock In {\em Proceedings of the IEEEConference on Computer Vision and
+\newblock In {\em Proceedings of the IEEE Conference on Computer Vision and
   Pattern Recognition}, pages 2704--2713, 2018.
 
 \bibitem{janowsky1989pruning}

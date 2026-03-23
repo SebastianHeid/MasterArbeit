@@ -81,8 +81,9 @@
 		\setentrycounter[]{page}\glsnumberformat{85\delimN 86}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{88\delimN 89}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{93\delimN 94}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{127}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{III\delimN IV}\delimN 
-		\setentrycounter[]{page}\glsnumberformat{VII}}}%
+		\setentrycounter[]{page}\glsnumberformat{VI\delimN VII}}}%
 \glossentry{DM}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{4}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{7}\delimN 
@@ -119,7 +120,7 @@
 		\setentrycounter[]{page}\glsnumberformat{46\delimN 47}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{89\delimR 92}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{94}\delimN 
-		\setentrycounter[]{page}\glsnumberformat{125}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{128}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{VII}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{XII}}}\glsgroupskip
 \glsgroupheading{H}\relax \glsresetentrylist %
@@ -254,7 +255,7 @@
 		\setentrycounter[]{page}\glsnumberformat{31}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{VII}}}%
 \glossentry{SVD}{\glossaryentrynumbers{\relax 
-		\setentrycounter[]{page}\glsnumberformat{2\delimN 3}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{3}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{30}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{33}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{45\delimR 47}\delimN 
@@ -270,8 +271,8 @@
 		\setentrycounter[]{page}\glsnumberformat{113\delimR 116}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{119}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{121\delimN 122}\delimN 
-		\setentrycounter[]{page}\glsnumberformat{125}\delimN 
-		\setentrycounter[]{page}\glsnumberformat{III}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{126\delimR 128}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{III\delimN IV}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{VI\delimN VII}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{XII}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{XIV}}}\glsgroupskip

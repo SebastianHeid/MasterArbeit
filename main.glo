@@ -14,7 +14,12 @@
 \glossaryentry{DiT?\glossentry{DiT}|setentrycounter[]{page}"\glsnumberformat}{IV}
 \glossaryentry{LLM?\glossentry{LLM}|setentrycounter[]{page}"\glsnumberformat}{IV}
 \glossaryentry{DiT?\glossentry{DiT}|setentrycounter[]{page}"\glsnumberformat}{IV}
+\glossaryentry{SVD?\glossentry{SVD}|setentrycounter[]{page}"\glsnumberformat}{IV}
+\glossaryentry{SVD?\glossentry{SVD}|setentrycounter[]{page}"\glsnumberformat}{IV}
+\glossaryentry{DiT?\glossentry{DiT}|setentrycounter[]{page}"\glsnumberformat}{IV}
 \glossaryentry{SVD?\glossentry{SVD}|setentrycounter[]{page}"\glsnumberformat}{VI}
+\glossaryentry{DiT?\glossentry{DiT}|setentrycounter[]{page}"\glsnumberformat}{VI}
+\glossaryentry{DiT?\glossentry{DiT}|setentrycounter[]{page}"\glsnumberformat}{VII}
 \glossaryentry{VAE?\glossentry{VAE}|setentrycounter[]{page}"\glsnumberformat}{VII}
 \glossaryentry{LLM?\glossentry{LLM}|setentrycounter[]{page}"\glsnumberformat}{VII}
 \glossaryentry{LDM?\glossentry{LDM}|setentrycounter[]{page}"\glsnumberformat}{VII}
@@ -102,7 +107,8 @@
 \glossaryentry{SOTA?\glossentry{SOTA}|setentrycounter[]{page}"\glsnumberformat}{1}
 \glossaryentry{DiT?\glossentry{DiT}|setentrycounter[]{page}"\glsnumberformat}{1}
 \glossaryentry{VRAM?\glossentry{VRAM}|setentrycounter[]{page}"\glsnumberformat}{2}
-\glossaryentry{VRAM?\glossentry{VRAM}|setentrycounter[]{page}"\glsnumberformat}{2}
+\glossaryentry{DiT?\glossentry{DiT}|setentrycounter[]{page}"\glsnumberformat}{2}
+\glossaryentry{DiT?\glossentry{DiT}|setentrycounter[]{page}"\glsnumberformat}{2}
 \glossaryentry{ODE?\glossentry{ODE}|setentrycounter[]{page}"\glsnumberformat}{2}
 \glossaryentry{CFG?\glossentry{CFG}|setentrycounter[]{page}"\glsnumberformat}{2}
 \glossaryentry{VRAM?\glossentry{VRAM}|setentrycounter[]{page}"\glsnumberformat}{2}
@@ -110,11 +116,12 @@
 \glossaryentry{DiT?\glossentry{DiT}|setentrycounter[]{page}"\glsnumberformat}{2}
 \glossaryentry{DiT?\glossentry{DiT}|setentrycounter[]{page}"\glsnumberformat}{2}
 \glossaryentry{DiT?\glossentry{DiT}|setentrycounter[]{page}"\glsnumberformat}{2}
-\glossaryentry{SVD?\glossentry{SVD}|setentrycounter[]{page}"\glsnumberformat}{2}
-\glossaryentry{DiT?\glossentry{DiT}|setentrycounter[]{page}"\glsnumberformat}{3}
+\glossaryentry{DiT?\glossentry{DiT}|setentrycounter[]{page}"\glsnumberformat}{2}
 \glossaryentry{LLM?\glossentry{LLM}|setentrycounter[]{page}"\glsnumberformat}{3}
 \glossaryentry{SVD?\glossentry{SVD}|setentrycounter[]{page}"\glsnumberformat}{3}
+\glossaryentry{DiT?\glossentry{DiT}|setentrycounter[]{page}"\glsnumberformat}{3}
 \glossaryentry{SVD?\glossentry{SVD}|setentrycounter[]{page}"\glsnumberformat}{3}
+\glossaryentry{DiT?\glossentry{DiT}|setentrycounter[]{page}"\glsnumberformat}{3}
 \glossaryentry{SVD?\glossentry{SVD}|setentrycounter[]{page}"\glsnumberformat}{3}
 \glossaryentry{LLM?\glossentry{LLM}|setentrycounter[]{page}"\glsnumberformat}{4}
 \glossaryentry{VAE?\glossentry{VAE}|setentrycounter[]{page}"\glsnumberformat}{4}
@@ -518,6 +525,7 @@
 \glossaryentry{VRAM?\glossentry{VRAM}|setentrycounter[]{page}"\glsnumberformat}{87}
 \glossaryentry{SVD?\glossentry{SVD}|setentrycounter[]{page}"\glsnumberformat}{87}
 \glossaryentry{DiT?\glossentry{DiT}|setentrycounter[]{page}"\glsnumberformat}{88}
+\glossaryentry{DiT?\glossentry{DiT}|setentrycounter[]{page}"\glsnumberformat}{88}
 \glossaryentry{SVD?\glossentry{SVD}|setentrycounter[]{page}"\glsnumberformat}{88}
 \glossaryentry{SVD?\glossentry{SVD}|setentrycounter[]{page}"\glsnumberformat}{88}
 \glossaryentry{SVD?\glossentry{SVD}|setentrycounter[]{page}"\glsnumberformat}{89}
@@ -551,6 +559,7 @@
 \glossaryentry{GRASP?\glossentry{GRASP}|setentrycounter[]{page}"\glsnumberformat}{90}
 \glossaryentry{SVD?\glossentry{SVD}|setentrycounter[]{page}"\glsnumberformat}{90}
 \glossaryentry{GRASP?\glossentry{GRASP}|setentrycounter[]{page}"\glsnumberformat}{90}
+\glossaryentry{SVD?\glossentry{SVD}|setentrycounter[]{page}"\glsnumberformat}{90}
 \glossaryentry{GRASP?\glossentry{GRASP}|setentrycounter[]{page}"\glsnumberformat}{90}
 \glossaryentry{SVD?\glossentry{SVD}|setentrycounter[]{page}"\glsnumberformat}{91}
 \glossaryentry{GRASP?\glossentry{GRASP}|setentrycounter[]{page}"\glsnumberformat}{91}
@@ -599,6 +608,8 @@
 \glossaryentry{SVD?\glossentry{SVD}|setentrycounter[]{page}"\glsnumberformat}{121}
 \glossaryentry{SVD?\glossentry{SVD}|setentrycounter[]{page}"\glsnumberformat}{121}
 \glossaryentry{SVD?\glossentry{SVD}|setentrycounter[]{page}"\glsnumberformat}{122}
-\glossaryentry{SVD?\glossentry{SVD}|setentrycounter[]{page}"\glsnumberformat}{125}
-\glossaryentry{GRASP?\glossentry{GRASP}|setentrycounter[]{page}"\glsnumberformat}{125}
-\glossaryentry{SVD?\glossentry{SVD}|setentrycounter[]{page}"\glsnumberformat}{125}
+\glossaryentry{SVD?\glossentry{SVD}|setentrycounter[]{page}"\glsnumberformat}{126}
+\glossaryentry{DiT?\glossentry{DiT}|setentrycounter[]{page}"\glsnumberformat}{127}
+\glossaryentry{SVD?\glossentry{SVD}|setentrycounter[]{page}"\glsnumberformat}{127}
+\glossaryentry{GRASP?\glossentry{GRASP}|setentrycounter[]{page}"\glsnumberformat}{128}
+\glossaryentry{SVD?\glossentry{SVD}|setentrycounter[]{page}"\glsnumberformat}{128}
