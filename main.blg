@@ -24,39 +24,47 @@ Reallocated global_strs (elt_size=200001) to 20 items from 10.
 Reallocated glb_str_end (elt_size=4) to 20 items from 10.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
-Reallocated field_info (elt_size=4) to 10348 items from 5000.
+Reallocated field_info (elt_size=4) to 10488 items from 5000.
 Database file #1: bibliography.bib
-Repeated entry---line 251 of file bibliography.bib
+Repeated entry---line 286 of file bibliography.bib
  : @article{han2015deep
  :                     ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 456 of file bibliography.bib
+Repeated entry---line 428 of file bibliography.bib
+ : @article{wen2016learning
+ :                         ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 502 of file bibliography.bib
  : @misc{EcoDiff
  :              ,
 I'm skipping whatever remains of this entry
 Warning--entry type for "kohya_ss_sd_scripts_2024" isn't style-file defined
---line 466 of file bibliography.bib
-I was expecting a `,' or a `}'---line 483 of file bibliography.bib
+--line 512 of file bibliography.bib
+I was expecting a `,' or a `}'---line 529 of file bibliography.bib
  :  commit = {INSERT_COMMIT_HASH_HERE} 
  :                                     % Optional: Falls Sie eine spezifische Version genutzt haben
 I'm skipping whatever remains of this entry
-Repeated entry---line 648 of file bibliography.bib
+Repeated entry---line 694 of file bibliography.bib
  : @article{han2015learning
  :                         ,
 I'm skipping whatever remains of this entry
-I was expecting a `,' or a `}'---line 1047 of file bibliography.bib
+I was expecting a `,' or a `}'---line 1093 of file bibliography.bib
  :    
  :    pages = {1-10},
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
-Repeated entry---line 1425 of file bibliography.bib
+Repeated entry---line 1471 of file bibliography.bib
  : @article{KnowledgeDistillation
  :                               ,
 I'm skipping whatever remains of this entry
-I was expecting a `,' or a `}'---line 1439 of file bibliography.bib
+I was expecting a `,' or a `}'---line 1485 of file bibliography.bib
  :    
  :    pages = {234-241},
 (Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Repeated entry---line 1681 of file bibliography.bib
+ : @inproceedings{jacob2018quantization
+ :                                     ,
 I'm skipping whatever remains of this entry
 Warning--empty journal in HiDream
 Warning--empty journal in Claude
@@ -65,45 +73,45 @@ Warning--can't use both volume and number fields in adaLN
 Warning--empty journal in SelfAttentionFigure
 Warning--empty journal in ConsistencyModel
 Warning--empty journal in flux1-lite
-You've used 191 entries,
+You've used 196 entries,
             2943 wiz_defined-function locations,
-            1642 strings with 43757 characters,
-and the built_in function-call counts, 102569 in all, are:
-= -- 10015
-> -- 5810
-< -- 57
-+ -- 2177
-- -- 1978
-* -- 6078
-:= -- 15150
-add.period$ -- 609
-call.type$ -- 191
-change.case$ -- 1548
+            1666 strings with 44887 characters,
+and the built_in function-call counts, 105463 in all, are:
+= -- 10310
+> -- 5958
+< -- 59
++ -- 2233
+- -- 2028
+* -- 6256
+:= -- 15564
+add.period$ -- 625
+call.type$ -- 196
+change.case$ -- 1588
 chr.to.int$ -- 0
-cite$ -- 198
-duplicate$ -- 2732
-empty$ -- 8180
-format.name$ -- 1978
-if$ -- 25468
+cite$ -- 203
+duplicate$ -- 2815
+empty$ -- 8415
+format.name$ -- 2028
+if$ -- 26189
 int.to.chr$ -- 0
-int.to.str$ -- 191
-missing$ -- 177
-newline$ -- 968
-num.names$ -- 382
-pop$ -- 2651
+int.to.str$ -- 196
+missing$ -- 182
+newline$ -- 993
+num.names$ -- 392
+pop$ -- 2716
 preamble$ -- 1
-purify$ -- 1356
+purify$ -- 1391
 quote$ -- 0
-skip$ -- 6319
+skip$ -- 6498
 stack$ -- 0
-substring$ -- 3857
-swap$ -- 827
-text.length$ -- 61
+substring$ -- 3998
+swap$ -- 855
+text.length$ -- 63
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 764
+type$ -- 784
 warning$ -- 7
-while$ -- 586
-width$ -- 194
-write$ -- 2059
-(There were 7 error messages)
+while$ -- 606
+width$ -- 199
+write$ -- 2115
+(There were 9 error messages)

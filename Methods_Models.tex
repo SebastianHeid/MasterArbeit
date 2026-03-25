@@ -1,5 +1,5 @@
 \chapter{Methods}
-This chapter introduces the methodologies utilized for the experiments in Chapter \ref{sec:Experiments}. First, Sec. \ref{sec:ImageGenerationModels} details the architectures of  PixArt-$\Sigma$ and Flux.1-dev, as they are subject to modification during the experiments. Following this, Sec. \ref{sec:Datasets} introduces the training datasets utilized for fine-tuning the compressed models. Afterwards, the methods leveraged for block importance analysis are described (Sec. \ref{sec:MethodsBlockImportanceAnalysis}) followed by the model compression strategies (Sec. \ref{sec:StructuralCompressionStrategy}) and a detailed discussion of the knowledge distillation loss (Sec. \ref{sec:MethodKDLoss}). Finally, Sec.  \ref{sec:MethodPruningSchedule} concludes the chapter by introducing the pruning schedules.
+This chapter introduces the methodologies utilized for the experiments in Chapter \ref{sec:Experiments}. First, Sec. \ref{sec:ImageGenerationModels} details the architectures of  PixArt-$\Sigma$ and Flux.1-dev, as they are subject to modification during the experiments. Following this, Sec. \ref{sec:Datasets} introduces the training datasets utilized for fine-tuning the compressed models. Afterwards, the methods leveraged for block importance analysis are described (Sec. \ref{sec:MethodsBlockImportanceAnalysis}) followed by the model compression strategies (Sec. \ref{sec:StructuralCompressionStrategy}) and a detailed discussion of the knowledge distillation loss (Sec. \ref{sec:MethodKDLoss}). Finally, Sec.  \ref{sec:MethodPruningSchedule} concludes the Chapter by introducing the pruning schedules.
 
 \section{Image Generation Models}
 \label{sec:ImageGenerationModels}
@@ -12,9 +12,9 @@ The shared architecture of PixArt-$\Sigma$ and PixArt-$\alpha$ is based on the c
 
 \begin{itemize}
 	
-\item The first input is the \textbf{timestep} $t$ which is projected into a time embedding vector using a 256-frequency embedding, from which a \gls{MLP} extracts the global scale and shift parameters. The global scale and shift parameters are used as input for the customized adaptive layer normalization called adaLN-single layer, which modulates the hidden states based on the time embedding. 
+\item The first input is the \textbf{timestep} $t$ which is projected into a time embedding vector using a 256-frequency embedding, from which an \gls{MLP} extracts the global scale and shift parameters. They are used as input for the customized adaptive layer normalization called adaLN-single layer, which modulates the hidden states based on the time embedding. 
 
- \item The second input is the \textbf{text prompt} that describes the content of the image. It is tokenized into 120 tokens in PixArt-$\alpha$, repsectively 300 tokens in PixArt-$\Sigma$, and encoded by the T5-XXL text encoder \cite{T5XXL}. A linear projection layer is then applied to reduce the high dimensional output from the T5-XXL encoder after which it is incorporated via cross-attention layers into the model. 
+ \item The second input is the \textbf{text prompt} that describes the content of the image. It is tokenized into 120 tokens in PixArt-$\alpha$, respectively 300 tokens in PixArt-$\Sigma$, and encoded by the T5-XXL text encoder \cite{T5XXL}. A linear projection layer is then applied to reduce the high dimensional output from the T5-XXL encoder after which it is incorporated via cross-attention layers into the model. 
  
   \item The third input is the \textbf{latent image} which is encoded via a pre-trained autoencoder, e.g. SDXL-VAE \cite{SDXL} in PixArt-$\Sigma$, transforming the image $(3,H,W)$ into latent space $(4, H/8, W/8)$. Patches of size $2\times2$ are extracted from the latent representation of the image and flattened into a sequence of visual tokens. Finally, 2D sine-cosine positional encoding is applied before feeding them as input to the Transformer blocks.
 
@@ -23,10 +23,10 @@ The shared architecture of PixArt-$\Sigma$ and PixArt-$\alpha$ is based on the c
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1.0\textwidth]{images/Background/Pixart/Architektur_Uebersicht.pdf}  % adjust filename and width
-	\caption[PixArt-$\Sigma$ Architecture]{Overview of the PixArt-$\Sigma$ architecture. $H$ and $W$ are the height and width of the image. $h=\frac{H}{8}$ and $w=\frac{W}{8}$ represent the dimensions in latent space and $N = \frac{H}{8 p} cdot \frac{W}{8 p}$ where $p$ is the patch size.}
+	\caption[PixArt-$\Sigma$ Architecture]{Overview of the PixArt-$\Sigma$ architecture. $H$ and $W$ are the height and width of the image. $h=\frac{H}{8}$ and $w=\frac{W}{8}$ represent the dimensions in latent space and $N = \frac{H}{8 p} \cdot \frac{W}{8 p}$ where $p$ is the patch size.}
 	\label{Pixart_Übersicht}
 \end{figure}
-The main components of the diffusion model are the Transformer blocks. They consist of four main parts, namely the multi-head self-attention layer, the multi-head cross-attention layer, the \gls{MLP} and the adaLN-single mechanism (Fig. \ref{TransformerBlock}):
+The main components of the PixArt-$\Sigma$ are the Transformer blocks. They consist of four main parts, namely the multi-head self-attention layer, the multi-head cross-attention layer, the \gls{MLP} and the adaLN-single mechanism (Fig. \ref{TransformerBlock}):
 
 \begin{itemize}
 	\item The \textbf{multi-head self-attention} layer allows the tokens to attend to each other and capture spatial relationships. It is embedded between time-dependent modulation layers at the beginning of the Transformer block. 
@@ -35,7 +35,7 @@ The main components of the diffusion model are the Transformer blocks. They cons
 	
 	\item The \textbf{\gls{MLP}} processes each token individually to refine the features. Similar to the self-attention layer, it is positioned between modulation layers at the end of the Transformer block. 
 	
-	\item \textbf{adaLN-single} is a modification of \gls{adaLN} method \cite{adaLN} (Sec. \ref{AdaptiveLayerNormalization}) replacing the static parameters of the normalization layer with dynamic values that are predicted directly from conditioning signals such as the timestep. This enables the model to efficiently modulate the feature distribution in each block, thereby controlling the generation process globally. In \cite{DiT} both class and time conditioning were handled via adaLN. In contrast, PixArt-$\Sigma$ only uses it for incorporating the time embedding. To reduce the number of parameters global scale and shift parameters $\bar{S}$ are extracted from one shared \gls{MLP} and each block has additional learnable parameters $E_i$ which are added to the global parameters via a summation function $g$ such that the block specific scale and shift parameters are given by $S_i = g(\bar{S}, E_i)$ to provide flexibility for every Transformer block.
+	\item \textbf{adaLN-single} is a modification of the \gls{adaLN} method \cite{adaLN} (Sec. \ref{AdaptiveLayerNormalization}) replacing the static parameters of the normalization layer with dynamic values that are predicted directly from conditioning signals such as the timestep. This enables the model to efficiently modulate the feature distribution in each block, thereby controlling the generation process globally. In \cite{DiT} both class and time conditioning were handled via adaLN. In contrast, PixArt-$\Sigma$ only uses it for incorporating the time embedding. To reduce the number of parameters, global scale and shift parameters $\bar{S}$ are extracted from one shared \gls{MLP}. Additionally, each block has additional learnable parameters $E_i$. These are added to the global parameters via a summation function $g$, such that the block specific scale and shift parameters are given by $S_i = g(\bar{S}, E_i)$, providing flexibility for every Transformer block.
 	
 \end{itemize}
 
@@ -77,27 +77,25 @@ The output of the final Transformer block is modulated and processed by a linear
 \end{table}
 
 \subsubsection{Training Strategy}
-The training of PixArt models proceeds in three distinct stages, explicitly decoupling the learning of pixel dependencies from text-concept alignment to improve training efficiency.
+The training of PixArt-$\alpha$ proceeds in three distinct stages, explicitly decoupling the learning of pixel dependencies from text-concept alignment to improve training efficiency.
 
-First, the focus is on learning pixel dependencies to generate semantically meaningful images. To achieve this, the model is initialized with weights pre-trained on ImageNet \cite{ImageNet} using class-conditional generation. This pre-training provides a strong initialization for the visual distribution at low computational cost.
+First, the primary objective is to learn pixel dependencies to generate semantically meaningful images. To achieve this, the model is initialized with weights pre-trained on ImageNet \cite{ImageNet} using class-conditional generation. This pre-training provides a strong initialization for the visual distribution at low computational cost.
 
- In a second step, the focus shifts to learning text alignment so that the model generates images that accurately reflect the text prompt. For this purpose, the SAM \cite{SAM} dataset was utilized with corresponding high-density prompts generated by the vision-language model LLaVA \cite{LLaVA}.
+ In a second step, the focus shifts to learning text alignment so that the model generates images that accurately reflect the text prompt. For this purpose, the SAM \cite{SAM} dataset is utilized with corresponding high-density prompts generated by the vision-language model LLaVA \cite{LLaVA}.
  
-  Finally, the model undergoes fine-tuning on high-resolution and high-aesthetic quality images to refine visual details which was done on a dataset that is not publicly accessible.
+  Finally, the model undergoes fine-tuning on high-resolution and high-aesthetic images to refine visual details which is done on a dataset that is not publicly accessible.
 
 \subsubsection{PixArt-$\Sigma$ Enhancements }
-PixArt-$\Sigma$ is a further development of Pixart-$\alpha$ which is able to generate images at higher resolution, up to 4k, and of higher quality. In this process, the weights from PixArt-$\alpha$ are used as initialization for PixArt-$\Sigma$ introducing three main changes, namely a more powerful VAE, an improved dataset and a more efficient self-attention mechanism leveraging KV-compression.
+PixArt-$\Sigma$ is a further development of PixArt-$\alpha$, capable of generating higher-quality images at resolutions up to 4K. Starting with PixArt-$\alpha$, three main changes were introduced to obtain PixArt-$\Sigma$. 
 
-First, PixArt-$\Sigma$ utilizes a more powerful VAE encoder, specifically the VAE from SDXL \cite{SDXL}, to obtain more expressive image features.  
-
-Second, the image dataset was extended with high resolution images up to 4k. Moreover, a more powerful model, Share-Captioner \cite{chen2024sharegpt4v}, was leveraged to create captions of higher quality and length. To accommodate this the number of tokens for the text embedding is increased from 120 to 300. 
-
-Third, a compression technique for the KV tokens in the self-attention layers is introduced to reduce the computational cost for high resolution images which otherwise scales quadratically with the number of tokens $O(N^2)$. The KV tokens are compressed via a convolutional 2x2 kernel operating in spatial space exploiting the redundancy of feature semantics within a $R \times R$ window. However, the Q tokens are kept uncompressed to mitigate the information loss. Consequently, the computational cost reduces from $O(N^2)$ to $O(\frac{N^2}{R^2})$. The attention operation (compare to Eq. \ref{AttentionEq}) changes to 
+First, PixArt-$\Sigma$ utilizes a more powerful VAE encoder, specifically the VAE from SDXL \cite{SDXL}, to obtain more expressive image features.  Second, the image dataset was extended with high-resolution images up to 4k. Moreover, a more powerful model, Share-Captioner \cite{chen2024sharegpt4v}, was leveraged to create captions of higher quality and length. To accommodate this, the number of tokens for the text embedding was increased from 120 to 300. 
+Third, a compression technique for the KV tokens in the self-attention layers was introduced to reduce the computational cost for high resolution images which otherwise scales quadratically with the number of tokens $O(N^2)$. The KV tokens are compressed via a convolutional 2x2 kernel operating in spatial domain exploiting the redundancy of feature semantics within a $R \times R$ window. However, the Q tokens are kept uncompressed to mitigate information loss. Consequently, the computational cost reduces from $O(N^2)$ to $O(\frac{N^2}{R^2})$. The attention operation (compare to Eq. \ref{AttentionEq}) changes to 
 \begin{equation}
 	\text{Attention}(Q,K,V) = \text{softmax}\left( \frac{Q f_c(K)^T}{\sqrt{d_k}}\right) f_c(V)
 \end{equation} 
-with $f_c$ representing the compression operation. \\
-To conclude, PixArt-$\Sigma$ demonstrates that leveraging a weaker model as a base to introduce improvements helps to accelerate the training and development process enormously. 
+with $f_c$ representing the compression operation. 
+
+To conclude, PixArt-$\Sigma$ demonstrates that leveraging a weaker model (PixArt-$\alpha$) as a base to introduce improvements helps to accelerate the training and development process enormously. 
 
 
 

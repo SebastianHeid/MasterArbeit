@@ -71,7 +71,7 @@
 \glossentry{DiT}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{1\delimR 3}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{25}\delimN 
-		\setentrycounter[]{page}\glsnumberformat{31}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{30\delimN 31}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{33\delimN 34}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{46}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{68}\delimN 
@@ -184,6 +184,7 @@
 		\setentrycounter[]{page}\glsnumberformat{28}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{VII}}}%
 \glossentry{MMDiT}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{33}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{37\delimN 38}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{VII}}}%
 \glossentry{MoE}{\glossaryentrynumbers{\relax 
@@ -294,7 +295,7 @@
 		\setentrycounter[]{page}\glsnumberformat{32\delimN 33}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{85}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{87}\delimN 
-		\setentrycounter[]{page}\glsnumberformat{93\delimN 94}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{94}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{VII}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{XIV}}}%
 \end{theglossary}\glossarypostamble
