@@ -100,12 +100,12 @@ To conclude, PixArt-$\Sigma$ demonstrates that leveraging a weaker model (PixArt
 
 
 \subsection{Flux.1-dev}
-Flux.1-dev \cite{Flux} is a publicly available, guidance-distilled rectified flow model based on the commercial model Flux.1-pro \cite{Flux}. Due to the absence of a paper or technical report describing the exact training process, the dataset used and the specific design choices, the following section focuses on presenting the model's architecture. The architecture analysis is based on the following git repository \cite{kohya_ss_sd_scripts_2024}.
+Flux.1-dev \cite{Flux} is a publicly available, guidance-distilled rectified flow model based on the commercial model Flux.1-pro \cite{Flux}. Due to the absence of a paper or technical report which describes the exact training process, the dataset used and the specific design choices, the following section focuses on presenting the model's architecture. The architecture analysis is based on the following git repository \cite{kohya_ss_sd_scripts_2024}.
 
 \subsubsection{Architecture}
 Flux.1-dev is based on a multi-modal diffusion Transformer (\gls{MMDiT}) \cite{SD3} architecture containing 19 double-stream blocks followed by 38 single-stream blocks (Fig. \ref{FluxOverview}) adding up to a total of 11.9 billion parameters (Tab. \ref{tab:Flux_parameter_count}). 
 
-For prompt processing,  it leverages two distinct text encoders, namely CLIP ViT-L/14 \cite{CLIP} and T5-XXL \cite{T5XXL}. For image encoding a \gls{VAE} is used compressing the height $H$ and width $W$ of the image by a factor of eight. Each double-stream block has mainly four inputs: a guidance vector, the positional information of the image patches, as well as the text and the image hidden states. Hereby, the text and the image are processed separately in two distinct streams allowing the model to apply modality-specific weights. This dual-path approach is the defining characteristic of a \gls{MMDiT}. In contrast, the single-stream blocks have only three inputs as they combine the text and image hidden states and process them together.  
+While prompt processing relies on two distinct text encoders, namely CLIP ViT-L/14 \cite{CLIP} and T5-XXL \cite{T5XXL}, image encoding is performed by a \gls{VAE} compressing the height $H$ and width $W$ of the image by a factor of eight. Each double-stream block has mainly four inputs: a guidance vector, the positional information of the image patches, as well as the text and the image hidden states. Hereby, the text and the image are processed separately in two distinct streams allowing the model to apply modality-specific weights. This dual-path approach is the defining characteristic of a \gls{MMDiT}. In contrast, the single-stream blocks have only three inputs as the text and image hidden states are combined and processed jointly.  
 
 \begin{itemize}
 
@@ -115,14 +115,13 @@ For prompt processing,  it leverages two distinct text encoders, namely CLIP ViT
 
 \item Another input to both block types is the concatenated \textbf{positional encoding} for the text prompt and the image. First, based on the latent representation of the image, 3D coordinates for the position of every patch in the image are created. The 3D vector for the image represents the 2D positional IDs $(x,y)$ of the patch in the image and a time dimension $t$ for the possibility to adapt Flux.1-dev for videos. However, for image generation the time dimension is always set to zero. Text position IDs are included for architectural consistency but are initialized to zero, as text tokens lack meaningful 2D spatial coordinates in a latent image grid. In contrast to PixArt-$\Sigma$, Flux.1-dev uses rotary positional embedding (\gls{RoPE}) \cite{RoPE} where the embedded vector is utilized in the attention mechanism to rotate the key and query vectors such as the spatial relationships within the image are preserved.
 
-\item For the text embedding, the \textbf{text prompt} is tokenized into $512$ tokens such that the model is  capable of processing long and detailed prompts. The T5-XXL encoder embeds the tokens into high-dimensional vectors $(1,512,4096)$ and a linear projection is applied before it is fed into the first double-stream block. The subsequent double-stream blocks always receive the hidden states of the text from the previous block. 
+\item The \textbf{text prompt} is tokenized into $512$ tokens, allowing the model to process long and detailed prompts. The T5-XXL encoder embeds the tokens into high-dimensional vectors $(1,512,4096)$ and a linear projection is applied before they are fed into the first double-stream block. The textual hidden states are then sequentially passed through all subsequent double-stream blocks. 
 
-\item The \textbf{image} $(3,H,W)$ is encoded via a \gls{VAE} to a latent representation $(16,h=\frac{H}{8}, w=\frac{W}{8})$. To prepare the latents for the Transformer, $2 \times 2$ neighboring latent pixels are packed into a single patch and therefore increasing the dimension from $16$ to $64$ during the patchify operation while simultaneously reducing the sequence length $N$ to $\frac{h}{2} \cdot \frac{w}{2}$ $(1,N=\frac{h}{2} \cdot \frac{w}{2}, 64)$. These patches are then linearly projected into a higher dimensional embedding space before being fed into the first double-stream block.  
-
-The output, specifically the text and image hidden states, of the 19th double-stream block  are concatenated and used as single input to the first single-stream block.
-
+\item The \textbf{image} $(3,H,W)$ is encoded via a \gls{VAE} to a latent representation $(16,h=\frac{H}{8}, w=\frac{W}{8})$. To prepare the latents for the Transformer, $2 \times 2$ neighboring latent pixels are packed into a single patch and therefore increasing the dimension from $16$ to $64$ during the patchify operation while simultaneously reducing the sequence length $N$ to $\frac{h}{2} \cdot \frac{w}{2}$ $(1,N=\frac{h}{2} \cdot \frac{w}{2}, 64)$. These patches are then linearly projected into a higher dimensional embedding space before being fed into the first double-stream block. The image hidden states are continuously propagated through the subsequent double-stream blocks.
 
 \end{itemize}
+
+After being processed by all 19 double-stream blocks, the textual and image hidden states are concatenated and passed as a single, unified input to the first single-stream block.
 
 
 \begin{figure}[H]
@@ -139,17 +138,22 @@ The double-stream blocks  (Fig. \ref{SingleDoubleStreamBlock} right) are the fun
 \begin{itemize}
 
 
-\item The \textbf{modulation} of the text and image features is implemented via \gls{adaLN}. As shown in Fig. \ref{SingleDoubleStreamBlock}, the guidance vector passes through two separate projection layers, which generate each two sets of scale and shift parameters for \gls{adaLN}  as well as two gating parameters. The scaling and shifting of the features to incorporate the time, guidance and pooled text conditioning is applied twice, once before the attention mechanism and once before the \gls{MLP}. Subsequently, the gating parameters scale the updated features before they are added to the residual stream. This technique is often applied in very deep neural networks. The linear projection layers producing the gating values are initialized with zeros. Consequently, the gating parameters start at zero, such that the block initially acts as an identity function, which stabilizes the training.  \\
+\item The \textbf{modulation} of the text and image features is implemented via \gls{adaLN}. As shown in Fig. \ref{SingleDoubleStreamBlock}, the guidance vector passes through two separate projection layers, which each generate two sets of scale and shift parameters for \gls{adaLN}  as well as two gating parameters. The scaling and shifting of the features to incorporate the time, guidance and pooled text conditioning is applied twice, once before the attention mechanism and once before the \gls{MLP}. Subsequently, the gating parameters scale the updated features before they are added to the residual stream. 
 
-\item The \textbf{attention} mechanism enables the exchange of information between the text and the image features. First, the text and image features are processed by separate linear layers which project them into query, key and value representations and are normalized via \gls{RMSNorm} \cite{RMSNorm}. Subsequently, they are concatenated into a joint sequence. At this stage, the \gls{RoPE}s are integrated into the model by rotating the joint query and key vectors before the attention mechanism is applied such that self- and cross-attention take place simultaneously. Afterwards, the updated text and image features are separated and processed by individual projection layers. 
+%This technique is often applied in very deep neural networks. The linear projection layers producing the gating values are initialized with zeros. Consequently, the gating parameters start at zero, such that the block initially acts as an identity function, which stabilizes the training.  \\
 
-\item The third main parts are the \textbf{\gls{MLP}s} in each stream which process the updated feature vectors further to increase the representational capacity further. Like the attention mechanism, the MLP is also enclosed by a modulation and connected via a gated residual connection.
+\item The \textbf{attention} mechanism enables the exchange of information between the text and the image features. First, they are processed by separate linear layers which project them into query, key and value representations. Crucially, only the query and key vectors are normalized via \gls{RMSNorm} \cite{RMSNorm}. Subsequently, the features are concatenated into a joint sequence. At this stage, the \gls{RoPE} is integrated into the model by rotating the joint query and key vectors before the attention mechanism is applied, such that self- and cross-attention take place simultaneously. Afterwards, the updated text and image features are separated and processed by individual projection layers. 
+
+\item The third main components are the \textbf{\gls{MLP}s} within each stream which process the updated feature vectors further to increase the representational capacity. Similar to the attention mechanism, the MLP is preceded by a modulation step and integrated via a gated residual connection.
 
 \end{itemize}
 
 
 \subsubsection{Single-Stream Blocks}
-The single-stream blocks (Fig. \ref{SingleDoubleStreamBlock} left) are the fundamental building blocks of the second part of the Flux.1-dev architecture. Their primary components are the self-attention mechanism and the modulation layers. First, the concatenated image and text features $X$ are modulated using \gls{adaLN} where the shift and scale parameters are obtained by processing the guidance vector through a linear layer. Similar to the double-stream architecture, a gating mechanism is applied after the attention mechanism is executed. To optimize throughput, the model uses a fused linear projection where the hidden states for the attention mechanism and the parallel feed-forward path are computed simultaneously.  The outputs of the attention mechanism and the feed-forward path are concatenated together and processed by a subsequent linear projection before the gating mechanism is applied. Finally, the updated features are combined with the residual path to form the final output of the block.
+The single-stream blocks (Fig. \ref{SingleDoubleStreamBlock} left) are the fundamental building blocks of the second part of the Flux.1-dev architecture. Their primary components are the self-attention mechanism the \gls{MLP} and the modulation layers. First, the concatenated image and text features $X$ are modulated using \gls{adaLN} where the shift and scale parameters are obtained by processing the guidance vector through a linear layer. Similar to the double-stream architecture, a gating mechanism is applied after the attention mechanism is executed. To optimize throughput, the model uses a fused linear projection where the hidden states for the attention mechanism and the parallel feed-forward path are computed simultaneously.  The outputs of the attention mechanism and the feed-forward path are concatenated together and processed by a subsequent linear projection before the gating mechanism is applied. Finally, the updated features are combined with the residual path to form the final output of the block. \\
+
+
+The number of parameters of the individual components of a single- and a double-stream blocks as well as the total parameter count can be found in Tab. \ref{tab:Flux_parameter_count}.
 
 
 
@@ -160,7 +164,7 @@ The single-stream blocks (Fig. \ref{SingleDoubleStreamBlock} left) are the funda
 	\caption[Double- and Single-Stream Transformer Blocks from Flux.1-dev]{Illustration of a single-stream (left) and a double-stream (right) Transformer block of Flux.1-dev. Adapted from \cite{FastFlux}.}
 	\label{SingleDoubleStreamBlock}
 \end{figure}
-The number of parameters of the individual components of a single- and a double-stream blocks as well as the total parameter count can be found in Tab. \ref{tab:Flux_parameter_count}.
+
 
 
 \begin{table}[h]
