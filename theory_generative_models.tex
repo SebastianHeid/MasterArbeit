@@ -30,7 +30,7 @@ The \gls{VAE} \cite{VAE} belongs to the class of probabilistic models. A common 
 \begin{equation}
      \mathcal{L}_{\text{MLE}} = \prod_{i=1}^N p_{\text{model}}(\textbf{x}_i) \quad.
 \end{equation}
-However, in practice, minimizing the negative log-likelihood is often preferred over maximizing the likelihood due to possible instabilities caused by the product of likelihoods
+However, in practice, minimizing the negative log-likelihood (\gls{NLL}) is often preferred over maximizing the likelihood due to possible instabilities caused by the product of likelihoods
 \begin{equation}
     \mathcal{L}_{\text{NLL}} = - \sum_{i=1}^N \log{p_{\text{model}}(\textbf{x}_i)} \quad.
 \end{equation}

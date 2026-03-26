@@ -74,7 +74,7 @@
 \glossaryentry{KL?\glossentry{KL}|setentrycounter[]{page}"\glsnumberformat}{VII}
 \glossaryentry{MCMC?\glossentry{MCMC}|setentrycounter[]{page}"\glsnumberformat}{VII}
 \glossaryentry{MLE?\glossentry{MLE}|setentrycounter[]{page}"\glsnumberformat}{VII}
-\glossaryentry{NNL?\glossentry{NNL}|setentrycounter[]{page}"\glsnumberformat}{VII}
+\glossaryentry{NLL?\glossentry{NLL}|setentrycounter[]{page}"\glsnumberformat}{VII}
 \glossaryentry{iid?\glossentry{iid}|setentrycounter[]{page}"\glsnumberformat}{VII}
 \glossaryentry{ADD?\glossentry{ADD}|setentrycounter[]{page}"\glsnumberformat}{VII}
 \glossaryentry{LADD?\glossentry{LADD}|setentrycounter[]{page}"\glsnumberformat}{VII}
@@ -84,6 +84,7 @@
 \glossaryentry{GRASP?\glossentry{GRASP}|setentrycounter[]{page}"\glsnumberformat}{XII}
 \glossaryentry{SVD?\glossentry{SVD}|setentrycounter[]{page}"\glsnumberformat}{XII}
 \glossaryentry{GRASP?\glossentry{GRASP}|setentrycounter[]{page}"\glsnumberformat}{XII}
+\glossaryentry{SVD?\glossentry{SVD}|setentrycounter[]{page}"\glsnumberformat}{XII}
 \glossaryentry{SVD?\glossentry{SVD}|setentrycounter[]{page}"\glsnumberformat}{XIV}
 \glossaryentry{SVD?\glossentry{SVD}|setentrycounter[]{page}"\glsnumberformat}{XIV}
 \glossaryentry{SOTA?\glossentry{SOTA}|setentrycounter[]{page}"\glsnumberformat}{XIV}
@@ -135,6 +136,7 @@
 \glossaryentry{VAE?\glossentry{VAE}|setentrycounter[]{page}"\glsnumberformat}{5}
 \glossaryentry{MLE?\glossentry{MLE}|setentrycounter[]{page}"\glsnumberformat}{5}
 \glossaryentry{iid?\glossentry{iid}|setentrycounter[]{page}"\glsnumberformat}{5}
+\glossaryentry{NLL?\glossentry{NLL}|setentrycounter[]{page}"\glsnumberformat}{5}
 \glossaryentry{VAE?\glossentry{VAE}|setentrycounter[]{page}"\glsnumberformat}{5}
 \glossaryentry{ELBO?\glossentry{ELBO}|setentrycounter[]{page}"\glsnumberformat}{5}
 \glossaryentry{VAE?\glossentry{VAE}|setentrycounter[]{page}"\glsnumberformat}{5}
@@ -585,6 +587,7 @@
 \glossaryentry{CKA?\glossentry{CKA}|setentrycounter[]{page}"\glsnumberformat}{95}
 \glossaryentry{RMS?\glossentry{RMS}|setentrycounter[]{page}"\glsnumberformat}{97}
 \glossaryentry{RMS?\glossentry{RMS}|setentrycounter[]{page}"\glsnumberformat}{98}
+\glossaryentry{SVD?\glossentry{SVD}|setentrycounter[]{page}"\glsnumberformat}{102}
 \glossaryentry{SVD?\glossentry{SVD}|setentrycounter[]{page}"\glsnumberformat}{102}
 \glossaryentry{SVD?\glossentry{SVD}|setentrycounter[]{page}"\glsnumberformat}{103}
 \glossaryentry{SVD?\glossentry{SVD}|setentrycounter[]{page}"\glsnumberformat}{103}

@@ -15,11 +15,11 @@
 \contentsline {table}{\numberline {5.5}{\ignorespaces Benchmark Performance: \gls {SVD}trunc on Flux.1-schnell}}{88}{table.5.5}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {A.1}{\ignorespaces PixArt-$\Sigma $ Fine-Funing Hyperparameters}}{94}{table.A.1}%
+\contentsline {table}{\numberline {A.1}{\ignorespaces PixArt-$\Sigma $ Fine-Tuning Hyperparameters}}{94}{table.A.1}%
 \contentsline {table}{\numberline {A.2}{\ignorespaces Block Removal Details: One-Shot vs. Progressive Pruning}}{96}{table.A.2}%
 \contentsline {table}{\numberline {A.3}{\ignorespaces Compression Details: Importance-Aware Rank-Adaptive Progressive Model Pruning}}{105}{table.A.3}%
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {B.1}{\ignorespaces Flux.1-dev Fine-Funing Hyperparameters}}{110}{table.B.1}%
+\contentsline {table}{\numberline {B.1}{\ignorespaces Flux.1-dev Fine-Tuning Hyperparameters}}{110}{table.B.1}%
 \contentsline {table}{\numberline {B.2}{\ignorespaces Training-Free Compression: \gls {SVD} Compression Details}}{114}{table.B.2}%
 \contentsline {table}{\numberline {B.3}{\ignorespaces Training-Free Compression: Complete Block Removal Details}}{114}{table.B.3}%
 \contentsline {table}{\numberline {B.4}{\ignorespaces Block Selection: Compression Details}}{115}{table.B.4}%

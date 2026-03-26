@@ -93,7 +93,7 @@
 \contentsline {subsection}{\numberline {5.1.3}Block Selection Algorithms}{58}{subsection.5.1.3}%
 \contentsline {subsubsection}{Greedy}{59}{section*.40}%
 \contentsline {subsubsection}{Optuna}{59}{section*.41}%
-\contentsline {subsection}{\numberline {5.1.4}One-Shot versus Progressive Model Compression}{62}{subsection.5.1.4}%
+\contentsline {subsection}{\numberline {5.1.4}One-Shot vs. Progressive Model Compression}{62}{subsection.5.1.4}%
 \contentsline {subsection}{\numberline {5.1.5}Knowledge Distillation Loss}{63}{subsection.5.1.5}%
 \contentsline {subsection}{\numberline {5.1.6}Fine-Tuning Protocol}{65}{subsection.5.1.6}%
 \contentsline {subsection}{\numberline {5.1.7}Compression Strategy}{67}{subsection.5.1.7}%
