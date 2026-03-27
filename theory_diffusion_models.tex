@@ -6,7 +6,7 @@ The main principles of diffusion models are reflected in two processes motivated
 
 Over time, several different formulations of diffusion models were proposed. However, there are three dominant formulations recognized in the literature \cite{SurveyDM}: Denoising diffusion probabilistic models (\gls{DDPM}s) \cite{DMBeginning, DDPM} and their further development, denoising diffusion implicit models (\gls{DDIM}s), score-based generative models (\gls{SGM}s) \cite{SGM} and stochastic differential equations (\gls{SDE}s) \cite{SDE}. 
 
- Recently, a generalization of DMs was proposed, known as flow matching or flow-based models \cite{RectifiedFlowMatching, FlowMatching}. Unlike classical diffusion models, flow  matching models directly learn a vector field that defines the path between the noise distribution and the data distribution. By enforcing a straight path trajectory, the sampling process becomes computationally more efficient. This formulation was successfully applied in several recent models like Flux.1-dev \cite{Flux} or SANA \cite{Sana}.\\
+ Recently, a generalization of DMs was proposed, known as flow matching or flow-based models \cite{RectifiedFlowMatching, FlowMatching}. Unlike classical diffusion models, flow  matching models directly learn a vector field that defines the path between the noise distribution and the data distribution. By enforcing a straight path trajectory, the sampling process becomes computationally more efficient. This formulation was successfully applied in several recent models like FLUX.1 [dev] \cite{Flux} or SANA \cite{Sana}.\\
  
  In this section, the different formulations of diffusion models, namely DDPM, DDIM, SGM, and SDE, are presented, followed by an introduction to the concept of flow matching.
 

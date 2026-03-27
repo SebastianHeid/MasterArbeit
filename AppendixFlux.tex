@@ -1,11 +1,11 @@
-\chapter{Supplements Flux.1-dev Experiments}
+\chapter{Supplements FLUX.1 {[dev]} Experiments}
 
 \section{Training Details}
 
-Tab. \ref{tab:flux_training_config} provides the training settings for Flux.1-dev
+Tab. \ref{tab:flux_training_config} provides the training settings for FLUX.1 {[dev]}
 \begin{table}[!htbp]
 	\centering
-	\caption[Flux.1-dev Fine-Tuning Hyperparameters]{Configuration details for the compressed model retraining, including optimizer settings and flow matching specific parameters. These parameters represent the configuration setup for the training using the git repository \cite{kohya_ss_sd_scripts_2024}.}
+	\caption[FLUX.1 {[dev]} Fine-Tuning Hyperparameters]{Configuration details for the compressed model retraining, including optimizer settings and flow matching specific parameters. These parameters represent the configuration setup for the training using the git repository \cite{kohya_ss_sd_scripts_2024}.}
 	\label{tab:flux_training_config}
 	\begin{tabular}{l l}
 		\toprule
@@ -45,7 +45,7 @@ Tab. \ref{tab:flux_training_config} provides the training settings for Flux.1-de
 		Apply T5 Attn Mask & True \\
 		Data Loader Workers & 6 \\
 		Seed & 42 \\
-		Training Dataset & LAION-Flux.1-dev\\
+		Training Dataset & LAION-FLUX.1 {[dev]}\\
 		Size Training Dataset & 190 000 \\
 		\bottomrule
 	\end{tabular}
@@ -54,7 +54,7 @@ Tab. \ref{tab:flux_training_config} provides the training settings for Flux.1-de
 
 \section{Block Importance Analysis}
 \label{appx:FluxBlockImportanceAnalysis}
-Fig. \ref{fig:AppxBlockAnalysisRemovalDouble} and Fig. \ref{fig:AppxBlockAnalysisRemovalSingle} present the complete set of qualitative examples of a generated images when one complete double- or single-stream block is removed. 
+Fig. \ref{fig:AppxBlockAnalysisRemovalDouble} and Fig. \ref{fig:AppxBlockAnalysisRemovalSingle} present the complete set of qualitative examples of a generated images when one complete double- or single-stream block is pruned similar to the analysis in Sec. \ref{sec:QualitativeBlockAnalysisFlux}. 
 
 Fig. \ref{fig:AppxBlockAnalysisCompressionDouble} and Fig. \ref{fig:AppxBlockAnalysisCompressionSingle} present qualitative examples of a generated images when one complete double- or single-stream block is compressed via truncated \gls{SVD}. 
 
@@ -62,7 +62,7 @@ Fig. \ref{fig:AppxBlockAnalysisCompressionDouble} and Fig. \ref{fig:AppxBlockAna
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{images/Experimente/Flux/Block_Analysis/BlockRemovalDouble.pdf}
-	\caption[Qualitative Double-Stream Block Importance Analysis of Flux.1-dev: Block Removal]{Qualitative comparison of the impact of complete removal of individual double-stream blocks in Flux.1-dev.}
+	\caption[Qualitative Double-Stream Block Importance Analysis of FLUX.1 {[dev]}: Block Removal]{Qualitative comparison of the impact of complete removal of individual double-stream blocks in FLUX.1 {[dev]}.}
 	\label{fig:AppxBlockAnalysisRemovalDouble}
 \end{figure}
 
@@ -70,21 +70,21 @@ Fig. \ref{fig:AppxBlockAnalysisCompressionDouble} and Fig. \ref{fig:AppxBlockAna
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{images/Experimente/Flux/Block_Analysis/BlockRemovalSingle.pdf}
-	\caption[Qualitative Single-Stream Block Importance Analysis of Flux.1-dev: Block Removal]{Qualitative comparison of the impact of complete removal of individual single-stream blocks in Flux.1-dev.}
+	\caption[Qualitative Single-Stream Block Importance Analysis of FLUX.1 {[dev]}: Block Removal]{Qualitative comparison of the impact of complete removal of individual single-stream blocks in FLUX.1 {[dev]}.}
 	\label{fig:AppxBlockAnalysisRemovalSingle}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{images/Experimente/Flux/Block_Analysis/BlockCompressionDouble.pdf}
-	\caption[Qualitative Double-Stream Block Importance Analysis of Flux.1-dev: Block Compression]{Qualitative comparison of the impact of 60\% \gls{SVD}-based compression of individual double-stream blocks in Flux.1-dev.}
+	\caption[Qualitative Double-Stream Block Importance Analysis of FLUX.1 {[dev]}: Block Compression]{Qualitative comparison of the impact of 60\% \gls{SVD}-based compression of individual double-stream blocks in FLUX.1 {[dev]}.}
 	\label{fig:AppxBlockAnalysisCompressionDouble}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{images/Experimente/Flux/Block_Analysis/BlockCompressionSingle.pdf}
-	\caption[Qualitative Single-Stream Block Importance Analysis of Flux.1-dev: Block Compression]{Qualitative comparison of the impact of 60\% \gls{SVD}-based compression of individual single-stream blocks in Flux.1-dev.}
+	\caption[Qualitative Single-Stream Block Importance Analysis of FLUX.1 {[dev]}: Block Compression]{Qualitative comparison of the impact of 60\% \gls{SVD}-based compression of individual single-stream blocks in FLUX.1 {[dev]}.}
 	\label{fig:AppxBlockAnalysisCompressionSingle}
 \end{figure}
 
@@ -92,7 +92,7 @@ Fig. \ref{fig:AppxBlockAnalysisCompressionDouble} and Fig. \ref{fig:AppxBlockAna
 
 
 \section{Training-Free Compression}
-This section provides the technical settings for the training-free experiments (Sec. \ref{sec:trainingFreeCompression}) using complete block removal (\ref{tab:TrainingFreeMethodsRemoval}) and \gls{SVD}-based compression (Tab. \ref{tab:TrainingFreeMethodsSVD}). Furthermore, the example images for 90\% and 70\% models are provided (Fig. \ref{fig:Examples_TrainingFree90} - \ref{fig:Examples_TrainingFree70}).
+This section provides the technical settings for the training-free experiments (Sec. \ref{sec:trainingFreeCompression}) using complete block removal (Tab. \ref{tab:TrainingFreeMethodsRemoval}) and \gls{SVD}-based compression (Tab. \ref{tab:TrainingFreeMethodsSVD}). Additionally, it presents example images for models compressed to 90\% and 70\% (Figs. \ref{fig:Examples_TrainingFree90} - \ref{fig:Examples_TrainingFree70}).
 
 
 \begin{table}[H]
@@ -142,7 +142,7 @@ This section provides the technical settings for the training-free experiments (
 
 \subsection{Block Selection}
 \label{sec:FluxBlockImportanceAnalysisAppendix}
-Tab. \ref{tab:Random_vs_metric_Selection} summarizes the experimental settings for the block selection analysis presented in Section \ref{sec:FluxBlockImportanceAnalysis}. Furthermore, this subsection provides qualitative example images (Figs. \ref{fig:FluxBlockSelection_68}--\ref{fig:FluxBlockSelection_43}) generated by Flux.1-dev models at various compression stages. These results were obtained utilizing random, uniform, and importance-aware block selection strategies.
+Tab. \ref{tab:Random_vs_metric_Selection} summarizes the experimental settings for the block selection analysis presented in Section \ref{sec:FluxBlockImportanceAnalysis}. Furthermore, this subsection presents qualitative example images (Figs. \ref{fig:FluxBlockSelection_68}--\ref{fig:FluxBlockSelection_43}) generated by FLUX.1 {[dev]} models at various compression stages. These images were obtained using random, uniform, and importance-aware block selection strategies.
 
 
 \begin{table}[h]
@@ -184,8 +184,10 @@ Tab. \ref{tab:Random_vs_metric_Selection} summarizes the experimental settings f
 	\label{fig:FluxBlockSelection_43}
 \end{figure}
 
+\newpage
+
 \subsection{Sensitivity Analysis: Compression Breadth vs. Depth}
-Tab. \ref{tab:compression_iterations} summarizes the experimental settings for the importance-aware rank-adaptive progressive pruning schedule. These configurations are used to investigate how to optimally distribute the removed parameters across a varying number of Transformer blocks, as detailed in Section \ref{sec:FluxParameterRemovalDistribution}.
+Tab. \ref{tab:compression_iterations} summarizes the experimental settings for the importance-aware rank-adaptive progressive pruning schedule. These configurations explore how to optimally distribute the removed parameters across a varying number of Transformer blocks, as detailed in Section \ref{sec:FluxParameterRemovalDistribution}.
 
 
 
@@ -244,18 +246,9 @@ Tab. \ref{tab:compression_iterations} summarizes the experimental settings for t
 
 \section{Main Results: Evaluating SVDtrunc}
 \label{sec:Appendix_SVDtrunc}
-This section provides details of the best models obtained via \gls{SVD}trunc of Flux.1-dev. Tab. \ref{tab:sup_training} depicts the settings for the importance-aware rank-adaptive pruning framework. Tab. \ref{tab:sup_hps} - \ref{tab:sup_dpg} provides the detailed values obtained for the HPSv2, GenEval and DPG benchmarks for these models. 
+This section details the best models obtained via \gls{SVD}trunc applied to FLUX.1 {[dev]} (Sec. \ref{sec:FluxMainResults}). Tab. \ref{tab:sup_training} summarizes the settings for the importance-aware rank-adaptive pruning framework. Tab. \ref{tab:sup_hps} - \ref{tab:sup_dpg} provide the detailed values obtained for the HPSv2, GenEval and DPG benchmarks for these models. 
 
-In addition, further example images for \gls{SVD}trunc \ref{fig:SVDtrunc_Appx} as well as of the observed domain shift (Fig. \ref{fig:SVDtruncFlux_ShiftAppx}) and memorization loss (Fig. \ref{fig:SVDtrunc_Memorization_Loss_Appx}) are presented.
-
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=\textwidth]{images/Experimente/Flux/SVDtrunc/Appendix_SVDtrunc.pdf}
-	\caption[Qualitative Examples: SVDtrunc]{Qualitative comparison of example images generated by models compressed via SVDtrunc to varying sizes.}
-	\label{fig:SVDtrunc_Appx}
-\end{figure}
-
+Additionally, this section presents further example images generated by \gls{SVD}trunc (Fig. \ref{fig:SVDtrunc_Appx}) as well as visualizations of the observed domain shift (Fig. \ref{fig:SVDtruncFlux_ShiftAppx}), the memorization loss (Fig. \ref{fig:SVDtrunc_Memorization_Loss_Appx}) and failure cases (Fig. \ref{fig:SVDtrunc_Failure_Cases_Appx}) are presented.
 
 
 \begin{table}[H]
@@ -327,7 +320,7 @@ In addition, further example images for \gls{SVD}trunc \ref{fig:SVDtrunc_Appx} a
 			\bottomrule
 		\end{tabular}
 	}
-	\caption[Flux.1-dev \gls{SVD}trunc: Compression Details]{Overview of the experimental settings for the importance-aware rank-adaptive progressive pruning schedule. Each iteration specifies the reduction from an initial parameter budget ($P_{\text{start}}$) to a final target budget ($P_{\text{end}}$). For improved readability, the reported slope values $x$ are scaled by a factor of 1000.}
+	\caption[FLUX.1 {[dev]} \gls{SVD}trunc: Compression Details]{Overview of the experimental settings for the importance-aware rank-adaptive progressive pruning schedule. Each iteration specifies the reduction from an initial parameter budget ($P_{\text{start}}$) to a final target budget ($P_{\text{end}}$). For improved readability, the reported slope values $x$ are scaled by a factor of 1000.}
 	\label{tab:sup_training}
 \end{table}
 
@@ -348,7 +341,7 @@ In addition, further example images for \gls{SVD}trunc \ref{fig:SVDtrunc_Appx} a
 			\multicolumn{1}{c}{Painting} &
 			\multicolumn{1}{c}{Average}\\
 			\midrule
-			\textcolor{gray}{FLUX.dev\cite{Flux}} 
+			\textcolor{gray}{FLUX.1 {[dev]} \cite{Flux}} 
 			& \color{gray} 100  % Params
 			& \color{gray} 31.56  % concept art
 			& \color{gray} 30.26  % photo
@@ -467,7 +460,7 @@ In addition, further example images for \gls{SVD}trunc \ref{fig:SVDtrunc_Appx} a
 		\end{tabular}
 	}
 	\smallskip
-	\caption[\gls{SVD}trunc on Flux.1-dev: Detailed HPSv2 Results]{Detailed quantitative results of Flux.1-dev compressed via \gls{SVD}trunc, evaluated on the HPSv2 benchmark.}
+	\caption[\gls{SVD}trunc on FLUX.1 {[dev]}: Detailed HPSv2 Results]{Detailed quantitative results of FLUX.1 {[dev]} compressed via \gls{SVD}trunc, evaluated on the HPSv2 benchmark.}
 	\label{tab:sup_hps}
 \end{table}
 
@@ -487,7 +480,7 @@ In addition, further example images for \gls{SVD}trunc \ref{fig:SVDtrunc_Appx} a
 			\multicolumn{1}{c}{Position} &
 			\multicolumn{1}{c}{Average}\\
 			\midrule
-			\textcolor{gray}{FLUX.dev\cite{Flux}} 
+			\textcolor{gray}{FLUX.1 {[dev]} \cite{Flux}} 
 			& \color{gray} 100  % Params
 			& \color{gray} 0.768  % Two object
 			& \color{gray} 0.981  % Single Object
@@ -644,7 +637,7 @@ In addition, further example images for \gls{SVD}trunc \ref{fig:SVDtrunc_Appx} a
 		\end{tabular}
 	}
 	\smallskip
-	\caption[\gls{SVD}trunc on Flux.1-dev: Detailed GenEval Results]{Detailed quantitative results of Flux.1-dev compressed via \gls{SVD}trunc, evaluated on the GenEval benchmark.}
+	\caption[\gls{SVD}trunc on FLUX.1 {[dev]}: Detailed GenEval Results]{Detailed quantitative results of FLUX.1 {[dev]} compressed via \gls{SVD}trunc, evaluated on the GenEval benchmark.}
 	\label{tab:sup_geneval}
 \end{table}
 
@@ -665,7 +658,7 @@ In addition, further example images for \gls{SVD}trunc \ref{fig:SVDtrunc_Appx} a
 			\multicolumn{1}{c}{Other} &
 			\multicolumn{1}{c}{Average}\\
 			\midrule
-			\textcolor{gray}{FLUX.dev\cite{Flux}} 
+			\textcolor{gray}{FLUX.1 {[dev]} \cite{Flux}} 
 			& \color{gray} 100  % Parameters
 			& \color{gray} 83.3  % Global
 			& \color{gray} 90.1  % Entity
@@ -807,9 +800,17 @@ In addition, further example images for \gls{SVD}trunc \ref{fig:SVDtrunc_Appx} a
 		\end{tabular}
 	}
 	\smallskip
-	\caption[\gls{SVD}trunc on Flux.1-dev: Detailed DPG Results]{Detailed quantitative results of Flux.1-dev compressed via \gls{SVD}trunc, evaluated on the DPG benchmark.}
+	\caption[\gls{SVD}trunc on FLUX.1 {[dev]}: Detailed DPG Results]{Detailed quantitative results of FLUX.1 {[dev]} compressed via \gls{SVD}trunc, evaluated on the DPG benchmark.}
 	\label{tab:sup_dpg}
 \end{table}
+
+\subsubsection{SVDtrunc Example Images}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{images/Experimente/Flux/SVDtrunc/Appendix_SVDtrunc.pdf}
+	\caption[Qualitative Examples: SVDtrunc]{Qualitative comparison of example images generated by models compressed via SVDtrunc to varying sizes.}
+	\label{fig:SVDtrunc_Appx}
+\end{figure}
 
 
 \subsubsection{Domain Shift}
@@ -830,7 +831,7 @@ In addition, further example images for \gls{SVD}trunc \ref{fig:SVDtrunc_Appx} a
 
 
 \subsubsection{Failure Cases}
-Fig. \ref{fig:SVDtrunc_Failure_Cases_Appx} presents failure cases observed in highly compressed models. Note that all images were generated using the same seed on a A100 GPU. In rows 1 and 4, the images generated by the model retaining only 39\% of its original model size display a completely different motif. Row 1 shows a mosaic instead of a woman's face, and in row 4, a glowing object becomes an armored figure. Furthermore, the cyberpunk desk in row 5 entirely loses its 3D structure. In rows 2 and 3, the turtle becomes unrecognizable, and the hands and fingers of the students are displaced. Finally, the last row illustrates a complete mode collapse where the model generates text blocks instead of the original 3D character.
+Fig. \ref{fig:SVDtrunc_Failure_Cases_Appx} presents failure cases observed in highly compressed models. Note that all images were generated using the same seed on a A100 GPU. In rows 1 and 4, the images generated by the model retaining only 39\% of its original model size display a completely different motif. Row 1 shows a mosaic instead of a woman's face, and in row 4, a glowing object becomes an armored figure. Furthermore, the cyberpunk desk in row 5 entirely loses its 3D structure. In rows 2 and 3, the turtle becomes unrecognizable, and the hands and fingers of the students are displaced. Finally, the last row illustrates a complete mode collapse, where the model generates text blocks instead of the original 3D character.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{images/Experimente/Flux/SVDtrunc/Appendix_FailureCases.pdf}
@@ -841,31 +842,31 @@ Fig. \ref{fig:SVDtrunc_Failure_Cases_Appx} presents failure cases observed in hi
 
 \section{Evaluation SVDtrunc on Step-Distilled DiT}
 \label{appx:FluxSchnell}
-This section provides additional qualitative example for Flux.1-schnell compressed via \gls{SVD}trunc (Fig. \ref{fig:FluxSchnellAppx}). As with Flux.1-dev, both domain shift (Fig. \ref{fig:FluxSchnellAppxDomainShift}) and memorization loss (Fig. \ref{fig:FluxSchnellAppxMemoLoss}) occur over the course of compression.
+This section provides additional qualitative example for FLUX.1 {[schnell]} (Sec. \ref{sec:FluxSchnellMainResults}) compressed via \gls{SVD}trunc (Fig. \ref{fig:FluxSchnellAppx}). As with FLUX.1 {[dev]}, both domain shift (Fig. \ref{fig:FluxSchnellAppxDomainShift}) and memorization loss (Fig. \ref{fig:FluxSchnellAppxMemoLoss}) occur over the course of compression.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\textwidth]{images/Experimente/Flux/FluxSchnell/FluxSchnellAppx.pdf}
-	\caption[Qualitative Examples: SVDtrunc on Flux.1-schnell]{Qualitative comparison of example images generated by Flux.1-schnell compressed via SVDtrunc to varying sizes utilizing four inference steps.}
+	\caption[Qualitative Examples: SVDtrunc on FLUX.1 {[schnell]}]{Qualitative comparison of example images generated by FLUX.1 {[schnell]} compressed via SVDtrunc to varying sizes utilizing four inference steps.}
 	\label{fig:FluxSchnellAppx}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\textwidth]{images/Experimente/Flux/FluxSchnell/FluxSchnellDomainShift.pdf}
-	\caption[Qualitative Examples: Domain Shift in SVDtrunc on Flux.1-schnell]{Qualitative comparison of example images generated by Flux.1-schnell compressed via SVDtrunc, illustrating the gradual domain-shift observed with increasing compression levels.}
+	\caption[Qualitative Examples: Domain Shift in SVDtrunc on FLUX.1 {[schnell]}]{Qualitative comparison of example images generated by FLUX.1 {[schnell]} compressed via SVDtrunc, illustrating the gradual domain-shift observed with increasing compression levels.}
 	\label{fig:FluxSchnellAppxDomainShift}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\textwidth]{images/Experimente/Flux/FluxSchnell/FluxSchnellMeMo.pdf}
-	\caption[Qualitative Examples: Memorization Loss in SVDtrunc on Flux.1-schnell]{Qualitative comparison of example images generated by Flux.1-schnell compressed via SVDtrunc, illustrating the gradual memorization loss observed with increasing compression levels.}
+	\caption[Qualitative Examples: Memorization Loss in SVDtrunc on FLUX.1 {[schnell]}]{Qualitative comparison of example images generated by FLUX.1 {[schnell]} compressed via SVDtrunc, illustrating the gradual memorization loss observed with increasing compression levels.}
 	\label{fig:FluxSchnellAppxMemoLoss}
 \end{figure}
 
 \section{GRASP for \gls{DiT}s}
-The block importance ranking from \cite{FastFlux}, which was used in Sec \ref{sec:GRASPForDiTs}, is shown in Fig. \ref{fig:GRAPSImportanceRanking}. Tab. \ref{tab:GRASPSVD_ranks} specifies the exact ranks used for the \gls{SVD} compression of the individual matrices of the double-stream blocks, and Tab. \ref{tab:GRASPpruned_blocks} lists the exact blocks that were compressed.
+The block importance ranking from \cite{FastFlux}, which was used in Sec. \ref{sec:GRASPForDiTs}, is shown in Fig. \ref{fig:GRAPSImportanceRanking}. Tab. \ref{tab:GRASPSVD_ranks} specifies the exact ranks used for the \gls{SVD} compression of the individual matrices within the double-stream blocks, and Tab. \ref{tab:GRASPpruned_blocks} lists the exact blocks that were compressed.
 \subsubsection{Block Importance Ranking}
 \label{app:GRASP_BlockImportance}
 For this experiment the importance of blocks determined in \cite{FastFlux} was leveraged. Below the figure from the corresponding work is presented. 
@@ -873,7 +874,7 @@ For this experiment the importance of blocks determined in \cite{FastFlux} was l
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.9\textwidth]{images/Experimente/Flux/Training_Free/BlockImportanceFastFlux.png}
-	\caption[GRASP: Flux.1-dev Block Importance Ranking]{Block importance for Flux.1-dev taken from \cite{FastFlux}.}
+	\caption[GRASP: FLUX.1 {[dev]} Block Importance Ranking]{Block importance for FLUX.1 {[dev]} taken from \cite{FastFlux}.}
 	\label{fig:GRAPSImportanceRanking}
 \end{figure}
 

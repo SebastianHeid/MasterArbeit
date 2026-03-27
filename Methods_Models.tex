@@ -1,9 +1,9 @@
 \chapter{Methods}
-This chapter introduces the methodologies utilized for the experiments in Chapter \ref{sec:Experiments}. First, Sec. \ref{sec:ImageGenerationModels} details the architectures of  PixArt-$\Sigma$ and Flux.1-dev, as they are subject to modification during the experiments. Following this, Sec. \ref{sec:Datasets} introduces the training datasets utilized for fine-tuning the compressed models. Afterwards, the methods leveraged for block importance analysis are described (Sec. \ref{sec:MethodsBlockImportanceAnalysis}) followed by the model compression strategies (Sec. \ref{sec:StructuralCompressionStrategy}) and a detailed discussion of the knowledge distillation loss (Sec. \ref{sec:MethodKDLoss}). Finally, Sec.  \ref{sec:MethodPruningSchedule} concludes the Chapter by introducing the pruning schedules.
+This chapter introduces the methodologies utilized for the experiments in Chapter \ref{sec:Experiments}. First, Sec. \ref{sec:ImageGenerationModels} details the architectures of  PixArt-$\Sigma$ and FLUX.1 {[dev]}, as they are subject to modification during the experiments. Following this, Sec. \ref{sec:Datasets} introduces the training datasets utilized for fine-tuning the compressed models. Afterwards, the methods leveraged for block importance analysis are described (Sec. \ref{sec:MethodsBlockImportanceAnalysis}) followed by the model compression strategies (Sec. \ref{sec:StructuralCompressionStrategy}) and a detailed discussion of the knowledge distillation loss (Sec. \ref{sec:MethodKDLoss}). Finally, Sec.  \ref{sec:MethodPruningSchedule} concludes the Chapter by introducing the pruning schedules.
 
 \section{Image Generation Models}
 \label{sec:ImageGenerationModels}
-This section provides a detailed description of the models, namely Pixart-$\Sigma$ \cite{Pixart_s} and Flux.1-dev \cite{Flux}, which were used for the experiments.
+This section provides a detailed description of the models, namely Pixart-$\Sigma$ \cite{Pixart_s} and FLUX.1 {[dev]} \cite{Flux}, which were used for the experiments.
 \subsection{Pixart-$\Sigma$}
 PixArt-$\Sigma$ \cite{Pixart_s}, the latest addition to the PixArt family \cite{Pixart_a, Pixart_d}, was developed to demonstrate that high-fidelity image generation can be achieved with significantly reduced training costs and model parameters. Pixart-$\Sigma$ is a further development of  Pixart-$\alpha$. Therefore, the shared architecture of Pixart-$\alpha$ and Pixart-$\Sigma$ is introduced first. Next, the key points for efficient training of Pixart-$\alpha$ are described that are also of relevance for PixArt-$\Sigma$, followed by the specific enhancements implemented in PixArt-$\Sigma$.
 
@@ -99,11 +99,11 @@ To conclude, PixArt-$\Sigma$ demonstrates that leveraging a weaker model (PixArt
 
 
 
-\subsection{Flux.1-dev}
-Flux.1-dev \cite{Flux} is a publicly available, guidance-distilled rectified flow model based on the commercial model Flux.1-pro \cite{Flux}. Due to the absence of a paper or technical report which describes the exact training process, the dataset used and the specific design choices, the following section focuses on presenting the model's architecture. The architecture analysis is based on the following git repository \cite{kohya_ss_sd_scripts_2024}.
+\subsection{FLUX.1 {[dev]}}
+FLUX.1 {[dev]} \cite{Flux} is a publicly available, guidance-distilled rectified flow model based on the commercial model Flux.1-pro \cite{Flux}. Due to the absence of a paper or technical report which describes the exact training process, the dataset used and the specific design choices, the following section focuses on presenting the model's architecture. The architecture analysis is based on the following git repository \cite{kohya_ss_sd_scripts_2024}.
 
 \subsubsection{Architecture}
-Flux.1-dev is based on a multi-modal diffusion Transformer (\gls{MMDiT}) \cite{SD3} architecture containing 19 double-stream blocks followed by 38 single-stream blocks (Fig. \ref{FluxOverview}) adding up to a total of 11.9 billion parameters (Tab. \ref{tab:Flux_parameter_count}). 
+FLUX.1 {[dev]} is based on a multi-modal diffusion Transformer (\gls{MMDiT}) \cite{SD3} architecture containing 19 double-stream blocks followed by 38 single-stream blocks (Fig. \ref{FluxOverview}) adding up to a total of 11.9 billion parameters (Tab. \ref{tab:Flux_parameter_count}). 
 
 While prompt processing relies on two distinct text encoders, namely CLIP ViT-L/14 \cite{CLIP} and T5-XXL \cite{T5XXL}, image encoding is performed by a \gls{VAE} compressing the height $H$ and width $W$ of the image by a factor of eight. Each double-stream block has mainly four inputs: a guidance vector, the positional information of the image patches, as well as the text and the image hidden states. Hereby, the text and the image are processed separately in two distinct streams allowing the model to apply modality-specific weights. This dual-path approach is the defining characteristic of a \gls{MMDiT}. In contrast, the single-stream blocks have only three inputs as the text and image hidden states are combined and processed jointly.  
 
@@ -113,7 +113,7 @@ While prompt processing relies on two distinct text encoders, namely CLIP ViT-L/
 
  To obtain the guidance vector, the guidance parameter and the timestep are embedded via \gls{MLP}s  into high dimensional tensors which are summed together. Then the pooled clip vector for the text prompt is embedded via another MLP and added. The resulting vector, called guidance vector, is injected via modulation in every double- and single-stream block. 
 
-\item Another input to both block types is the concatenated \textbf{positional encoding} for the text prompt and the image. First, based on the latent representation of the image, 3D coordinates for the position of every patch in the image are created. The 3D vector for the image represents the 2D positional IDs $(x,y)$ of the patch in the image and a time dimension $t$ for the possibility to adapt Flux.1-dev for videos. However, for image generation the time dimension is always set to zero. Text position IDs are included for architectural consistency but are initialized to zero, as text tokens lack meaningful 2D spatial coordinates in a latent image grid. In contrast to PixArt-$\Sigma$, Flux.1-dev uses rotary positional embedding (\gls{RoPE}) \cite{RoPE} where the embedded vector is utilized in the attention mechanism to rotate the key and query vectors such as the spatial relationships within the image are preserved.
+\item Another input to both block types is the concatenated \textbf{positional encoding} for the text prompt and the image. First, based on the latent representation of the image, 3D coordinates for the position of every patch in the image are created. The 3D vector for the image represents the 2D positional IDs $(x,y)$ of the patch in the image and a time dimension $t$ for the possibility to adapt FLUX.1 {[dev]} for videos. However, for image generation the time dimension is always set to zero. Text position IDs are included for architectural consistency but are initialized to zero, as text tokens lack meaningful 2D spatial coordinates in a latent image grid. In contrast to PixArt-$\Sigma$, FLUX.1 {[dev]} uses rotary positional embedding (\gls{RoPE}) \cite{RoPE} where the embedded vector is utilized in the attention mechanism to rotate the key and query vectors such as the spatial relationships within the image are preserved.
 
 \item The \textbf{text prompt} is tokenized into $512$ tokens, allowing the model to process long and detailed prompts. The T5-XXL encoder embeds the tokens into high-dimensional vectors $(1,512,4096)$ and a linear projection is applied before they are fed into the first double-stream block. The textual hidden states are then sequentially passed through all subsequent double-stream blocks. 
 
@@ -126,13 +126,13 @@ After being processed by all 19 double-stream blocks, the textual and image hidd
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1.0\textwidth]{images/Background/Flux/Flux_Uebersicht.pdf}  % adjust filename and width
-	\caption[Flux.1-dev Architecture]{Overview of the Flux.1-dev architecture.}
+	\includegraphics[width=\textwidth]{images/Background/Flux/Flux_Uebersicht.pdf}  % adjust filename and width
+	\caption[FLUX.1 {[dev]} Architecture]{Overview of the FLUX.1 {[dev]} architecture.}
 \label{FluxOverview}
 \end{figure}
 
 \subsubsection{Double-Stream Blocks}
-The double-stream blocks  (Fig. \ref{SingleDoubleStreamBlock} right) are the fundamental building blocks of the first part of the Flux.1-dev architecture. In contrast to other diffusion-based models \cite{Pixart_s, SD21, SDXL} the block consists of two separate streams, which process image and text information separately and only exchange information during the attention process. The blocks consist of three main components: the modulation, which incorporates the guidance vector encoding information about the timestep, the guidance, and the pooled CLIP vector, the attention mechanism, which bidirectionally transfers information from text to image features and vice versa and the \gls{MLP}s,  which further process the features. 
+The double-stream blocks  (Fig. \ref{SingleDoubleStreamBlock} right) are the fundamental building blocks of the first part of the FLUX.1 {[dev]} architecture. In contrast to other diffusion-based models \cite{Pixart_s, SD21, SDXL} the block consists of two separate streams, which process image and text information separately and only exchange information during the attention process. The blocks consist of three main components: the modulation, which incorporates the guidance vector encoding information about the timestep, the guidance, and the pooled CLIP vector, the attention mechanism, which bidirectionally transfers information from text to image features and vice versa and the \gls{MLP}s,  which further process the features. 
 
 
 \begin{itemize}
@@ -150,26 +150,15 @@ The double-stream blocks  (Fig. \ref{SingleDoubleStreamBlock} right) are the fun
 
 
 \subsubsection{Single-Stream Blocks}
-The single-stream blocks (Fig. \ref{SingleDoubleStreamBlock} left) are the fundamental building blocks of the second part of the Flux.1-dev architecture. Their primary components are the self-attention mechanism the \gls{MLP} and the modulation layers. First, the concatenated image and text features $X$ are modulated using \gls{adaLN} where the shift and scale parameters are obtained by processing the guidance vector through a linear layer. Similar to the double-stream architecture, a gating mechanism is applied after the attention mechanism is executed. To optimize throughput, the model uses a fused linear projection where the hidden states for the attention mechanism and the parallel feed-forward path are computed simultaneously.  The outputs of the attention mechanism and the feed-forward path are concatenated together and processed by a subsequent linear projection before the gating mechanism is applied. Finally, the updated features are combined with the residual path to form the final output of the block. \\
+The single-stream blocks (Fig. \ref{SingleDoubleStreamBlock} left) are the fundamental building blocks of the second part of the FLUX.1 {[dev]} architecture. Their primary components are the self-attention mechanism the \gls{MLP} and the modulation layers. First, the concatenated image and text features $X$ are modulated using \gls{adaLN} where the shift and scale parameters are obtained by processing the guidance vector through a linear layer. Similar to the double-stream architecture, a gating mechanism is applied after the attention mechanism is executed. To optimize throughput, the model uses a fused linear projection where the hidden states for the attention mechanism and the parallel feed-forward path are computed simultaneously.  The outputs of the attention mechanism and the feed-forward path are concatenated together and processed by a subsequent linear projection before the gating mechanism is applied. Finally, the updated features are combined with the residual path to form the final output of the block. \\
 
 
 The number of parameters of the individual components of a single- and a double-stream blocks as well as the total parameter count can be found in Tab. \ref{tab:Flux_parameter_count}.
 
 
-
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=1.0\textwidth]{images/Background/Flux/SingleDoubleBlocks.pdf}  % adjust filename and width
-	\caption[Double- and Single-Stream Transformer Blocks from Flux.1-dev]{Illustration of a single-stream (left) and a double-stream (right) Transformer block of Flux.1-dev. Adapted from \cite{FastFlux}.}
-	\label{SingleDoubleStreamBlock}
-\end{figure}
-
-
-
 \begin{table}[h]
 	\centering
-	\caption[Parameter Count of Flux.1-dev Components]{Number of parameters for the individual components of the single- and double-stream blocks of Flux.1-dev and the entire model.}
+	\caption[Parameter Count of FLUX.1 {[dev]} Components]{Number of parameters for the individual components of the single- and double-stream blocks of FLUX.1 {[dev]} and the entire model.}
 	\label{tab:Flux_parameter_count}
 	\renewcommand{\arraystretch}{1.2} % Macht die Tabelle etwas luftiger/lesbarer
 	\begin{tabular}{@{}l c@{}} % @{} entfernt den seitlichen Rand für einen cleanen Look
@@ -192,9 +181,20 @@ The number of parameters of the individual components of a single- and a double-
 		Single-Stream Modulation & 28.3 \\
 		\midrule
 		\textbf{Total Single-Stream Block} & 141.6 \\
-			\midrule
-		\textbf{Total Model (Flux.1-dev)} & 11,901.4 \\
+		\midrule
+		\textbf{Total Model (FLUX.1 {[dev]})} & 11,901.4 \\
 		\bottomrule
 	\end{tabular}
-\end{table}
+\end{table} 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.0\textwidth]{images/Background/Flux/SingleDoubleBlocks.pdf}  % adjust filename and width
+	\caption[Double- and Single-Stream Transformer Blocks from FLUX.1 {[dev]}]{Illustration of a single-stream (left) and a double-stream (right) Transformer block of FLUX.1 {[dev]}. Adapted from \cite{FastFlux}.}
+	\label{SingleDoubleStreamBlock}
+\end{figure}
+
+
+
+
 
