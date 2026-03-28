@@ -24,7 +24,7 @@ Reallocated global_strs (elt_size=200001) to 20 items from 10.
 Reallocated glb_str_end (elt_size=4) to 20 items from 10.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
-Reallocated field_info (elt_size=4) to 10488 items from 5000.
+Reallocated field_info (elt_size=4) to 10460 items from 5000.
 Database file #1: bibliography.bib
 Repeated entry---line 286 of file bibliography.bib
  : @article{han2015deep
@@ -73,45 +73,45 @@ Warning--can't use both volume and number fields in adaLN
 Warning--empty journal in SelfAttentionFigure
 Warning--empty journal in ConsistencyModel
 Warning--empty journal in flux1-lite
-You've used 196 entries,
+You've used 195 entries,
             2943 wiz_defined-function locations,
-            1666 strings with 44887 characters,
-and the built_in function-call counts, 105463 in all, are:
-= -- 10310
-> -- 5958
+            1662 strings with 44647 characters,
+and the built_in function-call counts, 104963 in all, are:
+= -- 10266
+> -- 5918
 < -- 59
-+ -- 2233
-- -- 2028
-* -- 6256
-:= -- 15564
-add.period$ -- 625
-call.type$ -- 196
-change.case$ -- 1588
++ -- 2218
+- -- 2014
+* -- 6223
+:= -- 15482
+add.period$ -- 622
+call.type$ -- 195
+change.case$ -- 1578
 chr.to.int$ -- 0
-cite$ -- 203
-duplicate$ -- 2815
-empty$ -- 8415
-format.name$ -- 2028
-if$ -- 26189
+cite$ -- 202
+duplicate$ -- 2805
+empty$ -- 8383
+format.name$ -- 2014
+if$ -- 26072
 int.to.chr$ -- 0
-int.to.str$ -- 196
-missing$ -- 182
-newline$ -- 993
-num.names$ -- 392
-pop$ -- 2716
+int.to.str$ -- 195
+missing$ -- 181
+newline$ -- 988
+num.names$ -- 390
+pop$ -- 2701
 preamble$ -- 1
-purify$ -- 1391
+purify$ -- 1382
 quote$ -- 0
-skip$ -- 6498
+skip$ -- 6470
 stack$ -- 0
-substring$ -- 3998
-swap$ -- 855
+substring$ -- 3993
+swap$ -- 854
 text.length$ -- 63
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 784
+type$ -- 780
 warning$ -- 7
-while$ -- 606
-width$ -- 199
-write$ -- 2115
+while$ -- 604
+width$ -- 198
+write$ -- 2105
 (There were 9 error messages)

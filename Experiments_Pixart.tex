@@ -3,6 +3,8 @@
 \chapter{Experiments}
 \label{sec:Experiments}
 This chapter investigates low-rank model compression leveraging truncated \gls{SVD} on Transformer blocks within the PixArt-$\Sigma$ and FLUX.1 {[dev]} architectures. PixArt-$\Sigma$ is employed as an experimental baseline to evaluate various design choices in the compression framework. Its relatively low parameter count enables rapid iteration and extensive ablation studies. Subsequently, the most effective strategies are applied to FLUX.1 {[dev]} and FLUX.1 {[schnell]} to assess their efficacy in high-parameter regimes and in step-distilled models. 
+
+During the experiments, only the \gls{DiT} backbone was subject to compression. The \gls{VAE} and the text-encoder were kept unmodified.
 \section{PixArt-$\Sigma$ Compression}
 \label{sec:PixArtExp}
 

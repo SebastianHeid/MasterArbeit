@@ -1,6 +1,6 @@
-\chapter{Supplements FLUX.1 {[dev]} Experiments}
+\chapter{Supplements: FLUX.1 {[dev]} Experiments}
 
-\section{Training Details}
+\section{Experimental Default Setup}
 
 Tab. \ref{tab:flux_training_config} provides the training settings for FLUX.1 {[dev]}
 \begin{table}[!htbp]
@@ -52,7 +52,7 @@ Tab. \ref{tab:flux_training_config} provides the training settings for FLUX.1 {[
 \end{table}
 
 
-\section{Block Importance Analysis}
+\section{Qualitative Block Importance Analysis}
 \label{appx:FluxBlockImportanceAnalysis}
 Fig. \ref{fig:AppxBlockAnalysisRemovalDouble} and Fig. \ref{fig:AppxBlockAnalysisRemovalSingle} present the complete set of qualitative examples of a generated images when one complete double- or single-stream block is pruned similar to the analysis in Sec. \ref{sec:QualitativeBlockAnalysisFlux}. 
 
@@ -91,7 +91,7 @@ Fig. \ref{fig:AppxBlockAnalysisCompressionDouble} and Fig. \ref{fig:AppxBlockAna
 
 
 
-\section{Training-Free Compression}
+\section{Training-Free Model Compression}
 This section provides the technical settings for the training-free experiments (Sec. \ref{sec:trainingFreeCompression}) using complete block removal (Tab. \ref{tab:TrainingFreeMethodsRemoval}) and \gls{SVD}-based compression (Tab. \ref{tab:TrainingFreeMethodsSVD}). Additionally, it presents example images for models compressed to 90\% and 70\% (Figs. \ref{fig:Examples_TrainingFree90} - \ref{fig:Examples_TrainingFree70}).
 
 
@@ -840,7 +840,7 @@ Fig. \ref{fig:SVDtrunc_Failure_Cases_Appx} presents failure cases observed in hi
 \end{figure}
 
 
-\section{Evaluation SVDtrunc on Step-Distilled DiT}
+\section{Evaluation SVDtrunc on Step-Distilled DiTs}
 \label{appx:FluxSchnell}
 This section provides additional qualitative example for FLUX.1 {[schnell]} (Sec. \ref{sec:FluxSchnellMainResults}) compressed via \gls{SVD}trunc (Fig. \ref{fig:FluxSchnellAppx}). As with FLUX.1 {[dev]}, both domain shift (Fig. \ref{fig:FluxSchnellAppxDomainShift}) and memorization loss (Fig. \ref{fig:FluxSchnellAppxMemoLoss}) occur over the course of compression.
 
@@ -865,7 +865,7 @@ This section provides additional qualitative example for FLUX.1 {[schnell]} (Sec
 	\label{fig:FluxSchnellAppxMemoLoss}
 \end{figure}
 
-\section{GRASP for \gls{DiT}s}
+\section{Proof of Concept: GRASP for \gls{DiT}s}
 The block importance ranking from \cite{FastFlux}, which was used in Sec. \ref{sec:GRASPForDiTs}, is shown in Fig. \ref{fig:GRAPSImportanceRanking}. Tab. \ref{tab:GRASPSVD_ranks} specifies the exact ranks used for the \gls{SVD} compression of the individual matrices within the double-stream blocks, and Tab. \ref{tab:GRASPpruned_blocks} lists the exact blocks that were compressed.
 \subsubsection{Block Importance Ranking}
 \label{app:GRASP_BlockImportance}

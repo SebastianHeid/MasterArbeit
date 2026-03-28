@@ -1193,13 +1193,6 @@ Jiahui Yu, Yuanzhong Xu, Jing~Yu Koh, Thang Luong, Gunjan Baid, Zirui Wang,
   generation.
 \newblock {\em arXiv preprint arXiv:2206.10789}, 2022.
 
-\bibitem{yuan2023asvd}
-Zhihang Yuan, Yuzhang Shang, Yue Song, Dawei Yang, Qiang Wu, Yan Yan, and
-  Guangyu Sun.
-\newblock {ASVD}: Activation-aware singular value decomposition for compressing
-  large language models.
-\newblock {\em arXiv preprint arXiv:2312.05821}, 2023.
-
 \bibitem{RMSNorm}
 Biao Zhang and Rico Sennrich.
 \newblock Root mean square layer normalization.
