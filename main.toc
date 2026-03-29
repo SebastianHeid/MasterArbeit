@@ -89,56 +89,57 @@
 \contentsline {subsection}{\numberline {5.1.2}Block Importance Analysis}{55}{subsection.5.1.2}%
 \contentsline {subsubsection}{Block Selection Criteria}{56}{section*.38}%
 \contentsline {subsubsection}{Qualitative Block Analysis for SVD-Based Compression}{58}{section*.39}%
-\contentsline {subsection}{\numberline {5.1.3}Block Selection Algorithms}{60}{subsection.5.1.3}%
-\contentsline {subsubsection}{Greedy}{60}{section*.40}%
-\contentsline {subsubsection}{Optuna}{60}{section*.41}%
-\contentsline {subsection}{\numberline {5.1.4}One-Shot vs. Progressive Model Compression}{63}{subsection.5.1.4}%
-\contentsline {subsection}{\numberline {5.1.5}Knowledge Distillation Loss}{64}{subsection.5.1.5}%
-\contentsline {subsection}{\numberline {5.1.6}Fine-Tuning Protocol}{67}{subsection.5.1.6}%
-\contentsline {subsection}{\numberline {5.1.7}Compression Strategy}{68}{subsection.5.1.7}%
-\contentsline {subsection}{\numberline {5.1.8}Sensitivity Analysis of MLP and Attention Layers under \gls {SVD} Compression}{70}{subsection.5.1.8}%
-\contentsline {subsection}{\numberline {5.1.9}Importance-Aware Rank-Adaptive Progressive Model Compression}{73}{subsection.5.1.9}%
-\contentsline {subsection}{\numberline {5.1.10}Summary of Best Settings for PixArt-$\Sigma $ Compression}{74}{subsection.5.1.10}%
-\contentsline {section}{\numberline {5.2}FLUX.1 {[dev]} Compression}{76}{section.5.2}%
-\contentsline {subsection}{\numberline {5.2.1}Experimental Default Setup}{76}{subsection.5.2.1}%
-\contentsline {subsection}{\numberline {5.2.2}Qualitative Block Importance Analysis}{78}{subsection.5.2.2}%
-\contentsline {subsection}{\numberline {5.2.3}Training-Free Model Compression}{79}{subsection.5.2.3}%
-\contentsline {subsection}{\numberline {5.2.4}Preliminary Experiments: Block Selection and Compression Schedule}{80}{subsection.5.2.4}%
-\contentsline {subsubsection}{Comparison of Block Selection Strategies}{80}{section*.42}%
-\contentsline {subsubsection}{Sensitivity Analysis: Compression Breadth vs. Depth}{82}{section*.43}%
-\contentsline {subsection}{\numberline {5.2.5}Main Results: Evaluating SVDtrunc}{84}{subsection.5.2.5}%
-\contentsline {subsubsection}{Domain Shift}{85}{section*.44}%
-\contentsline {subsubsection}{Memorization Loss}{86}{section*.45}%
-\contentsline {subsubsection}{Model Efficiency and Latency}{87}{section*.46}%
-\contentsline {subsection}{\numberline {5.2.6}Evaluating SVDtrunc on Step-Distilled \gls {DiT}s}{88}{subsection.5.2.6}%
-\contentsline {subsection}{\numberline {5.2.7}Proof of Concept: GRASP for DiTs}{89}{subsection.5.2.7}%
-\contentsline {chapter}{\numberline {6}Discussion and Conclusion}{93}{chapter.6}%
-\contentsline {chapter}{\numberline {A}Supplements: PixArt-$\Sigma $ Experiments}{95}{appendix.A}%
-\contentsline {section}{\numberline {A.1}Experimental Default Setup}{95}{section.A.1}%
-\contentsline {section}{\numberline {A.2}Block Importance Analysis}{95}{section.A.2}%
-\contentsline {subsubsection}{CKA-Analysis of Transformer Blocks}{96}{section*.47}%
-\contentsline {subsubsection}{Qualitative Block Selection Analysis}{96}{section*.48}%
-\contentsline {section}{\numberline {A.3}One-Shot vs. Progressive Model Compression}{97}{section.A.3}%
-\contentsline {section}{\numberline {A.4}Knowledge Distillation Loss}{98}{section.A.4}%
-\contentsline {section}{\numberline {A.5}Fine-Tuning Protocol}{101}{section.A.5}%
-\contentsline {section}{\numberline {A.6}Compression Strategy}{103}{section.A.6}%
-\contentsline {section}{\numberline {A.7}Importance-Aware Rank-Adaptive Progressive Model Compression}{106}{section.A.7}%
-\contentsline {chapter}{\numberline {B}Supplements: FLUX.1 {[dev]} Experiments}{111}{appendix.B}%
-\contentsline {section}{\numberline {B.1}Experimental Default Setup}{111}{section.B.1}%
-\contentsline {section}{\numberline {B.2}Qualitative Block Importance Analysis}{111}{section.B.2}%
-\contentsline {section}{\numberline {B.3}Training-Free Model Compression}{115}{section.B.3}%
-\contentsline {section}{\numberline {B.4}Preliminary Experiments: Block Selection and Compression Schedule}{117}{section.B.4}%
-\contentsline {subsection}{\numberline {B.4.1}Block Selection}{117}{subsection.B.4.1}%
-\contentsline {subsection}{\numberline {B.4.2}Sensitivity Analysis: Compression Breadth vs. Depth}{120}{subsection.B.4.2}%
-\contentsline {section}{\numberline {B.5}Main Results: Evaluating SVDtrunc}{120}{section.B.5}%
-\contentsline {subsubsection}{SVDtrunc Example Images}{123}{section*.49}%
-\contentsline {subsubsection}{Domain Shift}{124}{section*.50}%
-\contentsline {subsubsection}{Failure Cases}{125}{section*.51}%
-\contentsline {section}{\numberline {B.6}Evaluation SVDtrunc on Step-Distilled DiTs}{127}{section.B.6}%
-\contentsline {section}{\numberline {B.7}Proof of Concept: GRASP for \gls {DiT}s}{128}{section.B.7}%
-\contentsline {subsubsection}{Block Importance Ranking}{129}{section*.52}%
-\contentsline {subsubsection}{Compression Details}{129}{section*.53}%
-\contentsline {chapter}{\numberline {C}Acknowledgments}{130}{appendix.C}%
-\contentsline {chapter}{\numberline {D}Declaration}{131}{appendix.D}%
-\contentsline {subsubsection}{Nutzung von Künstlicher Intelligenz (KI)}{131}{section*.54}%
-\contentsline {chapter}{Bibliography}{132}{appendix*.55}%
+\contentsline {subsection}{\numberline {5.1.3}Block Selection Algorithms}{59}{subsection.5.1.3}%
+\contentsline {subsubsection}{Greedy}{59}{section*.40}%
+\contentsline {subsubsection}{Optuna}{59}{section*.41}%
+\contentsline {subsection}{\numberline {5.1.4}One-Shot vs. Progressive Model Compression}{62}{subsection.5.1.4}%
+\contentsline {subsection}{\numberline {5.1.5}Knowledge Distillation Loss}{63}{subsection.5.1.5}%
+\contentsline {subsection}{\numberline {5.1.6}Fine-Tuning Protocol}{66}{subsection.5.1.6}%
+\contentsline {subsection}{\numberline {5.1.7}Compression Strategy}{67}{subsection.5.1.7}%
+\contentsline {subsection}{\numberline {5.1.8}Sensitivity Analysis of MLP and Attention Layers under \gls {SVD} Compression}{69}{subsection.5.1.8}%
+\contentsline {subsection}{\numberline {5.1.9}Importance-Aware Rank-Adaptive Progressive Model Compression}{71}{subsection.5.1.9}%
+\contentsline {subsection}{\numberline {5.1.10}Summary of Best Settings for PixArt-$\Sigma $ Compression}{73}{subsection.5.1.10}%
+\contentsline {section}{\numberline {5.2}FLUX.1 {[dev]} Compression}{75}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Experimental Default Setup}{75}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Qualitative Block Importance Analysis}{77}{subsection.5.2.2}%
+\contentsline {subsection}{\numberline {5.2.3}Training-Free Model Compression}{78}{subsection.5.2.3}%
+\contentsline {subsection}{\numberline {5.2.4}Preliminary Experiments: Block Selection and Compression Schedule}{79}{subsection.5.2.4}%
+\contentsline {subsubsection}{Comparison of Block Selection Strategies}{79}{section*.42}%
+\contentsline {subsubsection}{Sensitivity Analysis: Compression Breadth vs. Depth}{81}{section*.43}%
+\contentsline {subsection}{\numberline {5.2.5}Main Results: Evaluating SVDtrunc}{83}{subsection.5.2.5}%
+\contentsline {subsubsection}{Domain Shift}{84}{section*.44}%
+\contentsline {subsubsection}{Memorization Loss}{85}{section*.45}%
+\contentsline {subsubsection}{Model Efficiency and Latency}{86}{section*.46}%
+\contentsline {subsection}{\numberline {5.2.6}Evaluating SVDtrunc on Step-Distilled \gls {DiT}s}{87}{subsection.5.2.6}%
+\contentsline {subsection}{\numberline {5.2.7}Proof of Concept: GRASP for DiTs}{88}{subsection.5.2.7}%
+\contentsline {chapter}{\numberline {6}Discussion and Conclusion}{92}{chapter.6}%
+\contentsline {chapter}{\numberline {A}Supplements: PixArt-$\Sigma $ Experiments}{94}{appendix.A}%
+\contentsline {section}{\numberline {A.1}Experimental Default Setup}{94}{section.A.1}%
+\contentsline {section}{\numberline {A.2}Block Importance Analysis}{94}{section.A.2}%
+\contentsline {subsubsection}{CKA-Analysis of Transformer Blocks}{95}{section*.47}%
+\contentsline {subsubsection}{Qualitative Block Selection Analysis}{95}{section*.48}%
+\contentsline {section}{\numberline {A.3}One-Shot vs. Progressive Model Compression}{96}{section.A.3}%
+\contentsline {section}{\numberline {A.4}Knowledge Distillation Loss}{97}{section.A.4}%
+\contentsline {section}{\numberline {A.5}Fine-Tuning Protocol}{100}{section.A.5}%
+\contentsline {section}{\numberline {A.6}Compression Strategy}{102}{section.A.6}%
+\contentsline {section}{\numberline {A.7}Sensitivity Analysis of \gls {MLP} and Attention Layers under \gls {SVD} Compression}{105}{section.A.7}%
+\contentsline {section}{\numberline {A.8}Importance-Aware Rank-Adaptive Progressive Model Compression}{107}{section.A.8}%
+\contentsline {chapter}{\numberline {B}Supplements: FLUX.1 {[dev]} Experiments}{112}{appendix.B}%
+\contentsline {section}{\numberline {B.1}Experimental Default Setup}{112}{section.B.1}%
+\contentsline {section}{\numberline {B.2}Qualitative Block Importance Analysis}{112}{section.B.2}%
+\contentsline {section}{\numberline {B.3}Training-Free Model Compression}{116}{section.B.3}%
+\contentsline {section}{\numberline {B.4}Preliminary Experiments: Block Selection and Compression Schedule}{118}{section.B.4}%
+\contentsline {subsection}{\numberline {B.4.1}Block Selection}{118}{subsection.B.4.1}%
+\contentsline {subsection}{\numberline {B.4.2}Sensitivity Analysis: Compression Breadth vs. Depth}{121}{subsection.B.4.2}%
+\contentsline {section}{\numberline {B.5}Main Results: Evaluating SVDtrunc}{121}{section.B.5}%
+\contentsline {subsubsection}{SVDtrunc Example Images}{124}{section*.49}%
+\contentsline {subsubsection}{Domain Shift}{125}{section*.50}%
+\contentsline {subsubsection}{Failure Cases}{126}{section*.51}%
+\contentsline {section}{\numberline {B.6}Evaluation SVDtrunc on Step-Distilled DiTs}{128}{section.B.6}%
+\contentsline {section}{\numberline {B.7}Proof of Concept: GRASP for \gls {DiT}s}{129}{section.B.7}%
+\contentsline {subsubsection}{Block Importance Ranking}{130}{section*.52}%
+\contentsline {subsubsection}{Compression Details}{130}{section*.53}%
+\contentsline {chapter}{\numberline {C}Acknowledgments}{131}{appendix.C}%
+\contentsline {chapter}{\numberline {D}Declaration}{132}{appendix.D}%
+\contentsline {subsubsection}{Nutzung von Künstlicher Intelligenz (KI)}{132}{section*.54}%
+\contentsline {chapter}{Bibliography}{133}{appendix*.55}%

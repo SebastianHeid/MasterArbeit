@@ -325,7 +325,9 @@ In contrast to one-shot model compression, progressive model compression, e.g. \
 
 \subsection{Importance-Aware Rank-Adaptive Progressive Model Compression}
 \label{sec:LinearProgressiveCompression}
-In this work, a new importance-aware rank-adaptive progressive compression schedule specifically designed for truncated \gls{SVD} is proposed. This approach advances standard progressive model compression by introducing a fourth step, namely determining individual compression ratios for each block during each iteration based on its task importance. Here, \textit{importance-aware} indicates that all blocks are ranked according to their relevance for the image generation process, similar to previous schedules. \textit{Rank-adaptive} signifies that the blocks are not compressed uniformly, as is common in standard progressive model reduction. Instead, varying \gls{SVD} ranks are applied based on their position in the importance ranking, such that less critical blocks are compressed more aggressively than important ones. Concretely, the assigned compression ratios linearly decrease with increasing block importance. Furthermore, rather than modifying each block only once, this method allows blocks to be compressed across multiple iterations. 
+In this work, a new importance-aware rank-adaptive progressive compression schedule specifically designed for truncated \gls{SVD} is proposed. This approach advances standard progressive model compression by introducing a fourth step, namely determining individual compression ratios for each block during each iteration based on its task importance. 
+
+Here, \textit{importance-aware} indicates that all blocks are ranked according to their relevance for the image generation process, similar to previous schedules. \textit{Rank-adaptive} signifies that the blocks are not compressed uniformly, as is common in standard progressive model reduction. Instead, varying \gls{SVD} ranks are applied based on their position in the importance ranking, such that less critical blocks are compressed more aggressively than important ones. Concretely, the assigned compression ratios linearly decrease with increasing block importance. Furthermore, rather than modifying each block only once, this method allows blocks to be compressed across multiple iterations. 
 
  The initial step of this proposed compression schedule aligns with the previous approaches. The block importance is determined by leveraging the \gls{CMMD}. However, as multiple compressions of the same Transformer block are possible, the \gls{CMMD} value is normalized by the reduction in parameter count to ensure a fair comparison. For instance, reducing an already compressed block by $c_\text{fixed} = 60\%$ saves fewer parameters than compressing a full Transformer block by the same percentage. Let $P_i$ $(i \in \{1, \dots, L\})$ denote the current number of parameters of block $B_i$. Then, the final importance score for each block $B_i$ is given by 
  \begin{equation}
@@ -359,7 +361,7 @@ resulting in the final equation for the linear decay rate
 \begin{equation}
 	x = \frac{\sum_{i=1}^{k}\left(P^*_i \cdot S \right) - N}{ \sum_{i=1}^{k}\left(P^*_i \cdot (i-1)  \right)} \quad.
 \end{equation}
-The input parameters $S$,$N$, and $k$ specified by the user must meet two conditions. First, $N \leq S \cdot \sum_{i=1}^{k} P^*_i$, meaning the total parameter reduction must not exceed the amount removed if all blocks were compressed by the base ratio $S$. Otherwise, the linear decay rate $x$ would become negative, causing the compression ratio to increase for more important blocks, which would contradict the ranking strategy. Second, the compression ratio of the last block, $c_k$, must not be negative, which leads to the following condition
+The input parameters $S$, $N$, and $k$ specified by the user must meet two conditions. First, $N \leq S \cdot \sum_{i=1}^{k} P^*_i$, meaning the total parameter reduction must not exceed the amount removed if all blocks were compressed by the base ratio $S$. Otherwise, the linear decay rate $x$ would become negative, causing the compression ratio to increase for more important blocks, which would contradict the ranking strategy. Second, the compression ratio of the last block, $c_k$, must not be negative, which leads to the following condition
 \begin{equation}
 	\begin{split}
 		& 0 \leq c_k = S - (k-1) \cdot x \\
@@ -368,21 +370,21 @@ The input parameters $S$,$N$, and $k$ specified by the user must meet two condit
 	\end{split}
 \end{equation}
 
-Combining these constraints, a valid range for the total number of parameters to remove in one iteration based on the choice of $S$ and $k$ is obtained as
+Combining these constraints, a valid range for the total number of parameters to remove $N$ in one iteration based on the choice of $S$ and $k$ is obtained as
 \begin{equation}
 	S \sum_{i=1}^{k} P^*_i - \frac{S \sum_{i=1}^{k}(P^*_i \cdot (i-1)) }{k-1}  \leq N \leq S \cdot \sum_{i=1}^{k} P^*_i \quad.
 \end{equation}
 
 The third step, after computing the compression ratios $c_i$, is to compress the model using truncated \gls{SVD} as described in Sec. \ref{sec:IterativeRepeatedSVDCompression}. The fourth and final step of the iteration is to fine-tune the compressed model to recover its generative capabilities. This procedure is then repeated until the desired model size is reached.
 
- A schematic representation of the entire procedure is depicted in Fig. \ref{fig:LinearCompressionScheme}, where steps three and four model compression and fine-tuning) are summarized in the last element of the figure.
+ A schematic representation of the entire procedure is depicted in Fig. \ref{fig:LinearCompressionScheme}, where steps three and four (model compression and fine-tuning) are summarized in the last element of the figure.
 %In the subsequent experimental evaluation (Chap. \ref{sec:Experiments}), models compressed utilizing this specific pruning schedule are denoted as \gls{SVD}trunc.
 
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{images/Methoden/LinearCompressionScheme.pdf}
-\caption[Importance-Aware Rank-Adaptive Progressive Compression Schedule]{Illustration of the importance-aware rank-adaptive progressive compression procedure. In each iteration, the importance of every block - regardless of prior modifications - is re-evaluated. Subsequently, these blocks are compressed to varying degrees proportional to their current importance, with less important blocks undergoing more significant reduction. This process repeats until the target size is reached, whereas blocks may be compressed multiple times.}
+\caption[Importance-Aware Rank-Adaptive Progressive Compression Schedule]{Illustration of the importance-aware rank-adaptive progressive compression procedure. In each iteration, the importance of every block - regardless of prior modifications - is re-evaluated. Subsequently, these blocks are compressed to varying degrees proportional to their current importance, with less important blocks undergoing more significant reduction. After compression the model is fine-tuned to recover its generative capabilities. This process repeats until the target size is reached, whereas blocks may be compressed multiple times.}
 	\label{fig:LinearCompressionScheme}
 \end{figure}
 
