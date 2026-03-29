@@ -9,7 +9,7 @@
 \contentsline {table}{\numberline {4.4}{\ignorespaces LAION-FLUX.1 {[dev]} Dataset Generation Settings}}{43}{table.4.4}%
 \addvspace {10\p@ }
 \contentsline {table}{\numberline {5.1}{\ignorespaces Training and Compression Settings: PixArt-$\Sigma $ Pruning vs. \gls {SVD} Compression}}{68}{table.5.1}%
-\contentsline {table}{\numberline {5.2}{\ignorespaces Benchmark Performance: Training-Free Compression Methods on FLUX.1 {[dev]}}}{79}{table.5.2}%
+\contentsline {table}{\numberline {5.2}{\ignorespaces Benchmark Performance: Training-Free Compression Methods on FLUX.1 {[dev]}}}{78}{table.5.2}%
 \contentsline {table}{\numberline {5.3}{\ignorespaces Benchmark Performance: \gls {SVD}trunc vs. \gls {SOTA} Compression Methods on FLUX.1 {[dev]}}}{83}{table.5.3}%
 \contentsline {table}{\numberline {5.4}{\ignorespaces \gls {VRAM} Consumption and Latency of \gls {SVD}trunc}}{86}{table.5.4}%
 \contentsline {table}{\numberline {5.5}{\ignorespaces Benchmark Performance: \gls {SVD}trunc on FLUX.1 {[schnell]}}}{88}{table.5.5}%

@@ -40,29 +40,28 @@
 \contentsline {figure}{\numberline {5.9}{\ignorespaces Qualitative Examples: One-Shot vs. Progressive Model Compression}}{62}{figure.5.9}%
 \contentsline {figure}{\numberline {5.10}{\ignorespaces Benchmark Performance: Different Knowledge Distillation Loss Configurations}}{64}{figure.5.10}%
 \contentsline {figure}{\numberline {5.11}{\ignorespaces Qualitative Examples: Different Knowledge Distillation Loss Configurations}}{65}{figure.5.11}%
-\contentsline {figure}{\numberline {5.12}{\ignorespaces Benchmark Performance: Fine-Tuning Protocols}}{67}{figure.5.12}%
+\contentsline {figure}{\numberline {5.12}{\ignorespaces Benchmark Performance: Fine-Tuning Protocols}}{66}{figure.5.12}%
 \contentsline {figure}{\numberline {5.13}{\ignorespaces Qualitative Examples: Fine-Tuning Protocols}}{67}{figure.5.13}%
-\contentsline {figure}{\numberline {5.14}{\ignorespaces Benchmark Performance: Compression Strategies}}{69}{figure.5.14}%
+\contentsline {figure}{\numberline {5.14}{\ignorespaces Benchmark Performance: Compression Strategies}}{68}{figure.5.14}%
 \contentsline {figure}{\numberline {5.15}{\ignorespaces Qualitative Examples: Compression Strategies}}{69}{figure.5.15}%
 \contentsline {figure}{\numberline {5.16}{\ignorespaces Benchmark Performance: Sensitivity Analysis of MLP and Attention Layers to Compression}}{70}{figure.5.16}%
 \contentsline {figure}{\numberline {5.17}{\ignorespaces Qualitative Examples: Sensitivity Analysis of MLP and Attention Layers to Compression}}{71}{figure.5.17}%
 \contentsline {figure}{\numberline {5.18}{\ignorespaces Qualitative Examples: Importance-Aware Rank-Adaptive Progressive Compression}}{72}{figure.5.18}%
 \contentsline {figure}{\numberline {5.19}{\ignorespaces Benchmark Performance: Importance-Aware Rank-Adaptive Progressive Compression}}{73}{figure.5.19}%
-\contentsline {figure}{\numberline {5.20}{\ignorespaces SVD Compressed Modules within Single- and Double-Stream Blocks of FLUX.1 {[dev]}}}{76}{figure.5.20}%
-\contentsline {figure}{\numberline {5.21}{\ignorespaces Exemplary Qualitative Double-Stream Block Importance Analysis of FLUX.1 {[dev]}}}{77}{figure.5.21}%
-\contentsline {figure}{\numberline {5.22}{\ignorespaces Exemplary Qualitative Single-Stream Block Importance Analysis of FLUX.1 {[dev]}}}{78}{figure.5.22}%
-\contentsline {figure}{\numberline {5.23}{\ignorespaces Qualitative Examples: Training-Free Model Compression}}{79}{figure.5.23}%
-\contentsline {figure}{\numberline {5.24}{\ignorespaces Benchmark Performance: Random vs. Uniform vs. Metric-Based Block Selection}}{80}{figure.5.24}%
-\contentsline {figure}{\numberline {5.25}{\ignorespaces Qualitative Examples: Importance, Uniform, and Random Block Selection}}{81}{figure.5.25}%
-\contentsline {figure}{\numberline {5.26}{\ignorespaces Benchmark Performance: Parameter Reduction Distribution}}{82}{figure.5.26}%
-\contentsline {figure}{\numberline {5.27}{\ignorespaces Quality-Parameter Frontier: FLUX.1 {[dev]}}}{84}{figure.5.27}%
-\contentsline {figure}{\numberline {5.28}{\ignorespaces Qualitative Examples: SVDtrunc}}{84}{figure.5.28}%
-\contentsline {figure}{\numberline {5.29}{\ignorespaces Qualitative Examples: Domain Shift in SVDtrunc}}{85}{figure.5.29}%
-\contentsline {figure}{\numberline {5.30}{\ignorespaces Qualitative Examples: Memorization Loss in SVDtrunc}}{86}{figure.5.30}%
-\contentsline {figure}{\numberline {5.31}{\ignorespaces Qualitative Examples: SVDtrunc on FLUX.1 {[schnell]}}}{87}{figure.5.31}%
-\contentsline {figure}{\numberline {5.32}{\ignorespaces GRASP: Magnitude vs. Importance Analysis of Singular Values}}{89}{figure.5.32}%
-\contentsline {figure}{\numberline {5.33}{\ignorespaces Benchmark Performance: \gls {SVD} vs. \gls {GRASP}}}{90}{figure.5.33}%
-\contentsline {figure}{\numberline {5.34}{\ignorespaces Qualitative Examples: \gls {SVD} vs. \gls {GRASP}}}{91}{figure.5.34}%
+\contentsline {figure}{\numberline {5.20}{\ignorespaces Exemplary Qualitative Double-Stream Block Importance Analysis of FLUX.1 {[dev]}}}{77}{figure.5.20}%
+\contentsline {figure}{\numberline {5.21}{\ignorespaces Exemplary Qualitative Single-Stream Block Importance Analysis of FLUX.1 {[dev]}}}{77}{figure.5.21}%
+\contentsline {figure}{\numberline {5.22}{\ignorespaces Qualitative Examples: Training-Free Model Compression}}{79}{figure.5.22}%
+\contentsline {figure}{\numberline {5.23}{\ignorespaces Benchmark Performance: Random vs. Uniform vs. Metric-Based Block Selection}}{80}{figure.5.23}%
+\contentsline {figure}{\numberline {5.24}{\ignorespaces Qualitative Examples: Importance, Uniform, and Random Block Selection}}{81}{figure.5.24}%
+\contentsline {figure}{\numberline {5.25}{\ignorespaces Benchmark Performance: Parameter Reduction Distribution}}{82}{figure.5.25}%
+\contentsline {figure}{\numberline {5.26}{\ignorespaces Quality-Parameter Frontier: FLUX.1 {[dev]}}}{84}{figure.5.26}%
+\contentsline {figure}{\numberline {5.27}{\ignorespaces Qualitative Examples: SVDtrunc}}{84}{figure.5.27}%
+\contentsline {figure}{\numberline {5.28}{\ignorespaces Qualitative Examples: Domain Shift in SVDtrunc}}{85}{figure.5.28}%
+\contentsline {figure}{\numberline {5.29}{\ignorespaces Qualitative Examples: Memorization Loss in SVDtrunc}}{86}{figure.5.29}%
+\contentsline {figure}{\numberline {5.30}{\ignorespaces Qualitative Examples: SVDtrunc on FLUX.1 {[schnell]}}}{87}{figure.5.30}%
+\contentsline {figure}{\numberline {5.31}{\ignorespaces GRASP: Magnitude vs. Importance Analysis of Singular Values}}{89}{figure.5.31}%
+\contentsline {figure}{\numberline {5.32}{\ignorespaces Benchmark Performance: \gls {SVD} vs. \gls {GRASP}}}{90}{figure.5.32}%
+\contentsline {figure}{\numberline {5.33}{\ignorespaces Qualitative Examples: \gls {SVD} vs. \gls {GRASP}}}{91}{figure.5.33}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {A.1}{\ignorespaces CKA-Score Heatmap}}{95}{figure.A.1}%
@@ -80,34 +79,36 @@
 \contentsline {figure}{\numberline {A.13}{\ignorespaces Qualitative Examples: Fine-Tuning Protocols (80\% Model)}}{101}{figure.A.13}%
 \contentsline {figure}{\numberline {A.14}{\ignorespaces Qualitative Examples: Fine-Tuning Protocols (70\% Model)}}{101}{figure.A.14}%
 \contentsline {figure}{\numberline {A.15}{\ignorespaces Qualitative Examples: Fine-Tuning Protocols (50\% Model)}}{102}{figure.A.15}%
-\contentsline {figure}{\numberline {A.16}{\ignorespaces \gls {SVD} Compressed Modules within Transformer Blocks of PixArt-$\Sigma $}}{103}{figure.A.16}%
-\contentsline {figure}{\numberline {A.17}{\ignorespaces Qualitative Examples: Compression Strategies (90\% Model)}}{103}{figure.A.17}%
-\contentsline {figure}{\numberline {A.18}{\ignorespaces Qualitative Examples: Compression Strategies (80\% Model)}}{104}{figure.A.18}%
-\contentsline {figure}{\numberline {A.19}{\ignorespaces Qualitative Examples: Compression Strategies (70\% Model)}}{104}{figure.A.19}%
-\contentsline {figure}{\numberline {A.20}{\ignorespaces Qualitative Examples: Compression Strategies (60\% Model)}}{105}{figure.A.20}%
-\contentsline {figure}{\numberline {A.21}{\ignorespaces Qualitative Examples: Sensitivity Analysis (72\% Model)}}{106}{figure.A.21}%
+\contentsline {figure}{\numberline {A.16}{\ignorespaces Qualitative Examples: Compression Strategies (90\% Model)}}{102}{figure.A.16}%
+\contentsline {figure}{\numberline {A.17}{\ignorespaces Qualitative Examples: Compression Strategies (80\% Model)}}{103}{figure.A.17}%
+\contentsline {figure}{\numberline {A.18}{\ignorespaces Qualitative Examples: Compression Strategies (70\% Model)}}{103}{figure.A.18}%
+\contentsline {figure}{\numberline {A.19}{\ignorespaces Qualitative Examples: Compression Strategies (60\% Model)}}{104}{figure.A.19}%
+\contentsline {figure}{\numberline {A.20}{\ignorespaces \gls {SVD} Compressed Modules within Transformer Blocks of PixArt-$\Sigma $}}{104}{figure.A.20}%
+\contentsline {figure}{\numberline {A.21}{\ignorespaces Qualitative Examples: Sensitivity Analysis (72\% Model)}}{105}{figure.A.21}%
 \contentsline {figure}{\numberline {A.22}{\ignorespaces Qualitative Examples: Sensitivity Analysis (66\% Model)}}{106}{figure.A.22}%
-\contentsline {figure}{\numberline {A.23}{\ignorespaces Qualitative Examples: Importance-Aware Rank-Adaptive Progressive Compression (90\% Model)}}{108}{figure.A.23}%
-\contentsline {figure}{\numberline {A.24}{\ignorespaces Qualitative Examples: Importance-Aware Rank-Adaptive Progressive Compression (80\% Model)}}{109}{figure.A.24}%
-\contentsline {figure}{\numberline {A.25}{\ignorespaces Qualitative Examples: Importance-Aware Rank-Adaptive Progressive Compression (70\% Model)}}{110}{figure.A.25}%
-\contentsline {figure}{\numberline {A.26}{\ignorespaces Qualitative Examples: Importance-Aware Rank-Adaptive Progressive Compression (60\% Model)}}{111}{figure.A.26}%
+\contentsline {figure}{\numberline {A.23}{\ignorespaces Qualitative Examples: Importance-Aware Rank-Adaptive Progressive Compression (90\% Model)}}{107}{figure.A.23}%
+\contentsline {figure}{\numberline {A.24}{\ignorespaces Qualitative Examples: Importance-Aware Rank-Adaptive Progressive Compression (80\% Model)}}{108}{figure.A.24}%
+\contentsline {figure}{\numberline {A.25}{\ignorespaces Qualitative Examples: Importance-Aware Rank-Adaptive Progressive Compression (70\% Model)}}{109}{figure.A.25}%
+\contentsline {figure}{\numberline {A.26}{\ignorespaces Qualitative Examples: Importance-Aware Rank-Adaptive Progressive Compression (60\% Model)}}{110}{figure.A.26}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {B.1}{\ignorespaces Qualitative Double-Stream Block Importance Analysis of FLUX.1 {[dev]}: Block Removal}}{112}{figure.B.1}%
-\contentsline {figure}{\numberline {B.2}{\ignorespaces Qualitative Single-Stream Block Importance Analysis of FLUX.1 {[dev]}: Block Removal}}{114}{figure.B.2}%
-\contentsline {figure}{\numberline {B.3}{\ignorespaces Qualitative Double-Stream Block Importance Analysis of FLUX.1 {[dev]}: Block Compression}}{115}{figure.B.3}%
-\contentsline {figure}{\numberline {B.4}{\ignorespaces Qualitative Single-Stream Block Importance Analysis of FLUX.1 {[dev]}: Block Compression}}{116}{figure.B.4}%
-\contentsline {figure}{\numberline {B.5}{\ignorespaces Qualitative Examples: Training-Free Model Compression (90\% Model)}}{117}{figure.B.5}%
-\contentsline {figure}{\numberline {B.6}{\ignorespaces Qualitative Examples: Training-Free Model Compression (70\% Model)}}{118}{figure.B.6}%
-\contentsline {figure}{\numberline {B.7}{\ignorespaces Qualitative Examples: Importance, Uniform, and Random Block Selection (68\% Model)}}{119}{figure.B.7}%
-\contentsline {figure}{\numberline {B.8}{\ignorespaces Qualitative Examples: Importance, Uniform, and Random Block Selection (57\% Model)}}{119}{figure.B.8}%
-\contentsline {figure}{\numberline {B.9}{\ignorespaces Qualitative Examples: Importance, Uniform, and Random Block Selection (43\% Model)}}{120}{figure.B.9}%
-\contentsline {figure}{\numberline {B.10}{\ignorespaces Qualitative Examples: SVDtrunc}}{124}{figure.B.10}%
-\contentsline {figure}{\numberline {B.11}{\ignorespaces Qualitative Examples: Domain Shift in SVDtrunc}}{125}{figure.B.11}%
-\contentsline {figure}{\numberline {B.12}{\ignorespaces Qualitative Examples: Memorization Loss in SVDtrunc}}{126}{figure.B.12}%
-\contentsline {figure}{\numberline {B.13}{\ignorespaces Qualitative Examples: Failure Cases in SVDtrunc}}{127}{figure.B.13}%
-\contentsline {figure}{\numberline {B.14}{\ignorespaces Qualitative Examples: SVDtrunc on FLUX.1 {[schnell]}}}{128}{figure.B.14}%
-\contentsline {figure}{\numberline {B.15}{\ignorespaces Qualitative Examples: Domain Shift in SVDtrunc on FLUX.1 {[schnell]}}}{129}{figure.B.15}%
-\contentsline {figure}{\numberline {B.16}{\ignorespaces Qualitative Examples: Memorization Loss in SVDtrunc on FLUX.1 {[schnell]}}}{129}{figure.B.16}%
-\contentsline {figure}{\numberline {B.17}{\ignorespaces GRASP: FLUX.1 {[dev]} Block Importance Ranking}}{130}{figure.B.17}%
+\contentsline {figure}{\numberline {B.1}{\ignorespaces SVD Compressed Components of a FLUX.1 {[dev]} Single-Stream Block}}{111}{figure.B.1}%
+\contentsline {figure}{\numberline {B.2}{\ignorespaces SVD Compressed Components of a FLUX.1 {[dev]} Double-Stream Block}}{112}{figure.B.2}%
+\contentsline {figure}{\numberline {B.3}{\ignorespaces Qualitative Double-Stream Block Importance Analysis of FLUX.1 {[dev]}: Block Removal}}{114}{figure.B.3}%
+\contentsline {figure}{\numberline {B.4}{\ignorespaces Qualitative Double-Stream Block Importance Analysis of FLUX.1 {[dev]}: Block Compression}}{114}{figure.B.4}%
+\contentsline {figure}{\numberline {B.5}{\ignorespaces Qualitative Single-Stream Block Importance Analysis of FLUX.1 {[dev]}: Block Removal}}{115}{figure.B.5}%
+\contentsline {figure}{\numberline {B.6}{\ignorespaces Qualitative Single-Stream Block Importance Analysis of FLUX.1 {[dev]}: Block Compression}}{116}{figure.B.6}%
+\contentsline {figure}{\numberline {B.7}{\ignorespaces Qualitative Examples: Training-Free Model Compression (90\% Model)}}{117}{figure.B.7}%
+\contentsline {figure}{\numberline {B.8}{\ignorespaces Qualitative Examples: Training-Free Model Compression (70\% Model)}}{118}{figure.B.8}%
+\contentsline {figure}{\numberline {B.9}{\ignorespaces Qualitative Examples: Importance, Uniform, and Random Block Selection (68\% Model)}}{119}{figure.B.9}%
+\contentsline {figure}{\numberline {B.10}{\ignorespaces Qualitative Examples: Importance, Uniform, and Random Block Selection (57\% Model)}}{119}{figure.B.10}%
+\contentsline {figure}{\numberline {B.11}{\ignorespaces Qualitative Examples: Importance, Uniform, and Random Block Selection (43\% Model)}}{120}{figure.B.11}%
+\contentsline {figure}{\numberline {B.12}{\ignorespaces Qualitative Examples: SVDtrunc}}{124}{figure.B.12}%
+\contentsline {figure}{\numberline {B.13}{\ignorespaces Qualitative Examples: Domain Shift in SVDtrunc}}{125}{figure.B.13}%
+\contentsline {figure}{\numberline {B.14}{\ignorespaces Qualitative Examples: Memorization Loss in SVDtrunc}}{126}{figure.B.14}%
+\contentsline {figure}{\numberline {B.15}{\ignorespaces Qualitative Examples: Failure Cases in SVDtrunc}}{127}{figure.B.15}%
+\contentsline {figure}{\numberline {B.16}{\ignorespaces Qualitative Examples: SVDtrunc on FLUX.1 {[schnell]}}}{128}{figure.B.16}%
+\contentsline {figure}{\numberline {B.17}{\ignorespaces Qualitative Examples: Domain Shift in SVDtrunc on FLUX.1 {[schnell]}}}{129}{figure.B.17}%
+\contentsline {figure}{\numberline {B.18}{\ignorespaces Qualitative Examples: Memorization Loss in SVDtrunc on FLUX.1 {[schnell]}}}{129}{figure.B.18}%
+\contentsline {figure}{\numberline {B.19}{\ignorespaces GRASP: FLUX.1 {[dev]} Block Importance Ranking}}{130}{figure.B.19}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }

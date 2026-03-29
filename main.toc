@@ -94,14 +94,14 @@
 \contentsline {subsubsection}{Optuna}{59}{section*.41}%
 \contentsline {subsection}{\numberline {5.1.4}One-Shot vs. Progressive Model Compression}{62}{subsection.5.1.4}%
 \contentsline {subsection}{\numberline {5.1.5}Knowledge Distillation Loss}{63}{subsection.5.1.5}%
-\contentsline {subsection}{\numberline {5.1.6}Fine-Tuning Protocol}{66}{subsection.5.1.6}%
+\contentsline {subsection}{\numberline {5.1.6}Fine-Tuning Protocol}{65}{subsection.5.1.6}%
 \contentsline {subsection}{\numberline {5.1.7}Compression Strategy}{67}{subsection.5.1.7}%
 \contentsline {subsection}{\numberline {5.1.8}Sensitivity Analysis of MLP and Attention Layers under \gls {SVD} Compression}{69}{subsection.5.1.8}%
 \contentsline {subsection}{\numberline {5.1.9}Importance-Aware Rank-Adaptive Progressive Model Compression}{71}{subsection.5.1.9}%
 \contentsline {subsection}{\numberline {5.1.10}Summary of Best Settings for PixArt-$\Sigma $ Compression}{73}{subsection.5.1.10}%
 \contentsline {section}{\numberline {5.2}FLUX.1 {[dev]} Compression}{75}{section.5.2}%
 \contentsline {subsection}{\numberline {5.2.1}Experimental Default Setup}{75}{subsection.5.2.1}%
-\contentsline {subsection}{\numberline {5.2.2}Qualitative Block Importance Analysis}{77}{subsection.5.2.2}%
+\contentsline {subsection}{\numberline {5.2.2}Qualitative Block Importance Analysis}{76}{subsection.5.2.2}%
 \contentsline {subsection}{\numberline {5.2.3}Training-Free Model Compression}{78}{subsection.5.2.3}%
 \contentsline {subsection}{\numberline {5.2.4}Preliminary Experiments: Block Selection and Compression Schedule}{79}{subsection.5.2.4}%
 \contentsline {subsubsection}{Comparison of Block Selection Strategies}{79}{section*.42}%
@@ -123,9 +123,9 @@
 \contentsline {section}{\numberline {A.5}Fine-Tuning Protocol}{100}{section.A.5}%
 \contentsline {section}{\numberline {A.6}Compression Strategy}{102}{section.A.6}%
 \contentsline {section}{\numberline {A.7}Sensitivity Analysis of \gls {MLP} and Attention Layers under \gls {SVD} Compression}{105}{section.A.7}%
-\contentsline {section}{\numberline {A.8}Importance-Aware Rank-Adaptive Progressive Model Compression}{107}{section.A.8}%
-\contentsline {chapter}{\numberline {B}Supplements: FLUX.1 {[dev]} Experiments}{112}{appendix.B}%
-\contentsline {section}{\numberline {B.1}Experimental Default Setup}{112}{section.B.1}%
+\contentsline {section}{\numberline {A.8}Importance-Aware Rank-Adaptive Progressive Model Compression}{106}{section.A.8}%
+\contentsline {chapter}{\numberline {B}Supplements: FLUX.1 {[dev]} Experiments}{111}{appendix.B}%
+\contentsline {section}{\numberline {B.1}Experimental Default Setup}{111}{section.B.1}%
 \contentsline {section}{\numberline {B.2}Qualitative Block Importance Analysis}{112}{section.B.2}%
 \contentsline {section}{\numberline {B.3}Training-Free Model Compression}{116}{section.B.3}%
 \contentsline {section}{\numberline {B.4}Preliminary Experiments: Block Selection and Compression Schedule}{118}{section.B.4}%

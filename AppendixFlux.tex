@@ -2,7 +2,23 @@
 
 \section{Experimental Default Setup}
 
-Tab. \ref{tab:flux_training_config} provides the training settings for FLUX.1 {[dev]}
+Tab. \ref{tab:flux_training_config} provides the training settings for FLUX.1 {[dev]}.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.4\textwidth]{images/Background/Flux/SingleBlockCompression.pdf}
+	\caption[SVD Compressed Components of a FLUX.1 {[dev]} Single-Stream Block]{Architectural overview of the single-stream block components targeted for \gls{SVD}-based compression in FLUX.1 {[dev]}.}
+	\label{fig:ArchSingleBlockComp}
+\end{figure}
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{images/Background/Flux/DoubleBlockCompression.pdf}
+	\caption[SVD Compressed Components of a FLUX.1 {[dev]} Double-Stream Block]{Architectural overview of the double-stream block components targeted for \gls{SVD}-based compression in FLUX.1 {[dev]}.}
+	\label{fig:ArchDoubleBlockComp}
+\end{figure}
+
+
 \begin{table}[!htbp]
 	\centering
 	\caption[FLUX.1 {[dev]} Fine-Tuning Hyperparameters]{Configuration details for the compressed model retraining, including optimizer settings and flow matching specific parameters. These parameters represent the configuration setup for the training using the git repository \cite{kohya_ss_sd_scripts_2024}.}
@@ -66,6 +82,13 @@ Fig. \ref{fig:AppxBlockAnalysisCompressionDouble} and Fig. \ref{fig:AppxBlockAna
 	\label{fig:AppxBlockAnalysisRemovalDouble}
 \end{figure}
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{images/Experimente/Flux/Block_Analysis/BlockCompressionDouble.pdf}
+	\caption[Qualitative Double-Stream Block Importance Analysis of FLUX.1 {[dev]}: Block Compression]{Qualitative comparison of the impact of 60\% \gls{SVD}-based compression of individual double-stream blocks in FLUX.1 {[dev]}.}
+	\label{fig:AppxBlockAnalysisCompressionDouble}
+\end{figure}
+
 
 \begin{figure}[H]
 	\centering
@@ -74,12 +97,7 @@ Fig. \ref{fig:AppxBlockAnalysisCompressionDouble} and Fig. \ref{fig:AppxBlockAna
 	\label{fig:AppxBlockAnalysisRemovalSingle}
 \end{figure}
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=\textwidth]{images/Experimente/Flux/Block_Analysis/BlockCompressionDouble.pdf}
-	\caption[Qualitative Double-Stream Block Importance Analysis of FLUX.1 {[dev]}: Block Compression]{Qualitative comparison of the impact of 60\% \gls{SVD}-based compression of individual double-stream blocks in FLUX.1 {[dev]}.}
-	\label{fig:AppxBlockAnalysisCompressionDouble}
-\end{figure}
+
 
 \begin{figure}[H]
 	\centering
