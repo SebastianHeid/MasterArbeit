@@ -359,8 +359,10 @@ where $P^*_i$ is the current parameter count of block $B_i^*$. To solve for $x$,
 
 resulting in the final equation for the linear decay rate
 \begin{equation}
+	\label{eq:linDecayRate}
 	x = \frac{\sum_{i=1}^{k}\left(P^*_i \cdot S \right) - N}{ \sum_{i=1}^{k}\left(P^*_i \cdot (i-1)  \right)} \quad.
 \end{equation}
+Note that for $k=1$ the denominator of Eq. \eqref{eq:linDecayRate} would be 0 and therefore the equation only holds for $k > 1$. However, for $k=1$ the linear decay rate $x$ does not need to be computed as the base compression ratio $S$ is the sole ratio needed as only a single block is compressed.
 The input parameters $S$, $N$, and $k$ specified by the user must meet two conditions. First, $N \leq S \cdot \sum_{i=1}^{k} P^*_i$, meaning the total parameter reduction must not exceed the amount removed if all blocks were compressed by the base ratio $S$. Otherwise, the linear decay rate $x$ would become negative, causing the compression ratio to increase for more important blocks, which would contradict the ranking strategy. Second, the compression ratio of the last block, $c_k$, must not be negative, which leads to the following condition
 \begin{equation}
 	\begin{split}

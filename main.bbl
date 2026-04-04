@@ -117,7 +117,7 @@ Junsong Chen, Chongjian Ge, Enze Xie, et~al.
 \bibitem{Pixart_s}
 Junsong Chen, Chongjian Ge, Enze Xie, Yue Wu, Lewei Yao, Xiaozhe Ren, Zhongdao
   Wang, Ping Luo, Huchuan Lu, and Zhenguo Li.
-\newblock {PixArt}-$\sigma$: Weak-to-strong training of diffusion transformer
+\newblock {PixArt-$\Sigma$}: Weak-to-strong training of diffusion transformer
   for 4k text-to-image generation.
 \newblock In {\em European Conference on Computer Vision}, pages 74--91.
   Springer, 2024.

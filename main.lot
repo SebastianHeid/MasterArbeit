@@ -17,18 +17,26 @@
 \addvspace {10\p@ }
 \contentsline {table}{\numberline {A.1}{\ignorespaces PixArt-$\Sigma $ Fine-Tuning Hyperparameters}}{94}{table.A.1}%
 \contentsline {table}{\numberline {A.2}{\ignorespaces Block Removal Details: One-Shot vs. Progressive Pruning}}{96}{table.A.2}%
-\contentsline {table}{\numberline {A.3}{\ignorespaces Compression Details: Importance-Aware Rank-Adaptive Progressive Model Pruning}}{107}{table.A.3}%
+\contentsline {table}{\numberline {A.3}{\ignorespaces \gls {SVD}trunc on PixArt-$\Sigma $: Detailed HPSv2 Results}}{107}{table.A.3}%
+\contentsline {table}{\numberline {A.4}{\ignorespaces \gls {SVD}trunc on PixArt-$\Sigma $: Detailed GenEval Results}}{107}{table.A.4}%
+\contentsline {table}{\numberline {A.5}{\ignorespaces \gls {SVD}trunc on PixArt-$\Sigma $: Detailed DPG Results}}{107}{table.A.5}%
+\contentsline {table}{\numberline {A.6}{\ignorespaces Compression Details: Importance-Aware Rank-Adaptive Progressive Model Pruning}}{108}{table.A.6}%
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {B.1}{\ignorespaces FLUX.1 {[dev]} Fine-Tuning Hyperparameters}}{113}{table.B.1}%
-\contentsline {table}{\numberline {B.2}{\ignorespaces Training-Free Compression: \gls {SVD} Compression Details}}{117}{table.B.2}%
-\contentsline {table}{\numberline {B.3}{\ignorespaces Training-Free Compression: Complete Block Removal Details}}{117}{table.B.3}%
-\contentsline {table}{\numberline {B.4}{\ignorespaces Block Selection: Compression Details}}{118}{table.B.4}%
-\contentsline {table}{\numberline {B.5}{\ignorespaces Parameter Removal Distribution: Compression Details}}{121}{table.B.5}%
-\contentsline {table}{\numberline {B.6}{\ignorespaces FLUX.1 {[dev]} \gls {SVD}trunc: Compression Details}}{122}{table.B.6}%
-\contentsline {table}{\numberline {B.7}{\ignorespaces \gls {SVD}trunc on FLUX.1 {[dev]}: Detailed HPSv2 Results}}{122}{table.B.7}%
-\contentsline {table}{\numberline {B.8}{\ignorespaces \gls {SVD}trunc on FLUX.1 {[dev]}: Detailed GenEval Results}}{122}{table.B.8}%
-\contentsline {table}{\numberline {B.9}{\ignorespaces \gls {SVD}trunc on FLUX.1 {[dev]}: Detailed DPG Results}}{123}{table.B.9}%
-\contentsline {table}{\numberline {B.10}{\ignorespaces GRASP: \gls {SVD} Ranks}}{130}{table.B.10}%
-\contentsline {table}{\numberline {B.11}{\ignorespaces GRASP: Model Compression Configuration}}{130}{table.B.11}%
+\contentsline {table}{\numberline {B.1}{\ignorespaces FLUX.1 {[dev]} Fine-Tuning Hyperparameters}}{114}{table.B.1}%
+\contentsline {table}{\numberline {B.2}{\ignorespaces Training-Free Compression: \gls {SVD} Compression Details}}{119}{table.B.2}%
+\contentsline {table}{\numberline {B.3}{\ignorespaces Training-Free Compression: Complete Block Removal Details}}{119}{table.B.3}%
+\contentsline {table}{\numberline {B.4}{\ignorespaces Uniform Block Selection: Compression Details}}{120}{table.B.4}%
+\contentsline {table}{\numberline {B.5}{\ignorespaces Random Block Selection: Compression Details}}{121}{table.B.5}%
+\contentsline {table}{\numberline {B.6}{\ignorespaces Parameter Removal Distribution: Compression Details}}{123}{table.B.6}%
+\contentsline {table}{\numberline {B.7}{\ignorespaces SVDtrunc Sensitivity Analysis 30 Blocks: Detailed HPSv2 Results}}{123}{table.B.7}%
+\contentsline {table}{\numberline {B.8}{\ignorespaces SVDtrunc Sensitivity Analysis 30 Blocks: Detailed GenEval Results}}{124}{table.B.8}%
+\contentsline {table}{\numberline {B.9}{\ignorespaces \gls {SVD}trunc Sensitivity Analysis 30 Blocks: Detailed DPG Results}}{124}{table.B.9}%
+\contentsline {table}{\numberline {B.10}{\ignorespaces SVDtrunc FLUX.1 {[dev]} Compression Details}}{124}{table.B.10}%
+\contentsline {table}{\numberline {B.11}{\ignorespaces \gls {SVD}trunc on FLUX.1 {[dev]}: Detailed HPSv2 Results}}{125}{table.B.11}%
+\contentsline {table}{\numberline {B.12}{\ignorespaces \gls {SVD}trunc on FLUX.1 {[dev]}: Detailed GenEval Results}}{125}{table.B.12}%
+\contentsline {table}{\numberline {B.13}{\ignorespaces \gls {SVD}trunc on FLUX.1 {[dev]}: Detailed DPG Results}}{125}{table.B.13}%
+\contentsline {table}{\numberline {B.14}{\ignorespaces SVDtrunc FLUX.1 {[schnel]}: Compression Details}}{132}{table.B.14}%
+\contentsline {table}{\numberline {B.15}{\ignorespaces GRASP: \gls {SVD} Ranks}}{132}{table.B.15}%
+\contentsline {table}{\numberline {B.16}{\ignorespaces GRASP: Model Compression Configuration}}{133}{table.B.16}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }

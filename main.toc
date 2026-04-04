@@ -123,23 +123,23 @@
 \contentsline {section}{\numberline {A.5}Fine-Tuning Protocol}{100}{section.A.5}%
 \contentsline {section}{\numberline {A.6}Compression Strategy}{102}{section.A.6}%
 \contentsline {section}{\numberline {A.7}Sensitivity Analysis of \gls {MLP} and Attention Layers under \gls {SVD} Compression}{105}{section.A.7}%
-\contentsline {section}{\numberline {A.8}Importance-Aware Rank-Adaptive Progressive Model Compression}{106}{section.A.8}%
-\contentsline {chapter}{\numberline {B}Supplements: FLUX.1 {[dev]} Experiments}{111}{appendix.B}%
-\contentsline {section}{\numberline {B.1}Experimental Default Setup}{111}{section.B.1}%
-\contentsline {section}{\numberline {B.2}Qualitative Block Importance Analysis}{112}{section.B.2}%
-\contentsline {section}{\numberline {B.3}Training-Free Model Compression}{116}{section.B.3}%
-\contentsline {section}{\numberline {B.4}Preliminary Experiments: Block Selection and Compression Schedule}{118}{section.B.4}%
-\contentsline {subsection}{\numberline {B.4.1}Block Selection}{118}{subsection.B.4.1}%
-\contentsline {subsection}{\numberline {B.4.2}Sensitivity Analysis: Compression Breadth vs. Depth}{121}{subsection.B.4.2}%
-\contentsline {section}{\numberline {B.5}Main Results: Evaluating SVDtrunc}{121}{section.B.5}%
-\contentsline {subsubsection}{SVDtrunc Example Images}{124}{section*.49}%
-\contentsline {subsubsection}{Domain Shift}{125}{section*.50}%
-\contentsline {subsubsection}{Failure Cases}{126}{section*.51}%
-\contentsline {section}{\numberline {B.6}Evaluation SVDtrunc on Step-Distilled DiTs}{128}{section.B.6}%
-\contentsline {section}{\numberline {B.7}Proof of Concept: GRASP for \gls {DiT}s}{129}{section.B.7}%
-\contentsline {subsubsection}{Block Importance Ranking}{130}{section*.52}%
-\contentsline {subsubsection}{Compression Details}{130}{section*.53}%
-\contentsline {chapter}{\numberline {C}Acknowledgments}{131}{appendix.C}%
-\contentsline {chapter}{\numberline {D}Declaration}{132}{appendix.D}%
-\contentsline {subsubsection}{Nutzung von Künstlicher Intelligenz (KI)}{132}{section*.54}%
-\contentsline {chapter}{Bibliography}{133}{appendix*.55}%
+\contentsline {section}{\numberline {A.8}Importance-Aware Rank-Adaptive Progressive Model Compression}{107}{section.A.8}%
+\contentsline {chapter}{\numberline {B}Supplements: FLUX.1 {[dev]} Experiments}{112}{appendix.B}%
+\contentsline {section}{\numberline {B.1}Experimental Default Setup}{112}{section.B.1}%
+\contentsline {section}{\numberline {B.2}Qualitative Block Importance Analysis}{114}{section.B.2}%
+\contentsline {section}{\numberline {B.3}Training-Free Model Compression}{119}{section.B.3}%
+\contentsline {section}{\numberline {B.4}Preliminary Experiments: Block Selection and Compression Schedule}{120}{section.B.4}%
+\contentsline {subsection}{\numberline {B.4.1}Block Selection}{120}{subsection.B.4.1}%
+\contentsline {subsection}{\numberline {B.4.2}Sensitivity Analysis: Compression Breadth vs. Depth}{123}{subsection.B.4.2}%
+\contentsline {section}{\numberline {B.5}Main Results: Evaluating SVDtrunc}{124}{section.B.5}%
+\contentsline {subsubsection}{SVDtrunc Example Images}{126}{section*.49}%
+\contentsline {subsubsection}{Domain Shift}{127}{section*.50}%
+\contentsline {subsubsection}{Failure Cases}{128}{section*.51}%
+\contentsline {section}{\numberline {B.6}Evaluation SVDtrunc on Step-Distilled DiTs}{130}{section.B.6}%
+\contentsline {section}{\numberline {B.7}Proof of Concept: GRASP for \gls {DiT}s}{132}{section.B.7}%
+\contentsline {subsubsection}{Block Importance Ranking}{132}{section*.52}%
+\contentsline {subsubsection}{Compression Details}{132}{section*.53}%
+\contentsline {chapter}{\numberline {C}Acknowledgments}{134}{appendix.C}%
+\contentsline {chapter}{\numberline {D}Declaration}{135}{appendix.D}%
+\contentsline {subsubsection}{Nutzung von Künstlicher Intelligenz (KI)}{135}{section*.54}%
+\contentsline {chapter}{Bibliography}{136}{appendix*.55}%
