@@ -196,7 +196,7 @@ In structural model pruning, entire functional components of a model are elimina
 \begin{equation}
 x_{i+1} = B_{i+1}(x_{i-1}) \quad.
 \end{equation}
-Due to the consistent dimensionality of the hidden features across the model's depth, no additional dimension adaptation is required. A schematic sketch of this procedure is provided in Fig. \ref{fig:CompRemScheme} (right).
+Due to the consistent dimensionality of the hidden features across the model's depth, no additional dimension adaptation is required. A schematic sketch of this procedure is provided in Fig. \ref{fig:CompRemScheme} (left).
 
 \subsection{SVD-Based Compression}
 \label{sec:SVDCompression}
@@ -251,7 +251,7 @@ The general learning objective for knowledge distillation, as described in Eq. \
 \begin{equation}
 	\mathcal{L} = \mathcal{L_\text{Task}} + \lambda_\text{OutKD} \mathcal{L_\text{OutKD}} + \lambda_\text{FeatKD} \mathcal{L_\text{FeatKD}} \quad.
 \end{equation}
-Sec. \ref{sec:ExpKDLoss} investigates the importance of the individual components of this loss function. It has been proven beneficial to normalize the loss of the individual features due to differences in their magnitude. The normalization details are discussed in Sec.  \ref{sec:KDLNormalization}. Furthermore, to compute the feature loss, Sec. \ref{sec:FeatureMappingForLossComputation} provides an overview of the feature mapping between the student and teacher models.
+Sec. \ref{sec:ExpKDLoss} investigates the importance of the individual components of this loss function. It has been proven beneficial to normalize the loss of the individual features due to differences in their magnitude \cite{Laptop}. The normalization details are discussed in Sec.  \ref{sec:KDLNormalization}. Furthermore, to compute the feature loss, Sec. \ref{sec:FeatureMappingForLossComputation} provides an overview of the feature mapping between the student and teacher models.
 
 \subsection{Feature Loss Normalization}
 \label{sec:KDLNormalization}
@@ -329,7 +329,7 @@ In this work, a new importance-aware rank-adaptive progressive compression sched
 
 Here, \textit{importance-aware} indicates that all blocks are ranked according to their relevance for the image generation process, similar to previous schedules. \textit{Rank-adaptive} signifies that the blocks are not compressed uniformly, as is common in standard progressive model reduction. Instead, varying \gls{SVD} ranks are applied based on their position in the importance ranking, such that less critical blocks are compressed more aggressively than important ones. Concretely, the assigned compression ratios linearly decrease with increasing block importance. Furthermore, rather than modifying each block only once, this method allows blocks to be compressed across multiple iterations. 
 
- The initial step of this proposed compression schedule aligns with the previous approaches. The block importance is determined by leveraging the \gls{CMMD}. However, as multiple compressions of the same Transformer block are possible, the \gls{CMMD} value is normalized by the reduction in parameter count to ensure a fair comparison. For instance, reducing an already compressed block by $c_\text{fixed} = 60\%$ saves fewer parameters than compressing a full Transformer block by the same percentage. Let $P_i$ $(i \in \{1, \dots, L\})$ denote the current number of parameters of block $B_i$. Then, the final importance score for each block $B_i$ is given by 
+ The initial step of this proposed compression schedule aligns with the previous approaches. The block importance is determined by leveraging the \gls{CMMD} metric. However, as multiple compressions of the same Transformer block are possible, the \gls{CMMD} value is normalized by the reduction in parameter count to ensure a fair comparison. For instance, reducing an already compressed block by $c_\text{fixed} = 60\%$ saves fewer parameters than compressing a full Transformer block by the same percentage. Let $P_i$ $(i \in \{1, \dots, L\})$ denote the current number of parameters of block $B_i$. Then, the final importance score for each block $B_i$ is given by 
  \begin{equation}
  	s_i = \frac{\text{CMMD}_i}{P_i \cdot c_\text{fixed}}
  \end{equation}
@@ -345,7 +345,7 @@ with $i \in \{1, \dots, k\}$. The goal is to identify $x$ based on the parameter
 	\label{eq:TotalParam}
 	N = \sum_{i=1}^{k} P^*_i \cdot c_i
 \end{equation}
-where $P^*_i$ is the current parameter count of block $B_i^*$. To solve for $x$, Eq. \ref{eq:CompressionRatio} and Eq. \ref{eq:TotalParam} are combined
+where $P^*_i$ is the current parameter count of block $B_i^*$. To solve for $x$, Eq. \eqref{eq:CompressionRatio} and Eq. \eqref{eq:TotalParam} are combined
 
 \begin{equation}
 	\begin{split}
@@ -363,6 +363,7 @@ resulting in the final equation for the linear decay rate
 	x = \frac{\sum_{i=1}^{k}\left(P^*_i \cdot S \right) - N}{ \sum_{i=1}^{k}\left(P^*_i \cdot (i-1)  \right)} \quad.
 \end{equation}
 Note that for $k=1$ the denominator of Eq. \eqref{eq:linDecayRate} would be 0 and therefore the equation only holds for $k > 1$. However, for $k=1$ the linear decay rate $x$ does not need to be computed as the base compression ratio $S$ is the sole ratio needed as only a single block is compressed.
+
 The input parameters $S$, $N$, and $k$ specified by the user must meet two conditions. First, $N \leq S \cdot \sum_{i=1}^{k} P^*_i$, meaning the total parameter reduction must not exceed the amount removed if all blocks were compressed by the base ratio $S$. Otherwise, the linear decay rate $x$ would become negative, causing the compression ratio to increase for more important blocks, which would contradict the ranking strategy. Second, the compression ratio of the last block, $c_k$, must not be negative, which leads to the following condition
 \begin{equation}
 	\begin{split}
