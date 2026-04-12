@@ -1204,6 +1204,13 @@ Dingkun Zhang, Sijia Li, Chen Chen, Qingsong Xie, and Haonan Lu.
   compressing diffusion models.
 \newblock {\em arXiv preprint arXiv:2404.11098}, 2024.
 
+\bibitem{zhang2025sla}
+Jintao Zhang, Haoxu Wang, Kai Jiang, Shuo Yang, Kaiwen Zheng, Haocheng Xi,
+  Ziteng Wang, Hongzhou Zhu, Min Zhao, Ion Stoica, et~al.
+\newblock {SLA}: Beyond sparsity in diffusion transformers via fine-tunable
+  sparse-linear attention.
+\newblock {\em arXiv preprint arXiv:2509.24006}, 2025.
+
 \bibitem{ControlNet}
 Lvmin Zhang, Anyi Rao, and Maneesh Agrawala.
 \newblock Adding conditional control to text-to-image diffusion models.

@@ -24,7 +24,7 @@ Reallocated global_strs (elt_size=200001) to 20 items from 10.
 Reallocated glb_str_end (elt_size=4) to 20 items from 10.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
-Reallocated field_info (elt_size=4) to 10460 items from 5000.
+Reallocated field_info (elt_size=4) to 10488 items from 5000.
 Database file #1: bibliography.bib
 Repeated entry---line 286 of file bibliography.bib
  : @article{han2015deep
@@ -48,21 +48,25 @@ Repeated entry---line 694 of file bibliography.bib
  : @article{han2015learning
  :                         ,
 I'm skipping whatever remains of this entry
-I was expecting a `,' or a `}'---line 1093 of file bibliography.bib
+Repeated entry---line 843 of file bibliography.bib
+ : @article{li2024svdquant
+ :                        ,
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 1106 of file bibliography.bib
  :    
  :    pages = {1-10},
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
-Repeated entry---line 1471 of file bibliography.bib
+Repeated entry---line 1484 of file bibliography.bib
  : @article{KnowledgeDistillation
  :                               ,
 I'm skipping whatever remains of this entry
-I was expecting a `,' or a `}'---line 1485 of file bibliography.bib
+I was expecting a `,' or a `}'---line 1498 of file bibliography.bib
  :    
  :    pages = {234-241},
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
-Repeated entry---line 1681 of file bibliography.bib
+Repeated entry---line 1694 of file bibliography.bib
  : @inproceedings{jacob2018quantization
  :                                     ,
 I'm skipping whatever remains of this entry
@@ -73,45 +77,45 @@ Warning--can't use both volume and number fields in adaLN
 Warning--empty journal in SelfAttentionFigure
 Warning--empty journal in ConsistencyModel
 Warning--empty journal in flux1-lite
-You've used 195 entries,
+You've used 196 entries,
             2943 wiz_defined-function locations,
-            1662 strings with 44647 characters,
-and the built_in function-call counts, 104963 in all, are:
-= -- 10266
-> -- 5918
+            1666 strings with 44949 characters,
+and the built_in function-call counts, 105584 in all, are:
+= -- 10318
+> -- 5978
 < -- 59
-+ -- 2218
-- -- 2014
-* -- 6223
-:= -- 15482
-add.period$ -- 622
-call.type$ -- 195
-change.case$ -- 1578
++ -- 2241
+- -- 2036
+* -- 6271
+:= -- 15588
+add.period$ -- 625
+call.type$ -- 196
+change.case$ -- 1591
 chr.to.int$ -- 0
-cite$ -- 202
-duplicate$ -- 2805
-empty$ -- 8383
-format.name$ -- 2014
-if$ -- 26072
+cite$ -- 203
+duplicate$ -- 2815
+empty$ -- 8415
+format.name$ -- 2036
+if$ -- 26209
 int.to.chr$ -- 0
-int.to.str$ -- 195
-missing$ -- 181
-newline$ -- 988
-num.names$ -- 390
-pop$ -- 2701
+int.to.str$ -- 196
+missing$ -- 182
+newline$ -- 993
+num.names$ -- 392
+pop$ -- 2719
 preamble$ -- 1
-purify$ -- 1382
+purify$ -- 1394
 quote$ -- 0
-skip$ -- 6470
+skip$ -- 6499
 stack$ -- 0
-substring$ -- 3993
-swap$ -- 854
+substring$ -- 3998
+swap$ -- 855
 text.length$ -- 63
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 780
+type$ -- 784
 warning$ -- 7
-while$ -- 604
-width$ -- 198
-write$ -- 2105
-(There were 9 error messages)
+while$ -- 606
+width$ -- 199
+write$ -- 2115
+(There were 10 error messages)

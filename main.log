@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.9.24)  7 APR 2026 16:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.9.24)  12 APR 2026 15:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2050,7 +2050,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 
 ]
-<images/Experimente/Pixart_Block_Analysis/cka_heatmap_100_thesis.png, id=4274, 
+<images/Experimente/Pixart_Block_Analysis/cka_heatmap_100_thesis.png, id=4277, 
 790.152pt x 502.2765pt>
 File: images/Experimente/Pixart_Block_Analysis/cka_heatmap_100_thesis.png Graph
 ic file (type png)
@@ -2059,7 +2059,7 @@ Package pdftex.def Info: images/Experimente/Pixart_Block_Analysis/cka_heatmap_1
 00_thesis.png  used on input line 49.
 (pdftex.def)             Requested size: 314.40001pt x 199.85706pt.
 <images/Experimente/PixArt_Block_Analysis/BlockAnalysisCompression06.pdf, id=42
-77, 963.35912pt x 853.50871pt>
+80, 963.35912pt x 853.50871pt>
 File: images/Experimente/PixArt_Block_Analysis/BlockAnalysisCompression06.pdf G
 raphic file (type pdf)
 <use images/Experimente/PixArt_Block_Analysis/BlockAnalysisCompression06.pdf>
@@ -2070,7 +2070,7 @@ Compression06.pdf  used on input line 58.
 
 [95 <./images/Experimente/Pixart_Block_Analysis/cka_heatmap_100_thesis.png> <./
 images/Experimente/PixArt_Block_Analysis/BlockAnalysisCompression06.pdf>]
-<images/Experimente/Iterative_vs_Direct/Examples_model_90.pdf, id=4328, 1020.45
+<images/Experimente/Iterative_vs_Direct/Examples_model_90.pdf, id=4331, 1020.45
 241pt x 428.5611pt>
 File: images/Experimente/Iterative_vs_Direct/Examples_model_90.pdf Graphic file
  (type pdf)
@@ -2078,7 +2078,7 @@ File: images/Experimente/Iterative_vs_Direct/Examples_model_90.pdf Graphic file
 Package pdftex.def Info: images/Experimente/Iterative_vs_Direct/Examples_model_
 90.pdf  used on input line 97.
 (pdftex.def)             Requested size: 338.58632pt x 142.19724pt.
-<images/Experimente/Iterative_vs_Direct/Examples_model_80.pdf, id=4329, 1020.45
+<images/Experimente/Iterative_vs_Direct/Examples_model_80.pdf, id=4332, 1020.45
 241pt x 542.025pt>
 File: images/Experimente/Iterative_vs_Direct/Examples_model_80.pdf Graphic file
  (type pdf)
@@ -2086,7 +2086,7 @@ File: images/Experimente/Iterative_vs_Direct/Examples_model_80.pdf Graphic file
 Package pdftex.def Info: images/Experimente/Iterative_vs_Direct/Examples_model_
 80.pdf  used on input line 105.
 (pdftex.def)             Requested size: 338.58632pt x 179.84473pt.
-<images/Experimente/Iterative_vs_Direct/Examples_model_70.pdf, id=4330, 1020.45
+<images/Experimente/Iterative_vs_Direct/Examples_model_70.pdf, id=4333, 1020.45
 241pt x 542.025pt>
 File: images/Experimente/Iterative_vs_Direct/Examples_model_70.pdf Graphic file
  (type pdf)
@@ -2098,7 +2098,7 @@ Package pdftex.def Info: images/Experimente/Iterative_vs_Direct/Examples_model_
 
 [96 <./images/Experimente/Iterative_vs_Direct/Examples_model_90.pdf> <./images/
 Experimente/Iterative_vs_Direct/Examples_model_80.pdf>]
-<images/Experimente/Iterative_vs_Direct/Examples_model_60.pdf, id=4392, 1020.45
+<images/Experimente/Iterative_vs_Direct/Examples_model_60.pdf, id=4395, 1020.45
 241pt x 542.025pt>
 File: images/Experimente/Iterative_vs_Direct/Examples_model_60.pdf Graphic file
  (type pdf)
@@ -2106,7 +2106,7 @@ File: images/Experimente/Iterative_vs_Direct/Examples_model_60.pdf Graphic file
 Package pdftex.def Info: images/Experimente/Iterative_vs_Direct/Examples_model_
 60.pdf  used on input line 119.
 (pdftex.def)             Requested size: 338.58632pt x 179.84473pt.
-<images/Experimente/loss_investigation/magnitude_block_features.png, id=4398, 7
+<images/Experimente/loss_investigation/magnitude_block_features.png, id=4401, 7
 14.7503pt x 426.393pt>
 File: images/Experimente/loss_investigation/magnitude_block_features.png Graphi
 c file (type png)
@@ -2118,7 +2118,7 @@ features.png  used on input line 130.
 
 [97 <./images/Experimente/Iterative_vs_Direct/Examples_model_70.pdf> <./images/
 Experimente/Iterative_vs_Direct/Examples_model_60.pdf>]
-<images/Appendix/KnowledgeDistillation/model_90.pdf, id=4465, 1081.1592pt x 995
+<images/Appendix/KnowledgeDistillation/model_90.pdf, id=4468, 1081.1592pt x 995
 .88057pt>
 File: images/Appendix/KnowledgeDistillation/model_90.pdf Graphic file (type pdf
 )
@@ -2126,7 +2126,7 @@ File: images/Appendix/KnowledgeDistillation/model_90.pdf Graphic file (type pdf
 Package pdftex.def Info: images/Appendix/KnowledgeDistillation/model_90.pdf  us
 ed on input line 138.
 (pdftex.def)             Requested size: 314.40001pt x 289.58815pt.
-<images/Appendix/KnowledgeDistillation/model_80.pdf, id=4466, 1081.1592pt x 995
+<images/Appendix/KnowledgeDistillation/model_80.pdf, id=4469, 1081.1592pt x 995
 .88057pt>
 File: images/Appendix/KnowledgeDistillation/model_80.pdf Graphic file (type pdf
 )
@@ -2138,7 +2138,7 @@ ed on input line 145.
 
 [98 <./images/Experimente/loss_investigation/magnitude_block_features.png> <./i
 mages/Appendix/KnowledgeDistillation/model_90.pdf>]
-<images/Appendix/KnowledgeDistillation/model_70.pdf, id=4517, 1081.1592pt x 995
+<images/Appendix/KnowledgeDistillation/model_70.pdf, id=4520, 1081.1592pt x 995
 .88057pt>
 File: images/Appendix/KnowledgeDistillation/model_70.pdf Graphic file (type pdf
 )
@@ -2146,7 +2146,7 @@ File: images/Appendix/KnowledgeDistillation/model_70.pdf Graphic file (type pdf
 Package pdftex.def Info: images/Appendix/KnowledgeDistillation/model_70.pdf  us
 ed on input line 152.
 (pdftex.def)             Requested size: 314.40001pt x 289.58815pt.
-<images/Appendix/KnowledgeDistillation/model_50.pdf, id=4518, 1081.1592pt x 995
+<images/Appendix/KnowledgeDistillation/model_50.pdf, id=4521, 1081.1592pt x 995
 .88057pt>
 File: images/Appendix/KnowledgeDistillation/model_50.pdf Graphic file (type pdf
 )
@@ -2158,14 +2158,14 @@ ed on input line 159.
 
 [99 <./images/Appendix/KnowledgeDistillation/model_80.pdf> <./images/Appendix/K
 nowledgeDistillation/model_70.pdf>]
-<images/Appendix/FinetuningProtocol/model_90.pdf, id=4616, 992.2671pt x 711.136
+<images/Appendix/FinetuningProtocol/model_90.pdf, id=4619, 992.2671pt x 711.136
 78pt>
 File: images/Appendix/FinetuningProtocol/model_90.pdf Graphic file (type pdf)
 <use images/Appendix/FinetuningProtocol/model_90.pdf>
 Package pdftex.def Info: images/Appendix/FinetuningProtocol/model_90.pdf  used 
 on input line 172.
 (pdftex.def)             Requested size: 338.58632pt x 242.65138pt.
-<images/Appendix/FinetuningProtocol/model_80.pdf, id=4617, 992.2671pt x 711.136
+<images/Appendix/FinetuningProtocol/model_80.pdf, id=4620, 992.2671pt x 711.136
 78pt>
 File: images/Appendix/FinetuningProtocol/model_80.pdf Graphic file (type pdf)
 <use images/Appendix/FinetuningProtocol/model_80.pdf>
@@ -2176,14 +2176,14 @@ on input line 179.
 
 [100 <./images/Appendix/KnowledgeDistillation/model_50.pdf> <./images/Appendix/
 FinetuningProtocol/model_90.pdf>]
-<images/Appendix/FinetuningProtocol/model_70.pdf, id=4703, 992.2671pt x 711.136
+<images/Appendix/FinetuningProtocol/model_70.pdf, id=4706, 992.2671pt x 711.136
 78pt>
 File: images/Appendix/FinetuningProtocol/model_70.pdf Graphic file (type pdf)
 <use images/Appendix/FinetuningProtocol/model_70.pdf>
 Package pdftex.def Info: images/Appendix/FinetuningProtocol/model_70.pdf  used 
 on input line 186.
 (pdftex.def)             Requested size: 338.58632pt x 242.65138pt.
-<images/Appendix/FinetuningProtocol/model_50.pdf, id=4704, 992.2671pt x 711.136
+<images/Appendix/FinetuningProtocol/model_50.pdf, id=4707, 992.2671pt x 711.136
 78pt>
 File: images/Appendix/FinetuningProtocol/model_50.pdf Graphic file (type pdf)
 <use images/Appendix/FinetuningProtocol/model_50.pdf>
@@ -2194,7 +2194,7 @@ on input line 193.
 
 [101 <./images/Appendix/FinetuningProtocol/model_80.pdf> <./images/Appendix/Fin
 etuningProtocol/model_70.pdf>]
-<images/Experimente/SVD_VS_Removal/ImageExamples_model90.pdf, id=4786, 1020.452
+<images/Experimente/SVD_VS_Removal/ImageExamples_model90.pdf, id=4789, 1020.452
 41pt x 542.025pt>
 File: images/Experimente/SVD_VS_Removal/ImageExamples_model90.pdf Graphic file 
 (type pdf)
@@ -2202,7 +2202,7 @@ File: images/Experimente/SVD_VS_Removal/ImageExamples_model90.pdf Graphic file
 Package pdftex.def Info: images/Experimente/SVD_VS_Removal/ImageExamples_model9
 0.pdf  used on input line 206.
 (pdftex.def)             Requested size: 435.32422pt x 231.23012pt.
-<images/Experimente/SVD_VS_Removal/ImageExamples_model80.pdf, id=4789, 1020.452
+<images/Experimente/SVD_VS_Removal/ImageExamples_model80.pdf, id=4792, 1020.452
 41pt x 542.025pt>
 File: images/Experimente/SVD_VS_Removal/ImageExamples_model80.pdf Graphic file 
 (type pdf)
@@ -2214,7 +2214,7 @@ Package pdftex.def Info: images/Experimente/SVD_VS_Removal/ImageExamples_model8
 
 [102 <./images/Appendix/FinetuningProtocol/model_50.pdf> <./images/Experimente/
 SVD_VS_Removal/ImageExamples_model90.pdf>]
-<images/Experimente/SVD_VS_Removal/ImageExamples_model70.pdf, id=4861, 1020.452
+<images/Experimente/SVD_VS_Removal/ImageExamples_model70.pdf, id=4864, 1020.452
 41pt x 542.025pt>
 File: images/Experimente/SVD_VS_Removal/ImageExamples_model70.pdf Graphic file 
 (type pdf)
@@ -2222,7 +2222,7 @@ File: images/Experimente/SVD_VS_Removal/ImageExamples_model70.pdf Graphic file
 Package pdftex.def Info: images/Experimente/SVD_VS_Removal/ImageExamples_model7
 0.pdf  used on input line 220.
 (pdftex.def)             Requested size: 435.32422pt x 231.23012pt.
-<images/Experimente/SVD_VS_Removal/ImageExamples_model60.pdf, id=4864, 1020.452
+<images/Experimente/SVD_VS_Removal/ImageExamples_model60.pdf, id=4867, 1020.452
 41pt x 542.025pt>
 File: images/Experimente/SVD_VS_Removal/ImageExamples_model60.pdf Graphic file 
 (type pdf)
@@ -2235,7 +2235,7 @@ Package pdftex.def Info: images/Experimente/SVD_VS_Removal/ImageExamples_model6
 [103 <./images/Experimente/SVD_VS_Removal/ImageExamples_model80.pdf> <./images/
 Experimente/SVD_VS_Removal/ImageExamples_model70.pdf>]
 <images/Experimente/SVD_VS_Removal/PixartArchitectureCompressedModules.pdf, id=
-4931, 623.32875pt x 846.16125pt>
+4934, 623.32875pt x 846.16125pt>
 File: images/Experimente/SVD_VS_Removal/PixartArchitectureCompressedModules.pdf
  Graphic file (type pdf)
 <use images/Experimente/SVD_VS_Removal/PixartArchitectureCompressedModules.pdf>
@@ -2256,7 +2256,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 [104 <./images/Experimente/SVD_VS_Removal/ImageExamples_model60.pdf> <./images/
 Experimente/SVD_VS_Removal/PixartArchitectureCompressedModules.pdf>]
-<images/Experimente/Different_MLP_Attn_Pruning/MLP_vs_Attn_Appx1.pdf, id=4993, 
+<images/Experimente/Different_MLP_Attn_Pruning/MLP_vs_Attn_Appx1.pdf, id=4996, 
 796.4154pt x 568.76491pt>
 File: images/Experimente/Different_MLP_Attn_Pruning/MLP_vs_Attn_Appx1.pdf Graph
 ic file (type pdf)
@@ -2264,7 +2264,7 @@ ic file (type pdf)
 Package pdftex.def Info: images/Experimente/Different_MLP_Attn_Pruning/MLP_vs_A
 ttn_Appx1.pdf  used on input line 246.
 (pdftex.def)             Requested size: 386.95897pt x 276.34532pt.
-<images/Experimente/Different_MLP_Attn_Pruning/MLP_vs_Attn_Appx2.pdf, id=4994, 
+<images/Experimente/Different_MLP_Attn_Pruning/MLP_vs_Attn_Appx2.pdf, id=4997, 
 796.4154pt x 568.76491pt>
 File: images/Experimente/Different_MLP_Attn_Pruning/MLP_vs_Attn_Appx2.pdf Graph
 ic file (type pdf)
@@ -2275,7 +2275,7 @@ ttn_Appx2.pdf  used on input line 254.
 
 
 [105 <./images/Experimente/Different_MLP_Attn_Pruning/MLP_vs_Attn_Appx1.pdf>]
-<images/Experimente/Different_MLP_Attn_Pruning/MLP_vs_Attn_Appx3.pdf, id=5034, 
+<images/Experimente/Different_MLP_Attn_Pruning/MLP_vs_Attn_Appx3.pdf, id=5037, 
 796.4154pt x 568.76491pt>
 File: images/Experimente/Different_MLP_Attn_Pruning/MLP_vs_Attn_Appx3.pdf Graph
 ic file (type pdf)
@@ -2290,7 +2290,7 @@ ttn_Appx3.pdf  used on input line 261.
 
 [107]
 <images/Experimente/Compression_Schedul/ParameterDistribution_Appendix_model90.
-pdf, id=5126, 740.04483pt x 711.13678pt>
+pdf, id=5129, 740.04483pt x 711.13678pt>
 File: images/Experimente/Compression_Schedul/ParameterDistribution_Appendix_mod
 el90.pdf Graphic file (type pdf)
 <use images/Experimente/Compression_Schedul/ParameterDistribution_Appendix_mode
@@ -2299,7 +2299,7 @@ Package pdftex.def Info: images/Experimente/Compression_Schedul/ParameterDistri
 bution_Appendix_model90.pdf  used on input line 565.
 (pdftex.def)             Requested size: 338.58632pt x 325.35817pt.
 <images/Experimente/Compression_Schedul/ParameterDistribution_Appendix_model80.
-pdf, id=5127, 740.04483pt x 711.13678pt>
+pdf, id=5130, 740.04483pt x 711.13678pt>
 File: images/Experimente/Compression_Schedul/ParameterDistribution_Appendix_mod
 el80.pdf Graphic file (type pdf)
 <use images/Experimente/Compression_Schedul/ParameterDistribution_Appendix_mode
@@ -2312,7 +2312,7 @@ bution_Appendix_model80.pdf  used on input line 572.
 [108 <./images/Experimente/Compression_Schedul/ParameterDistribution_Appendix_m
 odel90.pdf>]
 <images/Experimente/Compression_Schedul/ParameterDistribution_Appendix_model70.
-pdf, id=5172, 740.04483pt x 711.13678pt>
+pdf, id=5175, 740.04483pt x 711.13678pt>
 File: images/Experimente/Compression_Schedul/ParameterDistribution_Appendix_mod
 el70.pdf Graphic file (type pdf)
 <use images/Experimente/Compression_Schedul/ParameterDistribution_Appendix_mode
@@ -2325,7 +2325,7 @@ bution_Appendix_model70.pdf  used on input line 580.
 [109 <./images/Experimente/Compression_Schedul/ParameterDistribution_Appendix_m
 odel80.pdf>]
 <images/Experimente/Compression_Schedul/ParameterDistribution_Appendix_model60.
-pdf, id=5217, 740.04483pt x 711.13678pt>
+pdf, id=5220, 740.04483pt x 711.13678pt>
 File: images/Experimente/Compression_Schedul/ParameterDistribution_Appendix_mod
 el60.pdf Graphic file (type pdf)
 <use images/Experimente/Compression_Schedul/ParameterDistribution_Appendix_mode
@@ -2344,7 +2344,7 @@ odel60.pdf>]
 
  (./AppendixFlux.tex
 Appendix B.
-<images/Background/Flux/SingleBlockCompression.pdf, id=5311, 513.92pt x 892.333
+<images/Background/Flux/SingleBlockCompression.pdf, id=5314, 513.92pt x 892.333
 76pt>
 File: images/Background/Flux/SingleBlockCompression.pdf Graphic file (type pdf)
 
@@ -2352,7 +2352,7 @@ File: images/Background/Flux/SingleBlockCompression.pdf Graphic file (type pdf)
 Package pdftex.def Info: images/Background/Flux/SingleBlockCompression.pdf  use
 d on input line 8.
 (pdftex.def)             Requested size: 193.47578pt x 335.94508pt.
-<images/Background/Flux/DoubleBlockCompression.pdf, id=5314, 997.7275pt x 1067.
+<images/Background/Flux/DoubleBlockCompression.pdf, id=5317, 997.7275pt x 1067.
 99pt>
 File: images/Background/Flux/DoubleBlockCompression.pdf Graphic file (type pdf)
 
@@ -2375,7 +2375,7 @@ Overfull \hbox (0.29047pt too wide) in paragraph at lines 77--78
  the un-com-pressed FLUX.1 [dev] based on the parameter-
  []
 
-<images/Experimente/Flux/Block_Analysis/BlockRemovalDouble.pdf, id=5366, 1138.2
+<images/Experimente/Flux/Block_Analysis/BlockRemovalDouble.pdf, id=5369, 1138.2
 525pt x 597.6729pt>
 File: images/Experimente/Flux/Block_Analysis/BlockRemovalDouble.pdf Graphic fil
 e (type pdf)
@@ -2386,7 +2386,7 @@ ble.pdf  used on input line 82.
 
 
 [114]
-<images/Experimente/Flux/Block_Analysis/BlockCompressionDouble.pdf, id=5371, 11
+<images/Experimente/Flux/Block_Analysis/BlockCompressionDouble.pdf, id=5374, 11
 38.2525pt x 597.6729pt>
 File: images/Experimente/Flux/Block_Analysis/BlockCompressionDouble.pdf Graphic
  file (type pdf)
@@ -2394,7 +2394,7 @@ File: images/Experimente/Flux/Block_Analysis/BlockCompressionDouble.pdf Graphic
 Package pdftex.def Info: images/Experimente/Flux/Block_Analysis/BlockCompressio
 nDouble.pdf  used on input line 89.
 (pdftex.def)             Requested size: 483.69687pt x 253.98482pt.
-<images/Experimente/Flux/Block_Analysis/BlockRemovalSingle.pdf, id=5374, 1138.2
+<images/Experimente/Flux/Block_Analysis/BlockRemovalSingle.pdf, id=5377, 1138.2
 525pt x 1138.2525pt>
 File: images/Experimente/Flux/Block_Analysis/BlockRemovalSingle.pdf Graphic fil
 e (type pdf)
@@ -2406,7 +2406,7 @@ gle.pdf  used on input line 97.
 
 [115 <./images/Experimente/Flux/Block_Analysis/BlockRemovalDouble.pdf> <./image
 s/Experimente/Flux/Block_Analysis/BlockCompressionDouble.pdf>]
-<images/Experimente/Flux/Block_Analysis/BlockCompressionSingle.pdf, id=5437, 11
+<images/Experimente/Flux/Block_Analysis/BlockCompressionSingle.pdf, id=5440, 11
 38.2525pt x 1138.2525pt>
 File: images/Experimente/Flux/Block_Analysis/BlockCompressionSingle.pdf Graphic
  file (type pdf)
@@ -2417,7 +2417,7 @@ nSingle.pdf  used on input line 106.
 
 
 [116 <./images/Experimente/Flux/Block_Analysis/BlockRemovalSingle.pdf>]
-<images/Experimente/Flux/Block_Analysis/weightedCMMD.png, id=5492, 1003.8303pt 
+<images/Experimente/Flux/Block_Analysis/weightedCMMD.png, id=5495, 1003.8303pt 
 x 426.393pt>
 File: images/Experimente/Flux/Block_Analysis/weightedCMMD.png Graphic file (typ
 e png)
@@ -2431,7 +2431,7 @@ g  used on input line 115.
 
 [118 <./images/Experimente/Flux/Block_Analysis/weightedCMMD.png>]
 <images/Experimente/Flux/TrainingFree_paper/TrainingFreeAppendix_model90.pdf, i
-d=5562, 1052.97394pt x 568.76491pt>
+d=5565, 1052.97394pt x 568.76491pt>
 File: images/Experimente/Flux/TrainingFree_paper/TrainingFreeAppendix_model90.p
 df Graphic file (type pdf)
 <use images/Experimente/Flux/TrainingFree_paper/TrainingFreeAppendix_model90.pd
@@ -2440,7 +2440,7 @@ Package pdftex.def Info: images/Experimente/Flux/TrainingFree_paper/TrainingFre
 eAppendix_model90.pdf  used on input line 157.
 (pdftex.def)             Requested size: 483.69687pt x 261.26184pt.
 <images/Experimente/Flux/TrainingFree_paper/TrainingFreeAppendix_model70.pdf, i
-d=5565, 1052.97394pt x 568.76491pt>
+d=5568, 1052.97394pt x 568.76491pt>
 File: images/Experimente/Flux/TrainingFree_paper/TrainingFreeAppendix_model70.p
 df Graphic file (type pdf)
 <use images/Experimente/Flux/TrainingFree_paper/TrainingFreeAppendix_model70.pd
@@ -2467,7 +2467,7 @@ Overfull \hbox (1.02882pt too wide) in paragraph at lines 204--229
 [120 <./images/Experimente/Flux/TrainingFree_paper/TrainingFreeAppendix_model70
 .pdf>]
 <images/Experimente/Flux/BlockSelection/Random_vs_Importance_Block_Selection_Ap
-pendix_model_68.pdf, id=5656, 1077.54572pt x 568.76491pt>
+pendix_model_68.pdf, id=5659, 1077.54572pt x 568.76491pt>
 File: images/Experimente/Flux/BlockSelection/Random_vs_Importance_Block_Selecti
 on_Appendix_model_68.pdf Graphic file (type pdf)
 <use images/Experimente/Flux/BlockSelection/Random_vs_Importance_Block_Selectio
@@ -2476,7 +2476,7 @@ Package pdftex.def Info: images/Experimente/Flux/BlockSelection/Random_vs_Impor
 tance_Block_Selection_Appendix_model_68.pdf  used on input line 234.
 (pdftex.def)             Requested size: 483.69687pt x 255.3083pt.
 <images/Experimente/Flux/BlockSelection/Random_vs_Importance_Block_Selection_Ap
-pendix_model_57.pdf, id=5657, 1077.54572pt x 568.76491pt>
+pendix_model_57.pdf, id=5660, 1077.54572pt x 568.76491pt>
 File: images/Experimente/Flux/BlockSelection/Random_vs_Importance_Block_Selecti
 on_Appendix_model_57.pdf Graphic file (type pdf)
 <use images/Experimente/Flux/BlockSelection/Random_vs_Importance_Block_Selectio
@@ -2485,7 +2485,7 @@ Package pdftex.def Info: images/Experimente/Flux/BlockSelection/Random_vs_Impor
 tance_Block_Selection_Appendix_model_57.pdf  used on input line 240.
 (pdftex.def)             Requested size: 483.69687pt x 255.3083pt.
 <images/Experimente/Flux/BlockSelection/Random_vs_Importance_Block_Selection_Ap
-pendix_model_43.pdf, id=5658, 1077.54572pt x 568.76491pt>
+pendix_model_43.pdf, id=5661, 1077.54572pt x 568.76491pt>
 File: images/Experimente/Flux/BlockSelection/Random_vs_Importance_Block_Selecti
 on_Appendix_model_43.pdf Graphic file (type pdf)
 <use images/Experimente/Flux/BlockSelection/Random_vs_Importance_Block_Selectio
@@ -2503,101 +2503,106 @@ tion_Appendix_model_57.pdf> <./images/Experimente/Flux/BlockSelection/Random_vs
 _Importance_Block_Selection_Appendix_model_43.pdf>]
 
 [123]
-Overfull \hbox (1.02882pt too wide) in paragraph at lines 592--624
+Overfull \hbox (1.02882pt too wide) in paragraph at lines 590--622
  [][] 
  []
 
 
 
 [124]
-<images/Experimente/Flux/SVDtrunc/Appendix_SVDtrunc.pdf, id=5813, 963.35912pt x
+<images/Experimente/Flux/SVDtrunc/Appendix_SVDtrunc.pdf, id=5815, 963.35912pt x
  1194.62314pt>
 File: images/Experimente/Flux/SVDtrunc/Appendix_SVDtrunc.pdf Graphic file (type
  pdf)
 <use images/Experimente/Flux/SVDtrunc/Appendix_SVDtrunc.pdf>
 Package pdftex.def Info: images/Experimente/Flux/SVDtrunc/Appendix_SVDtrunc.pdf
-  used on input line 1160.
+  used on input line 1158.
 (pdftex.def)             Requested size: 483.69687pt x 599.8074pt.
 
 
 [125]
-<images/Experimente/Flux/SVDtrunc/Appendix_DomainShift.pdf, id=5819, 963.35912p
+<images/Experimente/Flux/SVDtrunc/Appendix_DomainShift.pdf, id=5821, 963.35912p
 t x 1194.62314pt>
 File: images/Experimente/Flux/SVDtrunc/Appendix_DomainShift.pdf Graphic file (t
 ype pdf)
 <use images/Experimente/Flux/SVDtrunc/Appendix_DomainShift.pdf>
 Package pdftex.def Info: images/Experimente/Flux/SVDtrunc/Appendix_DomainShift.
-pdf  used on input line 1170.
+pdf  used on input line 1168.
 (pdftex.def)             Requested size: 483.69687pt x 599.8074pt.
 
 
 [126 <./images/Experimente/Flux/SVDtrunc/Appendix_SVDtrunc.pdf>]
-<images/Experimente/Flux/SVDtrunc/Appendix_MemorizationLoss.pdf, id=5876, 963.3
+<images/Experimente/Flux/SVDtrunc/Appendix_MemorizationLoss.pdf, id=5878, 963.3
 5912pt x 1194.62314pt>
 File: images/Experimente/Flux/SVDtrunc/Appendix_MemorizationLoss.pdf Graphic fi
 le (type pdf)
 <use images/Experimente/Flux/SVDtrunc/Appendix_MemorizationLoss.pdf>
 Package pdftex.def Info: images/Experimente/Flux/SVDtrunc/Appendix_Memorization
-Loss.pdf  used on input line 1177.
+Loss.pdf  used on input line 1175.
 (pdftex.def)             Requested size: 483.69687pt x 599.8074pt.
 
 
 [127 <./images/Experimente/Flux/SVDtrunc/Appendix_DomainShift.pdf>]
-<images/Experimente/Flux/SVDtrunc/Appendix_FailureCases.pdf, id=5934, 963.35912
+<images/Experimente/Flux/SVDtrunc/Appendix_FailureCases.pdf, id=5936, 963.35912
 pt x 1024.06589pt>
 File: images/Experimente/Flux/SVDtrunc/Appendix_FailureCases.pdf Graphic file (
 type pdf)
 <use images/Experimente/Flux/SVDtrunc/Appendix_FailureCases.pdf>
 Package pdftex.def Info: images/Experimente/Flux/SVDtrunc/Appendix_FailureCases
-.pdf  used on input line 1187.
+.pdf  used on input line 1185.
 (pdftex.def)             Requested size: 483.69687pt x 514.17244pt.
 
 
 [128 <./images/Experimente/Flux/SVDtrunc/Appendix_MemorizationLoss.pdf>]
 
 [129 <./images/Experimente/Flux/SVDtrunc/Appendix_FailureCases.pdf>]
-<images/Experimente/Flux/FluxSchnell/FluxSchnellAppx.pdf, id=6045, 963.35912pt 
+<images/Experimente/Flux/FluxSchnell/FluxSchnellAppx.pdf, id=6047, 963.35912pt 
 x 1194.62314pt>
 File: images/Experimente/Flux/FluxSchnell/FluxSchnellAppx.pdf Graphic file (typ
 e pdf)
 <use images/Experimente/Flux/FluxSchnell/FluxSchnellAppx.pdf>
 Package pdftex.def Info: images/Experimente/Flux/FluxSchnell/FluxSchnellAppx.pd
-f  used on input line 1204.
+f  used on input line 1202.
 (pdftex.def)             Requested size: 435.32422pt x 539.81755pt.
-<images/Experimente/Flux/FluxSchnell/FluxSchnellDomainShift.pdf, id=6046, 963.3
+<images/Experimente/Flux/FluxSchnell/FluxSchnellDomainShift.pdf, id=6048, 963.3
 5912pt x 568.76491pt>
 File: images/Experimente/Flux/FluxSchnell/FluxSchnellDomainShift.pdf Graphic fi
 le (type pdf)
 <use images/Experimente/Flux/FluxSchnell/FluxSchnellDomainShift.pdf>
 Package pdftex.def Info: images/Experimente/Flux/FluxSchnell/FluxSchnellDomainS
-hift.pdf  used on input line 1213.
+hift.pdf  used on input line 1211.
 (pdftex.def)             Requested size: 435.32422pt x 257.00931pt.
 
 
 [130 <./images/Experimente/Flux/FluxSchnell/FluxSchnellAppx.pdf>]
-<images/Experimente/Flux/FluxSchnell/FluxSchnellMeMo.pdf, id=6101, 963.35912pt 
+<images/Experimente/Flux/FluxSchnell/FluxSchnellMeMo.pdf, id=6103, 963.35912pt 
 x 568.76491pt>
 File: images/Experimente/Flux/FluxSchnell/FluxSchnellMeMo.pdf Graphic file (typ
 e pdf)
 <use images/Experimente/Flux/FluxSchnell/FluxSchnellMeMo.pdf>
 Package pdftex.def Info: images/Experimente/Flux/FluxSchnell/FluxSchnellMeMo.pd
-f  used on input line 1220.
+f  used on input line 1218.
 (pdftex.def)             Requested size: 435.32422pt x 257.00931pt.
+
+Overfull \hbox (1.02882pt too wide) in paragraph at lines 1229--1257
+ [][] 
+ []
+
 
 
 [131 <./images/Experimente/Flux/FluxSchnell/FluxSchnellDomainShift.pdf> <./imag
 es/Experimente/Flux/FluxSchnell/FluxSchnellMeMo.pdf>]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\gls' on input line 1264.
+(hyperref)                removing `\gls' on input line 1262.
 
-<images/Experimente/Flux/Training_Free/BlockImportanceFastFlux.png, id=6169, 80
+<images/Experimente/Flux/Training_Free/BlockImportanceFastFlux.png, id=6171, 80
 5.0075pt x 368.37625pt>
 File: images/Experimente/Flux/Training_Free/BlockImportanceFastFlux.png Graphic
  file (type png)
 <use images/Experimente/Flux/Training_Free/BlockImportanceFastFlux.png>
 Package pdftex.def Info: images/Experimente/Flux/Training_Free/BlockImportanceF
-astFlux.png  used on input line 1272.
+astFlux.png  used on input line 1270.
 (pdftex.def)             Requested size: 435.32422pt x 199.20686pt.
 )
 
@@ -2666,7 +2671,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 5--10
 [146]
 
 [147]
-Underfull \hbox (badness 1721) in paragraph at lines 1225--1228
+Underfull \hbox (badness 1721) in paragraph at lines 1232--1235
 []\T1/cmr/m/n/10 Zhihua Zhang.  The sin-gu-lar value de-com-po-si-tion, ap-pli-
 ca-tions and be-yond.  \T1/cmr/m/it/10 arXiv preprint
  []
@@ -2692,10 +2697,10 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: CED5DC7560B84C55D0DA955E9A357300;19497.
  ) 
 Here is how much of TeX's memory you used:
- 28059 strings out of 473190
- 535240 string characters out of 5715800
- 998114 words of memory out of 5000000
- 49935 multiletter control sequences out of 15000+600000
+ 28063 strings out of 473190
+ 535317 string characters out of 5715800
+ 997132 words of memory out of 5000000
+ 49938 multiletter control sequences out of 15000+600000
  600768 words of font info for 158 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,18n,96p,2458b,1310s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -2735,10 +2740,10 @@ super/sfrm0900.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-su
 per/sfrm1000.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-supe
 r/sfti1000.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/
 sftt1000.pfb>
-Output written on main.pdf (162 pages, 51831256 bytes).
+Output written on main.pdf (162 pages, 51831492 bytes).
 PDF statistics:
- 6598 PDF objects out of 7423 (max. 8388607)
- 4207 compressed objects within 43 object streams
- 855 named destinations out of 1000 (max. 500000)
+ 6600 PDF objects out of 7423 (max. 8388607)
+ 4209 compressed objects within 43 object streams
+ 856 named destinations out of 1000 (max. 500000)
  1356 words of extra memory for PDF output out of 10000 (max. 10000000)
 

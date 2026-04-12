@@ -35,7 +35,7 @@
 \contentsline {table}{\numberline {B.11}{\ignorespaces \gls {SVD}trunc on FLUX.1 {[dev]}: Detailed HPSv2 Results}}{125}{table.B.11}%
 \contentsline {table}{\numberline {B.12}{\ignorespaces \gls {SVD}trunc on FLUX.1 {[dev]}: Detailed GenEval Results}}{125}{table.B.12}%
 \contentsline {table}{\numberline {B.13}{\ignorespaces \gls {SVD}trunc on FLUX.1 {[dev]}: Detailed DPG Results}}{125}{table.B.13}%
-\contentsline {table}{\numberline {B.14}{\ignorespaces SVDtrunc FLUX.1 {[schnel]}: Compression Details}}{132}{table.B.14}%
+\contentsline {table}{\numberline {B.14}{\ignorespaces SVDtrunc FLUX.1 {[schnell]}: Compression Details}}{132}{table.B.14}%
 \contentsline {table}{\numberline {B.15}{\ignorespaces GRASP: \gls {SVD} Ranks}}{132}{table.B.15}%
 \contentsline {table}{\numberline {B.16}{\ignorespaces GRASP: Model Compression Configuration}}{133}{table.B.16}%
 \addvspace {10\p@ }
